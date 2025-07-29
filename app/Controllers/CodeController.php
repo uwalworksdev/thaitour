@@ -255,7 +255,7 @@ class CodeController extends BaseController
         $del_1 = $this->request->getPost("del_1");
         $del_2 = $this->request->getPost("del_2");
 
-        if (isset($del_1) && ${$del_1} == "N") {
+        if (isset($del_1) && $del_1 == "Y") {
             $this->CodeModel->update($code_idx, ['ufile1' => '', 'rfile1' => '']);
         }
 
@@ -269,7 +269,7 @@ class CodeController extends BaseController
             ]);
         }
 
-        if (isset($del_2) && ${$del_2} == "N") {
+        if (isset($del_2) && $del_2 == "Y") {
             $this->CodeModel->update($code_idx, ['ufile2' => '', 'rfile2' => '']);
         }
 
