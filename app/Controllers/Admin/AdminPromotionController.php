@@ -169,8 +169,11 @@ class AdminPromotionController extends BaseController
         $search_category  = updateSQ($_GET["search_category"] ?? '');
         $type             = updateSQ($_GET["type"] ?? '');
 
+        $fresult = $this->codeModel->getByParentAndDepth("62", 2)->getResultArray();
+
         if ($idx) {
             $row = $this->productPromotion->find($idx);
+            $fresult2 = $this->codeModel->getByParentAndDepth($row["category_code_1"], 3)->getResultArray();
         }
 
         $data = [
@@ -179,6 +182,8 @@ class AdminPromotionController extends BaseController
             'search_name' => $search_name,
             'search_category' => $search_category,
             'type' => $type,
+            'fresult' => $fresult ?? [],
+            'fresult2' => $fresult2 ?? [],
             'row' => $row ?? [],
         ];
         return view("admin/_promotion/write_product", $data);
