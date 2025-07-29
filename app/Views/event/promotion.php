@@ -136,6 +136,9 @@
             </div>
         </div>
         <div class="only_mo">
+            <div class="title_map">
+                <img src="/event/images/map_pro_ttl.png" alt="">
+            </div>
             <div class="promotion_map">
                 <div class="location" id="location01">
                     <div class="detail_map">
@@ -190,13 +193,13 @@
                         <div class="location_pop" id="pop03">
                             <div class="location_desc">
                                 <div class="ic_pop">
-                                    <img src="/event/images/pop_img03.png" alt="">
+                                    <img src="/event/images/pop_img06.png" alt="">
                                 </div>
                                 <div class="contents">
-                                    <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
-                                        전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
-                                        길거리 음식을 모두 맛볼 수 있는 찬스! <br>
-                                        <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span>
+                                    <p>화려한 사원과 불교 문화! <br>
+                                        방콕에는 수백 개의 사원이 있으며, 불교가 <br>
+                                        일상속에 깊숙이 자리 잡고 있습니다. <br>
+                                        <span>대표 명소 : 왓 프라깨우, 왓 포, 왓 아룬</span>
                                     </p>
                                 </div>
                             </div>
@@ -241,6 +244,28 @@
                                         전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
                                         길거리 음식을 모두 맛볼 수 있는 찬스! <br>
                                         <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="location" id="location06">
+                    <div class="detail_map">
+                        <div class="icon" id="icon06">
+                            <img src="/event/images/promotion_ic07.png" alt="" class="img_loca" style="display: none !important">
+                            <img src="/event/images/promotion_ic07_hover.png" alt="" class="img_loca hover" style="display: none !important">
+                        </div>
+                        <div class="location_pop" id="pop06">
+                            <div class="location_desc">
+                                <div class="ic_pop">
+                                    <img src="/event/images/pop_img05.png" alt="">
+                                </div>
+                                <div class="contents">
+                                    <p>방콕을 가로지르는 큰 강으로, <br>
+                                        수상버스나 디너 크루즈를 타고 강변의<br>
+                                        야경과 문화를 즐길 수 있으며 <br>
+                                        디너크루즈는 꼭 추천~</span>
                                     </p>
                                 </div>
                             </div>
