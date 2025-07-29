@@ -1,3 +1,4 @@
+
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
@@ -409,16 +410,17 @@
         var swiper = new Swiper(".tra_sec_02_swiper", {
             slidesPerView: "auto",
             loop: true,
-            spaceBetween: 20,
+            spaceBetween: 21,
             pagination: {
                 el: ".swiper-pagination.tra_sec_02_swiper_pagination",
                 clickable: true,
             },
             navigation: {
                 nextEl: ".swiper-button-next.tra_sec_02_swiper_btn_next",
-                prevEl: ".swiper-button-prev.tra_sec_02_swiper_btn_prev",
+                prevEl: ".swiper-button-prev.tra_sec_02_swiper_btn_prev" ,
             },
         });
     </script>
 
-    <?php $this->endSection(); ?>
+
+    <?php $this->endSection(); ?> 
