@@ -395,4 +395,47 @@ class AdminPromotionController extends BaseController
             ]);
         }
     }
+
+    public function change_product()
+    {
+        try {
+            $idx = $this->request->getPost('code_idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
+
+            if (!is_array($idx) || !is_array($onum) || count($idx) !== count($onum)) {
+                return $this->response->setStatusCode(400)->setJSON([
+                    'status' => 'error',
+                    'message' => '입력 데이터가 잘못되었습니다.'
+                ]);
+            }
+
+            $tot = count($idx);
+
+            for ($j = 0; $j < $tot; $j++) {
+                $data = [
+                    'onum' => $onum[$j],
+                ];
+
+                $result = $this->productPromotion->updateData($idx[$j], $data);
+
+                if (!$result) {
+                    return $this->response->setStatusCode(400)->setJSON([
+                        'status' => 'error',
+                        'message' => '수정 중 오류가 발생했습니다!!'
+                    ]);
+                }
+            }
+
+            return $this->response->setStatusCode(200)->setJSON([
+                'status' => 'success',
+                'message' => '수정 했습니다.'
+            ]);
+
+        } catch (\Exception $e) {
+            return $this->response->setStatusCode(500)->setJSON([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }
