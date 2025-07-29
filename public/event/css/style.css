@@ -797,13 +797,18 @@ body {
         position: absolute;
     }
 
-    .promotion_map .icon {
+    .promotion_map #location03 .detail_map {
+        top: 21rem;
+        left: 15%;
+        transform: translateX(-50%);
+        position: absolute;
     }
 
-    .promotion_map #icon01 {
-    }
-
-    .promotion_map #icon02 {
+    .promotion_map #location04 .detail_map {
+        top: 25rem;
+        left: 37%;
+        transform: translateX(-50%);
+        position: absolute;
     }
 
     .promotion_map .img_loca.hover {
@@ -834,13 +839,29 @@ body {
         width: 2.4rem;
     }
 
+    .promotion_map #icon03 .img_loca {
+        width: 4.8rem;
+    }
+
+    .promotion_map #icon03 .hover {
+        width: 5.6rem;
+    }
+
+    .promotion_map #icon04 .img_loca {
+        width: 4rem;
+    }
+
+    .promotion_map #icon04 .hover {
+        width: 4.8rem;
+    }
+
     .promotion_map .location .icon:hover+.location_pop {
         display: block;
     }
 
     .promotion_map .location_pop {
         position: absolute;
-        bottom: -6.2rem;
+        bottom: 7rem;
         left: 45%;
         transform: translateX(-50%);
         min-width: 40rem;
@@ -879,7 +900,7 @@ body {
 
     .promotion_map #pop02 .location_desc .ic_pop {
         position: absolute;
-        top: -6.3rem;
+        top: -7.3rem;
         left: unset;
         right: -5.3rem;
     }
