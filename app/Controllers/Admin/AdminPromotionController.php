@@ -138,6 +138,7 @@ class AdminPromotionController extends BaseController
         $pg                 = updateSQ($_GET["pg"] ?? '1');
         $search_txt         = updateSQ($_GET["search_txt"] ?? '');
         $search_category    = updateSQ($_GET["search_category"] ?? '');
+        $type               = updateSQ($_GET["type"] ?? '');
 
         $where = [
             'search_txt'        => $search_txt,
@@ -155,6 +156,7 @@ class AdminPromotionController extends BaseController
             'g_list_rows'           => $g_list_rows,
             'search_txt'            => $search_txt,
             'search_category'       => $search_category,
+            'type'                  => $type
         ];
         return view("admin/_promotion/list_product", $data);
     }
@@ -165,6 +167,7 @@ class AdminPromotionController extends BaseController
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
+        $type             = updateSQ($_GET["type"] ?? '');
 
         if ($idx) {
             $row = $this->productPromotion->find($idx);
@@ -175,6 +178,7 @@ class AdminPromotionController extends BaseController
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
+            'type' => $type,
             'row' => $row ?? [],
         ];
         return view("admin/_promotion/write_product", $data);

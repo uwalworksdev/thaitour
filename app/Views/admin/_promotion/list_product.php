@@ -105,7 +105,7 @@
                                 if ($nTotalCount == 0) {
                                 ?>
                                     <tr>
-                                        <td colspan=5 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=6 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                 <?php
                                 }
@@ -114,7 +114,7 @@
                                     <tr style="height:30px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <a href="./write_product?idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
+                                            <a href="./write_product?type=<?=$type?>&idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
                                         </td>
                                        
                                         <td class="tac">
