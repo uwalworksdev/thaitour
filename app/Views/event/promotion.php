@@ -253,8 +253,8 @@
                 <div class="location" id="location06">
                     <div class="detail_map">
                         <div class="icon" id="icon06">
-                            <img src="/event/images/promotion_ic07.png" alt="" class="img_loca" style="display: none !important">
-                            <img src="/event/images/promotion_ic07_hover.png" alt="" class="img_loca hover" style="display: none !important">
+                            <img src="/event/images/pin_location.png" alt="" class="img_loca" style="display: none !important">
+                            <img src="/event/images/pin_location_hover.png" alt="" class="img_loca hover" style="display: none !important">
                         </div>
                         <div class="location_pop" id="pop06">
                             <div class="location_desc">
