@@ -1,13 +1,21 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-
+<?php
+    if($type == "hotel") {
+        $str_title = "호텔 & 리조트";
+    }else if($type == "golf") {
+        $str_title = "투어";
+    }else {
+        $str_title = "골프";
+    }
+?>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>방콕 필수 코스 5가지</h2>
+                <h2><?= $str_title ?></h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>

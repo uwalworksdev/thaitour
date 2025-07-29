@@ -53,7 +53,14 @@
         }
     }
 
-    $titleStr = "테마별 인기호텔";
+    if($type == "hotel") {
+        $titleStr = "호텔 & 리조트";
+    }else if($type == "golf") {
+        $titleStr = "투어";
+    }else {
+        $titleStr = "골프";
+    }
+
     $links = "list_product";
 ?>
 <div id="container">
