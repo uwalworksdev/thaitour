@@ -43,7 +43,7 @@
                         <?php if ($product_idx) { ?>
                             <li>
                                 <a href="javascript:send_it()" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span>
+                                    <span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span>
                                 </a>
                             </li>
                         <?php } ?>
@@ -665,7 +665,7 @@
                     </a>
                     <a href="javascript:send_it()" class="btn btn-default">
                         <span class="glyphicon glyphicon-cog"></span>
-                        <span class="txt">수정</span>
+                        <span class="txt">저장</span>
                     </a>
                 </li>
             </ul>

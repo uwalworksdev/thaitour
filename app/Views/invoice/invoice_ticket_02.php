@@ -34,7 +34,7 @@ $setting = homeSetInfo();
                             <td>2023-09-13(수)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
                             <th>이메일</th>
                             <td>thaitouradventure@gmail.com</td>

@@ -11,7 +11,9 @@
             $btn.prop("disabled", true);
 
             $("#ajax_loader").removeClass("display-none");
-
+            let time_line = $("#hours").val() + ":" + $("#minutes").val();
+            $("#time_line").val(time_line);
+			
             $("#order_status").val(status);
 
             let formData = new FormData($('#formOrder')[0]);

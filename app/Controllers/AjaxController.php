@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use DateTime;
+use CodeIgniter\I18n\Time;
 
 class AjaxController extends BaseController {
     private $db;
@@ -9,6 +10,9 @@ class AjaxController extends BaseController {
     private $roomImg;
     private $CodeModel;
     private $orderOptionModel;
+    private $orderModel;
+    protected $historyOrderUpdate;
+
 
     public function __construct() {
         $this->db = db_connect();
@@ -16,6 +20,8 @@ class AjaxController extends BaseController {
         $this->roomImg = model("RoomImg");
         $this->CodeModel = model("Code");
         $this->orderOptionModel = model("OrderOptionModel");
+        $this->orderModel = model("OrdersModel");
+        $this->historyOrderUpdate = model("HistoryOrderUpdate");
     }
 
     public function uploader() {
@@ -87,62 +93,67 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
-public function get_golf_option() {
-        $db           = \Config\Database::connect();
-		$setting      = homeSetInfo();
-        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
-		
-        $product_idx  = $this->request->getPost('product_idx');
-        $goods_date   = $this->request->getPost('goods_date');
-        $goods_name   = $this->request->getPost('goods_name');
+	public function get_golf_option()
+	{
+		$db = \Config\Database::connect();
+		$setting = homeSetInfo();
+		$baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-		$sql = "SELEWCT a.*. b.* FROM tbl_golf_option a 
-		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
-								 WHERE product_idx = '". $product_idx ."' 
-								 AND goods_date = '". $goods_date ."' 
-								 AND goods_name = '". $goods_name ."' "; 
-		$rows = $db->query($sql)->getResultArray();
-		foreach ($rows as $row) {
-				 
-                 $option_idx        = $row['idx'];	
-                 $vehicle_price1_ba = $row['vehicle_price1'];	
-	             $vehicle_price2_ba = $row['vehicle_price2'];	
-	             $vehicle_price3_ba = $row['vehicle_price3'];	
-	             $cart_price_ba     = $row['cart_price'];
-	             $caddie_fee_ba     = $row['caddie_fee']; 
+		$product_idx = $this->request->getPost('product_idx');
+		$goods_date = $this->request->getPost('goods_date');
+		$goods_name = $this->request->getPost('goods_name');
 
-	             $o_cart_due	    = $row['o_cart_due']; 	
-	             $o_caddy_due	    = $row['o_caddy_due']; 	
-	             $o_cart_cont	    = $row['o_cart_cont']; 	
-	             $o_caddy_cont	    = $row['o_caddy_cont']; 			 
-                 
-				 $vehicle_price1    = (int) round($row['vehicle_price1'] * $baht_thai);	
-	             $vehicle_price2    = (int) round($row['vehicle_price2'] * $baht_thai); 	
-	             $vehicle_price3    = (int) round($row['vehicle_price3'] * $baht_thai); 	
-	             $cart_price        = (int) round($row['cart_price']     * $baht_thai);
-	             $caddie_fee        = (int) round($row['caddie_fee']     * $baht_thai);   
+		// ✅ Query Builder 사용 → Injection 방지
+		$builder = $db->table('tbl_golf_option a');
+		$builder->select('a.*, b.*');
+		$builder->join('tbl_golf_price b', 'a.group_idx = b.group_idx', 'left');
+		$builder->where('a.product_idx', $product_idx);
+		$builder->where('b.goods_date', $goods_date);
+		$builder->where('a.goods_name', $goods_name);
+		$builder->where('a.group_idx !=', 0);
+		$builder->limit(1);
+
+		$rows = $builder->get()->getResultArray();
+
+		// ✅ 결과 없음 처리
+		if (empty($rows)) {
+			return $this->response->setJSON([
+				'result' => 'FAIL',
+				'message' => '옵션 데이터가 없습니다.'
+			]);
 		}
 
-        $output = [
-					"option_idx"         => $option_idx,
-					"vehicle_price1"     => $vehicle_price1,
-					"vehicle_price2"     => $vehicle_price2,
-					"vehicle_price3"     => $vehicle_price3,
-					"cart_price"         => $cart_price,
-					"caddie_fee"         => $caddie_fee, 
-					"o_cart_due"	     => $o_cart_due, 	
-					"o_caddy_due"	     => $o_caddy_due, 	
-					"o_cart_cont"	     => $o_cart_cont, 	
-					"o_caddy_cont"	     => $o_caddy_cont, 			 
-			
-					"vehicle_price1_ba"  => $vehicle_price1_ba,
-					"vehicle_price2_ba"  => $vehicle_price2_ba,
-					"vehicle_price3_ba"  => $vehicle_price3_ba,
-					"cart_price_ba"      => $cart_price_ba,
-					"caddie_fee_ba"      => $caddie_fee_ba 
-        ];
-        
-        return $this->response->setJSON($output);		
+		$row = $rows[0];
+
+		// ✅ 변환
+		$convertPrice = function ($value) use ($baht_thai) {
+			return (int) round($value * $baht_thai);
+		};
+
+		$output = [
+			'option_idx'        => $row['idx'],
+
+			'vehicle_price1_ba' => $row['vehicle_price1'],
+			'vehicle_price2_ba' => $row['vehicle_price2'],
+			'vehicle_price3_ba' => $row['vehicle_price3'],
+			'cart_price_ba'     => $row['cart_price'],
+			'caddie_fee_ba'     => $row['caddie_fee'],
+
+			'vehicle_price1'    => $convertPrice($row['vehicle_price1']),
+			'vehicle_price2'    => $convertPrice($row['vehicle_price2']),
+			'vehicle_price3'    => $convertPrice($row['vehicle_price3']),
+			'cart_price'        => $convertPrice($row['cart_price']),
+			'caddie_fee'        => $convertPrice($row['caddie_fee']),
+
+			'o_cart_due'        => $row['o_cart_due'],
+			'o_caddy_due'       => $row['o_caddy_due'],
+			'o_cart_cont'       => $row['o_cart_cont'],
+			'o_caddy_cont'      => $row['o_caddy_cont'],
+
+			'result'            => 'OK'
+		];
+
+		return $this->response->setJSON($output);
 	}
 	
 	public function hotel_price_add()
@@ -715,6 +726,7 @@ public function get_golf_option() {
 	
     public function hotel_room_search()
 	{
+		
             $db             = \Config\Database::connect();
             include_once APPPATH . 'Common/hotelPrice.php';
 
@@ -732,7 +744,6 @@ public function get_golf_option() {
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
 																	 goods_code = '". $product_idx ."' ORDER BY g_idx ASC ";
-            //write_log("hotel_room_search-1 ". $sql);							 
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
@@ -750,11 +761,13 @@ public function get_golf_option() {
 			foreach ($roomTypes as $type): 
 
                  $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
+                 write_log("hotel_room_search-3 ". $sql);							 
                  $result = $db->query($sql);
                  $row    = $result->getRowArray();
 			     $hotel_room = $row['roomName'];
 
 				 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
+                 write_log("hotel_room_search-4 ". $sql_img);							 
 				 $query_img  = $db->query($sql_img);
 				 $result     = $query_img->getResult();
 
@@ -809,7 +822,6 @@ public function get_golf_option() {
 									</div>									
 										'; 
 
-                    
                             $arr_type_room = explode("|", $row['category']);
                             $arr_text_type = [];
                             foreach($fresult11 as $category){
@@ -971,100 +983,116 @@ public function get_golf_option() {
 																<span class="price_content"><i class="hotel_price_percent">'. $room['discount_rate'] .'</i>%할인</span>
 																</div>';
 													}  
-													$msg .= '</div>';
+													$msg .= '</div></div>';
 												}
 												
-												if($price_won > 0) {  
-													$msg .=	'<div class="wrap_btn_book">
-																<div class="flex__c btn_re">
-																	<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
-																	<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
-																</div>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-															</div>
-															</div>';
-												} else {
-													$msg .=	'<div class="wrap_btn_book">
-																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-															</div>
-															</div>';
-												}			
-												//write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
+		
+												write_log("1- ". $room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
-											    //write_log("11111111- ". $result);
-												$msg .= '<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
-														<div class="wrap_input_radio">';
+											    write_log("11111111- ". $result);
+												if($result) {
+														
+														$msg .= '<div class="wrap_bed_type">
+																	<div class="tit">
+																		<span>침대타입(요청사항)</span>
+																		<div class="view_promotion view_promotion2"> 
+																			<img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">';
+																		
+														if(!empty(trim($room['r_contents3']))) {  
+															$msg .= '<div class="layer_promotion layer_promotion2">
+																		<p style="white-space: pre-line">'. $room['r_contents3'] .'</p>
+																	</div>';   
+														}
+														$msg .=			'</div>
+																		<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+																	</div>
+																<div class="wrap_input_radio">';
 
-												$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
-												
-												for($i=0;$i<count($arr);$i++)
-		                                        {	 
-													 $_room     =  explode(":", $arr[$i]);
-													 $baht_thai =  $_room[6];
-													 $real_won  =  (int)(($_room[3] + $_room[4]) * (int)($room_qty) * $baht_thai);
-													 //$extra_won =  $_room[5];
-													 $real_bath =  ($_room[3] + $_room[4]) * (int)($room_qty);
-													 $bed_idx   =  $_room[1];
-													 //write_log("AjaxCFontroller- ". $room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
-													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
-                                                     //write_log("222222- ". $result_d);
-												     $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
-															  <input type="radio" name="bed_type_" 
-																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																  data-room="'. $hotel_room .'" 
-																  data-price="'. $result_d .'"  
-																  data-adult="'. $room['adult'] .'" 
-																  data-kids="'. $room['kids'] .'"  
-																  data-roomtype="'. $room['room_name'] .'" 
-																  data-breakfast="'. $room['breakfast'] .'" 
-																  data-won="'. $real_won .'" 
-																  data-bath="'. $real_bath .'" 
-																  data-type="'. $_room[0] .'" 
-																  data-bed_idx="'. $_room[1] .'" 
-																  data-g_idx="'. $room['g_idx'] .'" 
-																  value="'. $room['rooms_idx'] .'" 
-																  class="sel_'. $room['rooms_idx'] .'">
-															  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $bed_idx .'">'.$_room[0] .':';
-													 
-													 if($room['secret_price'] == "Y"){
-																$msg .=		'<span>비밀특가</span>';
-													 }else{
-														$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
-													 }
-													 $msg .= '</div>';
-													 
-													 if($_room[5] > 0) {
-														  $extra_won  = (int)($_room[5] * (int)($room_qty) * $baht_thai);
-														  $extra_bath = $_room[5] * (int)($room_qty);	  
-												    	  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
-													      $msg .= '<input type="checkbox" 
-														            name="extra_" 
-																	id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																	data-id="'.$room['g_idx'].$room['rooms_idx'].$bed_idx .'"
-																	data-g_idx="'.$room['g_idx'].'"
-																    data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
-													      $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
-													      $msg .= '</div>';
-													 }
-													 
-													 
-											    } 
-												  
-												//if($extra_won > 0) {
-												//	  $msg .= '<div class="wrap_check">';
-												//	  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-												//				data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
-												//	  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
-												//	  $msg .= '</div>';
-                                                //}
-												  
-												$msg .= '</div>
-														   </div>
-														   </td>
-														   </tr>';
+														$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
+														
+														for($i=0;$i<count($arr);$i++)
+														{	 
+															 $_room     =  explode(":", $arr[$i]);
+															 $baht_thai =  $_room[6];
+															 $real_won  =  (int)(($_room[3] + $_room[4]) * (int)($room_qty) * $baht_thai);
+															 //$extra_won =  $_room[5];
+															 $real_bath =  ($_room[3] + $_room[4]) * (int)($room_qty);
+															 $bed_idx   =  $_room[1];
+															 write_log("2- ". $room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
+															 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
+															 write_log("222222- ". $result_d);
+															 $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
+																	  <input type="radio" name="bed_type_" 
+																		  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																		  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																		  data-room="'. $hotel_room .'" 
+																		  data-price="'. $result_d .'"  
+																		  data-adult="'. $room['adult'] .'" 
+																		  data-kids="'. $room['kids'] .'"  
+																		  data-roomtype="'. $room['room_name'] .'" 
+																		  data-breakfast="'. $room['breakfast'] .'" 
+																		  data-won="'. $real_won .'" 
+																		  data-bath="'. $real_bath .'" 
+																		  data-type="'. $_room[0] .'" 
+																		  data-bed_idx="'. $_room[1] .'" 
+																		  data-g_idx="'. $room['g_idx'] .'" 
+																		  value="'. $room['rooms_idx'] .'" 
+																		  class="sel_'. $room['rooms_idx'] .'">
+																	  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $bed_idx .'">'.$_room[0] .':';
+															 
+															 if($room['secret_price'] == "Y"){
+																		$msg .=		'<span>비밀특가</span>';
+															 }else{
+																$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
+															 }
+															 $msg .= '</div>';
+															 
+															 if($_room[5] > 0) {
+																  $extra_won  = (int)($_room[5] * (int)($room_qty) * $baht_thai);
+																  $extra_bath = $_room[5] * (int)($room_qty);	  
+																  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
+																  $msg .= '<input type="checkbox" 
+																			name="extra_" 
+																			id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																			data-id="'.$room['g_idx'].$room['rooms_idx'].$bed_idx .'"
+																			data-g_idx="'.$room['g_idx'].'"
+																			data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+																  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+																  $msg .= '</div>';
+															 }
+															 
+															 
+														} 
+														  
+														//if($extra_won > 0) {
+														//	  $msg .= '<div class="wrap_check">';
+														//	  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+														//				data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+														//	  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+														//	  $msg .= '</div>';
+														//}
+														  
+														$msg .= '</div>
+																   </div>';
+
+														if($price_won > 0) {  
+															$msg .=	'<div class="wrap_btn_book">
+																		<div class="flex__c btn_re">
+																			<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+																			<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
+																			<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																		</div>
+																	</div>
+																	';
+														} else {
+															$msg .=	'<div class="wrap_btn_book">
+																		<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
+																		<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																	</div>';
+														}			   
+														$msg .=		   '</td>
+																   </tr>';
+												}				   
                              			endforeach; 
 
 										$msg .= '</tbody>
@@ -2263,19 +2291,31 @@ public function get_golf_option() {
 			$order_no  = $_POST["order_no"];
 			$order_user_email = $_POST["order_user_email"];
  
-			$sql       = "SELECT   *
+			$sql       = "SELECT   a.*, b.product_name
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
-						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst a
+								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								WHERE order_no = '". $order_no ."' ";
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
-				'예약일자'    => substr($row->order_r_date,0,10),
+				'예약일짜'    => substr($row->order_r_date,0,10),
 				'회원이름'    => $row->user_name,
 				'이메일'      => $row->user_email,
 				'전화번호'     => $row->user_mobile,
@@ -2297,7 +2337,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['총금액'] = $order_price;
 				$_tmp_fir_array['총금액'] = $order_price;
 			}else if($row->order_gubun == "golf"){
-				$code        = "A22";
+				$code = "A22";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "tour"){
 				$code = "A24";
@@ -2305,7 +2345,30 @@ public function get_golf_option() {
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
-				$_tmp_fir_array['gubun'] = 'ticket';
+			}else if($row->order_gubun == "ticket"){
+				$code = "A34";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "restaurant"){
+				$code = "A35";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "vehicle"){
+				$code = "A28";
+				
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+
+				$_tmp_fir_array['이용날짜'] = $str_day_v;
+
+			}else {
+				$code = "A30";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['이용날짜'] = $str_day_g;
+			
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
@@ -2361,8 +2424,18 @@ public function get_golf_option() {
 				$user_mobile = $row->user_mobile;
 			}
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
@@ -2393,14 +2466,14 @@ public function get_golf_option() {
 				$code = 'A25';
 				$_tmp_fir_array['투어명명'] = $row->product_name_en;
 				$_tmp_fir_array['투어업체'] = $row->addrs;
-				$_tmp_fir_array['투어전화번호'] = $row->phone_2;
+				$_tmp_fir_array['투어전화번호'] = $row->phone;
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
-				$_tmp_fir_array['제품명'] = $row->tour_type_en;
+				// $_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}
-			else if($row->order_gubun == "spa"){
+			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 
 				$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 				$query = $builder->where('order_idx', $row->order_idx)->get();
 				$optionResult = $query->getResult();
 
@@ -2409,15 +2482,29 @@ public function get_golf_option() {
 					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
 				}
 
-
-				$code = 'A27';
-				$_tmp_fir_array['gubun'] = "ticket";
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
 
-				$_tmp_fir_array['스파명'] = $row->product_name_cs;
-				$_tmp_fir_array['스파주소'] = $row->addrs;
-				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				if($row->order_gubun == "spa"){
+					$code = 'A27';
+
+					$_tmp_fir_array['스파명'] = $product_name_cs;
+					$_tmp_fir_array['스파주소'] = $row->addrs;
+					$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				}else if($row->order_gubun == "ticket") {
+					$code = 'A54';
+
+					$_tmp_fir_array['쇼&틱킷명'] = $product_name_cs;
+					$_tmp_fir_array['쇼&틱주소'] = $row->addrs;
+					$_tmp_fir_array['쇼&틱전화번호'] = $row->phone_2;
+				}else {
+					$code = 'A55';
+
+					$_tmp_fir_array['레스토랑명'] = $product_name_cs;
+					$_tmp_fir_array['레스토랑주소'] = $row->addrs;
+					$_tmp_fir_array['레스토랑전화번호'] = $row->phone_2;
+				}
+
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->option;
 
@@ -2439,7 +2526,7 @@ public function get_golf_option() {
 				}
 
 				$_tmp_fir_array['체크인'] = $checkin;
-				$_tmp_fir_array['호텔상품'] = $room_type;
+				$_tmp_fir_array['호텔상품명'] = $room_type;
 
 			}else if($row->order_gubun == "golf"){
 				$code        = "A23";
@@ -2450,6 +2537,24 @@ public function get_golf_option() {
 
 				$_tmp_fir_array['골프상품명'] = $hole;
 				$_tmp_fir_array['영문호텔주소'] = $row->addrs;
+			}
+			else if($row->order_gubun == "vehicle"){
+				$code = "A29";
+
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+				$_tmp_fir_array['상품이용일'] = $str_day_v;
+
+			}
+			else {
+				$code = "A31";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['상품이용일'] = $str_day_g;
 			}
 
 			if(!empty($order_user_email)){
@@ -2634,7 +2739,23 @@ public function get_golf_option() {
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
 
-            $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
+            if($order_status == "X") { 
+               $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', confirmed_datetime = now() WHERE order_idx = '". $order_idx ."'";  
+			} else {  
+               $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
+			}
+
+			$m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
+
+			$this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
+
+			write_log("ajax_set_status- ".  $sql);
 			$result   = $db->query($sql);
 			
 			if($result) {
@@ -3158,7 +3279,7 @@ public function get_golf_option() {
 																,goods_price4 = '". $goods_price4 ."'
 																,use_yn	= ''	
 																,reg_date = now() ";	
-						write_log("객실가격정보-1 : " . $sql_c);
+						//write_log("객실가격정보-1 : " . $sql_c);
 						$db->query($sql_c);
 					}
 			}
@@ -4295,9 +4416,20 @@ public function get_golf_option() {
 			$order_no        = $this->request->getPost("order_no");
 			$real_price_bath = (float) str_replace(',', '', $this->request->getPost("real_price_bath"));
 			$real_price_won  = (float) str_replace(',', '', $this->request->getPost("real_price_won"));
+            $m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
+
+			$order_idx = $this->orderModel->where('order_no', $order_no)->get()->getRow()->order_idx;
 
             $db->query("UPDATE tbl_order_mst SET real_price_won = ?, real_price_bath = ? WHERE order_no = ?", [$real_price_won, $real_price_bath, $order_no]);
 			
+			$this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
+
 			if ($db->transStatus() === false) {
 				$db->transRollback();
 				return $this->response->setStatusCode(500)->setJSON([
@@ -4740,5 +4872,63 @@ public function get_golf_option() {
 					'message' => '예약삭제 실패했습니다. (존재하지 않거나 이미 삭제됨)'
 				]);
 		}
-	}		
+	}
+	
+	public function send_payment_sms()
+	{
+		$order_idx = $this->request->getPost('order_idx');
+
+		if (!$order_idx) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '주문 번호가 없습니다.'
+			]);
+		}
+
+		// ✅ 주문 정보 가져오기
+		$db      = \Config\Database::connect();
+		$builder = $db->table('tbl_order_mst');
+		$builder->where('order_idx', $order_idx);
+		$order   = $builder->get()->getRow();
+
+		if (!$order) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '주문 정보를 찾을 수 없습니다.'
+			]);
+		}
+		
+        $payment_no = payment_save($order_idx);
+
+		$builder = $db->table('tbl_payment_mst');
+		$builder->where('order_no', $order->order_no);
+		$row     = $builder->get()->getRow();
+
+        $user_name   = encryptField($row->payment_user_name, "decode");
+        $user_mobile = encryptField($row->payment_user_mobile, "decode");
+        $user_email  = encryptField($row->payment_user_email, "decode");
+
+		if (!$user_mobile) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '수신자 번호가 없습니다.'
+			]);
+		}
+
+		// ✅ 문자 발송
+		$code = "S17";
+		$_tmp_fir_array = [
+			'PROD_NAME'   => $row->product_name,
+			'PAYMENT_NO'  => $row->payment_no,
+			'PAYMENT_IDX' => $order_idx
+		];
+
+		autoSms($code, $user_mobile, $_tmp_fir_array);
+
+		return $this->response->setJSON([
+			'result' => 'OK',
+			'message' => '문자 발송 완료'
+		]);
+	}
+	
 }	

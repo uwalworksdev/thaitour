@@ -518,13 +518,13 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
                 <tbody>
                 <?php if ($row["order_status"] == "W") { ?>
                     <tr>
-                        <td class="content" colspan="2">예약 준비중</td>
+                        <td class="content" colspan="2" style="display:flex; justify-content: center;">예약 준비중</td>
                     </tr>
                 <?php } ?>
 
                 <?php if ($row["order_status"] == "C") { ?>
                     <tr>
-                        <td class="content" colspan="2">예약 취소</td>
+                        <td class="content" colspan="2" style="display:flex; justify-content: center;">예약 취소</td>
                     </tr>
                 <?php } ?>
                 <?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>

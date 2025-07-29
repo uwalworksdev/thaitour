@@ -425,8 +425,16 @@
                                 </tr>
                                 <tr>
                                     <th>설명하다</th>
-                                    <td colspan="3">
+                                    <td>
                                         <textarea name="desc_cont" style="width:100%; height: 100px;" id="desc_cont" class="bs-input"><?= $row['desc_cont'] ?></textarea>
+                                    </td>
+
+                                    <th>태국주소</th>
+                                    <td>
+                                        <textarea name="addr_thai" style="width:100%; height: 100px;" id="addr_thai" class="bs-input"><?= $row['addr_thai'] ?></textarea>
+
+                                        <!-- <input type="text" id="addr_thai" name="addr_thai"
+                                               value="<?= $row['addr_thai'] ?>" class="input_txt placeHolder" rel=""/> -->
                                     </td>
                                 </tr>
                                 <tr>
@@ -858,7 +866,7 @@
                                     <th>예금주명</th>
                                     <td><input type="text" id="bank_owner" name="bank_owner_australia"
                                                value="<?= $row['bank_owner_australia'] ?>" class="input_txt placeHolder"
-                                               rel="" style="width:300px;" /> _BANK_OWNER_AUSTRALIA</td>
+                                               rel="" style="width:300px;" /> _BANK_OWNER_THAILAND</td>
                                 </tr>
                                 <tr>
                                     <th>은행</th>
@@ -868,7 +876,7 @@
                                     <th>은행</th>
                                     <td><input type="text" id="bank_name" name="bank_name_australia"
                                                value="<?= $row['bank_name_australia'] ?>" class="input_txt placeHolder"
-                                               rel="" style="width:300px;" /> _BANK_NAME_AUSTRALIA</td>
+                                               rel="" style="width:300px;" /> _BANK_NAME_THAILAND</td>
                                 </tr>
 
                                 <tr>
@@ -886,11 +894,11 @@
                                     <td><input type="text" id="bank_no" name="bank_no_australia"
                                                value="<?= $row['bank_no_australia'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:300px" />
-                                        _BANK_NO_AUSTRALIA_1<br />
+                                        _BANK_NO_THAILAND_1<br />
                                         <div style="margin-top: 10px;">
                                             <input type="text" id="bank_no" name="bank_no_australia1"
                                                    value="<?= $row['bank_no_australia1'] ?>" class="input_txt placeHolder"
-                                                   rel="" style="width:300px;" /> _BANK_NO_AUSTRALIA_2
+                                                   rel="" style="width:300px;" /> _BANK_NO_THAILAND_2
                                         </div>
 
                                     </td>

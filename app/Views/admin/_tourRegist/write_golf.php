@@ -121,7 +121,7 @@
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
                                 </li>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                 </li>
                                 <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
@@ -232,7 +232,7 @@
                                             <?php endforeach; ?>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
-                                            <option value="">3차분류<?=$product['product_code_3']?></option>
+                                            <option value="">3차분류</option>
                                             <?php
                                             foreach ($category3 as $frow):
                                                 $status_txt = "";
@@ -936,8 +936,8 @@
                                     <th>골프장 담당자</th>
                                     <td>
                                         이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
-                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+										&ensp;연락처: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;이메일: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
                                         <br><span style="color: gray;">* ex) 골프장 담당자의 성함/연락처/이메일</span>
                                     </td>
                                 </tr>
@@ -1943,7 +1943,7 @@
                                         class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                         <?php } else { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                             <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                         class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                         <?php } ?>

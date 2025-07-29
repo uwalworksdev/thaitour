@@ -75,7 +75,6 @@
                         default:
                             $href = "#!";
                     }
-
                     ?>
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">

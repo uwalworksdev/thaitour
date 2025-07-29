@@ -355,53 +355,68 @@
             font-family: "Pretendard" !important;
             line-height: 1.4 !important;
         }
+
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 <div id="container_voice">
     <section class="golf_invoice voucher">
         <div class="inner">
-            <!-- <div class="logo_voice">
-                <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
-            </div> -->
-            <!-- <div class="logo_voice">
-                <h2 class="tit_top">견적서</h2>
-                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                    Thai - Registration No 010-5555-096-398<br>
-                    Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                </p>
-            </div> -->
-            <div class="only_mo">
-                <div class="logo_voice">
+                <!-- <div class="logo_voice">
+                    <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
+                </div> -->
+                <!-- <div class="logo_voice">
                     <h2 class="tit_top">견적서</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                     <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                         Thai - Registration No 010-5555-096-398<br>
                         Tel: 001-66-(0)2-730-5690, 070-7010-8266
                     </p>
-                </div>
-            </div>
-            <div class="only_web">
-                <div class="logo_voice">
-                    <div class="logo_addr">
-                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                        </p>
-                    </div>
-                    <div class="ttl_right">
-                        <h2 class="tit_top">견적서</h2>
-                    </div>
-                </div>
-            </div>
+                </div> -->
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                            <p class="addr" style="margin-top: 10px;">
+                                <?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                                Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                Tel: <?= $setting['custom_service_phone_thai2']?>
+                            </p>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                        </td>
+                    </tr>
+                </table>
             <div class="invoice_ttl">
             </div>
             <form action="" method="post" name="frm" id="frm">
                 <input type="hidden" name="order_idx" value="<?=$result->order_idx?>">
                 <div class="invoice_table">
-                    <table class="invoice_tbl re_custom">
+                    <!-- <table class="invoice_tbl re_custom">
                         <colgroup>
                             <col width="150px">
                             <col width="*">
@@ -420,7 +435,7 @@
                                 <td><?=$result->company_contact?></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
@@ -430,6 +445,10 @@
                             <col width="*">
                         </colgroup>
                         <tbody>
+                            <tr>
+                                <th>Product Name</th>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
+                            </tr>
                             <tr>
                                 <th>Name</th>
                                 <td>
@@ -489,27 +508,18 @@
                                 </td>
     
                             </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td colspan="3">
-                                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <!-- Admission (08:00-16:30) -->
-                                        <p></p>
 
-                                    </div>
-                                </td>
-                            </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td>
+                                <td colspan="3">
                                     <p><?=$order_people?></p>
 
                                 </td>
-                                <th>Time</th>
+                                <!-- <th>Time</th>
                                 <td>
                                     <p><?=$time_line?></p>
 
-                                </td>
+                                </td> -->
                             </tr>
     
                             <tr>
@@ -517,17 +527,55 @@
                                 <td colspan="3">
                                     <?=$order_remark?>
                                 </td>
-    
                             </tr>
                         </tbody>
                     </table>
-    
+                    <h2 class="tit_top">Pickup included</h2>
+                    <table class="invoice_tbl re_custom">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="*">
+                            <col width="20%">
+                            <col width="20%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th class="subject">Guide meeting time</th>
+                            <th class="subject">Meeting place</th>
+                            <th class="subject">Expected schedule</th>
+                            <th class="subject">Other requests</th>
+                        </tr>
+
+                        <?php foreach ($order_subs as $item): ?>
+                            <tr>
+                                <td class="content">
+                                    <span>
+                                        <?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
+                                    </span>
+                                </td>
+
+                                <td class="content">
+                                    <?= $item["guide_meeting_place"] ?>
+                                </td>
+                                <td class="content">
+                                    <?= nl2br($item["guide_schedule"]) ?>
+                                </td>
+                                <td class="content">
+                                    <?= nl2br($item["request_memo"]) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
 
                     <div class="invoice_note_">
-                        <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
+                        <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+                        <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
 
                         <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>

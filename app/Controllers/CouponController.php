@@ -63,13 +63,19 @@ class CouponController extends BaseController
         $coupon_product = $this->couponProduct->where("coupon_idx", $idx)->findAll();
         $coupon["coupon_product_cnt"] = count($coupon_product);
         $arr_location = [];
-        foreach($coupon_product as $row){
+        $category = [];
+        foreach($coupon_product as $key => $row) {
             $product_name = $this->product->getById($row["product_idx"])["product_name"];
+            $effected_product = model("CouponMst")->get_effected_product($row["product_code_1"], $row["product_code_2"], $row["product_idx"]);
+
+            $category[] = $effected_product;
 
             if(!empty($product_name)){
                 array_push($arr_location, $product_name);
             }
         }
+
+        $coupon['category'] = $category;
         
         $coupon["img_list"] = $this->couponImg->getImg($idx);
 

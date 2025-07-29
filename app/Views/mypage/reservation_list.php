@@ -235,6 +235,7 @@ endforeach;
                         <div class="popup_filter">
                             <div class="popups">
                                 <button type="button" class="close" onclick="closePopups()"></button>
+                                <p class="head_ttl">예약현황 검색</p>
                                 <div class="filter_content">
                                     <div class="filter_wrap">
                                         <div class="box_category">
@@ -326,6 +327,9 @@ endforeach;
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="btn_search">
+                                       <button>검색</button>                                   
+                                    </div>
                                 </div>
                             </div>
                             <div class="bg"></div>
@@ -381,7 +385,7 @@ endforeach;
 						foreach ($groupedOrders[$group->group_no] as $order): 
 							
 						?>
-                        <div class="product_detail">
+                        <div class="product_detail" style="flex-wrap: wrap;">
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <?php 
@@ -426,11 +430,7 @@ endforeach;
                                 <div class="info_name">
                                     <p>여행자 이름: <?= esc($order->order_user_name);?>[<?= esc($order->order_user_first_name_en);?> <?= esc($order->order_user_last_name_en);?>]</p>
                                 </div>
-                                <div class="note flex__c">
-                                    <img src="/images/mypage/not-allowed.png" alt="">
-                                    <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
-                                </div>
-                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
+                                
                             </div>
                             <div class="info_price flex">
 							    
@@ -465,10 +465,13 @@ endforeach;
 										
                                 </div>
                                 <div class="estimate_wrap flex box">
-                                    <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
-                                        <img src="/images/mypage/delete_ic.png" alt="">
-                                        <p>예약삭제</p>
-                                    </div>
+                                    <?php if($order->order_status == "W" || $order->order_status == "C" || $order->order_status == "N") { ?>
+                                        <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
+                                            <img src="/images/mypage/delete_ic.png" alt="">
+                                            <p>예약삭제</p>
+                                        </div>
+                                    <?php } ?>
+
                                     <?php if($order->order_status == "Z" || $order->order_status == "E") { ?>
                                     <div class="info_voucher btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
@@ -477,6 +480,14 @@ endforeach;
                                     <?php } ?>
                                    
                                 </div>
+                            </div>
+                            <div style="width: 100%;">
+                                <div class="note flex__c">
+                                    <img src="/images/mypage/not-allowed.png" alt="">
+
+                                    <p>취소 규정 : 결제후 <span><?=getPolicyContents($order->product_code_1)["subtitle"] ?? ""?></span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
+                                </div>
+                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                         </div>
 						<?php 
@@ -986,6 +997,7 @@ $(document).on('click', '.info_estimate', function () {
 		if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")  url = "/invoice/ticket_01/"+idx; 
 		if(gubun == "golf")   url = "/invoice/golf_01/"+idx; 
 		if(gubun == "vehicle") url = "/invoice/car_01/"+idx; 
+		if(gubun == "guide") url = "/invoice/guide_01/"+idx; 
 		
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
@@ -1001,8 +1013,8 @@ $(document).on('click', '.info_voucher', function () {
     if(gubun == "tour")   url = "/voucher/tour/"+idx; 
     if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")    url = "/voucher/ticket/"+idx; 
     if(gubun == "golf")   url = "/voucher/golf/"+idx; 
-    if(gubun == "vehicle")    url = "/voucher/car/"+idx; 
-
+    if(gubun == "vehicle") url = "/voucher/car/"+idx; 
+	if(gubun == "guide") url = "/voucher/guide/"+idx; 
     
     window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 });

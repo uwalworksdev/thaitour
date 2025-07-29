@@ -10,6 +10,8 @@
             $btn.prop("disabled", true); 
 
 			$("#order_status").val(status);
+			let time_line = $("#hours").val() + ":" + $("#minutes").val();
+            $("#time_line").val(time_line);
 
             $("#ajax_loader").removeClass("display-none");
 

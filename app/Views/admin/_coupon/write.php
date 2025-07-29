@@ -1,7 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+ <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <?php
 
     $titleStr = "생성";
@@ -30,6 +31,7 @@
     .img_add .file_input + .file_input {
         margin-left: 0;
     }
+
 </style>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
@@ -45,7 +47,7 @@
 
                         <?php if ($idx) { ?>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                             </li>
 
                             <li><a href="javascript:del_it()" class="btn btn-default"><span
@@ -76,7 +78,9 @@
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <colgroup>
                                 <col width="10%"/>
-                                <col width="90%"/>
+                                <col width="*%"/>
+                                <col width="10%"/>
+                                <col width="*%"/>
                             </colgroup>
                             <tbody>
                                 <tr>
@@ -84,6 +88,7 @@
                                     <td colspan="3">
                                         <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
+                                            <option value="all">전체</option>
                                             <?php
                                             foreach ($code_list as $code) {
                                                 $status_txt = "";
@@ -101,9 +106,11 @@
                                         </select>
                                         <select id="product_code_2" name="product_code_2" class="input_select">
                                             <option value="">2차분류</option>
+                                            <option value="all">전체</option>
                                         </select>
                                         <select id="product_idx" name="product_idx" class="input_select">
                                             <option value="">3차분류</option>
+                                            <option value="all">전체</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>
@@ -119,7 +126,7 @@
                                             <?php
                                                 foreach($coupon_category_list as $cat){
                                             ?> 
-                                                <li>[<?= $cat["product_idx"] ?>] <?php echo $cat["product_code_name_1"] . " > " . $cat["product_code_name_2"] . " > " . $cat["product_name"];?> 
+                                                <li>[<?= $cat["product_idx"] ?>] <?php echo $cat["effected_product"]; ?>
                                                 <span onclick="delCategory('<?= $cat['product_code_1'] ?>', '<?= $cat['product_code_2'] ?>', '<?= $cat['product_idx'] ?>', this);">삭제</span>
                                                 </li>       
                                             <?php
@@ -131,7 +138,7 @@
 
                                 <tr>
                                     <th>쿠폰명</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="coupon_name" name="coupon_name"
                                                 value="<?= isset($coupon_name) ? $coupon_name : '' ?>"
                                                 class="input_txt" style="width:30%"/>
@@ -148,9 +155,7 @@
                                         <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
                                         <label for="chk_all">전체</label>
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>대상</th>
                                     <td>
                                         <select name="member_grade" id="member_grade">
@@ -179,9 +184,7 @@
                                             </option>
                                         </select>
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>할인율 설정</th>
                                     <td>
                                         <input type="text" id="coupon_pe" name="coupon_pe"
@@ -197,9 +200,7 @@
                                                 value="<?= isset($coupon_price) ? $coupon_price : '' ?>"
                                                 style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>최대사용금액</th>
                                     <td>
                                         <input type="text" id="max_coupon_price" name="max_coupon_price"
@@ -216,60 +217,56 @@
 											<input type="text" name="exp_end_day" id="exp_end_day" value="<?=isset($exp_end_day) ? date("Y-m-d", strtotime($exp_end_day)) : ''?>" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <th>쿠폰설명</th>
-                                    <td>
-                                <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
-                                            style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>상태설정</th>
                                     <td>
                                         <select name="state" id="state">
                                             <option value="Y" <?php if (isset($state) && $state == "Y") echo "selected"; ?> >
-                                                사용
+                                                노출
                                             </option>
                                             <option value="N" <?php if (isset($state) && $state == "N") echo "selected"; ?> >
-                                                중지
+                                                비노출
                                             </option>
                                         </select>
                                     </td>
                                 </tr>
 
                                 <tr>
+                                    <th>쿠폰설명</th>
+                                    <td colspan="3">
+                                        <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
+                                            style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>상태설정</th>
-                                    <td>
-                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" cols="100" class="input_txt"
+                                    <td colspan="3">
+                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
-                                                var oEditors = [];
+                                            var oEditors = [];
 
-                                                // 추가 글꼴 목록
-                                                //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                                nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors,
-                                                    elPlaceHolder: "coupon_contents",
-                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                    htParams: {
-                                                        bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                        fOnBeforeUnload: function () {
-                                                            //alert("완료!");
-                                                        }
-                                                    }, //boolean
-                                                    fOnAppLoad: function () {
-                                                        //예제 코드
-                                                        //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                    },
-                                                    fCreator: "createSEditor2"
-                                                });
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors,
+                                                elPlaceHolder: "coupon_contents",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
                                         </script>
                                     </td>
                                 </tr>
@@ -693,8 +690,32 @@
 
 		return true;
 	}
+
+    function reset_code() {
+        $("#product_code_2").find('option').each(function () {
+            $(this).remove();
+        });
+        $("#product_code_2").append("<option value=''>2차분류</option>").append("<option value='all'>전체</option>");
+    }
+
+    function reset_product() {
+        $("#product_idx").find('option').each(function () {
+            $(this).remove();
+        });
+        $("#product_idx").append("<option value=''>3차분류</option>").append("<option value='all'>전체</option>");
+    }
     
     function get_code(strs, depth) {
+        if(strs == 'all') {
+            if (depth <= 3) {
+                reset_code();
+                reset_product();
+                $("#product_code_2").val('all');
+                $("#product_idx").val('all');
+            }
+            return;
+        }
+        if(strs == "") return;
         $.ajax({
             type: "GET"
             , url: "/ajax/get_code"
@@ -708,15 +729,8 @@
             }
             , success: function (json) {
                 if (depth <= 3) {
-                    $("#product_code_2").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_code_2").append("<option value=''>2차분류</option>");
-
-                    $("#product_idx").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_idx").append("<option value=''>3차분류</option>");
+                    reset_code();
+                    reset_product();
                 }
 
                 var list = $.parseJSON(json);
@@ -736,6 +750,12 @@
     }
 
     $("#product_code_2").on("change", function(event) {
+        if (event.target.value == "all") {
+            reset_product();
+            $("#product_idx").val('all');
+            return;
+        }
+        if(event.target.value == "") return;
         $.ajax({
             url: "/ajax/get_list_product",
             type: "GET",
@@ -746,6 +766,7 @@
             success: function(res) {
                 let data = res.results;
                 let html = `<option value=''>선택</option>`;
+                html += `<option value='all'>전체</option>`;
                 data.forEach(element => {
                     html += `<option value='${element["product_idx"]}'>${element["product_name"]}</option>`;
                 });
@@ -780,11 +801,6 @@
             tmp_code_txt += " > " + product_name;
         }
 
-        if (product_idx === "") {
-            alert("카테고리를 선택해주세요.");
-            return false;
-        }
-
         addCategory(cate_code1, cate_code2, product_idx, tmp_code_txt);
 
     });
@@ -796,11 +812,11 @@
             return false;
         }
         var tmp_product_code = $("#product_code_list").val();
-        ;
+
         tmp_product_code = tmp_product_code + "|" + cate_code1 + "," + cate_code2 + "," + product_idx + "|";
         $("#product_code_list").val(tmp_product_code);
 
-        var newList = "<li>[" + product_idx + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
+        var newList = "<li>[" + (product_idx || cate_code2 || cate_code1) + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
         $("#reg_cate").append(newList);
     }
 

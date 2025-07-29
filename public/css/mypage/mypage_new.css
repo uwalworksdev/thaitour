@@ -1,5 +1,30 @@
 @charset "utf-8";
 
+.invoice_table .invoice_wrap_btn .btn_invoice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    gap: 5px;
+    font-size: 14px;
+    color: #2e3e92;
+    font-weight: 600;
+    width: unset;
+    height: fit-content;
+    min-width: 108px;
+}
+
+.invoice_table .invoice_wrap_ttl {
+    padding-bottom: 30px;
+}
+
+.invoice_table .invoice_wrap_btn {
+    gap: 10px;
+}
+
 .mypage_container {
     margin-top: 60px;
     margin-bottom: 120px;
@@ -1729,7 +1754,8 @@ input[type="checkbox"]:checked+label {
 .booklist_wrap .booking_product .product_detail {
     padding: 15px 10px;
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    /* gap: 30px; */
 }
 
 .booklist_wrap .booking_product .product_detail .info_product {
@@ -2269,6 +2295,36 @@ input[type="checkbox"]:checked+label {
     margin-top: 30px;
 }
 
+.search_coupon_mypage {
+    display: flex; 
+    gap: 10px;
+    justify-self: end;
+    width: fit-content;
+}
+
+.search_coupon_mypage .keyword {
+    width: 250px;
+    height: 40px;
+}
+
+.search_coupon_mypage .btn_send_coupon {
+    width: 100px;
+    height: 40px;
+    color: #252525;
+    border: 1px solid #252525;
+}
+
+.slide_tab {
+    position: relative;
+}
+
+.slide_tab .search_coupon_mypage {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-bottom: unset !important;
+}
+
 @media print {
     body {
         background: white !important;
@@ -2300,6 +2356,35 @@ input[type="checkbox"]:checked+label {
     /* 이미지 max-width 제한 해제 */
     img {
         max-width: none !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .slide_tab {
+        padding-bottom: 7rem;
+    }
+
+    .slide_tab .search_coupon_mypage {
+        position: absolute;
+        right: unset;
+        top: unset;
+        bottom: -2rem;
+    }
+
+    .slide_tab .search_coupon_mypage {
+        width: 100%;
+        height: 6rem;
+    }
+
+    .slide_tab .search_coupon_mypage .keyword {
+        width: 50rem;
+        height: 7rem;
+    }
+
+    .search_coupon_mypage .btn_send_coupon {
+        height: 7rem;
+        /* width: 15rem; */
+        flex: 1;
     }
 }
 

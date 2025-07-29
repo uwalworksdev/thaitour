@@ -285,6 +285,30 @@
         .golf_invoice .invoice_golf_total {
             text-align: right !important;
         }
+
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -292,7 +316,21 @@
         <section class="golf_invoice">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                                <p class="addr" style="margin-top: 10px;">
+                                    <?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                                    Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                    Tel: <?= $setting['custom_service_phone_thai2']?>
+                                </p>
+                            </td>
+                            <td style="text-align: right; vertical-align: middle;">
+                                <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="invoice_ttl">
                     <p>요청하신 예약이 가능하여 인보이스가 발송되었습니다.</p>
@@ -317,7 +355,7 @@
                                 <td style = "width:30%"><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                             </tr>
                             <tr>
-                                <th style="width:20%">여행사(담당자)</th>
+                                <th style="width:20%">예약자</th>
                                 <td style = "width:30%"><?=$row["order_user_name"]?></td>
                                 <th style="width:20%">이메일</th>
                                 <td style = "width:30%"><?=$row["order_user_email"]?></td>
@@ -332,6 +370,13 @@
                             </tr>
                         </table>
                     </div>
+                    <?php
+                        if($row->chk_notes_invoice == "Y"){
+                    ?>
+                        <span style="color: red; line-height: 1.4;"><?=$row->notes_invoice?></span>
+                    <?php
+                        }
+                    ?>
                     <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                         <?php 
@@ -392,7 +437,19 @@
                             </tr>
                             <?php foreach ($golf_option as $data) { ?>
                             <tr>
-                                <th style="width: 20%"><?=$data['option_name']?></th>
+                                <th style="width: 20%">
+                                    <?php
+                                        if($data['option_type'] == "vehicle"){
+                                            if(!empty($data['option_name_new'])){
+                                                echo $data['option_name_new'];
+                                            }else {
+                                                echo $data['option_name'];
+                                            }
+                                        }else {
+                                            echo $data['option_name'];
+                                        }
+                                    ?>
+                                </th>
                                 <td style="width: 20%"><?=number_format($data['option_price'])?></td>
                                 <td style="width: 20%"><?=$data['option_cnt']?></td>
                                 <th style="width: 20%"><?=number_format($data['option_tot'])?></th>

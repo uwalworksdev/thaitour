@@ -343,6 +343,30 @@
             padding: 9px;
             color: #7d7d7d;
         }
+
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -350,28 +374,46 @@
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                                <p class="addr" style="margin-top: 10px;">
+                                    <?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                                    Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                    Tel: <?= $setting['custom_service_phone_thai2']?>
+                                </p>
+                            </td>
+                            <td style="text-align: right; vertical-align: middle;">
+                                <h2 class="tit_top" style="margin: 0; font-size: 30px;">바우처</h2>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="invoice_ttl">
                 </div>
                 <div class="invoice_table">
                     <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
+                        <!-- <colgroup>
+                            <col width="500px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td style="font-weight: bold;">[VCH] Sanctuary of Truth Museum</td>
+                                <th style="width: 20%;">Name</th>
+                                <?php if(!empty($result->product_name_en)):?>
+                                <td style="font-weight: 700; width: 80%;"><?= $result->product_name_en ?></td>
+                                <?php else: ?>
+                                <td style="font-weight: 700; width: 80%;"><?= $result->product_name ?></td>
+                                <?php endif?>
                             </tr>
                             <tr>
-                                <th>Address</th>
-                                <td>206 2 Soi Na Kluea 12, Muang Pattaya, Bang Lamung District, Chon Buri 20150</td>
+                                <th style="width: 20%;">Address</th>
+                                <td style="width: 80%;"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th>Tel</th>
-                                <td>038 110 653</td>
+                                <th style="width: 20%;">Tel</th>
+                                <td style="width: 80%;"><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -379,68 +421,57 @@
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
                     <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup>
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td>YANG HYUNGSUK</td>
+                                <th style="width: 20%;">Name</th>
+                                <td style="width: 80%;"><p><?=$user_name?></p></td>
                             </tr>
                             <tr>
-                                <th>Phone</th>
-                                <td>KR 01021004474</td>
+                                <th style="width: 20%;">Phone</th>
+                                <td style="width: 80%;"><?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup>
                         <tbody>
                             <tr>
-                                <th>Booking No</th>
-                                <td colspan="3">145-564-957 (1)</td>
+                                <th style="width: 20%;">Booking No</th>
+                                <td style="width: 80%;"><?=$result->order_no?></td>
                             </tr>
                             <tr>
-                                <th>Date</th>
-                                <td colspan="3"><span style="color:red;">20-Dec-2024(Fri)</span></td>
+                                <th style="width: 20%;">Date</th>
+                                <td style="width: 80%;"><span style="color:red;"><?=$order_date?></span></td>
                             </tr>
                             <tr>
-                                <th>Type</th>
-                                <td colspan="3">Admission (08:00-16:30)</td>
+                                <th style="width: 20%;">Time</th>
+                                <td style="width: 80%;"><?=$time_line?></td>
                             </tr>
                             <tr>
-                                <th>Persons</th>
-                                <td>8.Adult(s)</td>
-                                <th>Time</th>
-                                <td>08:00-16:30</td>
+                                <th style="width: 20%;">Persons</th>
+                                <td style="width: 80%;"><?=$order_people?></td>
                             </tr>
-
                             <tr>
-                                <th>Remarks</th>
-                                <td colspan="3">
-                                    <p>리리의 칭찬 종료 시간은 18:00이고, 마지막 입장시간은 </p>
-                                    <p>당일 예약은 예약확정서 발송 후 최소 2시간 뒤 매표소에서 교환장</p>
+                                <th style="width: 20%;">Options</th>
+                                <td style="width: 80%;"><?=$tour_type?></td>
+                            </tr>
+                            <tr>
+                                <th style="width: 20%;">Remarks</th>
+                                <td style="width: 80%;">
+                                     <?=$order_remark?>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
                     <br>
                     <div class="info_order_txt">
-                        <p style="font-weight: bold">• Booked by: Totobooking</p>
+                        <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
                     <div class="invoice_note_" style="font-family: 'Pretendard' !important; line-height: 1.6 !important; font-size: 16px !important;">
                         <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
                         <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
                         <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
-                        <?= viewSQ($policy["policy_contents"]) ?>
+                        <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>
                 </div>
                 <div class="inquiry_qna">

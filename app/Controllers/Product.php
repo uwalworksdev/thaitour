@@ -123,7 +123,7 @@ class Product extends BaseController
 
         $tab = $this->request->getVar("tab") ?: $search_cate ?: "hotel";
 
-        $sort = $this->request->getVar("sort") ?: "recommended";
+        $sort = $this->request->getVar("sort") ?? "";
 
         if(!empty(trim($search_name))){
             $this->db->table('tbl_search_keyword')->insert([
@@ -252,9 +252,10 @@ class Product extends BaseController
         return $this->renderView('product/product_search', $data);
     }
 
-    public function showTicket($code_no)
+    public function showTicket($code_no = null)
     {
         try {
+            $code_no = 1317;
             $data = $this->viewData($code_no, 233401, 233402);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -301,9 +302,10 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/completed-cart');
     }
 
-    public function indexTour($code_no)
+    public function indexTour($code_no = null)
     {
         try {
+            $code_no = 1301;
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'ASC')->orderBy("code_idx", "DESC")->findAll();
 
             // $products = $this->productModel->findProductPaging([
@@ -391,9 +393,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexHotel($code_no)
+    public function indexHotel($code_no = null)
     {
         try {
+            $code_no = 1303;
             $keyword = $this->request->getVar('keyword') ?? '';
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
@@ -750,9 +753,10 @@ class Product extends BaseController
         }
     }
 
-    public function index2($code_no, $s = "1")
+    public function index2($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1302;
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
             $perPage = 16;
 
@@ -960,9 +964,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexSpa($code_no, $s = "1")
+    public function indexSpa($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1325;
             $data = $this->viewData($code_no, 233601, 233602);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -978,6 +983,7 @@ class Product extends BaseController
     public function listHotel()
     {
         try {
+            // $code_no = $this->request->getVar('s_code_no') ?? '';
             $code_no = $this->request->getVar('s_code_no') ?? '';
             $s_code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
@@ -1467,7 +1473,7 @@ class Product extends BaseController
             $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
-                $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
+            $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
 
             $data = [
                 'hotel'            => $hotel,
@@ -3222,8 +3228,13 @@ class Product extends BaseController
                 $result = $this->db->query($sql);
                 $row = $result->getRowArray();
 
-                $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
+                $option_tot = (int)($row['option_price'] * $option_idx[1] * $this->setting['baht_thai']);
+                $option_tot_bath = (int)($row['option_price'] * $option_idx[1]);
+
                 $option_sum = $option_sum + $option_tot;
+                $option_price_bath = $row['option_price'];
+                $option_price = (int)($row['option_price'] * $this->setting['baht_thai']);
+
                 $sql = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
 														   , order_idx    = '" . $order_idx . "'
@@ -3231,10 +3242,13 @@ class Product extends BaseController
 														   , option_name  = '" . $row['option_name'] . "'	
 														   , option_idx	  = '" . $option_idx[0] . "'
 														   , option_tot	  = '" . $option_tot . "'
+														   , option_tot_bath = '" . $option_tot_bath . "'
 														   , option_cnt	  = '" . $option_idx[1] . "'
 														   , option_date  =  now()
-														   , option_price = '" . $row['option_price'] . "'	
-														   , option_qty   = '" . $option_idx[1] . "' ";
+														   , option_price = '" . $option_price . "'	
+														   , option_price_bath = '" . $option_price_bath . "'
+														   , option_qty   = '" . $option_idx[1] . "'
+                                                           , baht_thai = '" . $this->setting['baht_thai'] . "' ";
                 $result = $this->db->query($sql);
             }
 
@@ -3491,6 +3505,30 @@ class Product extends BaseController
             $price_baht_baby = $row['tour_price_baby'];
             $price_won_baby = round($price_baht_baby * $baht_thai);
 
+            $builder = $this->db->table('tbl_tours_moption');
+            $builder->where('product_idx', $product_idx);
+            $builder->where('info_idx', $infoIndex);
+            $builder->where('use_yn', 'Y');
+            $builder->where('moption_name !=', '');
+            $builder->orderBy('onum', 'asc');
+            $builder->orderBy('code_idx', 'asc');
+            $query = $builder->get();
+            $options = $query->getResultArray();
+
+            $groupedData[$infoIndex]['options'] = $options;
+            $total_check_price = 0;
+
+            foreach ($groupedData[$infoIndex]['options'] as $key_o => $row_o) {
+                $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
+                            AND code_idx = '". $row_o['code_idx'] ."' AND use_yn != 'N' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+                $result = $this->db->query($sql);
+                $row_option_sub = $result->getResultArray();
+                $count_option_sub = count($row_option_sub);
+
+                $total_check_price += $count_option_sub;
+                $groupedData[$infoIndex]['options'][$key_o]['check_price'] = $count_option_sub;
+            }
+
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx' => $row['tours_idx'],
                 'tours_subject' => $row['tours_subject'],
@@ -3503,18 +3541,9 @@ class Product extends BaseController
                 'price_won' => $price_won,
                 'price_won_kids' => $price_won_kids,
                 'price_won_baby' => $price_won_baby,
-            ];
+                'total_check_price' => $total_check_price,
+            ]; 
 
-            $builder = $this->db->table('tbl_tours_moption');
-            $builder->where('product_idx', $product_idx);
-            $builder->where('info_idx', $infoIndex);
-            $builder->where('use_yn', 'Y');
-            $builder->orderBy('onum', 'asc');
-            $builder->orderBy('code_idx', 'asc');
-            $query = $builder->get();
-            $options = $query->getResultArray();
-
-            $groupedData[$infoIndex]['options'] = $options;
         }
 
         $data['productTourInfo'] = $groupedData;
@@ -3696,6 +3725,7 @@ class Product extends BaseController
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
             $product_theme = $this->codeModel->getByParentAndDepth(57, 2)->getResultArray();
+            $product_keyword_list = $this->codeModel->getByParentAndDepth(58, 2)->getResultArray();
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
@@ -3712,6 +3742,7 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
+                'search_keyword' => $search_keyword
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -3767,15 +3798,15 @@ class Product extends BaseController
                 $productByKeyword['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
-            if (!empty($search_word)) {
-                $products['items'] = array_filter($products['items'], function ($product) use ($search_word) {
-                    $search_word = strtolower($search_word);
-                    $product_name = strtolower($product['product_name'] ?? "");
-                    $product_keywords = strtolower($product['keyword'] ?? "");
+            // if (!empty($search_word)) {
+            //     $products['items'] = array_filter($products['items'], function ($product) use ($search_word) {
+            //         $search_word = strtolower($search_word);
+            //         $product_name = strtolower($product['product_name'] ?? "");
+            //         $product_keywords = strtolower($product['keyword'] ?? "");
 
-                    return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
-                });
-            }
+            //         return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
+            //     });
+            // }
 
             $products['nTotalCount'] = count($products['items']);
 
@@ -3794,6 +3825,7 @@ class Product extends BaseController
                 'productByKeyword' => $productByKeyword,
                 'search_word' => $search_word,
                 'product_theme' => $product_theme,
+                'product_keyword_list' => $product_keyword_list,
                 'search_product_tour' => $search_product_tour,
             ];
 
@@ -3954,9 +3986,10 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
-    public function restaurantIndex($code_no)
+    public function restaurantIndex($code_no = null)
     {
         try {
+            $code_no = 1320;
             $data = $this->viewData($code_no, 233801, 233802);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -4001,10 +4034,11 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/completed-cart');
     }
 
-    public function vehicleGuide($code_no)
+    public function vehicleGuide($code_no = null)
     {
         try {
 
+            $code_no = 132404;
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
@@ -4578,7 +4612,8 @@ class Product extends BaseController
             $msg .= "<option value=''>옵션 선택</option>";
 
 
-            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
+            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
+                        AND code_idx = '$code_idx' AND option_name != '' AND option_price != 0 AND use_yn != 'N' ORDER BY onum ASC";
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
@@ -4607,7 +4642,7 @@ class Product extends BaseController
             $result['option_price_won'] = round($result['option_price'] * $this->setting['baht_thai']);
 
             return $this->response->setJSON($result, 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
@@ -4825,49 +4860,71 @@ class Product extends BaseController
         $product_code_2 = $this->request->getVar('product_code_2') ?? "";
         $main_product_code = $this->request->getVar('main_product_code');
 
-        if(isset($main_product_code)) {
-            $products = $this->productModel->findProductPaging([
-                'product_code_1' => $code_no,
-            ], 10, 1, ['onum' => 'DESC'])['items'];
+        $products = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+        ], 10, 1, ['onum' => 'DESC'])['items'];
 
-            $productResults = $this->productModel->findProductPaging([
-                'product_code_1' => $code_no,
-                'product_code_2' => $main_product_code,
+        $productResults = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+            'product_code_2' => $main_product_code,
+            'search_category' => "product_name",
+            'search_txt' => $search_product_name
+        ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
+
+        $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+        foreach ($codes as $key => $code) {
+            $sProducts = $this->productModel->findProductPaging([
+                'product_code_2' => $code['code_no'],
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
-            ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
-
-            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-
-            foreach ($codes as $key => $code) {
-                $sProducts = $this->productModel->findProductPaging([
-                    'product_code_2' => $code['code_no'],
-                    'search_category' => "product_name",
-                    'search_txt' => $search_product_name
-                ], 1000, 1)['nTotalCount'];
-                $codes[$key]['count'] = $sProducts;
-
-            }
-
-        }else {
-            $products = $this->mainDispModel->goods_find_by_parent($topic_code_1, 10)['items'];
-
-            if(empty($product_code_2)) {
-                $productResults = $this->mainDispModel->goods_find_by_parent($topic_code_2, 1000, 1, "product_name", $search_product_name)['items'];
-            }else{
-                $productResults = $this->mainDispModel->goods_find($product_code_2, 1000, 1, "product_name", $search_product_name)['items'];
-            }
-
-            $codes = $this->codeModel->getByParentCode($topic_code_2)->getResultArray();
-
-            foreach ($codes as $key => $code) {
-    
-                $sProducts = $this->mainDispModel->goods_find($code['code_no'], 1000, 1, "product_name", $search_product_name)['nTotalCount'];
-    
-                $codes[$key]['count'] = $sProducts;
-            }
+            ], 1000, 1)['nTotalCount'];
+            $codes[$key]['count'] = $sProducts;
 
         }
+
+        // if(isset($main_product_code)) {
+        //     $products = $this->productModel->findProductPaging([
+        //         'product_code_1' => $code_no,
+        //     ], 10, 1, ['onum' => 'DESC'])['items'];
+
+        //     $productResults = $this->productModel->findProductPaging([
+        //         'product_code_1' => $code_no,
+        //         'product_code_2' => $main_product_code,
+        //         'search_category' => "product_name",
+        //         'search_txt' => $search_product_name
+        //     ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
+
+        //     $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+        //     foreach ($codes as $key => $code) {
+        //         $sProducts = $this->productModel->findProductPaging([
+        //             'product_code_2' => $code['code_no'],
+        //             'search_category' => "product_name",
+        //             'search_txt' => $search_product_name
+        //         ], 1000, 1)['nTotalCount'];
+        //         $codes[$key]['count'] = $sProducts;
+
+        //     }
+
+        // }else {
+        //     $products = $this->mainDispModel->goods_find_by_parent($topic_code_1, 10)['items'];
+
+        //     if(empty($product_code_2)) {
+        //         $productResults = $this->mainDispModel->goods_find_by_parent($topic_code_2, 1000, 1, "product_name", $search_product_name)['items'];
+        //     }else{
+        //         $productResults = $this->mainDispModel->goods_find($product_code_2, 1000, 1, "product_name", $search_product_name)['items'];
+        //     }
+
+        //     $codes = $this->codeModel->getByParentCode($topic_code_2)->getResultArray();
+
+        //     foreach ($codes as $key => $code) {
+    
+        //         $sProducts = $this->mainDispModel->goods_find($code['code_no'], 1000, 1, "product_name", $search_product_name)['nTotalCount'];
+    
+        //         $codes[$key]['count'] = $sProducts;
+        //     }
+        // }
 
         $baht_thai = $this->setting['baht_thai'];
 

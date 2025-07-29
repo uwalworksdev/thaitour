@@ -1291,9 +1291,11 @@
 
             if (tab_box_area.css('display') !== 'none') {
                 $(this).css('transform', 'rotate(180deg)');
+                $(this).closest(".category-left-item").find(".subtitle").css("padding-bottom", "0");
                 tab_box_area.css("display", "none");
             } else {
                 $(this).css('transform', 'rotate(0)');
+                $(this).closest(".category-left-item").find(".subtitle").css("padding-bottom", "20px");
                 tab_box_area.css("display", "block");
             }
         });

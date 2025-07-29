@@ -71,7 +71,18 @@
         padding-bottom: 0;
     }
 
+    .img_box.img_box_14 {
+            padding-top: calc(260% / 1200 * 100);
+        }
+
     @media screen and (max-width: 850px) {
+        .img_box.img_box_14 {
+            padding-top: calc(420% / 658 * 100);
+        }
+
+        .section_vehicle_1 .body_inner {
+            padding: 0;
+        }
         .popup_content_ {
             z-index: 100;
             margin-top: 0;
@@ -134,6 +145,7 @@
             display: flex;
             justify-content: flex-end;
         }
+
     }
 </style>
 <section class="section_vehicle_1" style="background-color: #fff;">

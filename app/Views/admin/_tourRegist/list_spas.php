@@ -385,13 +385,14 @@
                                     <?php
                                 }
                                 foreach ($result as $row) :
+                                        $row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
+                                        $_product_code_arr = explode("|", $row['product_code_list']);
                                     ?>
                                     <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <a href="#!"
-                                               onclick="go_write('<?= $row['product_idx'] ?>');"><?= $row["product_code_name_1"] ?>
-                                                / <?= $row["product_code_name_2"] ?></a>
+                                               onclick="go_write('<?= $row['product_idx'] ?>');"><?= get_cate_name($row['product_code_list'])?></a>
                                             <div class="flex_c_c" style="gap: 10px;"> 
                                                 <a href="<?php echo '/product-spa/spa-details/' . $row['product_idx'] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
@@ -449,7 +450,7 @@
                                                 <a href="write_spas_info?product_idx=<?= $row["product_idx"] ?>"
                                                 class=""
                                                 style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
-                                                    <span class="txt">수정</span>
+                                                    <span class="txt">요금</span>
                                                 </a>
                                             </div>
                                         </td>

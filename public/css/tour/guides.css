@@ -320,25 +320,27 @@
     }
     
     .item_list_area .item_list_hotel li {
-        padding: 2rem 0 2rem 1.5rem;
-        gap: 2rem;
+        padding: 3rem 0 ;
+        gap: 3rem;
+        display: flex;
+        flex-direction: column;
     }
     
     .item_list_area .item_list_hotel li > .thm {
-        width: 31%;
+        width: 100%;
         position: relative;
     }
     
     .item_list_area .item_list_hotel .thm img {
         width: 100%;
-        max-width: 35rem;
-        height: 25rem;
+        max-width: 100%;
+        height: 40rem;
         border-radius: 1rem;
         object-fit: cover;
     }
     
     .item_list_area .item_list_hotel .cont {
-        width: 68%;
+        width: 100%;
     }
     
     .item_list_area .item_list_hotel .tit_head {

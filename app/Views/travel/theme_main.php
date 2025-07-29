@@ -6,20 +6,39 @@
 <div id="container" class="sub view_container">
     <section class="theme_sect monkey_theme">
         <div class="inner">
-            <ul id="container" class="loctheme_list" style="min-height: 1680px;">
-                <li class="" style="display: flex; opacity: 1;">
-                    <div class="theme_banner">
-                        <a href="/travel-tips/theme_view" class="">
-                            <img src="https://i.travelapi.com/lodging/1000000/30000/26700/26661/be9e7ff2_z.jpg" alt="도심 속 쉼표, 조용한 호텔">
-                            <span class="theme_boxinfo">
-                                <span class="desc">방콕</span>
-                                <span class="subtitle">2025년 몽키트래블 테마별 인기 호텔 TOP 5!</span>
-                                <span class="title">도심 속 쉼표, 조용한 호텔</span>
-                            </span>
-                        </a>
-                    </div>
-                </li>
-                <li class="" style="display: flex; opacity: 1;">
+            <ul id="container" class="loctheme_list">
+                <?php
+                    foreach($hotel_theme_list["items"] as $theme) {
+                        if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
+                            $img = "/data/product/" . $theme["ufile1"];
+                        } else {
+                            $img = "/data/product/noimg.png";
+                        }
+                ?>
+                    <li class="" style="display: flex; opacity: 1;">
+                        <div class="theme_banner">
+                            <a href="/travel-tips/theme_view?theme_idx=<?= $theme["idx"] ?>" class="">
+                                <img src="<?= $img ?>" alt="<?= $theme["title"] ?>">
+                                <span class="theme_boxinfo">
+                                    <span class="desc">
+                                        <?php
+                                            if($theme["type"] == "month"){
+                                                echo "이달의 호텔";
+                                            }else{
+                                                echo str_replace(',', 'ㆍ', $theme["category_name"]);
+                                            }
+                                        ?>
+                                    </span>
+                                    <span class="subtitle"><?= $theme["subtitle"] ?></span>
+                                    <span class="title"><?= $theme["title"] ?></span>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                <?php
+                    }
+                ?>
+                <!-- <li class="" style="display: flex; opacity: 1;">
                     <div class="theme_banner">
                         <a href="/travel-tips/theme_view" class="">
                             <img src="https://i.travelapi.com/lodging/72000000/71070000/71066500/71066493/ae370536_z.jpg" alt="크로스 파타야 프라탐낙">
@@ -150,11 +169,11 @@
                             </span>
                         </a>
                     </div>
-                </li>
+                </li> -->
             </ul>
 
             <?php 
-                echo ipagelistingSub(1, 3, 10, current_url() . "?search_mode=". $search_mode ."&search_word=". $search_word ."&pg=")
+                echo ipagelistingSub($hotel_theme_list["pg"], $hotel_theme_list["nPage"], $hotel_theme_list["g_list_rows"], current_url() . "?search_mode=". $search_mode ."&search_word=". $search_word ."&pg=")
             ?>
         </div>
     </section>

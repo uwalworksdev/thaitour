@@ -266,7 +266,7 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
             $row['goods_price4'],
             $row['goods_price5'],
             $row['bed_type'],
-            $baht_thai
+            $baht_thai,
         ]);
     }, $dateRows);
 

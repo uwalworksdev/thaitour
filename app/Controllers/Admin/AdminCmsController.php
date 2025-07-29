@@ -342,6 +342,7 @@ class AdminCmsController extends BaseController
             $product_name = $info['product_name'];
             $policy_contents = $info['policy_contents'];
             $policy_contents_m = $info['policy_contents_m'];
+            $subtitle = $info['subtitle'];
         } else if ($product_idx) {
             $sql_r = "select a.product_idx,a.product_name, b.code_no as product_code, c.code_no as product_code_2, d.code_no as product_code_3, 
             b.code_name as product_code_name, c.code_name as product_code_name_2, d.code_name as product_code_name_3 
@@ -373,6 +374,7 @@ class AdminCmsController extends BaseController
             "list_code" => $list_code,
             "policy_contents" => $policy_contents,
             "policy_contents_m" => $policy_contents_m,
+            "subtitle" => $subtitle,
         ]; 
         return view('admin/_cms/policy_cancel_write', $data);
     }
@@ -385,6 +387,8 @@ class AdminCmsController extends BaseController
         $product_code_3 = updateSQText($data['product_code_3'] ?? '');
         $product_code = updateSQText($data['product_code'] ?? '');
         $policy_contents = updateSQText($data['policy_contents'] ?? '');
+        $subtitle = updateSQText($data['subtitle'] ?? '');
+
         $policy_contents_m = updateSQText($data['policy_contents_m'] ?? '');
         $product_idx = updateSQText($data['product_idx'] ?? 0);
 
@@ -392,7 +396,8 @@ class AdminCmsController extends BaseController
         if ($p_idx) {
             $dataToUpdate = [
                 'policy_contents' => $policy_contents,
-                'policy_contents_m' => $policy_contents_m
+                'policy_contents_m' => $policy_contents_m,
+                'subtitle' => $subtitle,
             ];
 
 
@@ -408,6 +413,7 @@ class AdminCmsController extends BaseController
             'product_code_3' => $product_code_3 ?? 0,
             'policy_contents' => $policy_contents,
             'policy_contents_m' => $policy_contents_m,
+            'subtitle' => $subtitle,
             'policy_type' => '취소 규정',
             'r_date' => $r_date ?? date("Y-m-d H:i:s"),
         ];

@@ -258,6 +258,9 @@ input[type="text"] {
     font-size: 16px;
     color: #454545;
     padding-left: 20px;
+    word-break: break-all;
+    padding: 20px 0;
+    line-height: 1.4;
     /* height: 65px; */
 }
 
@@ -413,6 +416,7 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .invoice_paid .invoice_button button {
@@ -420,13 +424,13 @@ input[type="text"] {
     color: #252525;
     border-radius: 4px;
     border: 1px solid #dbdbdb;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     font-weight: bold;
 }
 .invoice_paid .ttl_box .stt_2 {
     font-size: 13px;
     color: #ffffff;
-    background-color: #cccccc;
+    background-color: #84858c;
     padding: 5px 8px;
     border-radius: 3px;
     /* margin-right: 9px; */

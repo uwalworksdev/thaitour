@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
+$connect     = db_connect();
 $private_key = private_key();
 
 if ($_SESSION["member"]["mIdx"] == "") {
@@ -9,26 +9,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	exit();
 }
 
-$sql = "select * from tbl_order_mst a
-	                           left join tbl_member b on a.m_idx = b.m_idx 
-							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($sql)->getRowArray();
-
-$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
-
-$row_d = $connect->query($sql_d)->getRowArray();
-
-$row['local_phone'] = $row_d['local_phone'];
-
-$tour_period = $row["tour_period"];
-$custom_req = $row['custom_req'];
-
-$home_depart_date = $row['home_depart_date'];
-$away_arrive_date = $row['away_arrive_date'];
-$away_depart_date = $row['away_depart_date'];
-$home_arrive_date = $row['home_arrive_date'];
-
-$start_date = $row['start_date'];
+$deli_types = get_deli_type();
 
 ?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css" />
@@ -61,25 +42,54 @@ $start_date = $row['start_date'];
 	/* .mypage_container .content .details_table tbody tr .ttl span {
 		padding-right: 6.3846rem;
 	} */
-	
 </style>
 
+<?php
+    $authdate   = "";
+    if($AuthDate_1) {
+		$year   = "20" . substr($AuthDate_1, 0, 2);
+		$month  = substr($AuthDate_1, 2, 2);
+		$day    = substr($AuthDate_1, 4, 2);
+		$hour   = substr($AuthDate_1, 6, 2);
+		$minute = substr($AuthDate_1, 8, 2);
+		$second = substr($AuthDate_1, 10, 2);
+
+		// 최종 형식
+		$authdate = "$year-$month-$day $hour:$minute:$second";
+    }	
+?>
 <section class="invoice_paid">
 	<div class="inner">
 		<div class="ttl_box">
 			<h1>
-				<?= (html_entity_decode($row['product_name'])) ?>
+				<?= (html_entity_decode($product_name)) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_status_name($row["order_status"]) ?>
+				<?= $deli_types[$order_status] ?>
 			</span>
 		</div>
 		<p class="ttl_date">
-			<?= $row["order_r_date"] ?>
+			<?= $order_r_date ?>
 		</p>
+		
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약 정보(차량)</h2>
+			<div class="flex_b_c invoice_wrap_ttl">
+				<h2 style="margin: 0;">예약 정보(차량)</h2>
+
+				<div class="flex invoice_wrap_btn">
+					<?php
+						if($order_status != "W") {
+					?>
+						<button type="button" class="btn_invoice info_estimate" data-idx="<?=$order_idx?>">인보이스</button>
+                    <?php } ?>
+					<?php
+						if($order_status == "Z" || $order_status == "E") {
+					?>
+						<button type="button" class="btn_invoice info_voucher" data-idx="<?=$order_idx?>">바우처</button>
+                    <?php } ?>
+				</div>
+			</div>
 			<table>
 				<colgroup>
 					<col width="15%">
@@ -96,26 +106,26 @@ $start_date = $row['start_date'];
 
 						<td col width="15%" class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 
 						<td class="content">
 							<span>성인: <span>
-								<?= $row["people_adult_cnt"] ?>
+								<?= $people_adult_cnt ?>
 							</span></span> <span>소아: <span>
-								<?= $row["people_kids_cnt"] ?>
+								<?= $people_kids_cnt ?>
 							</span></span> 
 						</td>
 
 						<td class="content">
 							<p>
-								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ")"  ?>
+								<?= date("Y.m.d", strtotime($meeting_date)) . "(" . dowYoil(date("Y.m.d", strtotime($meeting_date))) . ")"  ?>
 								<?php
 									if($code_parent_category == "5403"){
 								?>
 									~
-									<?= date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")";?>
+									<?= date("Y.m.d", strtotime($return_date)) . "(" . dowYoil(date("Y.m.d", strtotime($return_date))) . ")";?>
 								<?php
 									}
 								?>
@@ -149,7 +159,7 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 					</tr>
@@ -157,9 +167,9 @@ $start_date = $row['start_date'];
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-								<?= $row["people_adult_cnt"] ?>
+								<?= $people_adult_cnt ?>
 							</span></span> <span>소아: <span>
-								<?= $row["people_kids_cnt"] ?>
+								<?= $people_kids_cnt ?>
 							</span></span>
 						</td>
 					</tr>
@@ -168,12 +178,12 @@ $start_date = $row['start_date'];
 
 						<td class="content">
 							<p>
-								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ")"  ?>
+								<?= date("Y.m.d", strtotime($meeting_date)) . "(" . dowYoil(date("Y.m.d", strtotime($meeting_date))) . ")"  ?>
 								<?php
 									if($code_parent_category == "5403"){
 								?>
 									~
-									<?= date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")";?>
+									<?= date("Y.m.d", strtotime($return_date)) . "(" . dowYoil(date("Y.m.d", strtotime($return_date))) . ")";?>
 								<?php
 									}
 								?>
@@ -223,13 +233,13 @@ $start_date = $row['start_date'];
 						<?php } ?> -->
 						<?php if ($row['used_coupon_money'] > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-										<?= number_format($row['used_coupon_money']) ?>원
+										<?= number_format($used_coupon_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
 						<?php if ($row['used_mileage_money'] > 0) { ?>
 							<p><strong style="color:red">포인트 <span id="point_amt">
-										<?= number_format($row['used_mileage_money']) ?>원
+										<?= number_format($used_mileage_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
@@ -238,13 +248,13 @@ $start_date = $row['start_date'];
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($row['order_price']) ?>
+									<?= number_format($order_price) ?>
 								</span></strong> 원</p>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section class="ord_total_sec reservation">
+		<!--section class="ord_total_sec reservation">
 			<div class="flex_b_c">
 				<div class="left flex">
 					<strong class="label red">실예약금액</strong>
@@ -261,9 +271,10 @@ $start_date = $row['start_date'];
 					</div>
 				</div>
 			</div>
-		</section>
+		</section-->
 
-		<div class="invoice_table invoice_table_new reservation">
+		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
+		<div class="invoice_table invoice_table_new reservation only_web">
 			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
@@ -280,198 +291,99 @@ $start_date = $row['start_date'];
 						<td col width="20%" class="subject">결제일</td>
 					</tr>
 
-					<?php if ($row["order_status"] == "W") { ?>
-						<tr>
-							<td class="content" colspan="7">예약 준비중</td>
-						</tr>
-					<?php } ?>
+					<tr>
+						<td class="subject">예약상태</td>
+						<td col width="15%" class="subject">결제방법</td>
+						<td col width="15%" class="subject">쿠폰</td>
+						<td col width="15%" class="subject">포인트</td>
+						<td col width="15%" class="subject">결제금액(원)</td>
+						<td col width="15%" class="subject">결제일시</td>
+					</tr>
 
-					<?php if ($row["order_status"] == "C") { ?>
-						<tr>
-							<td class="content" colspan="6">예약 취소</td>
-						</tr>
-					<?php } ?>
+					<tr>
+						<td col width="8%" class="content"><?= $deli_types[$order_status] ?></td>
 
-					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								선금
-							</td>
+						<td class="content"><?= $order_method ?></td>
 
-							<td class="content">
-								선금 입금대기
-							</td>
+						<td class="content"><?= number_format($used_coupon_money) ?></td>
 
-							<td class="content">
-								<?= $row['deposit_method'] ?>
-							</td>
+						<td class="content"><?= number_format($used_mileage_money) ?></td>
 
-							<td class="content">
-								<?= number_format($row['deposit_price']) ?>
-							</td>
+						<td class="content"><?= number_format($order_price) ?></td>
 
-							<td class="content">
-							</td>
-						</tr>
-						<tr>
-							<td class="content ">
-								<?php if ($row['deposit_method'] == "") { ?>
-									잔금
-								<?php } ?>
-							</td>
-							<td class="content link">
-								<?php if ($row['deposit_method'] == "") { ?>
-									준비중
-								<?php } ?>
-							</td>
-						</tr>
-
-					<?php } ?>
-
-					<?php if ($row["order_status"] == "R") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								선금
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									결제완료
-								<?php } else { ?>
-									<?= $row['ResultMsg_1'] ?>
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_method'] ?>
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php } else { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php }
-								?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_date'] ?>
-								<?php } else { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } ?>
-							</td>
-						</tr>
-						<tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-
-							<td class="content">
-								잔금 입금 대기
-							</td>
-
-							<td class="content">
-								<?= $row['confirm_method'] ?>
-							</td>
-
-							<td class="content">
-								<?= number_format($row['order_confirm_price']) ?>원
-							</td>
-
-							<td class="content">
-							</td>
-						</tr>
-					<?php } ?>
-
-					<?php if ($row["order_status"] == "Y") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-							<td class="content">
-								결제완료
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									결제완료
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_1']) ?>원 -->
-									<?= number_format($row['order_price']) ?>원
-								<?php } ?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } else { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } ?>
-							</td>
-						</tr>
-						<!--tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-							<td class="content">
-								잔금입금완료
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_method'] ?>
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['confirm_method'] == "무통장입금") { ?>
-									<?= number_format($row['order_confirm_price']) ?>원
-								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_2']) ?>원 -->
-									<!--<?= number_format($row['order_confirm_price']) ?>원
-								<?php } ?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-
-								<?php if ($row['confirm_method'] == "무통장입금") { ?>
-									<!-- <?= $row['order_confirm_date'] ?> -->
-									<!--<?= date($row['order_c_date']); ?>
-								<?php } else { ?>
-									<!-- <?= date("Y-m-d", strtotime("20" . $row['AuthDate_2'])); ?> -->
-									<!--<?= date($row['order_c_date']); ?>
-								<?php } ?>
-							</td>
-						</tr-->
-					<?php } ?>
-
+						<td class="content">
+							<?php if ($order_method == "신용카드") { ?>
+								<?=$authdate?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>						
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
+        <?php } ?>
+							
+		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>예약금액 결제</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+						<tr>
+							<td class="subject">예약상태</td>
+
+							<td class="content">
+								<?= $deli_types[$order_status] ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제방법</td>
+
+							<td class="content">
+								<?= $order_method ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">쿠폰</td>
+
+							<td class="content">
+								<?= number_format($used_coupon_money) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">포인트</td>
+
+							<td class="content">
+								<?= number_format($used_mileage_money) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제금액</td>
+
+							<td class="content">
+								<?= number_format($order_price) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제일</td>
+
+							<td class="content">
+							<?php if ($order_method == "신용카드") { ?>
+								<?=$authdate?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>						
+								
+							</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+        <?php } ?>
 
 		<section class="earn_pops my_pops" style="display:none;">
 			<div class="pay_pops_inner pay_count02" style="display:none;">
@@ -493,15 +405,7 @@ $start_date = $row['start_date'];
 		</section>
 
 		<!-- 예약자 정보 웹 -->
-		<?php
-		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
-									   , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
-									   , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
-									   , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
-									   , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
-									   , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
-		$row_d = $connect->query($sql_d)->getRowArray();
-		?>
+
 		<div class="invoice_table invoice_table_new only_web">
 			<h2>예약자 정보</h2>
 			<table>
@@ -514,19 +418,19 @@ $start_date = $row['start_date'];
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">호주/해외 전화번호 </td>
+						<td col width="12%" class="subject">전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
+						<td col width="15%" class="subject">여권번호</td>
 
 					</tr>
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 
 						<td class="content">
@@ -534,7 +438,7 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>원
+							<?= $row_d['local_phone'] ?>
 						</td>
 
 						<td class="content">
@@ -543,18 +447,15 @@ $start_date = $row['start_date'];
 
 
 						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
+							<?=$row_d['order_passport_number'] ?>
 						</td>
 
 				</tbody>
 			</table>
 		</div>
 
-		<!-- 예약자 정보 모바일 -->
 
+		<!-- 예약자 정보 모바일 -->
 		<div class="invoice_table invoice_table_new only_mo">
 			<h2>예약자 정보</h2>
 			<table>
@@ -567,7 +468,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name ?>
 						</td>
 					</tr>
 
@@ -575,7 +476,7 @@ $start_date = $row['start_date'];
 						<td class="subject">생년월일</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 					</tr>
 
@@ -594,361 +495,21 @@ $start_date = $row['start_date'];
 					</tr>
 
 					<tr>
-						<td class="subject">주소</td>
-						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
-						</td>
+						<td class="subject">여권번호</td>
+						<td class="content"><?=$row_d['order_passport_number']?></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
-
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
-			<!-- 여행자 웹 -->
-			<div class="invoice_table invoice_table_new only_web">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td width="25%" class="subject">여권파일</td>
-							<!-- <td width="15%" class="subject">여권만료일</td> -->
-							<td width="15%" class="subject">생년월일</td>
-							<td class="subject">이메일</td>
-							<td class="subject">전화번호</td>
-						</tr>
-						<tr>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-
-							<td class="content">
-								<?
-								if ($row['ufile']) {
-									?>
-									<a class="btn_download_passport"
-										href="javascript:handlleShowPassport(`/data/tour/<?= $row['ufile'] ?>`)">보기</a>
-									<a class="btn_download_passport btn_del_passport"
-										href="javascript:handlleDelPassport(`<?= $row['gl_idx'] ?>`)">삭제</a>
-									<?
-								}
-								?>
-								<input type="file" hidden data-gl_idx="<?= $row['gl_idx'] ?>" class="change_passport"
-									id="change_passport_<?= $row['gl_idx'] ?>">
-								<label class="btn_upload_passport" for="change_passport_<?= $row['gl_idx'] ?>">첨부파일</label>
-							</td>
-
-							<!-- <td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td> -->
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-
-
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-
-
-					</tbody>
-				</table>
-			</div>
-
-			<!-- 여행자 모바일 -->
-			<div class="invoice_table invoice_table_new only_mo">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="5%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권번호</td>
-							<td class="content">
-								<?= $row['passport_num'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권만료일</td>
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">생년월일</td>
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">이메일</td>
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">전화번호</td>
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-
-			<?php
-		}
-		?>
-
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
-
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
-			<!-- 여행자 2 웹 -->
-			<div class="invoice_table invoice_table_new only_web">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td width="15%" class="subject">여권번호</td>
-							<td width="15%" class="subject">여권만료일</td>
-							<td width="15%" class="subject">생년월일</td>
-							<td class="subject">이메일</td>
-							<td class="subject">전화번호</td>
-						</tr>
-						<tr>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-
-							<td class="content">
-								<?= $row['passport_num'] ?>
-							</td>
-
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-
-
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-
-
-					</tbody>
-				</table>
-			</div>
-
-
-
-			<!-- 여행자 2 모바일 -->
-			<div class="invoice_table invoice_table_new only_mo">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권번호</td>
-
-							<td class="content">
-								<?= $row['passport_num'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권만료일</td>
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">생년월일</td>
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">이메일</td>
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">전화번호</td>
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
-			</div>
-			<?php
-		}
-		?>
-
-		<!-- <div class="invoice_table">
-			<h2>요청사항</h2>
-			<table>
-				<colgroup>
-					<col width="15%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<td class="subject">요청사항</td>
-						<td class="content">
-							<?= $custom_req ?>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div> -->
-
-		<!-- <div class="invoice_comment">
-			<div class="invoice_comment-top">
-				<div class="invoice_comment-count">
-					<span>댓글</span>
-					<span id="comment_count">(0)</span>
-				</div>
-				<form action="" id="frm" class="frm" name="com_form">
-					<input type="hidden" name="code" id="code" value="order">
-					<input type="hidden" name="r_code" id="r_code" value="order">
-					<input type="hidden" name="r_idx" id="r_idx" value="<?= $order_idx ?>">
-					<div class="invoice_comment-input">
-						<textarea style="resize:none" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
-						<button type="button" onclick="fn_comment(<?=session('member.idx')?>)">등록</button>
-					</div>
-				</form>
-			</div>
-			<div class="invoice_comment-details" id="comment_list">
-				<?php
-				$r_code = "order";
-				$r_idx = $order_idx;
-
-				// include $_SERVER['DOCUMENT_ROOT'] . "/include/comment_list.php" 
-				?>
-			</div>
-		</div> -->
-
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+			<?php if($order_status == "W" || $order_status == "C" || $order_status == "N") { ?>
+			<button type="button" class="order_del" data-idx="<?=$order_idx?>">예약삭제</button>
+			<?php } ?>
+			<?php if($order_status == "X") { ?>
+			<button class="btn_payment" data-idx="<?=$order_no?>">결제하기</button>
+			<?php } ?>
 		</div>
 	</div>
 </section>
@@ -990,6 +551,98 @@ if ($_paymod == "lg") {
 	}
 }
 ?>
+
+
+<form id="checkOut" action="/checkout/confirmMypage" method="post">
+<input type="hidden" name="m_idx"      id="m_idx"   value="<?= session("member.idx") ?>" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue"  id="dataValue"  value="" >
+</form>
+
+<script>
+	$(document).on('click', '.info_estimate', function () {
+
+		var idx   = $(this).data('idx');  
+		let url   = "/invoice/car_01/" + idx; 
+		
+		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
+
+	}); 
+
+	$(document).on('click', '.info_voucher', function () {
+		var idx   = $(this).data('idx');  
+		let url   = "/voucher/car/"+idx; 
+		
+		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
+	});
+	$(document).on('click', '.order_del', function () {
+
+		var idx = $(this).data('idx'); 
+
+        if (confirm("삭제하시겠습니까?\n삭제 후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(idx){
+			$.ajax({
+
+				url: "/ajax/ajax_booking_delete",
+				type: "POST",
+				data: {
+
+					"idx": idx 
+
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+        }		
+	});
+</script>
+
+<script>
+$(document).ready(function () {
+    $(".btn_payment").on("click", function () {
+        var dataValue = $(this).data("idx"); // 주문번호 가져오기
+		$("#dataValue").val(dataValue);
+		
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": dataValue 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+			
+		
+    });
+});
+</script>
 
 <script type="text/javascript">
 	function handlleShowPassport(img) {

@@ -53,7 +53,9 @@
 .sec2-item-card .calendar_header .desc_product {
     font-size: 22px;
     font-weight: 600;
-    width: 65%;
+    width: 75%;
+    display: flex;
+    gap: 20px;
 }
 
 .sec2-item-card .calendar_header .desc_product .desc_product_sub {
@@ -73,6 +75,20 @@
     margin-bottom: 0;
 }
 
+.sec2-item-card .calendar_header .desc_product .guide_op_name {
+    width: 50%;
+}
+
+.sec2-item-card .calendar_header .desc_product .desc_product_sub.desc_product_sub_last {
+    margin: 0 !important;
+    display: inline-block;  
+}
+
+.sec2-item-card .calendar_header .desc_product .desc_product_sub.desc_product_sub_last .guide_op_ttl {
+    font-size: 22px;
+    color: #252525;
+}
+
 .sec2-item-card .calendar_header .desc_product .desc_product_sub ul {
     display: flex;
     justify-content: start;
@@ -81,7 +97,9 @@
     flex-direction: column;
 }
 
-.sec2-item-card .calendar_header .desc_product .desc_product_sub li {}
+.sec2-item-card .calendar_header .desc_product .desc_product_sub.desc_product_sub_last ul {
+    margin-top: 15px;
+}
 
 .sec2-item-card .calendar_header .box_price {
     font-size: 16px;

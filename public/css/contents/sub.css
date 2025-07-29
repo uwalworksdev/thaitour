@@ -51,6 +51,11 @@
     }
 }
 
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 #container.sub {
     padding: 30px 0 130px;
@@ -258,12 +263,13 @@
     -webkit-box-orient: vertical;
     line-height: 1.444;
     height: 2.888em;
-
+    height: unset;
     word-break: break-all;
 }
 
 .list_wrap .summary .date {
-    margin-top: 20px;
+    margin-top: 10px;
+    text-align: left    ;
     color: rgb(117, 117, 117);
 }
 
@@ -2944,7 +2950,7 @@
 
 .section_vehicle_2_1__head__icon a {
     background-color: #f62e2e;
-    width: 104px;
+    width: 120px;
     height: 34px;
     display: flex;
     border-radius: 16px;
@@ -3743,6 +3749,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .meeting_time {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .meeting_time__date {
@@ -5900,7 +5907,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-bottom: 32px;
     font-weight: bold;
     font-size: 16px;
-    line-height: 1.5rem;
+    line-height: 1.4;
     color: black;
 }
 
@@ -6007,19 +6014,26 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .coupon_list .coupon_content .card_cou .card:hover .images img {
-    transform: scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 .coupon_list .coupon_content .card_cou .card .images {
     width: 100%;
-    max-height: 210px;
     object-fit: cover;
     overflow: hidden;
+    padding-top: 75%;
+    position: relative;
 }
 
 .coupon_list .coupon_content .card_cou .card .images img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: all .5s linear;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .coupon_list .coupon_content .card_cou .card .text {
@@ -6184,6 +6198,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     color: #555555;
     font-weight: 500;
     line-height: 1.3;
+}
+
+.popup_coupon .popup .content .infomation .txt_info .list_des .des span.location .tag {
+    display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
 .popup_coupon .popup .content .infomation .txt_info .info_download .btn_down {

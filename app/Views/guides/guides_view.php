@@ -37,6 +37,12 @@
         width: 81px;
         height: 48px;
     }
+
+    @media screen and (max-width: 850px) {
+       .calendar_submit {
+            display: none !important;
+       }     
+    }
 </style>
     
     <div class="content-sub-hotel-detail tours-detail">
@@ -110,21 +116,36 @@
                         </div>
                         <div class="grid_2_2">
 
-
                             <?php 
-                                $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                                $loop_limit = $is_mobile ? 1 : 3;
-                                for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                                // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                                // $loop_limit = $is_mobile ? 1 : 3;
+                                for ($j = 2; $j < 5; $j++) {
                             ?>
                                 <img onclick="img_pops('<?= $guide['product_idx'] ?>')"
-                                     class="grid_2_2_size imageDetailSup_"
+                                     class="grid_2_2_size imageDetailSup_ responsive-img"
                                      src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
                                      alt="<?= $guide['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                             <?php } ?>
-                            <div class="grid_2_2_sub" onclick="img_pops('<?= $guide['product_idx'] ?>')"
+                            <div class="grid_2_2_sub only_web" onclick="img_pops('<?= $guide['product_idx'] ?>')"
                                  style="position: relative; cursor: pointer;">
                                 <img class="custom_button imageDetailSup_"
                                      src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
+                                     alt="<?= $guide['product_name'] ?>"
+                                     onerror="this.src='/images/share/noimg.png'">
+                                <div class="button-show-detail-image">
+                                    <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                         alt="image_detail_icon">
+                                    <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                         alt="image_detail_icon_m">
+                                    <span>사진 모두 보기</span>
+                                    <span>(<?= $i3 ?>장)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid_2_2_sub only_mo" onclick="img_pops('<?= $guide['product_idx'] ?>')"
+                                 style="position: relative; cursor: pointer;">
+                                <img class="custom_button imageDetailSup_"
+                                     src="/uploads/guides/<?= $img_list[1]['ufile'] ?>"
                                      alt="<?= $guide['product_name'] ?>"
                                      onerror="this.src='/images/share/noimg.png'">
                                 <div class="button-show-detail-image">
@@ -160,38 +181,40 @@
                             ?>
                             <div class="calendar_header" data-key="<?= $key ?>"
                                  data-num="<?= $option['o_idx'] ?>">
-                                <div class="desc_product">
-                                    <div class=""
-                                         data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
-                                    <div class="desc_product_sub">
-                                        <?= viewSQ($option['o_contents']) ?>
-                                    </div> 
-                                    <?php
-                                        $hasName = false;
-                                        foreach ($option['sup_options'] as $item) {
-                                            if (!empty($item['s_name'])) {
-                                                $hasName = true;
-                                                break;
-                                            }
-                                        }
-                                        if(count($option['sup_options']) > 0 && $hasName) {
-                                    ?>
-                                    <div class="desc_product_sub">
-                                        <p> 옵션포함:</p>
-                                        <ul>
-                                            <?php foreach ($option['sup_options'] as $item): ?>
-                                                <li class="" data-price="<?= $item['s_price'] ?>">
-                                                    - <?= $item['s_name'] ?> </li>
-
-                                                <?php
-                                                $price_ += $item['s_price'];
-                                                ?>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                <div class="desc_product desc_product_sub_first">
+                                    <div class="guide_op_name">
+                                        <div data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
+                                        <div class="desc_product_sub">
+                                            <?= viewSQ($option['o_contents']) ?>
+                                        </div> 
                                     </div>
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="guide_op_wrap">
+                                        <?php
+                                            $hasName = false;
+                                            foreach ($option['sup_options'] as $item) {
+                                                if (!empty($item['s_name'])) {
+                                                    $hasName = true;
+                                                    break;
+                                                }
+                                            }
+                                            if(count($option['sup_options']) > 0 && $hasName) {
+                                        ?>
+                                        <div class="desc_product_sub desc_product_sub_last">
+                                            <p class="guide_op_ttl">옵션포함</p>
+                                            <ul>
+                                                <?php foreach ($option['sup_options'] as $item): ?>
+                                                    <li class="" data-price="<?= $item['s_price'] ?>">
+                                                        <?= $item['s_name'] ?> </li>
+                                                    <?php
+                                                        $price_ += $item['s_price'];
+                                                    ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                     <!-- <div class="desc_product_sub">예약기능여부 : <span
                                                 style="color : #2a459f ">
                                                 <?php
@@ -336,6 +359,7 @@
                                 <div class="calendar_submit">
                                     <button type="button" onclick="processBooking('<?= $option['o_idx'] ?>', 'W')">예약하기</button>
                                     <button type="button" class="btn-cart" onclick="processBooking('<?= $option['o_idx'] ?>', 'B')">장바구니</button>
+                                    <button type="button" class="btn-cart" onclick="redirect_contact()">문의하기</button>
                                 </div>
                             </div>
                     <?php endforeach; ?>
@@ -596,6 +620,20 @@
         <div class="dim"></div>
     </div>
     <script>
+        function redirect_contact() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/mypage/consultation';
+        }
+        
         function wish_it(product_idx) {
 
             const isLoggedIn = <?= session()->has('member') ? 'true' : 'false' ?>;
@@ -905,6 +943,9 @@
             $('.item_check_term_all_').val('N');
             $(".calendar_container_tongle").hide();
             $(".calendar_container_tongle_" + current_idx).show();
+            $(".btn-cart-mo").attr("data-o_idx", current_idx);
+            $(".btn-order").attr("data-o_idx", current_idx);
+
             // $('.calendar_header:first').next().show().parent().addClass('active');
             openDateRanger($('.calendar_container_tongle_' + current_idx));
             
@@ -923,6 +964,8 @@
                 $(".calendar_container_tongle").hide();
                 // $(this).next().show().parent().addClass('active');
                 $(".calendar_container_tongle_" + id).show();
+                $(".btn-cart-mo").attr("data-o_idx", id);
+                $(".btn-order").attr("data-o_idx", id);
 
                 setTimeout(() => {
                     $('html, body').animate({
@@ -1110,6 +1153,12 @@
         });
     </script>
     <script>
+        $(".btn-cart-mo, .btn-order").on('click', function () {
+            let o_idx = $(this).attr('data-o_idx');
+            let status = $(this).attr('data-status');
+            processBooking(o_idx, status);
+        })
+
         function processBooking(o_idx, status) {
             <?php if (empty(session()->get("member")["id"])) { ?>
             showOrHideLoginItem();

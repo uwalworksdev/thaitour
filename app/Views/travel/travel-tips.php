@@ -84,8 +84,31 @@
                 <div class="relative">
                     <div class="swiper tra_sec_02_swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="/Community/view_detail">
+
+                            <?php
+                                foreach($local_product_list["items"] as $local_product) :
+
+                                    if ($local_product["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_product["ufile1"])) {
+                                        $img = "/data/product/" . $local_product["ufile1"];
+                                    } else {
+                                        $img = "/data/product/noimg.png";
+                                    }
+                            ?>
+                                <div class="swiper-slide">
+                                    <a class="tra_sec_02_swiper_item" href="/travel-tips/hot-place?lp_idx=<?=$local_product["idx"]?>&city_code=<?=$local_product["city_code"]?>">
+                                        <div class="_img_box">
+                                            <img src="<?=$img?>" alt="<?=$local_product["rfile1"]?>">
+                                        </div>
+                                        <div class="_text_box">
+                                            <h5><?=viewSQ($local_product["title"])?></h5>
+                                            <p><?=viewSQ($local_product["desc"])?></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endforeach;?>
+                            <!-- <div class="swiper-slide">
+                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
+
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-1.png" alt="">
                                     </div>
@@ -127,8 +150,7 @@
                                         <p>전통시장부터 야시장까지~</p>
                                     </div>
                                 </a>
-                            </div>
-
+                            </div> -->
                         </div>
                     </div>
                     <div class="swiper-pagination tra_sec_02_swiper_pagination"></div>
@@ -209,22 +231,43 @@
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_banner">
-                        <a href="/Community/theme_view" class="item">
-                            <img class="only_web" src="/images/sub/tra-sec-04-1.png" alt="">
-                            <img class="only_mo" src="/images/sub/tra-sec-04-1-m.png" alt="">
-                            <div class="bx_text">
-                                <span class="loca">방콕ㆍ파타야</span>
-                                <p class="title">골프 여행객에게 인기 좋은 호텔</p>
-                            </div>
-                        </a>
-                        <a href="/Community/theme_view" class="item">
+
+                        <?php
+                            foreach($hotel_theme_list as $theme){
+                                if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
+                                    $img = "/data/product/" . $theme["ufile1"];
+                                } else {
+                                    $img = "/data/product/noimg.png";
+                                }
+                        ?>
+                            <a href="/travel-tips/theme_view?theme_idx=<?= $theme["idx"] ?>" class="item">
+                                <img class="only_web" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
+                                <img class="only_mo" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
+                                <div class="bx_text">
+                                    <span class="loca">
+                                        <?php
+                                            if($theme["type"] == "month"){
+                                                echo "이달의 호텔";
+                                            }else{
+                                                echo str_replace(',', 'ㆍ', $theme["category_name"]);;
+                                            }
+                                        ?>
+                                    </span>
+                                    <p class="title"><?=$theme["title"]?></p>
+                                </div>
+                            </a>
+                        <?php
+                            }
+                        ?>
+                        <!-- <a href="/travel-tips/theme_view" class="item">
+
                             <img class="only_web" src="/images/sub/tra-sec-04-2.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-2-m.png" alt="">
                             <div class="bx_text">
                                 <span class="loca">태국</span>
                                 <p class="title">골프 여행객에게 인기 좋은 호텔</p>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>

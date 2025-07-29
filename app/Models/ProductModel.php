@@ -29,13 +29,13 @@ class ProductModel extends Model
         "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place",
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value", "caddie_fee_sel",
-        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', "product_notes",
+        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', "product_notes", "product_keywords",
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
         "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_won_bath", "room_guides", 
 	    "important_notes", "note_news", "worker_id", "worker_name", "description", "tour_group", "company_name", "company_contact", "company_url", "company_notes",
-        "use_time_line", "not_included_product", "guide_contents"
+        "use_time_line", "not_included_product", "guide_contents", "contents_field_more"
     ];
 
     protected function initialize()
@@ -798,7 +798,31 @@ class ProductModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
-        $builder = $this->builder();
+        $builder = $this->db->table('tbl_product_mst AS p');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "p.*";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+        $builder->select($select);
+
+        // $builder = $this->builder();
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
@@ -957,9 +981,9 @@ class ProductModel extends Model
                 $builder->groupStart();
                 foreach ($search_keyword as $category) {
                     if ($cnt_keyword > 1) {
-                        $builder->orLike('keyword', $category);
+                        $builder->orLike('product_keywords', $category);
                     } else {
-                        $builder->like('keyword', $category);
+                        $builder->like('product_keywords', $category);
                     }
                     $cnt_keyword++;
                 }
@@ -1034,7 +1058,17 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['product_idx' => 'DESC'];
+            }
+            // $orderBy = ['product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
@@ -1240,7 +1274,32 @@ class ProductModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table('tbl_product_mst AS p');
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "p.*, 
+            MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
+            MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+
+        $builder->select($select);
+        // $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
 /*
         $builder->where('h.o_sdate IS NOT NULL');
@@ -1488,16 +1547,26 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['product_idx' => 'DESC'];
+            }
+            // $orderBy = ['product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
         }
 
-//        $sql = $builder->getCompiledSelect();
-//        var_dump($sql);
-//        die();
+    //    $sql = $builder->getCompiledSelect();
+    //    var_dump($sql);
+    //    die();
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
@@ -1690,7 +1759,31 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table($this->table . " as pm");
-        $builder->select('pm.*');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "pm.*";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+
+        $builder->select($select);
+
+        // $builder->select('pm.*');
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
@@ -1779,7 +1872,17 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['pm.product_idx' => 'DESC'];
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy = ['relevance_score' => 'DESC', 'pm.product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['pm.product_idx' => 'DESC'];
+            }
+            // $orderBy = ['pm.product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['pm.product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {

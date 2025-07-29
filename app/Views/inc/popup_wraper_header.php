@@ -359,7 +359,8 @@
 
     $code_first_tour = $codes_tour[0] ?? [];
 
-    $keyWordAll = $productModel->getKeyWordAll(1301);
+    // $keyWordAll = $productModel->getKeyWordAll(1301);
+    $keyWordAll = $codeModel->getByParentAndDepth(58, 2)->getResultArray();
     $product_theme = $codeModel->getByParentAndDepth(57, 2)->getResultArray();
 ?>
 
@@ -758,9 +759,9 @@
                                 <div class="list_area list_keyword">
                                     <p data-code="all">전체키워드</p>
                                     <?php
-                                        foreach($keyWordAll as $key => $item){
+                                        foreach($keyWordAll as $code){
                                     ?>
-                                        <p data-code="<?=$item?>">#<?=$item?></p>
+                                        <p data-code="<?=$code["code_no"]?>">#<?=$code["code_name"]?></p>
                                     <?php } ?>
                                 </div>
                             </td>
@@ -930,17 +931,19 @@
         $(this).toggleClass("active");
         if($(this).data("code") == "all"){
             if($(this).hasClass("active")){
-                $(this).siblings().addClass("active");
-            }else{
                 $(this).siblings().removeClass("active");
+            }else{
+                $(this).siblings().addClass("active");
             }
         }else{
-            let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
-            if(len == $(this).closest(".list_area").children("p").length - 1){
-                $(this).siblings("[data-code='all']").addClass("active");
-            }else{
-                $(this).siblings("[data-code='all']").removeClass("active");
-            }
+            $(this).siblings("[data-code='all']").removeClass("active");
+
+            // let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
+            // if(len == $(this).closest(".list_area").children("p").length - 1){
+            //     $(this).siblings("[data-code='all']").removeClass("active");
+            // }else{
+            //     $(this).siblings("[data-code='all']").addClass("active");
+            // }
         }
 
     });
@@ -1302,7 +1305,7 @@
 
             $(".popup_content." + type_category).find(".list_keyword p.active").each(function() {
                 let code_no = $(this).data("code");
-                if(code_no == "all"){
+                if(code_no == "all" && search_keyword.length == 0){
                     search_keyword = [];
                     return false;
                 }else{
@@ -1310,9 +1313,9 @@
                 }
             });
 
-            if(search_keyword.length == $(".popup_content." + type_category).find(".list_keyword p").length - 1){
-                search_keyword = [];
-            }
+            // if(search_keyword.length == $(".popup_content." + type_category).find(".list_keyword p").length - 1){
+            //     search_keyword = [];
+            // }
 
             $(".popup_content." + type_category).find(".list_product_tour p.active").each(function() {
                 let code_no = $(this).data("code");

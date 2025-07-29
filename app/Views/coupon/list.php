@@ -389,7 +389,12 @@
                 let exp_day = exp_start_day + "(" + getDayOfWeekKorean(exp_start_day) + ")" + " " + exp_end_day + "(" + getDayOfWeekKorean(exp_end_day) + ")";
                 $(".popup_coupon .popup .txt_info .title").text(data["coupon_name"]);
                 $(".popup_coupon .popup .txt_info .target").text(data["member_grade_name"]);
-                $(".popup_coupon .popup .txt_info .location").text(data["location"]);
+                $(".popup_coupon .popup .txt_info .location").empty();
+                data["category"].forEach(element => {
+                    $(".popup_coupon .popup .txt_info .location").append(
+                        `<span class="tag">${element}</span>`
+                    );
+                })
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
                 $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);                
 

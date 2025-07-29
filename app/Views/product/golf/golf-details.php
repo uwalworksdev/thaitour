@@ -1,6 +1,15 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
+
+<style>
+    @media screen and (max-width: 850px) {
+       .btn-s-wrap-pc {
+            display: none !important;
+       }     
+    }
+</style>
+
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
@@ -57,7 +66,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         // 페이지 어디든 클릭 시 실행
         $(document).on('click', function(event) {
-            showHideCaddy();
+            // showHideCaddy();
             calculatePrice();			
         });
     });
@@ -204,11 +213,11 @@ $(document).ready(function() {
                     <div class="grid_2_2">
                         <?php 
 
-                           $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                            $loop_limit = $is_mobile ? 1 : 3;
-                            for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                            // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                            // $loop_limit = $is_mobile ? 1 : 3;
+                            for ($j = 2; $j < 5; $j++) {
                         ?>
-                        <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
+                        <img class="grid_2_2_size responsive-img" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
                             onerror="this.src='/images/share/noimg.png'"
                             onclick="img_pops('<?= $product['product_idx'] ?>')">
                         <?php } ?>
@@ -216,10 +225,24 @@ $(document).ready(function() {
                              style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
                         <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>"
                              style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>"> -->
-                        <div class="grid_2_2_sub"
+                        <div class="grid_2_2_sub only_web"
                              style="position: relative; cursor: pointer;"
                              onclick="img_pops('<?= $product['product_idx'] ?>')">
                             <img class="custom_button" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
+                                onerror="this.src='/images/share/noimg.png'">
+                            <div class="button-show-detail-image">
+                                <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                     alt="image_detail_icon">
+                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                     alt="image_detail_icon_m">
+                                <span>사진 모두 보기</span>
+                                <span>(<?= $i3 ?>장)</span>
+                            </div>
+                        </div>
+                        <div class="grid_2_2_sub only_mo"
+                             style="position: relative; cursor: pointer;"
+                             onclick="img_pops('<?= $product['product_idx'] ?>')">
+                            <img class="custom_button" src="/data/product/<?= $img_list[1]['ufile'] ?>" alt="<?= $img_list[1]['rfile'] ?>"
                                 onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png"
@@ -682,18 +705,21 @@ $(document).ready(function() {
         </div>
         <div class="section-wrap-s">
            <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
-           <div class="btn-s-wrap">
+           <div class="btn-s-wrap btn-s-wrap-pc">
+
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
                 <?php endif; ?>
                 <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
+                <button class="btn-price-content default-button" type="button" onclick="redirect_contact()">문의하기</button>
+
            </div>                 
         </div>
         <div class="section2-sub">
             <div class="left-main">
                 <p>
                     <span class="l-label">일정</span>
-                    <span class="l-label2 final_date"></span>
+                    <span class="l-label2 final_date" id="final_date"></span>
                 </p>
                 <p>
                     <span class="l-label">홀수</span>
@@ -1152,6 +1178,19 @@ $(document).ready(function() {
         <div class="dim"></div>
     </div>
     <script>
+        function redirect_contact() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/mypage/consultation';
+        }
         $(".btn_add_cart").on("click", function () {
             $("#vehicle_time_hour").val($("#car-time-hour").val());
             $("#vehicle_time_minute").val($("#car-time-minute").val());
@@ -1547,6 +1586,7 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $('#final_option_list').html(data);
+                    
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     
 					var idx                 = $(".card-item").data('idx');
@@ -1591,7 +1631,8 @@ $(document).ready(function() {
                     $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
                     $("#o_cart_cont").val( $(".card-item").data('o_cart_cont') );
                     $("#o_caddy_cont").val( $(".card-item").data('o_caddy_cont') );
-					
+                    
+
 					if (day_yn == "Y") {
                         $(".day_option_first").show();
                     } else { 
@@ -1793,85 +1834,77 @@ $(document).ready(function() {
             });
 
         });
-        $('.tag-list .tag-js').on('click', function () {
-            $('.tag-list .tag-js').removeClass('active');
-            $(".final_hole").text($(this).data('tab'));
-            $(this).addClass('active');
- 			
-			var goods_name = $(this).data('tab') + '홀';
- 			
-			$.ajax({
-				url: "/ajax/get_golf_option",
-				type: "POST",
-				data: {
-					product_idx : $('input[name="product_idx"]').val(),
-					goods_name  : goods_name
-				},
-				dataType: "json",
-				success: function (res) {
-					/*	
-					alert(res.vehicle_price1_ba);
-					alert(res.vehicle_price1);
-					alert(res.vehicle_price2_ba);
-					alert(res.vehicle_price2);
-					alert(res.vehicle_price3_ba);
-					alert(res.vehicle_price3);
-					alert(res.cart_price_ba);
-					alert(res.cart_price);
-					alert(res.caddie_fee_ba); 
-					alert(res.caddie_fee); 
-					*/
+		
+		$('.tag-list .tag-js').on('click', function () {
+		  // Active 클래스 이동
+		  $('.tag-list .tag-js').removeClass('active');
+		  $(this).addClass('active');
 
-					// 요소 선택
-					$("#option_idx").val(res.option_idx);
-					$("#o_cart_due").val(res.o_cart_due); 	
-					$("#o_caddy_due").val(res.o_caddy_due);	
-					$("#o_cart_cont").val(res.o_cart_cont); 	
-					$("#o_caddy_cont").val(res.o_caddy_cont); 			 
-					
-					// 요소 선택
-					var $selectElement = $('#vehicle_1');
-					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.vehicle_price1);
-					$selectElement.attr('data-price_baht', res.vehicle_price1_ba);					
-					
-					// 요소 선택
-					var $selectElement = $('#vehicle_2');
-					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.vehicle_price2);
-					$selectElement.attr('data-price_baht', res.vehicle_price2_ba);					
-					
-					// 요소 선택
-					var $selectElement = $('#vehicle_3');
-					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.vehicle_price3);
-					$selectElement.attr('data-price_baht', res.vehicle_price3_ba);					
-					
-					// 요소 선택
-					var $selectElement = $('#vehicle_4');
-					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.cart_price);
-					$selectElement.attr('data-price_baht', res.cart_price_ba);					
-					
-					// 요소 선택
-					var $selectElement = $('#vehicle_5');
-					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.caddie_fee);
-					$selectElement.attr('data-price_baht', res.caddie_fee_ba);	                                        
-                    
+		  // 선택된 홀 표기
+		  $(".final_hole").text($(this).data('tab'));
 
-				}
-			})
-			/* 	
-			$("#vehicle_1").val(""); // 기본값으로 리셋
-			$("#vehicle_2").val(""); // 기본값으로 리셋
-			$("#vehicle_3").val(""); // 기본값으로 리셋
-			$("#vehicle_4").val(""); // 기본값으로 리셋
-			$("#vehicle_5").val(""); // 기본값으로 리셋
-            */
-            getOptions();
-            calculatePrice();
-        });
+		  // 파라미터 준비
+		  var goods_name = $(this).data('tab') + '홀';
+		  var goods_date_raw = $("#final_date").text();
+		  var goods_date = convertDateFormat(goods_date_raw);
+
+		  // AJAX 호출
+		  $.ajax({
+			url: "/ajax/get_golf_option",
+			type: "POST",
+			data: {
+			  product_idx : $('input[name="product_idx"]').val(),
+			  goods_name  : goods_name,
+			  goods_date  : goods_date
+			},
+			dataType: "json",
+			success: function (res) {
+			  // 서버에서 받은 데이터로 화면 갱신
+			  updateOptionFields(res);
+
+			  // ✅ AJAX 완료 후 호출
+			  getOptions();
+			  calculatePrice();
+			},
+			error: function (xhr, status, error) {
+			  console.error("AJAX 오류:", status, error);
+			  alert('옵션 정보를 불러오는 데 실패했습니다.');
+			}
+		  });
+		});
+
+
+// ✅ 날짜 포맷 변환 함수
+function convertDateFormat(dateStr) {
+  return dateStr.replace(/\./g, '-');
+}
+
+
+// ✅ 화면 요소 업데이트 함수
+function updateOptionFields(res) {
+  // 옵션 정보
+  $("#option_idx").val(res.option_idx);
+  $("#o_cart_due").val(res.o_cart_due);
+  $("#o_caddy_due").val(res.o_caddy_due);
+  $("#o_cart_cont").val(res.o_cart_cont);
+  $("#o_caddy_cont").val(res.o_caddy_cont);
+
+  // 차량 가격 정보 반복 설정
+  var vehicles = [
+    { id: 1, price: res.vehicle_price1, price_baht: res.vehicle_price1_ba },
+    { id: 2, price: res.vehicle_price2, price_baht: res.vehicle_price2_ba },
+    { id: 3, price: res.vehicle_price3, price_baht: res.vehicle_price3_ba },
+    { id: 4, price: res.cart_price, price_baht: res.cart_price_ba },
+    { id: 5, price: res.caddie_fee, price_baht: res.caddie_fee_ba }
+  ];
+
+  vehicles.forEach(function(v) {
+    $('#vehicle_' + v.id)
+      .attr('data-price', v.price)
+      .attr('data-price_baht', v.price_baht);
+  });
+}
+
 
         $('.tag-list .tag-js2').on('click', function () {
             $('.tag-list .tag-js2').removeClass('active');
@@ -1972,6 +2005,7 @@ $(document).ready(function() {
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
+                showHideCaddy();
                 getOptions();
 
             }

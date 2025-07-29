@@ -107,6 +107,36 @@ class AdminMenus extends BaseConfig
                     'url' => ['/AdmMaster/_coupon/list'],
                     'alias' => ['AdminCouponController::list', 'AdminCouponController::write']
                 ],
+                [
+                    'name' => '추천여행지(정보)',
+                    'code' => 'B12',
+                    'url' => ['/AdmMaster/_local_product/list'],
+                    'alias' => ['AdminLocalProductController::list', 'AdminLocalProductController::write']
+                ],
+                [
+                    'name' => '추천여행지(상품)',
+                    'code' => 'B13',
+                    'url' => ['/AdmMaster/_local_guide/list'],
+                    'alias' => ['AdminLocalGuideController::list', 'AdminLocalGuideController::write']
+                ],
+                [
+                    'name' => '테마별 인기호텔',
+                    'code' => 'B15',
+                    'url' => ['/AdmMaster/_hotel_theme/list'],
+                    'alias' => ['AdminHotelThemeController::list', 'AdminHotelThemeController::write_month', 'AdminHotelThemeController::write_area']
+                ],
+            ]
+        ],
+        [
+            'name' => 'Landing Page',
+            'code' => 'L',
+            'submenus' => [
+                [
+                    'name' => '방콕 필수 코스 5가지',
+                    'code' => 'L1',
+                    'url' => ['/AdmMaster/_promotion/list_area'],
+                    'alias' => ['AdminPromotionController::list_area', 'AdminPromotionController::write_area']
+                ],
             ]
         ],
         [

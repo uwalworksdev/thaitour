@@ -4392,8 +4392,8 @@
     border-bottom: 1px solid #e5e5e5; */
     padding: 4rem 2rem;
     border-bottom: 1px solid #e5e5e5;
-    flex-direction: column;
-    align-items: self-start;
+    /* flex-direction: column;
+    align-items: self-end; */
     gap: 2rem;
   }
 
