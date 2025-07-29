@@ -828,7 +828,7 @@ body {
     }
 
     .promotion_map #location06 .detail_map {
-        top: 26rem;
+        top: 24rem;
         left: 22%;
         transform: translateX(-50%);
         position: absolute;
@@ -882,6 +882,10 @@ body {
         width: 3.6rem;
     }
 
+    .promotion_map #icon05 .img_loca {
+        width: 4.4rem;
+    }
+
     .promotion_map #icon06 .hover {
         width: 3.5rem;
     }
@@ -908,12 +912,11 @@ body {
     }
 
     .promotion_map #pop03 {
-        position: absolute;
-        bottom: 7rem;
-        left: 230%;
-        transform: translateX(-50%);
-        min-width: 40rem;
-        display: none;
+        left: 208%;
+    }
+
+    .promotion_map #pop06 {
+        left: 208%;
     }
 
     .promotion_map .location_pop .location_desc {
@@ -926,6 +929,10 @@ body {
     }
 
     .promotion_map #pop03 .location_desc:after {
+        left: 28%;
+    }
+
+    .promotion_map #pop06 .location_desc:after {
         left: 28%;
     }
 
