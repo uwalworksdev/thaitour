@@ -7,8 +7,10 @@
 <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 <link href="/event/css/style.css" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
-<script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+<script
+    src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+<script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000"
+    data-border-radius="small"></script>
 <script src="/event/js/tailwind.config.js"></script>
 <style>
     .icon-menu-item {
@@ -25,259 +27,6 @@
 
     .pb_10 {
         padding-bottom: 10rem !important;
-    }
-
-    @media screen and (max-width: 850px) {
-        #header_mobile {
-            overflow: hidden;
-        }
-
-        #footer {
-            padding-bottom: 20rem;
-            overflow: hidden;
-        }
-
-        html {
-            font-size: 1.38888889vw !important;
-        }
-
-        .title-section-best {
-            width: 100%;
-            height: 23rem;
-            background-image: url(/event/images/location_pro_mo.png);
-            background-repeat: no-repeat;
-            background-size: 43.7rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
-
-        .title-section {
-            width: 100%;
-            height: 28.5rem;
-            background-image: url(/event/images/250418_방콕호텔.png);
-            background-repeat: no-repeat;
-            background-size: 59rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
-
-        .hotel-list a {
-            width: 60rem;
-            min-width: 60rem;
-            max-width: 60rem;
-        }
-
-        .hotel-list a .p-4 h3 {
-            font-size: 2.125rem;
-            line-height: 2.75rem;
-        }
-
-        .good-price-hotel,
-        .infinitypool-hotel,
-        .shopping-hotel,
-        .pet-hotel {
-            margin-top: 5rem;
-        }
-
-        .title-section-tour {
-            width: 100%;
-            height: 32.5rem;
-            background-image: url(/event/images/250418_방콕투어.png);
-            background-repeat: no-repeat;
-            background-size: 65rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-            margin-top: 5rem;
-        }
-
-        .tour-7 {
-            background-position: center -140rem;
-            height: 22rem;
-        }
-
-        .title-section-golf {
-            width: 100%;
-            height: 32.5rem;
-            background-image: url(/event/images/250418_방콕골프.png);
-            background-repeat: no-repeat;
-            background-size: 65rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
-
-        .title-section-golf.sub-1 {
-            background-position: center 1.7rem;
-        }
-
-        .title-section-golf.sub-2 {
-            background-position: center -30rem;
-            height: 22rem;
-        }
-
-        .title-section-golf.sub-3 {
-            background-position: center -52rem;
-            height: 22rem;
-        }
-
-        /* new */
-        .promotion_banner_img {
-            width: 100%;
-            height: 485px;
-        }
-
-        .promotion_banner_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .promotion_banner_content {
-            max-width: 66rem;
-            width: calc(100% - 2rem);
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 0 0;
-            position: relative;
-            margin-top: -27.5rem;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-        }
-
-        .promotion_banner_content .po_round {
-            width: 30.7rem;
-            height: 27rem;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .promotion_banner_content .po_head {
-            font-size: 5.2rem;
-            font-weight: 800;
-            text-align: center;
-            z-index: 1;
-            position: relative;
-            padding: 3.2rem 0rem;
-        }
-
-        .promotion_banner_content .po_head::after {
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: 1.6rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30rem;
-            height: 0.8rem;
-            background-color: #dae3fc;
-        }
-
-        .promotion_banner_content .po_head.green::after {
-            background-color: #dbf3dc;
-        }
-
-        .promotion_banner_content .po_head_sub {
-            font-size: 3rem;
-            color: #777;
-            text-align: center;
-            position: relative;
-        }
-
-        .promotion_banner_content .promotion_box {
-            margin-top: 6.5rem;
-        }
-
-        .promotion_banner_content .promotion_box .ttl {
-            font-size: 3.8rem;
-            text-align: center;
-            padding-bottom: 1.5rem;
-
-        }
-
-        .promotion_banner_content .promotion_box .ttl_sub {
-            font-size: 3rem;
-            text-align: center;
-            padding-bottom: 3rem;
-            color: #777;
-
-        }
-
-        .promotion_box_contain {
-            display: flex;
-            flex-direction: column;
-            /* flex-wrap: wrap; */
-            gap: 2rem;
-        }
-
-        .promotion_box_item {
-            width: 100%;
-        }
-
-        .promotion_box_item .box_img {
-            width: 66.1rem;
-            height: 44.1rem;
-            border-radius: 0.8rem;
-            overflow: hidden;
-        }
-
-        .promotion_box_item .box_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .promotion_box_item .box_info {
-            padding: 3.5rem 0;
-        }
-
-        .promotion_box_item .box_info .info_name {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-        }
-
-        .promotion_box_item .info_hash_tag span {
-            font-size: 2.6rem;
-            color: #777;
-            line-height: 1.5;
-            white-space: nowrap;
-        }
-
-
-        .promotion_box_item .info_hash_tag {
-            margin-bottom: 3.4rem;
-        }
-
-
-        .promotion_box_item .special {
-            display: flex;
-            gap: 0.8rem;
-            align-items: flex-start;
-        }
-
-        .promotion_box_item .special p {
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.5;
-        }
-
-        .promotion_box_item .special img {
-            margin-top: 0.2rem;
-            width: 7.9rem;
-            height: 3.8rem;
-        }
-
-        .sec_banner {
-            background-color: #fff;
-            padding-bottom: 9rem;
-        }
-
-        .promotion_banner_content .po_round img {
-            margin-bottom: 10rem;
-            width: 8rem;
-        }
-
     }
 
     /* @media screen and (max-width: 700px) {
@@ -314,8 +63,9 @@
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
             <div class="bg-black/50 w-full h-full flex items-center justify-center p-4">
-                <img src="/event/images/main_pro.png" alt="24시간 꽉찬 여행 방콕" class="w-full h-auto max-h-[70vh] object-contain main_title only_web">
-                <img src="/event/images/main_pro_mo.png" alt="24시간 꽉찬 여행 방콕" class="w-full h-auto max-h-[70vh] object-contain main_title only_mo">
+                <img src="/event/images/main_pro.png" alt="24시간 꽉찬 여행 방콕"
+                    class="w-full h-auto max-h-[70vh] object-contain main_title only_web">
+                <img src="/event/images/main_pro_mo.png" alt="24시간 꽉찬 여행 방콕" class=" news main_title only_mo">
             </div>
         </div>
         <!-- <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
@@ -326,7 +76,8 @@
     </section>
 
     <!-- 구글폰트 Pretendard 사용 -->
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+        rel="stylesheet" />
 
     <div class="max-w-8xl mx-auto px-4 py-8 bg-[#ffffff] section-best overflow-hidden">
 
@@ -334,63 +85,105 @@
         <!-- <h1 class="text-4xl font-bold text-center mb-16 text-gray-800">방콕 한눈에 살펴보기</h1> -->
 
         <!-- 전체 배경 지도 (중앙) -->
-        <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-            <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44">
-            <!-- 중앙 지도 -->
-            <div class="hidden lg:block">
-                <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
-                    <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
-                </div>
+        <div class="only_web">
+            <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
+                <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44">
+                <!-- 중앙 지도 -->
+                <div class="hidden lg:block">
+                    <div
+                        class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
+                        <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
+                    </div>
 
-                <!-- 사원 -->
-                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
-                </div>
+                    <!-- 사원 -->
+                    <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
+                    </div>
 
-                <!-- 강 -->
-                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
-                </div>
+                    <!-- 강 -->
+                    <div
+                        class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
+                    </div>
 
-                <!-- 야시장 -->
-                <div class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
-                </div>
+                    <!-- 야시장 -->
+                    <div
+                        class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
+                    </div>
 
-                <!-- 카오산 -->
-                <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
-                </div>
+                    <!-- 카오산 -->
+                    <div
+                        class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
+                    </div>
 
-                <!-- 쇼핑몰 -->
-                <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
-                </div>
+                    <!-- 쇼핑몰 -->
+                    <div
+                        class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
+                    </div>
 
-                <!-- 무에타이 -->
-                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
-                    <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
+                    <!-- 무에타이 -->
+                    <div
+                        class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
+                        <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
+                    </div>
+                </div>
+                <!-- <div class="lg:hidden">
+                     <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
+                 </div> -->
+            </div>
+        </div>
+        <div class="only_mo">
+            <div class="promotion_map">
+                <div class="location">
+                    <div class="icon" id="icon01">
+                        <img src="/event/images/promotion_ic05.png" alt="" class="img_loca">
+                        <img src="/event/images/promotion_ic05_hover.png" alt="" class="img_loca hover">
+                    </div>
+                    <div class="location_pop">
+                        <div class="location_desc">
+                            <div class="ic_pop">
+                                <img src="/event/images/pop_img01.png" alt="">
+                            </div>
+                            <div class="contents">
+                                <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
+                                    전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
+                                    길거리 음식을 모두 맛볼 수 있는 찬스! <br>
+                                    <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="lg:hidden">
-                <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
-            </div> -->
         </div>
     </div>
 
     <div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
         <div class="title-section-best sub-1"></div>
-        <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]" style="gap: 45px;">
-            <img src="/event/images/img_location_pro01.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지1" />
-            <img src="/event/images/img_location_pro01_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
-            <img src="/event/images/img_location_pro02.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지2" />
-            <img src="/event/images/img_location_pro02_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
-            <img src="/event/images/img_location_pro03.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지3" />
-            <img src="/event/images/img_location_pro03_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
-            <img src="/event/images/img_location_pro04.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지4" />
-            <img src="/event/images/img_location_pro04_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
-            <img src="/event/images/img_location_pro05.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지5" />
-            <img src="/event/images/img_location_pro05_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+        <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]"
+            style="gap: 45px;">
+            <img src="/event/images/img_location_pro01.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
+                alt="이미지1" />
+            <img src="/event/images/img_location_pro01_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
+                alt="이미지1" />
+            <img src="/event/images/img_location_pro02.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
+                alt="이미지2" />
+            <img src="/event/images/img_location_pro02_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
+                alt="이미지1" />
+            <img src="/event/images/img_location_pro03.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
+                alt="이미지3" />
+            <img src="/event/images/img_location_pro03_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
+                alt="이미지1" />
+            <img src="/event/images/img_location_pro04.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
+                alt="이미지4" />
+            <img src="/event/images/img_location_pro04_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
+                alt="이미지1" />
+            <img src="/event/images/img_location_pro05.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
+                alt="이미지5" />
+            <img src="/event/images/img_location_pro05_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
+                alt="이미지1" />
         </div>
     </div>
 
