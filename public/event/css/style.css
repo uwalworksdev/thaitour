@@ -513,339 +513,390 @@ body {
     }
 }
 
-    @media screen and (max-width: 850px) {
-        #header_mobile {
-            overflow: hidden;
-        }
+@media screen and (max-width: 850px) {
+    #header_mobile {
+        overflow: hidden;
+    }
 
-        #footer {
-            padding-bottom: 20rem;
-            overflow: hidden;
-        }
+    #footer {
+        padding-bottom: 20rem;
+        overflow: hidden;
+    }
 
-        html {
-            font-size: 1.38888889vw !important;
-        }
+    html {
+        font-size: 1.38888889vw !important;
+    }
 
-        .title-section-best {
-            width: 100%;
-            height: 23rem;
-            background-image: url(/event/images/location_pro_mo.png);
-            background-repeat: no-repeat;
-            background-size: 43.7rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
+    .title-section-best {
+        width: 100%;
+        height: 23rem;
+        background-image: url(/event/images/location_pro_mo.png);
+        background-repeat: no-repeat;
+        background-size: 43.7rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+    }
 
-        .title-section {
-            width: 100%;
-            height: 28.5rem;
-            background-image: url(/event/images/250418_방콕호텔.png);
-            background-repeat: no-repeat;
-            background-size: 59rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
+    .title-section {
+        width: 100%;
+        height: 28.5rem;
+        background-image: url(/event/images/250418_방콕호텔.png);
+        background-repeat: no-repeat;
+        background-size: 59rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+    }
 
-        .hotel-list a {
-            width: 60rem;
-            min-width: 60rem;
-            max-width: 60rem;
-        }
+    .hotel-list a {
+        width: 60rem;
+        min-width: 60rem;
+        max-width: 60rem;
+    }
 
-        .hotel-list a .p-4 h3 {
-            font-size: 2.125rem;
-            line-height: 2.75rem;
-        }
+    .hotel-list a .p-4 h3 {
+        font-size: 2.125rem;
+        line-height: 2.75rem;
+    }
 
-        .good-price-hotel,
-        .infinitypool-hotel,
-        .shopping-hotel,
-        .pet-hotel {
-            margin-top: 5rem;
-        }
+    .good-price-hotel,
+    .infinitypool-hotel,
+    .shopping-hotel,
+    .pet-hotel {
+        margin-top: 5rem;
+    }
 
-        .title-section-tour {
-            width: 100%;
-            height: 32.5rem;
-            background-image: url(/event/images/250418_방콕투어.png);
-            background-repeat: no-repeat;
-            background-size: 65rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-            margin-top: 5rem;
-        }
+    .title-section-tour {
+        width: 100%;
+        height: 32.5rem;
+        background-image: url(/event/images/250418_방콕투어.png);
+        background-repeat: no-repeat;
+        background-size: 65rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+        margin-top: 5rem;
+    }
 
-        .tour-7 {
-            background-position: center -140rem;
-            height: 22rem;
-        }
+    .tour-7 {
+        background-position: center -140rem;
+        height: 22rem;
+    }
 
-        .title-section-golf {
-            width: 100%;
-            height: 32.5rem;
-            background-image: url(/event/images/250418_방콕골프.png);
-            background-repeat: no-repeat;
-            background-size: 65rem auto;
-            background-position: center top;
-            margin-bottom: 2rem;
-        }
+    .title-section-golf {
+        width: 100%;
+        height: 32.5rem;
+        background-image: url(/event/images/250418_방콕골프.png);
+        background-repeat: no-repeat;
+        background-size: 65rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+    }
 
-        .title-section-golf.sub-1 {
-            background-position: center 1.7rem;
-        }
+    .title-section-golf.sub-1 {
+        background-position: center 1.7rem;
+    }
 
-        .title-section-golf.sub-2 {
-            background-position: center -30rem;
-            height: 22rem;
-        }
+    .title-section-golf.sub-2 {
+        background-position: center -30rem;
+        height: 22rem;
+    }
 
-        .title-section-golf.sub-3 {
-            background-position: center -52rem;
-            height: 22rem;
-        }
+    .title-section-golf.sub-3 {
+        background-position: center -52rem;
+        height: 22rem;
+    }
 
-        /* new */
-        .promotion_banner_img {
-            width: 100%;
-            height: 485px;
-        }
+    /* new */
+    .promotion_banner_img {
+        width: 100%;
+        height: 48rem;
+    }
 
-        .promotion_banner_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .promotion_banner_img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        .promotion_banner_content {
-            max-width: 66rem;
-            width: calc(100% - 2rem);
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 0 0;
-            position: relative;
-            margin-top: -27.5rem;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-        }
+    .promotion_banner_content {
+        max-width: 66rem;
+        width: calc(100% - 2rem);
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 0 0;
+        position: relative;
+        margin-top: -27.5rem;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+    }
 
-        .promotion_banner_content .po_round {
-            width: 30.7rem;
-            height: 27rem;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    .promotion_banner_content .po_round {
+        width: 30.7rem;
+        height: 27rem;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-        .promotion_banner_content .po_head {
-            font-size: 5.2rem;
-            font-weight: 800;
-            text-align: center;
-            z-index: 1;
-            position: relative;
-            padding: 3.2rem 0rem;
-        }
+    .promotion_banner_content .po_head {
+        font-size: 5.2rem;
+        font-weight: 800;
+        text-align: center;
+        z-index: 1;
+        position: relative;
+        padding: 3.2rem 0rem;
+    }
 
-        .promotion_banner_content .po_head::after {
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: 1.6rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30rem;
-            height: 0.8rem;
-            background-color: #dae3fc;
-        }
+    .promotion_banner_content .po_head::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 1.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30rem;
+        height: 0.8rem;
+        background-color: #dae3fc;
+    }
 
-        .promotion_banner_content .po_head.green::after {
-            background-color: #dbf3dc;
-        }
+    .promotion_banner_content .po_head.green::after {
+        background-color: #dbf3dc;
+    }
 
-        .promotion_banner_content .po_head_sub {
-            font-size: 3rem;
-            color: #777;
-            text-align: center;
-            position: relative;
-        }
+    .promotion_banner_content .po_head_sub {
+        font-size: 3rem;
+        color: #777;
+        text-align: center;
+        position: relative;
+    }
 
-        .promotion_banner_content .promotion_box {
-            margin-top: 6.5rem;
-        }
+    .promotion_banner_content .promotion_box {
+        margin-top: 6.5rem;
+    }
 
-        .promotion_banner_content .promotion_box .ttl {
-            font-size: 3.8rem;
-            text-align: center;
-            padding-bottom: 1.5rem;
-
-        }
-
-        .promotion_banner_content .promotion_box .ttl_sub {
-            font-size: 3rem;
-            text-align: center;
-            padding-bottom: 3rem;
-            color: #777;
-
-        }
-
-        .promotion_box_contain {
-            display: flex;
-            flex-direction: column;
-            /* flex-wrap: wrap; */
-            gap: 2rem;
-        }
-
-        .promotion_box_item {
-            width: 100%;
-        }
-
-        .promotion_box_item .box_img {
-            width: 66.1rem;
-            height: 44.1rem;
-            border-radius: 0.8rem;
-            overflow: hidden;
-        }
-
-        .promotion_box_item .box_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .promotion_box_item .box_info {
-            padding: 3.5rem 0;
-        }
-
-        .promotion_box_item .box_info .info_name {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-        }
-
-        .promotion_box_item .info_hash_tag span {
-            font-size: 2.6rem;
-            color: #777;
-            line-height: 1.5;
-            white-space: nowrap;
-        }
-
-
-        .promotion_box_item .info_hash_tag {
-            margin-bottom: 3.4rem;
-        }
-
-
-        .promotion_box_item .special {
-            display: flex;
-            gap: 0.8rem;
-            align-items: flex-start;
-        }
-
-        .promotion_box_item .special p {
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.5;
-        }
-
-        .promotion_box_item .special img {
-            margin-top: 0.2rem;
-            width: 7.9rem;
-            height: 3.8rem;
-        }
-
-        .sec_banner {
-            background-color: #fff;
-            padding-bottom: 9rem;
-        }
-
-        .promotion_banner_content .po_round img {
-            margin-bottom: 10rem;
-            width: 8rem;
-        }
-
-        .object-contain.news {
-            width: 45rem;
-            height: 61.8rem;
-        }
-
-        .promotion_map {
-            position: relative;
-            background: url('/event/images/promotion_map.png') no-repeat center;
-            background-size: 65.9rem 49.3rem;
-            padding: 11.5rem 0;
-            width: 65.9rem;
-            height: 49.3rem;
-            margin: 0 auto;
-        }
-
-        .promotion_map .icon {
-            position: absolute;
-        }
-
-        .promotion_map #icon01 {
-            top: 8rem;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .promotion_map .img_loca.hover {
-            display: none;
-        }
-
-        .promotion_map .icon:hover .img_loca {
-            display: none;
-        }
-
-        .promotion_map .icon:hover .img_loca.hover {
-            display: block;
-        }
-
-        .promotion_map #icon01 .img_loca {
-            width: 4.6rem;
-        }
-
-        .promotion_map #icon01 .hover {
-            width: 5.4rem;
-        }
-
-        .promotion_map .location_pop {
-            position: absolute;
-            bottom: 1.8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            min-width: 40rem;
-            display: none;
-        }
-
-        .promotion_map .location_pop .location_desc {
-            position: relative;
-            padding: 4rem 4.5rem;
-            border-radius: 2rem;
-            filter: drop-shadow(0px 12px 9px rgba(0,0,0,0.21));
-            background-color: #ffffff;
-            border: 0.4rem solid #00c2aa;
-        }
-
-        .promotion_map .location_pop .location_desc .ic_pop {
-            position: absolute;
-            top: -5.3rem;
-            left: -5.3rem;
-        }
-
-        .promotion_map .location_pop .location_desc .ic_pop img {
-            width: 26.1rem;
-        }
-
-        .promotion_map .location_pop .location_desc .contents p {
-            font-size: 1.9rem;
-            letter-spacing: -1px;
-            line-height: 1.4;
-            color: #252525;
-        }
-
-        .promotion_map .location_pop .location_desc .contents p span {
-            color: #ff3e3e;
-        }
+    .promotion_banner_content .promotion_box .ttl {
+        font-size: 3.8rem;
+        text-align: center;
+        padding-bottom: 1.5rem;
 
     }
+
+    .promotion_banner_content .promotion_box .ttl_sub {
+        font-size: 3rem;
+        text-align: center;
+        padding-bottom: 3rem;
+        color: #777;
+
+    }
+
+    .promotion_box_contain {
+        display: flex;
+        flex-direction: column;
+        /* flex-wrap: wrap; */
+        gap: 2rem;
+    }
+
+    .promotion_box_item {
+        width: 100%;
+    }
+
+    .promotion_box_item .box_img {
+        width: 66.1rem;
+        height: 44.1rem;
+        border-radius: 0.8rem;
+        overflow: hidden;
+    }
+
+    .promotion_box_item .box_img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .promotion_box_item .box_info {
+        padding: 3.5rem 0;
+    }
+
+    .promotion_box_item .box_info .info_name {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+    }
+
+    .promotion_box_item .info_hash_tag span {
+        font-size: 2.6rem;
+        color: #777;
+        line-height: 1.5;
+        white-space: unset;
+        word-break: break-all;
+    }
+
+
+    .promotion_box_item .info_hash_tag {
+        margin-bottom: 3.4rem;
+    }
+
+
+    .promotion_box_item .special {
+        display: flex;
+        gap: 0.8rem;
+        align-items: flex-start;
+    }
+
+    .promotion_box_item .special p {
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    .promotion_box_item .special img {
+        margin-top: 0.2rem;
+        width: 7.9rem;
+        height: 3.8rem;
+    }
+
+    .sec_banner {
+        background-color: #fff;
+        padding-bottom: 9rem;
+    }
+
+    .promotion_banner_content .po_round img {
+        margin-bottom: 10rem;
+        width: 8rem;
+    }
+
+    .object-contain.news {
+        width: 45rem;
+        height: 61.8rem;
+    }
+
+    .promotion_map {
+        position: relative;
+        background: url('/event/images/promotion_map.png') no-repeat center;
+        background-size: 65.9rem 49.3rem;
+        width: 65.9rem;
+        height: 49.3rem;
+        margin: 11.5rem auto;
+    }
+
+    .promotion_map .location {
+        position: relative;
+    }
+
+    .promotion_map #location01 .detail_map {
+        top: 8rem;
+        left: 43%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+
+    .promotion_map #location02 .detail_map {
+        top: 16rem;
+        left: 34%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+
+    .promotion_map .icon {
+    }
+
+    .promotion_map #icon01 {
+    }
+
+    .promotion_map #icon02 {
+    }
+
+    .promotion_map .img_loca.hover {
+        display: none;
+    }
+
+    .promotion_map .icon:hover .img_loca {
+        display: none;
+    }
+
+    .promotion_map .icon:hover .img_loca.hover {
+        display: block;
+    }
+
+    .promotion_map #icon01 .img_loca {
+        width: 4.6rem;
+    }
+
+    .promotion_map #icon01 .hover {
+        width: 5.4rem;
+    }
+
+    .promotion_map #icon02 .img_loca {
+        width: 1.6rem;
+    }
+
+    .promotion_map #icon02 .hover {
+        width: 2.4rem;
+    }
+
+    .promotion_map .location .icon:hover+.location_pop {
+        display: block;
+    }
+
+    .promotion_map .location_pop {
+        position: absolute;
+        bottom: -6.2rem;
+        left: 45%;
+        transform: translateX(-50%);
+        min-width: 40rem;
+        display: none;
+    }
+
+    .promotion_map .location_pop .location_desc {
+        position: relative;
+        padding: 4rem 3.5rem;
+        border-radius: 2rem;
+        filter: drop-shadow(0px 12px 9px rgba(0, 0, 0, 0.21));
+        background-color: #ffffff;
+        border: 0.4rem solid #00c2aa;
+    }
+
+    .promotion_map .location_pop .location_desc:after {
+        content: '';
+        position: absolute;
+        bottom: -1.3rem;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 2rem;
+        height: 2rem;
+        background-color: #fff;
+        /* border: 0.4rem solid #00c2aa; */
+        border-bottom: 0.4rem solid #00c2aa;
+        border-right: 0.4rem solid #00c2aa;
+        border-radius: 0.5rem;
+    }
+
+    .promotion_map .location_pop .location_desc .ic_pop {
+        position: absolute;
+        top: -6.3rem;
+        left: -5.3rem;
+    }
+
+    .promotion_map #pop02 .location_desc .ic_pop {
+        position: absolute;
+        top: -6.3rem;
+        left: unset;
+        right: -5.3rem;
+    }
+
+    .promotion_map .location_pop .location_desc .ic_pop img {
+        width: 26.1rem;
+    }
+
+    .promotion_map .location_pop .location_desc .contents p {
+        font-size: 1.9rem;
+        letter-spacing: -1px;
+        line-height: 1.4;
+        color: #252525;
+    }
+
+    .promotion_map .location_pop .location_desc .contents p span {
+        color: #ff3e3e;
+    }
+
+}
