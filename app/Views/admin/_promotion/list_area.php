@@ -114,7 +114,9 @@
                                     <tr style="height:30px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <a href="./write_area?idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
+                                            <div class="flex_c_c">
+                                                <a href="./write_area?idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
+                                            </div>
                                         </td>
                                        
                                         <td class="tac">
