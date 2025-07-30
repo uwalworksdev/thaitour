@@ -276,10 +276,93 @@
         </div>
     </div>
 
-    <div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
+    <div class="bg-gradient section_gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
         <div class="title-section-best sub-1"></div>
         <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]"
             style="gap: 45px;">
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="blue">01</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">왕궁과 에메랄드 사원 투어 </div>
+                    <p class="des">태국 왕실의 역사와 문화를 엿볼 수 있는 왕궁과 에메랄드 사원 
+                        (Wat Phra Kaew)을 방문해 보세요.  
+                        화려한 건축물과 예술 작품을 감상할 수 있습니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_001.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="yellow">02</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">담넌 사두억 수상 시장 투어</div>
+                    <p class="des">전통적인 태국의 수상 시장을 경험하며 보트를 타고  
+                        신선한 과일과 현지 음식을 즐길 수 있는 이색 체험을 
+                        할 수 있습니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_002.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="violet">03</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">짜뚜짝 주말 시장 탐방 </div>
+                    <p class="des">세계 최대 규모의 주말 시장인 짜뚜짝 시장에서 현지에서만 
+                        구매가능한 다양한 상품을 볼 수 있습니다. 너무커서 하루에
+                        못 볼 수도 있어요.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_003.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="green">04</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">차이나타운 야시장</div>
+                    <p class="des">방콕의 차이나타운에서 다양한 길거리 음식을 맛보고 활기찬
+                        밤 문화를  체험할 수 있습니다. 현지인들과 관광객이 어우러진  
+                        특별한 야경을 즐길 수 있는 곳입니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_004.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="orange">05</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">차오프라야 강 디너 크루즈 </div>
+                    <p class="des">차오프라야 강 위에서 방콕 왕궁의 야경을 감상하며 저녁 식사를  
+                        즐기는 로맨틱한 크루즈로 추억에 남을만한 시간을 가질수 
+                        있습니다.  현지 음악과 함께하는 선상 공연은 여행을 한층 더 
+                        특별하게 만들어줍니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_005.jpg" alt="">
+                </div>
+            </div>
+
+
+
+
+
+
+<!-- 
             <img src="/event/images/img_location_pro01.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
                 alt="이미지1" />
             <img src="/event/images/img_location_pro01_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
@@ -299,7 +382,7 @@
             <img src="/event/images/img_location_pro05.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
                 alt="이미지5" />
             <img src="/event/images/img_location_pro05_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
-                alt="이미지1" />
+                alt="이미지1" /> -->
         </div>
     </div>
 
