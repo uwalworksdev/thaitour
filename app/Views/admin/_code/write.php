@@ -128,7 +128,15 @@
                             <?php endif; ?>
                             <?php if ($parent_code_no === '51' || (strpos($parent_code_no, '62') === 0)) : ?>
                                 <tr>
-                                    <th>설명하다</th>
+                                    <th>
+                                        <?php
+                                            if(strpos($parent_code_no, '62') === 0) {
+                                                echo "내용";
+                                            }else{
+                                                echo "설명하다";
+                                            }
+                                        ?>     
+                                    </th>
                                     <td>
                                         <input type="text" id="code_memo" name="code_memo" value="<?= $code_memo ?>"
                                                class="input_txt"/>
@@ -137,7 +145,7 @@
                             <?php endif; ?>
                             <?php if ($parent_code_no === '62') : ?>
                                 <tr>
-                                    <th>갈색</th>
+                                    <th>배경</th>
                                     <td>
                                         <input type="color" id="color" name="color" value="<?= $color ?? "" ?>">
                                     </td>
