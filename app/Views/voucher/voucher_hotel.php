@@ -21,7 +21,7 @@ $setting = homeSetInfo();
             </div> -->
             <div class="only_mo">
                 <div class="logo_voice">
-                    <h2 class="tit_top">바우처</h2>
+                    <h2 class="tit_top">Voucher</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                     <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
                         Thai - Registration No <?= $setting['comnum_thai']?><br>
@@ -39,7 +39,7 @@ $setting = homeSetInfo();
                         </p>
                     </div>
                     <div class="ttl_right">
-                        <h2 class="tit_top">바우처</h2>
+                        <h2 class="tit_top">Voucher</h2>
                     </div>
                 </div>
             </div>
