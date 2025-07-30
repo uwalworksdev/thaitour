@@ -120,7 +120,7 @@
                                             value="<?= $title ?? "" ?>"
                                             class="text" maxlength="100" />
                                     </td>
-                                    <th>제목</th>
+                                    <th>배경</th>
                                     <td>
                                         <input type="color" id="color" name="color" value="<?= $color ?? "" ?>">
                                     </td>
