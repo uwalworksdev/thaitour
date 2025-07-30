@@ -132,7 +132,7 @@ class AdminMenus extends BaseConfig
             'code' => 'L',
             'submenus' => [
                 [
-                    'name' => '랜딩페이지',
+                    'name' => '방콕 필수 코스 5가지',
                     'code' => 'L1',
                     'url' => ['/AdmMaster/_promotion/list_area'],
                     'alias' => ['AdminPromotionController::list_area', 'AdminPromotionController::write_area']
