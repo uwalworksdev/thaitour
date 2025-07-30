@@ -37,9 +37,6 @@ class PromotionController extends BaseController
 
         $product_list = $this->productPromotion->get_list();
 
-        var_dump($product_list);
-        die();
-
         return view('event/promotion',[
             'banner_promotion' => $banner_promotion,
             'area_list' => $area_list,

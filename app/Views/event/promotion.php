@@ -438,7 +438,7 @@
                     <h5 class="ttl"><?=$code_child["code_name"]?></h5>
                     <p class="ttl_sub"><?=$code_child["code_memo"]?></p>
                     <?php
-                        $filtered_list = array_filter($product_list, function($item) use ($code_parent, $code_child) {
+                        $filtered_list = array_filter($product_list['items'], function($item) use ($code_parent, $code_child) {
                             return $item['category_code_1'] === $code_parent["code_no"] && $item['category_code_2'] === $code_child["code_no"];
                         });
                     ?>
