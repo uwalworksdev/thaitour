@@ -42,7 +42,7 @@
     <section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
-                <!-- <?php
+                <?php
                     foreach($banner_promotion as $banner){
                         if(!empty($banner['ufile1']) && is_file(ROOTPATH . "/public/data/cate_banner/" . $banner["ufile1"])){
                             $img_banner = "/data/cate_banner/" . $banner['ufile1'];
@@ -54,8 +54,8 @@
                 <?php
                     }
                 }
-                ?> -->
-                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                ?>
+                <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
