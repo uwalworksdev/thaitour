@@ -128,7 +128,7 @@ class AdminMenus extends BaseConfig
             ]
         ],
         [
-            'name' => 'Landing Page',
+            'name' => '랜딩페이지',
             'code' => 'L',
             'submenus' => [
                 [
