@@ -481,6 +481,11 @@
     <?php
         }
     ?>
+    <style>
+        .po_head::after {
+            background-color: var(--after-bg) !important;
+        }
+    </style>
     <!-- <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/event/images/promotion_banner-1.png" alt="">
