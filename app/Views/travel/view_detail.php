@@ -78,6 +78,24 @@
         margin-left: 3px;
     }
 
+    .list_star {
+        display: flex;
+        gap: 5px;
+    }
+
+    .list_star i.star_img {
+        width: 15px;
+        height: 15px;
+        background-image: url(/img/sub/star_ic_r.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .list_star i.star_img.on {
+        background-image: url(/uploads/icons/star_icon.png);
+    }
+
 
     @media screen and (max-width: 850px) {
         .section6 .qa_ques {
@@ -359,6 +377,7 @@ $r_code = "travel_view";
                     <input type="hidden" name="r_idx" value="<?= $idx?>">
                     <input type="hidden" name="code" id="code" value="travel_view">
                     <input type="hidden" name="r_code" id="r_code" value="travel_view">
+                    <input type="hidden" name="rating" id="ratingValue" value="0">
                     <div class="comment_box-input flex">
                         <textarea style="resize:none" class="bs-input" name="comment" id="comment"
                             placeholder="댓글을 입력해주세요."></textarea>
@@ -372,11 +391,12 @@ $r_code = "travel_view";
             <div class="qa_ques">
                 <p>이곳이 어떠셨나요?</p>
                 <div class="list_star">
-                    <img src="/img/sub/star_ic_r.png" alt="">
-                    <img src="/img/sub/star_ic_r.png" alt="">
-                    <img src="/img/sub/star_ic_r.png" alt="">
-                    <img src="/img/sub/star_ic_r.png" alt="">
-                    <img src="/img/sub/star_ic_r.png" alt="">
+                    <i data-star = "1" class="star_img"></i>
+                    <i data-star = "2" class="star_img"></i>
+                    <i data-star = "3" class="star_img"></i>
+                    <i data-star = "4" class="star_img"></i>
+                    <i data-star = "5" class="star_img"></i>
+                   
                 </div>
             </div>
             

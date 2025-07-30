@@ -498,6 +498,114 @@ body {
 }
 
 
+.section_gradient {
+    padding-bottom: 100px;
+}
+
+.wrap_item.card-animation {
+    width: 854px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    gap: 40px;
+    box-shadow: 2px 10px 10px #00000017;
+}
+
+.wrap_item.card-animation:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.wrap_item .num_box {
+    width: 40px;
+    height: 80px;
+    position: relative;
+}
+
+.wrap_item .num_box span {
+    width: 80px;
+    height: 80px;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap_item .num_box span.blue {
+    background: #4774ef;
+}
+
+.wrap_item .num_box span.yellow {
+    background: #fbc62b;
+}
+.wrap_item .num_box span.violet {
+    background: #a060e2;
+}
+.wrap_item .num_box span.green {
+    background: #50b62c;
+}
+.wrap_item .num_box span.orange {
+    background: #f88836;
+}
+
+.wrap_item:nth-child(even) .num_box span {
+    width: 80px;
+    height: 80px;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap_item .text_box {
+    flex: 1;
+}
+
+.wrap_item .text_box .title {
+   font-size: 21px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.wrap_item .text_box  .des {
+  font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.wrap_item:nth-child(even) .image_box {
+    width: 380px;
+    height: 185px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+}
+
+.wrap_item:nth-child(odd) .image_box {
+    width: 380px;
+    height: 185px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+}
+
+.wrap_item .image_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 @media screen and (max-width: 1000px) {
     .best5 {

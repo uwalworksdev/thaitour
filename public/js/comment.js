@@ -215,3 +215,10 @@ function handleUpdateReportState(r_idx, r_cmt_idx, state) {
         },
     })
 }
+
+function handleRating () {
+    const stars = document.querySelectorAll(".star");
+    const ratingValue = document.getElementById("ratingValue")
+}
+
+handleRating();
