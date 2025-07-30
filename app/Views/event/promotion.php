@@ -34,9 +34,6 @@
             margin: 0 16rem;
         }
     } */
-    .promotion_banner_content .po_head::after {
-        background-color: attr(data-color);
-    }
     </style>
 </style>
 
@@ -434,7 +431,7 @@
             <div class="po_round">
                 <img src="/data/code/<?=$code_parent["ufile2"]?>" alt="<?=$code_parent["code_name"]?>">
             </div>
-            <h3 class="po_head" data-color="<?=$code_parent["color"]?>"><?=$code_parent["code_name"]?></h3>
+            <h3 class="po_head" style="--after-bg: <?= $code_parent['color'] ?>;"><?=$code_parent["code_name"]?></h3>
             <p class="po_head_sub"><?=$code_parent["code_memo"]?></p>
             <?php
                 foreach($code_parent["code_child_list"] as $code_child) {
