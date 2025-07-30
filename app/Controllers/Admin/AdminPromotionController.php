@@ -178,7 +178,10 @@ class AdminPromotionController extends BaseController
         $search_category  = updateSQ($_GET["search_category"] ?? '');
         $type             = updateSQ($_GET["type"] ?? '');
 
-        $fresult = $this->codeModel->getByParentAndDepth("62", 2)->getResultArray();
+        $fresult = $this->codeModel->whereIn('code_no', ['6201', '6202', '6203'])
+                                    ->where('status', 'Y')
+                                    ->orderBy('onum', 'ASC')
+                                    ->orderBy('code_idx', 'ASC')->getResultArray();
 
         if ($idx) {
             $row = $this->productPromotion->find($idx);
