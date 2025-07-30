@@ -457,7 +457,7 @@
                             <div class="box_info">
                                 <div class="info_name"><?=$product["title"]?></div>
                                 <div class="info_hash_tag">
-                                    <p><span><?=$product["keyword"]?></span></p>
+                                    <p><span style="white-space:wrap"><?=$product["keyword"]?></span></p>
                                 </div>
                                 <div class="special">
                                     <img class="only_web" src="/event/images/special_label.png" alt="">
