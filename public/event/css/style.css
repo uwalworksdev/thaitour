@@ -1182,4 +1182,10 @@ body {
 .section_gradient {
     padding-bottom: 10rem;
 }
+
+img.news.main_title {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 }
