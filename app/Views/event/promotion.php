@@ -34,6 +34,10 @@
             margin: 0 16rem;
         }
     } */
+    .promotion_banner_content .po_head::after {
+        background-color: attr(data-color);
+    }
+    </style>
 </style>
 
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
@@ -420,11 +424,7 @@
     <?php
         foreach($code_list as $code_parent) {
     ?>
-    <style>
-        .promotion_banner_content .po_head::after {
-            background-color: <?=$code_parent["color"]?>;
-        }
-    </style>
+
     <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
@@ -434,7 +434,7 @@
             <div class="po_round">
                 <img src="/data/code/<?=$code_parent["ufile2"]?>" alt="<?=$code_parent["code_name"]?>">
             </div>
-            <h3 class="po_head"><?=$code_parent["code_name"]?></h3>
+            <h3 class="po_head" data-color="<?=$code_parent["color"]?>"><?=$code_parent["code_name"]?></h3>
             <p class="po_head_sub"><?=$code_parent["code_memo"]?></p>
             <?php
                 foreach($code_parent["code_child_list"] as $code_child) {
