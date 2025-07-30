@@ -420,6 +420,11 @@
     <?php
         foreach($code_list as $code_parent) {
     ?>
+    <style>
+        .promotion_banner_content .po_head::after {
+            background-color: <?=$code_parent["color"]?>;
+        }
+    </style>
     <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
