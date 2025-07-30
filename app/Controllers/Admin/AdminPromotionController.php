@@ -181,7 +181,7 @@ class AdminPromotionController extends BaseController
         $fresult = $this->codeModel->whereIn('code_no', ['6201', '6202', '6203'])
                                     ->where('status', 'Y')
                                     ->orderBy('onum', 'ASC')
-                                    ->orderBy('code_idx', 'ASC')->getResultArray();
+                                    ->orderBy('code_idx', 'ASC')->findAll();
 
         if ($idx) {
             $row = $this->productPromotion->find($idx);
