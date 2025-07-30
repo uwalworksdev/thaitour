@@ -304,7 +304,7 @@
             ?>
                 <div class="wrap_item card-animation">
                     <div class="num_box">
-                        <span class="blue"><?= $formatted?></span>
+                        <span class="blue" style="background-color: <?=$area["color"]?> !important;"><?= $formatted?></span>
                     </div>
                     <div class="text_box">
                         <div class="title"><?= $area["title"] ?></div>
