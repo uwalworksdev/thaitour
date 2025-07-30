@@ -40,7 +40,7 @@
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
 
     <!-- 배너 섹션 -->
-    <section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
+    <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
                 <?php
@@ -462,8 +462,11 @@
                                     <p><span style="white-space:wrap"><?=$product["keyword"]?></span></p>
                                 </div>
                                 <div class="special">
-                                    <img class="only_web" src="/event/images/special_label.png" alt="">
-                                    <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                    <div class="special_label">
+                                        트전
+                                    </div>
+                                    <!-- <img class="only_web" src="/event/images/special_label.png" alt="">
+                                    <img class="only_mo" src="/event/images/special_label_mo.png" alt=""> -->
                                     <p><?=$product["subtitle"]?></p>
                                 </div>
                             </div>
