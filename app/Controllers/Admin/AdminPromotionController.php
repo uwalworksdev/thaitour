@@ -12,6 +12,7 @@ class AdminPromotionController extends BaseController
     protected $areaPromotion;
     protected $productPromotion;
     protected $codeModel;
+    protected $promotionList;
 
     public function __construct()
     {
@@ -21,7 +22,55 @@ class AdminPromotionController extends BaseController
         $this->areaPromotion    = model("AreaPromotion");
         $this->productPromotion = model("ProductPromotion");
         $this->codeModel        = model("Code");
+        $this->promotionList    = model("PromotionList");
+    }
 
+    public function list()
+    {
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $search_category    = updateSQ($_GET["search_category"] ?? '');
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'search_category'   => $search_category,
+        ];
+
+        $result = $this->promotionList->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'result'                => $result['items'],
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+        ];
+        return view("admin/_promotion/list", $data);
+    }
+
+    public function write()
+    {
+        $idx              = updateSQ($_GET["idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
+
+        if ($idx) {
+            $row = $this->promotionList->find($idx);
+        }
+
+        $data = [
+            'idx' => $idx,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'row' => $row ?? [],
+        ];
+        return view("admin/_promotion/write", $data);
     }
 
     public function list_area()
