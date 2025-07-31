@@ -238,59 +238,61 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                        style="table-layout:fixed;">
+                                    <td colspan="4">
 
-                                        <colgroup>
-                                            <col width="25%" />
-                                            <col width="*%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                            <col width="10%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>제목</th>
-                                                <th>제목</th>
-                                                <th>썸네일이미지</th>
-                                                <th>순위</th>
-                                                <th>관리</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input type="text" name="area_title[]" class="text">
-                                                </td>
-                                                <td>
-                                                    <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
-                                                </td>
-                                                <td>
-                                                    <div class="img_add flex_c_c">                                                   
-                                                        <div class="file_input_wrap">
-                                                            <div class="file_input">
-                                                                <input type="file" name='area_ufile' id="area_ufile"
-                                                                    onchange="productImagePreview(this, '')">
-                                                                <label for="area_ufile"></label>
-                                                                <input type="hidden" name="area_checkImg" class="checkImg">
-                                                                <button type="button" class="remove_btn"
-                                                                    onclick="productImagePreviewRemove(this)"></button>
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                            style="table-layout:fixed;">
+    
+                                            <colgroup>
+                                                <col width="25%" />
+                                                <col width="*%" />
+                                                <col width="10%" />
+                                                <col width="10%" />
+                                                <col width="10%" />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>제목</th>
+                                                    <th>제목</th>
+                                                    <th>썸네일이미지</th>
+                                                    <th>순위</th>
+                                                    <th>관리</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" name="area_title[]" class="text">
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <div class="img_add flex_c_c">                                                   
+                                                            <div class="file_input_wrap">
+                                                                <div class="file_input">
+                                                                    <input type="file" name='area_ufile' id="area_ufile"
+                                                                        onchange="productImagePreview(this, '')">
+                                                                    <label for="area_ufile"></label>
+                                                                    <input type="hidden" name="area_checkImg" class="checkImg">
+                                                                    <button type="button" class="remove_btn"
+                                                                        onclick="productImagePreviewRemove(this)"></button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="area_onum[]" class="text">
-                                                </td>
-                                                <td>
-                                                    <div class="flex_c_c">
-                                                        <button type="button" class="btn btn-danger">삭제</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                                            
-                                        </tbody>
-                                    </table>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="area_onum[]" class="text">
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
+                                                            <button type="button" class="btn btn-danger">삭제</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>               
+                                            </tbody>
+                                        </table>
+                                    </td>
                                 </tr>           
                             </tbody>
                         </table>
