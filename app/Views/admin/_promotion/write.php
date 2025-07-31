@@ -156,8 +156,10 @@
                                 <tr>
                                     <th>
                                         배너 이미지(1000X600)
-                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
-                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
+                                        <div class="flex" style="flex-direction: column; gap: 10px; margin-top: 5px;">
+                                            <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image();">추가</button>
+                                            <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image();">전체 삭제</button>
+                                        </div>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
@@ -232,8 +234,9 @@
                             <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                        <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                             <p>방콕 필수 코스 5가지</p>
+                                            <button type="button" class="btn btn-primary" style="margin: unset;">추가</button>
                                         </div>
                                     </td>
                                 </tr>
