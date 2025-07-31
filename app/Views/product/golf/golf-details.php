@@ -2039,7 +2039,7 @@ function updateOptionFields(res) {
                     idx = arrDate.indexOf(calDate);
                 }
 
-                if (idx == -1) {
+                if (idx == -2) {
                     var selAmt = "-";
                 } else {
                     var selAmt = parseInt(Price[idx]/10000) + '만';
