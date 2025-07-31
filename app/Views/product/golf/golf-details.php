@@ -2016,7 +2016,6 @@ function updateOptionFields(res) {
         function setSlide(currentMonth, currentYear) {
 
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
-			alert(currentDay);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 
             if (currentYear != null && !isNaN(currentYear)) {
