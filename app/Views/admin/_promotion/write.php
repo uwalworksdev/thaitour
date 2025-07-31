@@ -266,7 +266,7 @@
                                                     <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
                                                 </td>
                                                 <td>
-                                                    <div class="img_add">                                                   
+                                                    <div class="img_add flex_c_c">                                                   
                                                         <div class="file_input_wrap">
                                                             <div class="file_input">
                                                                 <input type="file" name='area_ufile' id="area_ufile"
