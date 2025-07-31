@@ -2045,7 +2045,7 @@ function updateOptionFields(res) {
 
                 var active = selAmt !== "-" ? "on" : "";
 
-                if(calDate == "2025-07-31") active = "on";
+                if(calDate == "<?=date('Y-m-d')?>") active = "on";
                 $(".calendar-swiper-wrapper").append(`
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
