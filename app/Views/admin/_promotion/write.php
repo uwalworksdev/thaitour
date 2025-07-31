@@ -156,7 +156,7 @@
                                 <tr>
                                     <th>
                                         배너 이미지(1000X600)
-                                        <div class="flex__c" style="flex-direction: column; gap: 10px;">
+                                        <div class="flex" style="flex-direction: column; gap: 10px;">
                                             <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image();">추가</button>
                                             <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image();">전체 삭제</button>
                                         </div>
