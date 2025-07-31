@@ -432,7 +432,7 @@
 
             let imageReader = new FileReader();
             imageReader.onload = function () {
-                $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+                $(inputFile).closest('.file_input').find('label').css("background-image", "url(" + imageReader.result + ")");
             };
             imageReader.readAsDataURL(files[0]);
 
