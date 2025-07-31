@@ -1565,109 +1565,108 @@ $(document).ready(function() {
             calculatePrice();
         }
 
-function getOptions() {
-    let golf_date = $("#order_date").val();
+		function getOptions() {
+			let golf_date = $("#order_date").val();
 
-    // NaN-NaN-NaN 체크 및 오늘 날짜로 대체
-    if (!golf_date || golf_date.includes("NaN")) {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = ('0' + (today.getMonth() + 1)).slice(-2);
-        const day = ('0' + today.getDate()).slice(-2);
-        golf_date = `${year}-${month}-${day}`;
-        $("#order_date").val(golf_date);
-    }
+			// NaN-NaN-NaN 체크 및 오늘 날짜로 대체
+			if (!golf_date || golf_date.includes("NaN")) {
+				const today = new Date();
+				const year = today.getFullYear();
+				const month = ('0' + (today.getMonth() + 1)).slice(-2);
+				const day = ('0' + today.getDate()).slice(-2);
+				golf_date = `${year}-${month}-${day}`;
+				$("#order_date").val(golf_date);
+			}
 
-    alert('golf_date- ' + golf_date);
+			alert('golf_date- ' + golf_date);
 
-    const hole_cnt = $('.tag-js.active').data('tab') + '홀';
-    const hour = $('.day_option.active').data('type');
+			const hole_cnt = $('.tag-js.active').data('tab') + '홀';
+			const hour = $('.day_option.active').data('type');
 
-    $("#hole_cnt").val(hole_cnt);
-    $("#hour").val(hour);
-    alert(golf_date + ' - ' + hole_cnt + ' - ' + hour);
+			$("#hole_cnt").val(hole_cnt);
+			$("#hour").val(hour);
+			alert(golf_date + ' - ' + hole_cnt + ' - ' + hour);
 
-    if (!hole_cnt || !hour) {
-        return false;
-    }
+			if (!hole_cnt || !hour) {
+				return false;
+			}
 
-    $.ajax({
-        type: "GET",
-        url: "/product-golf/option-price/<?= $product['product_idx'] ?>",
-        data: {
-            golf_date,
-            hole_cnt,
-            hour,
-        },
-        success: function (data) {
-            $('#final_option_list').html(data);
-            $("#final_option_list .card-item").eq(0).trigger("click");
+			$.ajax({
+				type: "GET",
+				url: "/product-golf/option-price/<?= $product['product_idx'] ?>",
+				data: {
+					golf_date,
+					hole_cnt,
+					hour,
+				},
+				success: function (data) {
+					$('#final_option_list').html(data);
+					$("#final_option_list .card-item").eq(0).trigger("click");
 
-            var idx = $(".card-item").data('idx');
-            var day_yn = $(".card-item").data('o_day_yn');
-            var night_yn = $(".card-item").data('o_night_yn');
-            var afternoon_yn = $(".card-item").data('o_afternoon_yn');
-            var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
-            var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
-            var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
-            var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
-            var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
-            var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
+					var idx = $(".card-item").data('idx');
+					var day_yn = $(".card-item").data('o_day_yn');
+					var night_yn = $(".card-item").data('o_night_yn');
+					var afternoon_yn = $(".card-item").data('o_afternoon_yn');
+					var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
+					var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
+					var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
+					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
+					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
+					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
 
-            $("#option_idx").val(idx);
+					$("#option_idx").val(idx);
 
-            const $trip_type1 = $("#trip_type1");
-            const $trip_type2 = $("#trip_type2");
-            const $trip_type3 = $("#trip_type3");
-            const $select_1 = $("#vehicle_1");
-            const $select_2 = $("#vehicle_2");
-            const $select_3 = $("#vehicle_3");
+					const $trip_type1 = $("#trip_type1");
+					const $trip_type2 = $("#trip_type2");
+					const $trip_type3 = $("#trip_type3");
+					const $select_1 = $("#vehicle_1");
+					const $select_2 = $("#vehicle_2");
+					const $select_3 = $("#vehicle_3");
 
-            $trip_type1.attr("data-idx", idx);
-            $trip_type2.attr("data-idx", idx);
-            $trip_type3.attr("data-idx", idx);
+					$trip_type1.attr("data-idx", idx);
+					$trip_type2.attr("data-idx", idx);
+					$trip_type3.attr("data-idx", idx);
 
-            $select_1.attr("data-idx", idx).attr("data-price", vehicle_price1_won).attr("data-price_baht", vehicle_price1_baht);
-            $select_2.attr("data-idx", idx).attr("data-price", vehicle_price2_won).attr("data-price_baht", vehicle_price2_baht);
-            $select_3.attr("data-idx", idx).attr("data-price", vehicle_price3_won).attr("data-price_baht", vehicle_price3_baht);
+					$select_1.attr("data-idx", idx).attr("data-price", vehicle_price1_won).attr("data-price_baht", vehicle_price1_baht);
+					$select_2.attr("data-idx", idx).attr("data-price", vehicle_price2_won).attr("data-price_baht", vehicle_price2_baht);
+					$select_3.attr("data-idx", idx).attr("data-price", vehicle_price3_won).attr("data-price_baht", vehicle_price3_baht);
 
-            $("#o_cart_due").val($(".card-item").data('o_cart_due'));
-            $("#o_caddy_due").val($(".card-item").data('o_caddy_due'));
-            $("#o_cart_cont").val($(".card-item").data('o_cart_cont'));
-            $("#o_caddy_cont").val($(".card-item").data('o_caddy_cont'));
+					$("#o_cart_due").val($(".card-item").data('o_cart_due'));
+					$("#o_caddy_due").val($(".card-item").data('o_caddy_due'));
+					$("#o_cart_cont").val($(".card-item").data('o_cart_cont'));
+					$("#o_caddy_cont").val($(".card-item").data('o_caddy_cont'));
 
-            if (day_yn == "Y") {
-                $(".day_option_first").show();
-            } else {
-                $(".day_option_first").hide();
-            }
+					if (day_yn == "Y") {
+						$(".day_option_first").show();
+					} else {
+						$(".day_option_first").hide();
+					}
 
-            if (night_yn == "Y") {
-                $(".day_option_second").show();
-            } else {
-                $(".day_option_second").hide();
-            }
+					if (night_yn == "Y") {
+						$(".day_option_second").show();
+					} else {
+						$(".day_option_second").hide();
+					}
 
-            if (afternoon_yn == "Y") {
-                $(".day_option_third").show();
-            } else {
-                $(".day_option_third").hide();
-            }
+					if (afternoon_yn == "Y") {
+						$(".day_option_third").show();
+					} else {
+						$(".day_option_third").hide();
+					}
 
-            if (hour == "day") {
-                $("#time_type").text('주간');
-            } else if (hour == "afternoon") {
-                $("#time_type").text('오후');
-            } else {
-                $("#time_type").text('야간');
-            }
+					if (hour == "day") {
+						$("#time_type").text('주간');
+					} else if (hour == "afternoon") {
+						$("#time_type").text('오후');
+					} else {
+						$("#time_type").text('야간');
+					}
 
-            showHideCaddy();
-            calculatePrice();
-        }
-    });
-}
-
+					showHideCaddy();
+					calculatePrice();
+				}
+			});
+		}
 
         function changePeople() {
 			
