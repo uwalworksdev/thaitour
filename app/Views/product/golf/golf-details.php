@@ -2044,9 +2044,9 @@ function updateOptionFields(res) {
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
 
                 var active = selAmt !== "-" ? "on" : "";
-
                 if(calDate == "<?=date('Y-m-d')?>") active = "on";
-                $(".calendar-swiper-wrapper").append(`
+
+				$(".calendar-swiper-wrapper").append(`
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
                     <div class="day ${active}" day_${e.dayOfMonth}">
