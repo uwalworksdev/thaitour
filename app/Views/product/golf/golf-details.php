@@ -2035,9 +2035,10 @@ function updateOptionFields(res) {
 
                 var idx = -1;
 
-                if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
-                    idx = arrDate.indexOf(calDate);
-                }
+if (arrDate.includes(calDate) && new Date(calDate).getTime() < today.getTime()) {
+    idx = arrDate.indexOf(calDate);
+}
+
 
                 if (idx == -1) {
                     var selAmt = "-";
