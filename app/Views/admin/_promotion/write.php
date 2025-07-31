@@ -219,6 +219,79 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="table-layout:fixed;">
+
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="40%" />
+                                <col width="10%" />
+                                <col width="40%" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>방콕 필수 코스 5가지</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                        style="table-layout:fixed;">
+
+                                        <colgroup>
+                                            <col width="15%" />
+                                            <col width="*%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                            <col width="10%" />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>제목</th>
+                                                <th>제목</th>
+                                                <th>썸네일이미지</th>
+                                                <th>순위</th>
+                                                <th>관리</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" name="area_title[]" class="text">
+                                                </td>
+                                                <td colspan="3">
+                                                    <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                                                </td>
+                                                <td>
+                                                    <div class="img_add">                                                   
+                                                        <div class="file_input_wrap">
+                                                            <div class="file_input">
+                                                                <input type="file" name='area_ufile' id="area_ufile"
+                                                                    onchange="productImagePreview(this, '')">
+                                                                <label for="area_ufile"></label>
+                                                                <input type="hidden" name="area_checkImg" class="checkImg">
+                                                                <button type="button" class="remove_btn"
+                                                                    onclick="productImagePreviewRemove(this)"></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="area_onum[]" class="text">
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger">삭제</button>
+                                                </td>
+                                            </tr>
+                                                            
+                                        </tbody>
+                                    </table>
+                                </tr>           
+                            </tbody>
+                        </table>
                     </div>
                 </form>
 
