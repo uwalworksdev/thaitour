@@ -186,7 +186,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>대표이미지(600X440)</th>
+                                    <th>지도 이미지(600X440)</th>
                                     <td colspan="3">
 
                                         <div class="img_add">
