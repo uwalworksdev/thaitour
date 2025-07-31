@@ -6,7 +6,7 @@ class CommentModel extends Model
 {
     protected $table = 'tbl_bbs_cmt';
     protected $primaryKey = 'r_cmt_idx';
-    protected $allowedFields = ["r_idx", "r_status", "r_reg_date", "r_reg_m_idx", "r_mod_date", "r_mod_m_idx", "r_step", "r_level", "r_ref", "r_date", "r_name", "r_private", "r_passwd", "r_category", "r_title", "r_html", "r_content", "r_url", "r_file_code", "r_file_name", "r_file_list", "r_code", "r_m_idx", "r_delYN"];
+    protected $allowedFields = ["r_idx", "r_status", "r_reg_date", "r_reg_m_idx", "r_mod_date", "r_mod_m_idx", "r_step", "r_level", "r_ref", "r_date", "r_name", "r_private", "r_passwd", "r_category", "r_title", "r_html", "r_content", "r_url", "r_file_code", "r_file_name", "r_file_list", "r_code", "r_m_idx", "r_delYN" , "r_rating"];
 
     public function getComments($r_code, $r_idx, $private_key, $display = "user")
     {
