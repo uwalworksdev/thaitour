@@ -2040,7 +2040,7 @@ function updateOptionFields(res) {
                 }
 
                 if (idx == -1) {
-                    var selAmt = "-";
+                    var selAmt = "9999";
                 } else {
                     var selAmt = parseInt(Price[idx]/10000) + '만';
                 }
