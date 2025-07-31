@@ -2043,7 +2043,7 @@ function updateOptionFields(res) {
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
 
-                const active = selAmt !== "-" ? "on" : "";
+                var active = selAmt !== "-" ? "on" : "";
 
                 if(calDate == "2025-07-31") active = "on";
                 $(".calendar-swiper-wrapper").append(`
