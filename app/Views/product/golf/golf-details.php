@@ -2013,80 +2013,41 @@ function updateOptionFields(res) {
             $('.day a').eq(day - 1).addClass("on");
         }
 
-        function setSlide(currentMonth, currentYear) {
+function setSlide(currentMonth, currentYear) {
 
-            const currentDay = `0${currentDate.getDate()}`.slice(-2);
-            let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
+    const currentDay = `0${currentDate.getDate()}`.slice(-2);
+    let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 
-            if (currentYear != null && !isNaN(currentYear)) {
-                $("#year").text(currentYear);
+    if (currentYear != null && !isNaN(currentYear)) {
+        $("#year").text(currentYear);
+    }
+    $("#month").text(currentMonth);
+    swiper01.destroy();
+    const daysInCurrentMonth = getMonthDatesWithWeekdays(currentMonth, currentYear);
+    $(".calendar-swiper-wrapper").empty();
+
+    daysInCurrentMonth.forEach(e => {
+
+        var selPrice = $("#selPrice").val();
+        var Price = selPrice.split("|");
+        var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
+        var calDateObj = new Date(calDate);
+
+        var idx = -1;
+        var selAmt = "-";
+
+        // 어제까지는 무조건 "-"
+        if (calDateObj.getTime() <= today.getTime()) {
+            selAmt = "-";
+        } else {
+            if (arrDate.includes(calDate)) {
+                idx = arrDate.indexOf(calDate);
+                selAmt = parseInt(Price[idx] / 10000) + '만';
             }
-            $("#month").text(currentMonth);
-            swiper01.destroy();
-            const daysInCurrentMonth = getMonthDatesWithWeekdays(currentMonth, currentYear);
-            $(".calendar-swiper-wrapper").empty();
-
-            daysInCurrentMonth.forEach(e => {
-
-                var selPrice = $("#selPrice").val();
-				//alert(selPrice);
-				var Price = selPrice.split("|");
-                var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
-
-                var idx = -1;
-
-                if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
-                    idx = arrDate.indexOf(calDate);
-                }
-
-                if (idx == -1) {
-                    var selAmt = "-";
-                } else {
-                    var selAmt = parseInt(Price[idx]/10000) + '만';
-                }
-
-                const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
-
-                const active = selAmt !== "-" ? "on" : "";
-
-                $(".calendar-swiper-wrapper").append(`
-                <div class="swiper-slide">
-                    <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
-                    <div class="day ${active}" day_${e.dayOfMonth}">
-                        <a href='${href}' data-date="${calDate}">
-                            ${e.dayOfMonth}
-                        </a>
-                        <p class="txt">${selAmt}</p>
-                    </div>
-                </div>
-            `);
-            });
-
-            swiper01 = new Swiper('.calendar-swiper-container', {
-                slidesPerView: 22,
-                spaceBetween: 2,
-                // slidesPerGroup: 13,
-                loop: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                observer: true,
-                observeParents: true,
-                breakpoints: {
-                    850: {
-                        slidesPerView: 22,
-                        spaceBetween: 2,
-                    },
-                    350: {
-                        slidesPerView: 5,
-                        spaceBetween: 2,
-                    }
-                },
-            });
-
-            swiper01.slideTo(currentDay - 2);
         }
+
+        const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);_
+
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
