@@ -262,7 +262,7 @@
                                                 <td>
                                                     <input type="text" name="area_title[]" class="text">
                                                 </td>
-                                                <td colspan="3">
+                                                <td>
                                                     <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
                                                 </td>
                                                 <td>
