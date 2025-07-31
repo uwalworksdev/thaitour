@@ -256,7 +256,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>제목</th>
-                                                    <th>제목</th>
+                                                    <th>내용</th>
                                                     <th>썸네일이미지</th>
                                                     <th>순위</th>
                                                     <th>관리</th>
@@ -296,6 +296,108 @@
                                             </tbody>
                                         </table>
                                     </td>
+                                </tr>           
+                            </tbody>
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="table-layout:fixed;">
+
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="40%" />
+                                <col width="10%" />
+                                <col width="40%" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                            <p>호텔 & 리조트</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                        style="table-layout:fixed;">
+
+                                        <colgroup>
+                                            <col width="10%" />
+                                            <col width="40%" />
+                                            <col width="10%" />
+                                            <col width="40%" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                                        <p>럭셔리 호텔</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                        style="table-layout:fixed;">
+                
+                                                        <colgroup>
+                                                            <col width="20%" />
+                                                            <col width="*%" />
+                                                            <col width="20%" />
+                                                            <col width="10%" />
+                                                            <col width="10%" />
+                                                            <col width="10%" />
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>제목</th>
+                                                                <th>Keyword</th>
+                                                                <th>부제</th>
+                                                                <th>썸네일이미지</th>
+                                                                <th>순위</th>
+                                                                <th>관리</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" name="product_title[]" class="text">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="product_keyword[]" class="text">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="product_subtitle[]" class="text">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="img_add flex_c_c">                                                   
+                                                                        <div class="file_input_wrap">
+                                                                            <div class="file_input">
+                                                                                <input type="file" name='area_ufile' id="area_ufile"
+                                                                                    onchange="productImagePreview(this, '')">
+                                                                                <label for="area_ufile"></label>
+                                                                                <input type="hidden" name="area_checkImg" class="checkImg">
+                                                                                <button type="button" class="remove_btn"
+                                                                                    onclick="productImagePreviewRemove(this)"></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="area_onum[]" class="text">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flex_c_c">
+                                                                        <button type="button" class="btn btn-danger">삭제</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>               
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>           
+                                        </tbody>
+                                    </table>
                                 </tr>           
                             </tbody>
                         </table>
