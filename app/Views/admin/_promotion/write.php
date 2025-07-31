@@ -157,8 +157,8 @@
                                     <th>
                                         배너 이미지(1000X600)
                                         <div class="flex" style="flex-direction: column; gap: 10px;">
-                                            <button type="button" class="btn btn-primary" onclick="add_sub_image();">추가</button>
-                                            <button type="button" class="btn btn-danger" onclick="delete_all_image();">전체 삭제</button>
+                                            <button type="button" class="btn btn-primary" style="width: fit-content;" onclick="add_sub_image();">추가</button>
+                                            <button type="button" class="btn btn-danger" style="width: fit-content;" onclick="delete_all_image();">전체 삭제</button>
                                         </div>
                                     </th>
                                     <td colspan="3">
@@ -236,7 +236,7 @@
                                     <td colspan="4">
                                         <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                             <p>방콕 필수 코스 5가지</p>
-                                            <button type="button" class="btn btn-primary">추가</button>
+                                            <button type="button" class="btn btn-primary" style="margin: unset;">추가</button>
                                         </div>
                                     </td>
                                 </tr>
