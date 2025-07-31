@@ -91,7 +91,7 @@ $(document).ready(function() {
                 <input type="hidden" name="product_code_4" value=""> 
                 <input type="hidden" name="order_status" id="order_status" value="B">
 
-                <input type="hidden" name="order_date" id="order_date" value="">
+                <input type="hidden" name="order_date" id="order_date" value="<?=date('y-m-d')?>">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
