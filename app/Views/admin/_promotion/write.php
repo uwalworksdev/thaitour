@@ -188,7 +188,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>지도 이미지(600X440)</th>
+                                    <th>지도 이미지</th>
                                     <td colspan="3">
 
                                         <div class="img_add">
@@ -333,6 +333,7 @@
                                                     <td colspan="4">
                                                         <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                                             <p>럭셔리 호텔</p>
+                                                            <button type="button" class="btn btn-primary" style="margin: unset;">추가</button>
                                                         </div>
                                                     </td>
                                                 </tr>
