@@ -91,7 +91,7 @@ $(document).ready(function() {
                 <input type="hidden" name="product_code_4" value=""> 
                 <input type="hidden" name="order_status" id="order_status" value="B">
 
-                <input type="hidden" name="order_date" id="order_date" value="<?=date('Y-m-d')?>">
+                <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
@@ -1567,6 +1567,9 @@ $(document).ready(function() {
 
         function getOptions() {
             const golf_date = $("#order_date").val();
+			if(golf_date == "") {
+			   golf_date = "<?=date('y-m-d')?>";	
+			}   
             const hole_cnt  = $('.tag-js.active').data('tab') + '홀';
             const hour = $('.day_option.active').data('type');
 
