@@ -11,7 +11,7 @@ class PromotionList extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "ufile1", "rfile1", "onum", "r_date", "m_date"
+        "title", "ufile1", "rfile1", "ufile2", "rfile2", "onum", "r_date", "m_date"
     ];
 
     public function __construct()
