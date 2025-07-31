@@ -528,6 +528,11 @@ body {
     padding-bottom: 100px;
 }
 
+.section_gradient .po_local {
+    width: 5rem;
+}
+
+
 .wrap_item.card-animation {
     width: 854px;
     display: flex;
@@ -924,7 +929,7 @@ body {
     }
 
     .title_map {
-        margin: 11.5rem auto 6.5rem;
+        margin: 8.5rem auto 6.5rem;
     }
 
     .title_map img {
