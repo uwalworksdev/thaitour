@@ -119,7 +119,7 @@ class AdminPromotionController extends BaseController
             $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_promotion/list_area';
+                    parent.location.href='/AdmMaster/_promotion/list';
                 </script>";
 
 
