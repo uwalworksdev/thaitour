@@ -377,7 +377,7 @@ $r_code = "travel_view";
                     <input type="hidden" name="r_idx" value="<?= $idx?>">
                     <input type="hidden" name="code" id="code" value="travel_view">
                     <input type="hidden" name="r_code" id="r_code" value="travel_view">
-                    <input type="hidden" name="rating" id="ratingValue" value="0">
+                    <input type="hidden" name="r_rating" id="ratingValue" value="0">
                     <div class="comment_box-input flex">
                         <textarea style="resize:none" class="bs-input" name="comment" id="comment"
                             placeholder="댓글을 입력해주세요."></textarea>
@@ -413,12 +413,19 @@ $r_code = "travel_view";
                             <!-- <span class="hour">18:30</span> -->
                         </p>
                         <div class="eval">
+                            <?php
+                                $star = $item["r_rating"];
+                                for($i = 0; $i < $star; $i++){
+                                    echo '<img src="/uploads/icons/star_icon.png" alt="star_icon">';
+                                }
+                            
+                            ?>
+                            <!-- <img src="/uploads/icons/star_icon.png" alt="star_icon">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <span>5.0</span>
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon"> -->
+                            <span><?php echo $item["r_rating"]?>.0</span> 
                         </div>
                     </div>
                     <div class="content">

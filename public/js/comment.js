@@ -5,6 +5,10 @@ function fn_comment(m_idx) {
             alert("댓글을 입력해주세요.");
             return;
         }
+        if ($("#ratingValue").val() == "0") {
+            alert("별점을 선택해주세요.");
+            return;
+        }
         var queryString = $("form[name=com_form]").serialize();
         
         $.ajax({
@@ -19,6 +23,8 @@ function fn_comment(m_idx) {
                         $("#qna_status").val("Y");
                     }
                     $("#comment").val("");
+                    $("#ratingValue").val("0");
+                    $(".list_star .star_img").removeClass("on");
                 } else {
                     alert("등록 오류입니다." + ret);
                 }
@@ -217,8 +223,22 @@ function handleUpdateReportState(r_idx, r_cmt_idx, state) {
 }
 
 function handleRating () {
-    const stars = document.querySelectorAll(".star");
+    const stars = document.querySelectorAll(".star_img");
     const ratingValue = document.getElementById("ratingValue")
+
+    stars.forEach((star, idx) => {
+        star.addEventListener('click', () => {
+
+            starValue = star.getAttribute('data-star');
+            ratingValue.value = starValue;
+
+            stars.forEach((s, idx) => {
+                s.classList.toggle('on', idx < starValue);
+            })
+        })
+    })
+
+
 }
 
 handleRating();
