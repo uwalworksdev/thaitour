@@ -2028,7 +2028,7 @@ function updateOptionFields(res) {
                 var selPrice = $("#selPrice").val();
 				var Price = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
-
+alert('calDate- '+calDate);
                 var idx = -1;
 
                 if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
