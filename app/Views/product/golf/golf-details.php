@@ -274,7 +274,7 @@ $(document).ready(function() {
                     </div>
                 </div>
 
-                <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요..</span></h3>
+                <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
                         <div class="btn_year_new">
@@ -2016,6 +2016,7 @@ function updateOptionFields(res) {
         function setSlide(currentMonth, currentYear) {
 
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
+			alert(currentDay);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 
             if (currentYear != null && !isNaN(currentYear)) {
@@ -2037,7 +2038,6 @@ function updateOptionFields(res) {
 
                 if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
                     idx = arrDate.indexOf(calDate);
-				    alert(idx); 
                 }
 
                 if (idx == -1) {
