@@ -242,7 +242,7 @@
                                         style="table-layout:fixed;">
 
                                         <colgroup>
-                                            <col width="15%" />
+                                            <col width="25%" />
                                             <col width="*%" />
                                             <col width="10%" />
                                             <col width="10%" />
@@ -283,7 +283,9 @@
                                                     <input type="text" name="area_onum[]" class="text">
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger">삭제</button>
+                                                    <div class="flex_c_c">
+                                                        <button type="button" class="btn btn-danger">삭제</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                                             
