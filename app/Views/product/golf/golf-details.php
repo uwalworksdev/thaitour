@@ -2038,7 +2038,7 @@ function updateOptionFields(res) {
                 if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
                     idx = arrDate.indexOf(calDate);
                 }
-
+alert('idx- '+idx);
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
