@@ -1567,7 +1567,7 @@ $(document).ready(function() {
 
         function getOptions() {
             const golf_date = $("#order_date").val();
-			if(golf_date == "") {
+			if(golf_date == "NaN-NaN-NaN") {
 			   golf_date = "<?=date('y-m-d')?>";	
 			}   
             const hole_cnt  = $('.tag-js.active').data('tab') + '홀';
