@@ -55,6 +55,9 @@ class Comment extends BaseController
         $r_idx = updateSQ($this->request->getPost('r_idx') ?? '0');
         $r_code =   updateSQ($this->request->getPost('r_code') ?? '0');
         $r_content = updateSQ($this->request->getPost('comment') ?? 'comment error');
+        $r_idx = updateSQ($this->request->getPost('r_idx') ?? '0');
+        $r_rating = updateSQ($this->request->getPost('r_rating') ?? '0');
+
         $user_id = session('member.id');
         $r_m_idx = session('member.idx');
         $r_name = session('member.name');
@@ -73,7 +76,8 @@ class Comment extends BaseController
             'r_level' => 1,
             'r_step' => 1,
             'r_delYN' => 'N',
-            'r_status' => 'Y'
+            'r_status' => 'Y',
+            'r_rating' => $r_rating,
         ];
 
         $result = $this->comment->addComment($data);
