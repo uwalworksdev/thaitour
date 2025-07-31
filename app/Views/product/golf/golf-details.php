@@ -1578,14 +1578,14 @@ $(document).ready(function() {
 				$("#order_date").val(golf_date);
 			}
 
-			alert('golf_date- ' + golf_date);
+			//alert('golf_date- ' + golf_date);
 
 			const hole_cnt = $('.tag-js.active').data('tab') + '홀';
 			const hour = $('.day_option.active').data('type');
 
 			$("#hole_cnt").val(hole_cnt);
 			$("#hour").val(hour);
-			alert(golf_date + ' - ' + hole_cnt + ' - ' + hour);
+			//alert(golf_date + ' - ' + hole_cnt + ' - ' + hour);
 
 			if (!hole_cnt || !hour) {
 				return false;
