@@ -126,12 +126,28 @@
                                     </td>
                                 </tr>
                             <?php endif; ?>
-                            <?php if ($parent_code_no === '51') : ?>
+                            <?php if ($parent_code_no === '51' || (strpos($parent_code_no, '62') === 0)) : ?>
                                 <tr>
-                                    <th>설명하다</th>
+                                    <th>
+                                        <?php
+                                            if(strpos($parent_code_no, '62') === 0) {
+                                                echo "내용";
+                                            }else{
+                                                echo "설명하다";
+                                            }
+                                        ?>     
+                                    </th>
                                     <td>
                                         <input type="text" id="code_memo" name="code_memo" value="<?= $code_memo ?>"
                                                class="input_txt"/>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                            <?php if ($parent_code_no === '62') : ?>
+                                <tr>
+                                    <th>배경</th>
+                                    <td>
+                                        <input type="color" id="color" name="color" value="<?= $color ?? "" ?>">
                                     </td>
                                 </tr>
                             <?php endif; ?>
@@ -146,6 +162,22 @@
                                         <input type="checkbox" name="del_1" value="Y">
                                         <a href="/data/code/<?= $ufile1 ?>"
                                            class="imgpop cboxElement"><?= $rfile1 ?></a>
+                                    <?php } ?>
+
+                                </td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php if ($parent_code_no === '62') : ?>
+                            <tr>
+                                <th>이미지 icon</th>
+                                <td>
+                                    <input type="file" id="ufile2" name="ufile2" class="input_txt" style="width:20%"/>
+
+                                    <?php if ($ufile2 && $rfile2) { ?>
+                                        <img src="/data/code/<?= $ufile2 ?>">
+                                        <input type="checkbox" name="del_2" value="Y">
+                                        <a href="/data/code/<?= $ufile2 ?>"
+                                           class="imgpop cboxElement"><?= $rfile2 ?></a>
                                     <?php } ?>
 
                                 </td>

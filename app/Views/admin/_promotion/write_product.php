@@ -308,6 +308,18 @@
 
         var frm = document.frm;
 
+        if (frm.category_code_1.value == "") {
+            alert("1차분류를 선택하셔야 합니다..");
+            frm.category_code_1.focus();
+            return;
+        }
+
+        if (frm.category_code_2.value == "") {
+            alert("2차분류를 선택하셔야 합니다..");
+            frm.category_code_2.focus();
+            return;
+        }
+
         if (frm.title.value == "") {
             alert("제목 입력해주세요.");
             frm.title.focus();

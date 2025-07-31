@@ -397,7 +397,7 @@ $setting = homeSetInfo();
                                 </p>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
-                                <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                                <h2 class="tit_top" style="margin: 0; font-size: 30px;">Voucher</h2>
                             </td>
                         </tr>
                     </table>

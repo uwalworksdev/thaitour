@@ -85,8 +85,7 @@ class ProductPromotion extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['onum' => 'DESC'];
-            $orderBy = ['idx' => 'DESC'];
+            $orderBy = ['onum' => 'DESC', 'idx' => 'DESC'];
         }
 
         foreach ($orderBy as $key => $value) {

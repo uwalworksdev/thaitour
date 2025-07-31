@@ -39,7 +39,7 @@
                         </p>
                     </div>
                     <div class="ttl_right">
-                        <h2 class="tit_top">바우처</h2>
+                        <h2 class="tit_top">Voucher</h2>
                     </div>
                 </div>
             </div>

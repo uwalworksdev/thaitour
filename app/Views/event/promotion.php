@@ -34,16 +34,29 @@
             margin: 0 16rem;
         }
     } */
+    </style>
 </style>
 
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
 
     <!-- 배너 섹션 -->
-    <section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
+    <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
-
-                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <?php
+                    foreach($banner_promotion as $banner){
+                        if(!empty($banner['ufile1']) && is_file(ROOTPATH . "/public/data/cate_banner/" . $banner["ufile1"])){
+                            $img_banner = "/data/cate_banner/" . $banner['ufile1'];
+                ?>
+                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                        <img src="<?= $img_banner ?>" alt="<?=$banner['title']?>" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div>
+                <?php
+                    }
+                }
+                ?>
+                <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
                 </div>
@@ -58,7 +71,7 @@
                 <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
@@ -87,7 +100,9 @@
         <!-- 전체 배경 지도 (중앙) -->
         <div class="only_web">
             <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-                <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44">
+                <p class="text_head_sec"> 지도로보는 방콘 명소</p>
+                <h2 class="text_title_sec">방콕 명소 요약 가이드</h2>
+                <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
                 <!-- 중앙 지도 -->
                 <div class="hidden lg:block">
                     <div
@@ -137,7 +152,9 @@
         </div>
         <div class="only_mo">
             <div class="title_map">
-                <img src="/event/images/map_pro_ttl.png" alt="">
+                <!-- <img src="/event/images/map_pro_ttl.png" alt=""> -->
+                 <p class="text_head_sec"> 지도로보는 방콘 명소</p>
+                 <h2 class="text_title_sec">방콕 명소 요약 가이드</h2>
             </div>
             <div class="promotion_map">
                 <div class="location" id="location01">
@@ -276,10 +293,116 @@
         </div>
     </div>
 
-    <div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
-        <div class="title-section-best sub-1"></div>
+    <div class="bg-gradient section_gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
+        <!-- <div class="title-section-best sub-1"></div> -->
+         <div class="flex flex-col items-center"><img class="po_local" src="/event/images/po_local_ic.png" alt=""></div>
+         <p class="text_head_sec"> 방콕여행 꼭알고가야할 5가지 포인트</p>
+         <h2 class="text_title_sec">방콕 필수 코스 5가지</h2>
         <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]"
             style="gap: 45px;">
+            <?php
+                $number = 1;
+                foreach($area_list["items"] as $area) {
+                    if ($area["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $area["ufile1"])) {
+                        $img = "/data/promotion/" . $area["ufile1"];
+                    } else {
+                        $img = "/data/product/noimg.png";
+                    }
+                    $formatted = sprintf('%02d', $number);
+            ?>
+                <div class="wrap_item card-animation">
+                    <div class="num_box">
+                        <span class="blue" style="background-color: <?=$area["color"]?> !important;"><?= $formatted?></span>
+                    </div>
+                    <div class="text_box">
+                        <div class="title"><?= $area["title"] ?></div>
+                        <p class="des"><?= nl2br($area["desc"]) ?></p>
+                    </div>
+                    <div class="image_box">
+                        <img src="<?= $img ?>" alt="<?= $area["title"] ?>">
+                    </div>
+                </div>
+            <?php
+                $number++;      
+                }
+            ?>
+            <!-- <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="blue">01</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">왕궁과 에메랄드 사원 투어 </div>
+                    <p class="des">태국 왕실의 역사와 문화를 엿볼 수 있는 왕궁과 에메랄드 사원 
+                        (Wat Phra Kaew)을 방문해 보세요.  
+                        화려한 건축물과 예술 작품을 감상할 수 있습니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_001.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="yellow">02</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">담넌 사두억 수상 시장 투어</div>
+                    <p class="des">전통적인 태국의 수상 시장을 경험하며 보트를 타고  
+                        신선한 과일과 현지 음식을 즐길 수 있는 이색 체험을 
+                        할 수 있습니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_002.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="violet">03</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">짜뚜짝 주말 시장 탐방 </div>
+                    <p class="des">세계 최대 규모의 주말 시장인 짜뚜짝 시장에서 현지에서만 
+                        구매가능한 다양한 상품을 볼 수 있습니다. 너무커서 하루에
+                        못 볼 수도 있어요.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_003.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="green">04</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">차이나타운 야시장</div>
+                    <p class="des">방콕의 차이나타운에서 다양한 길거리 음식을 맛보고 활기찬
+                        밤 문화를  체험할 수 있습니다. 현지인들과 관광객이 어우러진  
+                        특별한 야경을 즐길 수 있는 곳입니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_004.jpg" alt="">
+                </div>
+            </div>
+            <div class="wrap_item card-animation">
+                <div class="num_box">
+                    <span class="orange">05</span>
+                </div>
+                <div class="text_box">
+                    <div class="title">차오프라야 강 디너 크루즈 </div>
+                    <p class="des">차오프라야 강 위에서 방콕 왕궁의 야경을 감상하며 저녁 식사를  
+                        즐기는 로맨틱한 크루즈로 추억에 남을만한 시간을 가질수 
+                        있습니다.  현지 음악과 함께하는 선상 공연은 여행을 한층 더 
+                        특별하게 만들어줍니다.
+                    </p>
+                </div>
+                <div class="image_box">
+                    <img src="/event/images/po_005.jpg" alt="">
+                </div>
+            </div> -->
+            <!-- 
             <img src="/event/images/img_location_pro01.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
                 alt="이미지1" />
             <img src="/event/images/img_location_pro01_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
@@ -299,11 +422,81 @@
             <img src="/event/images/img_location_pro05.png" class="card-animation w-[70rem] lg:w-[900px] only_web"
                 alt="이미지5" />
             <img src="/event/images/img_location_pro05_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo"
-                alt="이미지1" />
+                alt="이미지1" /> -->
         </div>
     </div>
+    <?php
+        foreach($code_list as $code_parent) {
+    ?>
 
     <div class="sec_banner">
+        <div class="promotion_banner_img">
+            <img class="only_web" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
+            <img class="only_mo" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
+        </div>
+        <div class="promotion_banner_content">
+            <div class="po_round">
+                <img src="/data/code/<?=$code_parent["ufile2"]?>" alt="<?=$code_parent["code_name"]?>">
+            </div>
+            <h3 class="po_head" style="--after-bg: <?= $code_parent['color'] ?>;"><?=$code_parent["code_name"]?></h3>
+            <p class="po_head_sub"><?=$code_parent["code_memo"]?></p>
+            <?php
+                foreach($code_parent["code_child_list"] as $code_child) {
+            ?>
+                <div class="promotion_box">
+                    <h5 class="ttl"><?=$code_child["code_name"]?></h5>
+                    <p class="ttl_sub"><?=$code_child["code_memo"]?></p>
+                    <?php
+                        $filtered_list = array_filter($product_list['items'], function($item) use ($code_parent, $code_child) {
+                            return $item['category_code_1'] === $code_parent["code_no"] && $item['category_code_2'] === $code_child["code_no"];
+                        });
+                    ?>
+                    
+                    <div class="promotion_box_contain">
+                        <?php
+                            foreach($filtered_list as $product) {
+                                if ($product["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $product["ufile1"])) {
+                                    $src = "/data/promotion/" . $product["ufile1"];
+                                } else {
+                                    $src = "/data/product/noimg.png";
+                                }
+                        ?>
+                        <div class="promotion_box_item">
+                            <div class="box_img"><img src="<?=$src?>" alt="<?=$product["title"]?>"></div>
+                            <div class="box_info">
+                                <div class="info_name"><?=$product["title"]?></div>
+                                <div class="info_hash_tag">
+                                    <p><span style="white-space:wrap"><?=$product["keyword"]?></span></p>
+                                </div>
+                                <div class="special">
+                                    <div class="special_label">
+                                        트전
+                                    </div>
+                                    <!-- <img class="only_web" src="/event/images/special_label.png" alt="">
+                                    <img class="only_mo" src="/event/images/special_label_mo.png" alt=""> -->
+                                    <p><?=$product["subtitle"]?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
+    <?php
+        }
+    ?>
+    <style>
+        .po_head::after {
+            background-color: var(--after-bg) !important;
+        }
+    </style>
+    <!-- <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/event/images/promotion_banner-1.png" alt="">
             <img class="only_mo" src="/event/images/promotion_banner-1_mo.png" alt="">
@@ -497,7 +690,6 @@
             </div>
         </div>
     </div>
-
     <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/event/images/promotion_banner-2.png" alt="">
@@ -703,7 +895,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
     <div class="max-w-8xl mx-auto">

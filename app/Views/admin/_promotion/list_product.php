@@ -24,7 +24,7 @@
                         <li><a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a></li>
                         <li><a href="./write_product?type=<?=$type?>" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-pencil"></span> <span
-                                    class="txt">영역 등록</span></a></li>
+                                    class="txt">등록</span></a></li>
                     </ul>
 
                 </div>
@@ -59,11 +59,11 @@
                                                                         } ?>>
                                             제목
                                         </option>
-                                        <option value="desc" <?php if ($search_category == "desc") {
+                                        <!-- <option value="desc" <?php if ($search_category == "desc") {
                                                                             echo "selected";
                                                                         } ?>>
                                             내용
-                                        </option>
+                                        </option> -->
                                     </select>
                                     <input type="text" id="search_txt" name="search_txt"
                                         value="<?= $search_txt ?>" class="input_txt placeHolder"
@@ -207,6 +207,43 @@
 </script>
 
 <script>
+    function get_code(strs, depth) {
+        $.ajax({
+            type: "GET"
+            , url: "/ajax/get_code"
+            , dataType: "html" //전송받을 데이터의 타입
+            , timeout: 30000 //제한시간 지정
+            , cache: false  //true, false
+            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
+            , error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success: function (json) {
+                //alert(json);
+                if (depth <= 2) {
+                    $("#category_code_2").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#category_code_2").append("<option value=''>2차분류</option>");
+                }
+                
+                var list = $.parseJSON(json);
+                var listLen = list.length;
+                var contentStr = "";
+                for (var i = 0; i < listLen; i++) {
+                    contentStr = "";
+                    if (list[i].code_status == "C") {
+                        contentStr = "[마감]";
+                    } else if (list[i].code_status == "N") {
+                        contentStr = "[사용안함]";
+                    }
+                    $("#category_code_" + (parseInt(depth))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                }
+            }
+        });
+    }
+
     function change_it() {
         let f = document.frm_l;
 

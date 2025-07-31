@@ -80,10 +80,15 @@ class CodeController extends BaseController
             $init_oil_price = $row['init_oil_price'];
             $ufile1 = $row['ufile1'];
             $rfile1 = $row['rfile1'];
+            $ufile2 = $row['ufile2'];
+            $rfile2 = $row['rfile2'];
             $status = $row['status'];
             $onum = $row['onum'];
             $is_best = $row['is_best'];
             $distance = $row['distance'];
+            $type = $row['type'];
+            $color = $row['color'];
+            $code_memo = $row['code_memo'];
             $type = $row['type'];
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
@@ -117,7 +122,11 @@ class CodeController extends BaseController
             "init_oil_price" => $init_oil_price ?? "",
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
+            "ufile2" => $ufile2 ?? "",
+            "rfile2" => $rfile2 ?? "",
             "status" => $status ?? "",
+            "color" => $color ?? "",
+            "code_memo" => $code_memo ?? "",
             "onum" => $onum,
             "depth" => $depth,
             "code_gubun" => $code_gubun ?? "",
@@ -147,6 +156,8 @@ class CodeController extends BaseController
         $distance = $this->request->getPost('distance');
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
+        $file2 = $this->request->getFile('ufile2');
+        $color = $this->request->getPost('color');
 
         $f_idx = $this->request->getPost("f_idx") ?? [];
         $code_flight = $this->request->getPost("code_flight") ?? [];
@@ -161,6 +172,7 @@ class CodeController extends BaseController
             $data = [
                 'code_name' => $code_name,
                 'code_name_en' => $code_name_en,
+                'color' => $color,
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
@@ -212,6 +224,7 @@ class CodeController extends BaseController
                 'parent_code_no' => $parent_code_no,
                 'depth' => $depth,
                 'status' => $status,
+                'color' => $color,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'is_best' => $is_best,
@@ -238,6 +251,14 @@ class CodeController extends BaseController
             //write_log("코드등록: " . json_encode($data));
         }
 
+        
+        $del_1 = $this->request->getPost("del_1");
+        $del_2 = $this->request->getPost("del_2");
+
+        if (isset($del_1) && $del_1 == "Y") {
+            $this->CodeModel->update($code_idx, ['ufile1' => '', 'rfile1' => '']);
+        }
+
         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
             $file->move($upload, $newName);
@@ -245,6 +266,20 @@ class CodeController extends BaseController
             $this->CodeModel->update($code_idx, [
                 'ufile1' => $newName,
                 'rfile1' => $file->getClientName()
+            ]);
+        }
+
+        if (isset($del_2) && $del_2 == "Y") {
+            $this->CodeModel->update($code_idx, ['ufile2' => '', 'rfile2' => '']);
+        }
+
+        if (isset($file2) && $file2->isValid() && !$file2->hasMoved()) {
+            $newName2 = $file2->getRandomName();
+            $file2->move($upload, $newName2);
+
+            $this->CodeModel->update($code_idx, [
+                'ufile2' => $newName2,
+                'rfile2' => $file2->getClientName()
             ]);
         }
 

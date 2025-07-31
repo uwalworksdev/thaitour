@@ -47,14 +47,14 @@ class Comment extends BaseController
                 $list = getComment($commentsArray, $r_code, $r_idx);
             }
         }
-        return $list;
+        return $list; 
     }
     
     public function addComment()
     {
         $r_idx = updateSQ($this->request->getPost('r_idx') ?? '0');
-        $r_code = $this->request->getPost('r_code' ?? '');
-        $r_content = updateSQ($this->request->getPost('comment'));
+        $r_code =   updateSQ($this->request->getPost('r_code') ?? '0');
+        $r_content = updateSQ($this->request->getPost('comment') ?? 'comment error');
         $user_id = session('member.id');
         $r_m_idx = session('member.idx');
         $r_name = session('member.name');
@@ -89,6 +89,12 @@ class Comment extends BaseController
                 ->where('idx', $r_idx)
                 ->update(['status' => 'Y']);
         }
+
+        // if($r_code == "travel_view" ){
+        //     $this->db->table("tbl_travel_contact")
+        //         ->where('idx', $r_idx)
+        //         ->update(['status' => 'Y']);
+        // }
 
         $comment_point = $this->point->getPoint()["comment_point"] ?? 0;
 
