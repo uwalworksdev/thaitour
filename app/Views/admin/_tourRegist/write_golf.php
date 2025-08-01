@@ -511,7 +511,7 @@
                                             foreach($label_list as $label){
                                         ?>
                                             <label for="label_category_<?=$i?>">
-                                                <input type="checkbox" name="label_category" id="label_category_<?=$i?>"
+                                                <input type="checkbox" name="label_category[]" id="label_category_<?=$i?>"
                                                     <?php
                                                         if (strpos($label_category, $label["code_no"]) !== false) {
                                                             echo "checked";
