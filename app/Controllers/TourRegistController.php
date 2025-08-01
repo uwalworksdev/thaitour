@@ -1886,6 +1886,8 @@ public function list_room_pricex()
 
         $data['category3'] = $category3;
 
+        $label_list = $this->codeModel->getByParentCode('63')->getResultArray();
+
         $new_data = [
             'product_idx'     => $product_idx,
             'codes'           => $fresult_c,
@@ -1893,7 +1895,8 @@ public function list_room_pricex()
             'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'          => $mcodes,
-            'img_list'        => $img_list
+            'img_list'        => $img_list,
+            'label_list'      => $label_list,
         ];
 
         $data = array_merge($data, $new_data);
