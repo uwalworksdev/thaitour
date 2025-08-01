@@ -396,6 +396,8 @@ class TourRegistController extends BaseController
 		//write_log("xxx- ". $sql);
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
+
+        $label_list = $this->codeModel->getByParentCode('64')->getResultArray();
 		
         $new_data = [
             'product_idx' => $product_idx,
@@ -407,7 +409,8 @@ class TourRegistController extends BaseController
             'filters'     => $filters,
             'mcodes'      => $mcodes,
 			'category3'   => $category3,
-            'img_list'    => $img_list
+            'img_list'    => $img_list,
+            'label_list'  => $label_list,
         ];
 
         $data = array_merge($data, $new_data);

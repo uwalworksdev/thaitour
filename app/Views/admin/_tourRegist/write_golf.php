@@ -504,6 +504,23 @@
                                     </td-->									
                                 </tr>
                                 <tr>
+                                    <th>라벨</th>
+                                    <td colspan="3">
+                                        <?php
+                                            $i = 1;
+                                            foreach($label_list as $label){
+                                        ?>
+                                            <label for="label_category_<?=$i?>">
+                                                <input type="checkbox" name="label_category" id="label_category_<?=$i?>" value="<?=$label["code_no"]?>"/>
+                                                <?=$label["code_name"]?>
+                                            </label>
+                                        <?php
+                                            $i++;
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>주소</th>
                                     <td colspan="3">
                                         <input type="text" autocomplete="off" name="addrs" id="addrs"
