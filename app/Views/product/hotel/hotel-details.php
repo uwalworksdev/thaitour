@@ -739,7 +739,7 @@
                 <h2>
                     <?= $hotel['product_name'] ?>
                     <br>
-                    <span style="margin-left: 15px; font-weight: 400;"><?= $hotel['product_name_en'] ?></span> 
+                    <span style="font-weight: 400; line-height: 1.5"><?= $hotel['product_name_en'] ?></span> 
                 </h2>
                 <div class="list-icon">
                     <?php
