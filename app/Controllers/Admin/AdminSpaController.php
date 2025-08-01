@@ -787,6 +787,8 @@ class AdminSpaController extends BaseController
         }
 
         foreach ($info_ids as $index => $infoId) {
+            $change_price = $is_change_price[$index];
+
             if (isset($spas_subject[$index])) {
                 foreach ($spas_subject[$index] as $i => $subject) {
                     if (!empty($subject)) {
@@ -806,6 +808,12 @@ class AdminSpaController extends BaseController
                             'info_idx'          => $infoId,
                             'r_date'            => date('Y-m-d H:i:s')
                         ];
+
+                        if($change_price == 'Y'){
+                            $data['spas_price'] = isset($spas_price[$index][$i]) ? $spas_price[$index][$i] : '';
+                            $data['spas_price_kids'] = isset($spas_price_kids[$index][$i]) ? $spas_price_kids[$index][$i] : '';
+                            $data['spas_price_baby'] = isset($spas_price_baby[$index][$i]) ? $spas_price_baby[$index][$i] : '';
+                        }
 
                         if ($spaIdx == 'new' || empty($spaIdx)) {
                             $this->productSpas->insert($data);
