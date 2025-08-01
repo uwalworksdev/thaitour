@@ -736,11 +736,7 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2>
-                    <?= $hotel['product_name'] ?>
-                    <br>
-                    <span class="product-en"><?= $hotel['product_name_en'] ?></span> 
-                </h2>
+                <h2><?= $hotel['product_name'] ?> <span style="margin-left: 15px;"><?= $hotel['product_name_en'] ?></span> </h2>
                 <div class="list-icon">
                     <?php
                         $icon_suffix = $hotel['liked'] ? 'on_icon' : 'icon';
