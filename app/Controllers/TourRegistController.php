@@ -441,6 +441,7 @@ class TourRegistController extends BaseController
         //$data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
+        $data['label_category'] = implode(",", $data['label_category'] ?? []);
         
         $data['tour_info']       = $data["tour_info"] ?? '';
         $data['tour_detail']     = $data["tour_detail"] ?? '';
