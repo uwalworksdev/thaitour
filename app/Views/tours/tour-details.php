@@ -380,9 +380,9 @@
                                     <h3>
                                         <?= $tour['tours_subject'] ?>
                                         <br>
-                                        <span class="tours-name-en">
+                                        <p class="tours-name-en">
                                             <?= $tour['tours_subject_eng'] ?>
-                                        </span>
+                                        </p>
                                     </h3>
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 </div>
