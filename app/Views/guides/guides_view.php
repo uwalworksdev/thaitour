@@ -55,7 +55,7 @@
                         <h2>
                             <?= $guide['product_name'] ?>
                             <br>
-                            <span style="font-weight: 400; line-height: 1.5"><?= viewSQ($guide['product_name_en']) ?></span>
+                            <span class="product-en"><?= viewSQ($guide['product_name_en']) ?></span>
                         </h2>
                         <div class="only_web">
                             <div class="list-icon">
