@@ -143,7 +143,7 @@
                                     </td>
                                 </tr>
                             <?php endif; ?>
-                            <?php if ($parent_code_no === '62') : ?>
+                            <?php if ($parent_code_no === '62' || $parent_code_no === '63' || $parent_code_no === '64') : ?>
                                 <tr>
                                     <th>배경</th>
                                     <td>
