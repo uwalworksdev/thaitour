@@ -1071,18 +1071,20 @@
                                                     $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                     // $img ="/data/product/" . ${"ufile" . $i};
                                                     ?>
-                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                            onchange="productImageMainPreview(this, '<?= $i ?>')">
-                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                        <button type="button" class="remove_btn"
-                                                                onclick="productImageMainPreviewRemove(this)"></button>
-                                                        <?php if(${"ufile" . $i}) { ?>		
-                                                            <a class="img_txt imgpop" href="<?= $img ?>"
-                                                            id="text_ufile<?= $i ?>">미리보기</a>
-                                                        <?php } ?>   
-
+                                                    <div class="file_input_wrap">
+                                                        <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                                onchange="productImageMainPreview(this, '<?= $i ?>')">
+                                                            <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                            <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                            <button type="button" class="remove_btn"
+                                                                    onclick="productImageMainPreviewRemove(this)"></button>
+                                                            <?php if(${"ufile" . $i}) { ?>		
+                                                                <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                            <?php } ?>   
+    
+                                                        </div>
                                                     </div>
                                                 <?php
                                                 endfor;
