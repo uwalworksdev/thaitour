@@ -123,7 +123,10 @@ $(document).ready(function() {
                 -->
 				
                 <div class="title-container">
-                    <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
+                    <h2><?= viewSQ($product['product_name']) ?> 
+                        <br>
+                        <span style="font-weight: 400; line-height: 1.5"><?= viewSQ($product['product_name_en']) ?></span>
+                    </h2>
                     <div class="list-icon">
                         <?php
                             $icon_suffix = $product['liked'] ? 'on_icon' : 'icon';
