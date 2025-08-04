@@ -1906,6 +1906,8 @@ class ProductModel extends Model
                     return trim($value) !== '';
                 });
 
+                $arr_category = array_reverse($arr_category);
+
                 $label_category = [];
 
                 foreach ($arr_category as $category) {
