@@ -132,7 +132,7 @@ class AdminMenus extends BaseConfig
             'code' => 'L',
             'submenus' => [
                 [
-                    'name' => '목록 프로모션',
+                    'name' => '랜딩페이지 관리',
                     'code' => 'L1',
                     'url' => ['/AdmMaster/_promotion/list'],
                     'alias' => ['AdminPromotionController::list', 'AdminPromotionController::write']
