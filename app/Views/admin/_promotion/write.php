@@ -517,7 +517,7 @@
 
     function add_promotion_product(button) {        
 
-        let count = $(this).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
+        let count = $(button).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
         count = count + 1;
         
         let html = `
@@ -556,7 +556,7 @@
             </tr>        
         `;
 
-        $(this).closest("table").find(".tbl_promotion_product tbody").append(html);
+        $(button).closest("table").find(".tbl_promotion_product tbody").append(html);
 
     }
 
