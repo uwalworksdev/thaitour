@@ -864,7 +864,7 @@
     text-transform: uppercase;
     color: #757575;
     font-weight: 500;
-    font-family: "Pretendard";
+    font-family: 'NotoSansCJKkr', sans-serif;
     text-align: center;
     cursor: pointer;
 }
