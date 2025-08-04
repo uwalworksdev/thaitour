@@ -3732,6 +3732,7 @@
     top: 10px;
     right: 10px;
     display: flex;
+    flex-wrap: wrap;
     gap: 3px;
 }
 
@@ -3744,7 +3745,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 /* .custom-product-golf .product-card-item-container {
