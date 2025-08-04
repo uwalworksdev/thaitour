@@ -6663,3 +6663,7 @@ span.left_space {
     height: 100%;
     object-fit: cover;
 }
+
+.content-sub-product-hotel {
+    font-family: 'NotoSansCJKkr';
+}
