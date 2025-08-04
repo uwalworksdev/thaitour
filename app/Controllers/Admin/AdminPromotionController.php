@@ -12,6 +12,8 @@ class AdminPromotionController extends BaseController
     protected $areaPromotion;
     protected $productPromotion;
     protected $codeModel;
+    protected $promotionList;
+    protected $promotionImg;
 
     public function __construct()
     {
@@ -21,7 +23,260 @@ class AdminPromotionController extends BaseController
         $this->areaPromotion    = model("AreaPromotion");
         $this->productPromotion = model("ProductPromotion");
         $this->codeModel        = model("Code");
+        $this->promotionList    = model("PromotionList");
+        $this->promotionImg     = model("PromotionImg");
+    }
 
+    public function list()
+    {
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $search_category    = updateSQ($_GET["search_category"] ?? '');
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'search_category'   => $search_category,
+        ];
+
+        $result = $this->promotionList->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'result'                => $result['items'],
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+        ];
+        return view("admin/_promotion/list", $data);
+    }
+
+    public function write()
+    {
+        $idx              = updateSQ($_GET["idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
+
+        $fresult = $this->codeModel->whereIn('code_no', ['6201', '6202', '6203'])
+                            ->where('status', 'Y')
+                            ->orderBy('onum', 'ASC')
+                            ->orderBy('code_idx', 'ASC')->findAll();
+
+        foreach ($fresult as $key => $value) {
+            $fresult[$key]["code_child_list"] = $this->codeModel->getByParentCode($value["code_no"])->getResultArray();
+        }
+
+        if ($idx) {
+            $row = $this->promotionList->find($idx);
+            $img_list = $this->promotionImg->getImg($idx);
+        }
+
+        $data = [
+            'idx' => $idx,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'row' => $row ?? [],
+            'fresult' => $fresult ?? [],
+            'img_list' => $img_list ?? [],
+        ];
+        return view("admin/_promotion/write", $data);
+    }
+
+    public function write_ok($idx = null)
+    {
+        try {
+            $files = $this->request->getFiles();
+            $data['title']  = updateSQ($_POST["title"] ?? '');
+            
+            $publicPath = ROOTPATH . '/public/data/promotion/';
+
+            for ($i = 1; $i <= 2; $i++) {
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
+                ${"checkImg_" . $i} = $this->request->getPost("m_checkImg_" . $i);
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                    $this->promotionList->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                }
+
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["rfile$i"] = $file->getClientName();
+                    $data["ufile$i"] = $file->getRandomName();
+                    $file->move($publicPath, $data["ufile$i"]);
+                }
+            }
+
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+
+            $files = $this->request->getFileMultiple('ufile') ?? [];
+
+            if ($idx) {
+                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $this->promotionList->updateData($idx, $data);
+
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
+
+                        if (!empty($i_idx)) {
+                            $this->promotionImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+                
+                            if (!empty($i_idx)) {
+                                $this->promotionImg->updateData($i_idx, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            } else {
+                                $this->promotionImg->insertData([
+                                    "promotion_idx" => $idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
+
+            } else {
+
+                $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $insertId = $this->promotionList->insertData($data);
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->promotionImg->insertData([
+                                "promotion_idx" => $insertId,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
+
+            }
+
+            if ($idx) {
+                $message = "수정되었습니다.";
+                return "<script>
+                    alert('$message');
+                    parent.location.reload();
+                    </script>";
+            }
+
+            $message = "정상적인 등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_promotion/list';
+                </script>";
+
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_image()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->promotionImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_all_image()
+    {
+        try {
+            $request = service('request');
+            $imgData = $request->getJSON();
+    
+            if (!empty($imgData->arr_img)) {
+                foreach ($imgData->arr_img as $item) {
+                    $i_idx = $item->i_idx;
+
+                    $result = $this->promotionImg->updateData($i_idx, [
+                        'ufile' => '',
+                        'rfile' => ''
+                    ]);
+                    if (!$result) {
+                        $data = [
+                            'result' => false,
+                            'message' => '이미지 삭제 실패'
+                        ];
+                        return $this->response->setJSON($data, 400);
+                    }
+        
+                }
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     public function list_area()

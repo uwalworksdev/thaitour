@@ -3724,6 +3724,28 @@
     /* height: 210px; */
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+}
+
+.product-card-item-left .product-card-label-list {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 3px;
+}
+
+.product-card-item-left .product-card-label-list .product-card-label {
+    background-color: #000;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* .custom-product-golf .product-card-item-container {
@@ -6666,4 +6688,11 @@ span.left_space {
 
 .content-sub-product-hotel {
     font-family: 'NotoSansCJKkr';
+
+.sec2-item-card .tours-name-en {
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 20px !important;
+    margin-top: 5px;
+
 }

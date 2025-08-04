@@ -377,7 +377,13 @@
                             data-option-count="<?= $tour['total_check_price'] ?>">
                             <div class="text-content-1">
                                 <div>
-                                    <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
+                                    <h3>
+                                        <?= $tour['tours_subject'] ?>
+                                        <br>
+                                        <p class="tours-name-en">
+                                            <?= $tour['tours_subject_eng'] ?>
+                                        </p>
+                                    </h3>
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 </div>
                                 <p><?= viewSQ($tour['tours_desc']) ?></p>

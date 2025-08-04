@@ -186,6 +186,15 @@
                                     <a href="/product-tours/item_view/<?= $product["product_idx"] ?>">
                                         <img style="height: 100%;" src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
+                                    <div class="product-card-label-list">
+                                        <?php
+                                            foreach($product["label_list"] as $label){
+                                        ?>
+                                            <div class="product-card-label" style="background-color: <?=$label["color"] ?>"><?=$label["code_name"]?></div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="product-card-item-right">
                                     <div class="title-container">

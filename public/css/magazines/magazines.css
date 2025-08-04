@@ -1,5 +1,13 @@
 .magazines_page_ {}
-
+.sect_ttl_box {
+    margin-top: 70px;
+    margin-bottom: 60px;
+}
+.sect_ttl_box h2 {
+    font-size: 30px;
+    text-align: center;
+    line-height: 1.4;
+}
 .text_truncate_ {
     display: -webkit-box !important;
     -webkit-line-clamp: 1;

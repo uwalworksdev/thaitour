@@ -91,7 +91,7 @@ $(document).ready(function() {
                 <input type="hidden" name="product_code_4" value=""> 
                 <input type="hidden" name="order_status" id="order_status" value="B">
 
-                <input type="hidden" name="order_date" id="order_date" value="">
+                <input type="hidden" name="order_date" id="order_date" value="<?=date('y-m-d')?>">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
@@ -1565,111 +1565,108 @@ $(document).ready(function() {
             calculatePrice();
         }
 
-        function getOptions() {
-            const golf_date = $("#order_date").val();
-            const hole_cnt  = $('.tag-js.active').data('tab') + '홀';
-            const hour = $('.day_option.active').data('type');
+		function getOptions() {
+			let golf_date = $("#order_date").val();
+
+			// NaN-NaN-NaN 체크 및 오늘 날짜로 대체
+			if (!golf_date || golf_date.includes("NaN")) {
+				const today = new Date();
+				const year = today.getFullYear();
+				const month = ('0' + (today.getMonth() + 1)).slice(-2);
+				const day = ('0' + today.getDate()).slice(-2);
+				golf_date = `${year}-${month}-${day}`;
+				$("#order_date").val(golf_date);
+			}
+
+			//alert('golf_date- ' + golf_date);
+
+			const hole_cnt = $('.tag-js.active').data('tab') + '홀';
+			const hour = $('.day_option.active').data('type');
 
 			$("#hole_cnt").val(hole_cnt);
-            $("#hour").val(hour);
-            //alert(golf_date+' - '+hole_cnt+' - '+hour);
-            if (!hole_cnt || !hour) {
-                return false;
-            }
-            $.ajax({
-                type: "GET",
-                url: "/product-golf/option-price/<?= $product['product_idx'] ?>",
-                data: {
-                    golf_date,
-                    hole_cnt,
-                    hour,
-                },
-                success: function (data) {
-                    $('#final_option_list').html(data);
-                    
-                    $("#final_option_list .card-item").eq(0).trigger("click");
-                    
-					var idx                 = $(".card-item").data('idx');
-                    var day_yn              = $(".card-item").data('o_day_yn');
-                    var night_yn            = $(".card-item").data('o_night_yn');
-                    var afternoon_yn        = $(".card-item").data('o_afternoon_yn');
-					var vehicle_price1_won  = $(".card-item").data('vehicle_price1_won');
-					var vehicle_price2_won  = $(".card-item").data('vehicle_price2_won');
-					var vehicle_price3_won  = $(".card-item").data('vehicle_price3_won');
+			$("#hour").val(hour);
+			//alert(golf_date + ' - ' + hole_cnt + ' - ' + hour);
+
+			if (!hole_cnt || !hour) {
+				return false;
+			}
+
+			$.ajax({
+				type: "GET",
+				url: "/product-golf/option-price/<?= $product['product_idx'] ?>",
+				data: {
+					golf_date,
+					hole_cnt,
+					hour,
+				},
+				success: function (data) {
+					$('#final_option_list').html(data);
+					$("#final_option_list .card-item").eq(0).trigger("click");
+
+					var idx = $(".card-item").data('idx');
+					var day_yn = $(".card-item").data('o_day_yn');
+					var night_yn = $(".card-item").data('o_night_yn');
+					var afternoon_yn = $(".card-item").data('o_afternoon_yn');
+					var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
+					var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
+					var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
 					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
 					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
 					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
-					
-                    $("#option_idx").val( $(".card-item").data('idx') );
 
-                    const $trip_type1 = $("#trip_type1");
-                    const $trip_type2 = $("#trip_type2");
-                    const $trip_type3 = $("#trip_type3");
-					
-					const $select_1   = $("#vehicle_1");
-					const $select_2   = $("#vehicle_2");
-					const $select_3   = $("#vehicle_3");
+					$("#option_idx").val(idx);
 
-					$trip_type1.attr("data-idx",       $(".card-item").data('idx'));
-					$trip_type2.attr("data-idx",       $(".card-item").data('idx'));
-					$trip_type3.attr("data-idx",       $(".card-item").data('idx'));
+					const $trip_type1 = $("#trip_type1");
+					const $trip_type2 = $("#trip_type2");
+					const $trip_type3 = $("#trip_type3");
+					const $select_1 = $("#vehicle_1");
+					const $select_2 = $("#vehicle_2");
+					const $select_3 = $("#vehicle_3");
 
-					// 원하는 data-* 속성들을 이동
-					$select_1.attr("data-idx",         $(".card-item").data('idx'));
-					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1_won'));
-					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_price1_baht'));
-					
-					$select_2.attr("data-idx",         $(".card-item").data('idx'));
-					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2_won'));
-					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_baht'));
-					
-					$select_3.attr("data-idx",         $(".card-item").data('idx'));
-					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
-					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_baht'));
+					$trip_type1.attr("data-idx", idx);
+					$trip_type2.attr("data-idx", idx);
+					$trip_type3.attr("data-idx", idx);
 
-                    $("#o_cart_due").val( $(".card-item").data('o_cart_due') );
-                    $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
-                    $("#o_cart_cont").val( $(".card-item").data('o_cart_cont') );
-                    $("#o_caddy_cont").val( $(".card-item").data('o_caddy_cont') );
-                    
+					$select_1.attr("data-idx", idx).attr("data-price", vehicle_price1_won).attr("data-price_baht", vehicle_price1_baht);
+					$select_2.attr("data-idx", idx).attr("data-price", vehicle_price2_won).attr("data-price_baht", vehicle_price2_baht);
+					$select_3.attr("data-idx", idx).attr("data-price", vehicle_price3_won).attr("data-price_baht", vehicle_price3_baht);
+
+					$("#o_cart_due").val($(".card-item").data('o_cart_due'));
+					$("#o_caddy_due").val($(".card-item").data('o_caddy_due'));
+					$("#o_cart_cont").val($(".card-item").data('o_cart_cont'));
+					$("#o_caddy_cont").val($(".card-item").data('o_caddy_cont'));
 
 					if (day_yn == "Y") {
-                        $(".day_option_first").show();
-                    } else { 
-                        $(".day_option_first").hide();
-                    }
-					
-					if (night_yn == "Y") {
-                        $(".day_option_second").show();
-                    } else { 
-                        $(".day_option_second").hide();
-                    }
-					
-					if (afternoon_yn == "Y") {
-                        $(".day_option_third").show();
-                    } else {  
-                        $(".day_option_third").hide();
+						$(".day_option_first").show();
+					} else {
+						$(".day_option_first").hide();
 					}
-					
-                    //    $(".day_option_first").addClass('active');
-                    //    $(".day_option_second").removeClass('active');
-                    //    $(".day_option_second").hide();
-                    //}
 
-                    if (hour == "day") {
-                        $("#time_type").text('주간');
-                    } else if (hour == "afternoon") {
-                        $("#time_type").text('오후');
-                    } else {
-                        $("#time_type").text('야간');
-                    }
+					if (night_yn == "Y") {
+						$(".day_option_second").show();
+					} else {
+						$(".day_option_second").hide();
+					}
 
-                    showHideCaddy();
+					if (afternoon_yn == "Y") {
+						$(".day_option_third").show();
+					} else {
+						$(".day_option_third").hide();
+					}
 
-                    calculatePrice();
-                }
-            })
-        }
+					if (hour == "day") {
+						$("#time_type").text('주간');
+					} else if (hour == "afternoon") {
+						$("#time_type").text('오후');
+					} else {
+						$("#time_type").text('야간');
+					}
+
+					showHideCaddy();
+					calculatePrice();
+				}
+			});
+		}
 
         function changePeople() {
 			
@@ -2029,10 +2026,9 @@ function updateOptionFields(res) {
             daysInCurrentMonth.forEach(e => {
 
                 var selPrice = $("#selPrice").val();
-				//alert(selPrice);
 				var Price = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
-
+ 
                 var idx = -1;
 
                 if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
@@ -2047,9 +2043,10 @@ function updateOptionFields(res) {
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
 
-                const active = selAmt !== "-" ? "on" : "";
+                var active = selAmt !== "-" ? "on" : "";
+                if(calDate == "<?=date('Y-m-d')?>") active = "on";
 
-                $(".calendar-swiper-wrapper").append(`
+				$(".calendar-swiper-wrapper").append(`
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
                     <div class="day ${active}" day_${e.dayOfMonth}">

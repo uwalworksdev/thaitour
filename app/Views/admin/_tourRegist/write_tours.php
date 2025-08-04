@@ -869,6 +869,29 @@
                                     </td>
                                 </tr>
 
+                                                                <tr>
+                                    <th>라벨</th>
+                                    <td colspan="3">
+                                        <?php
+                                            $i = 1;
+                                            foreach($label_list as $label){
+                                        ?>
+                                            <label for="label_category_<?=$i?>">
+                                                <input type="checkbox" name="label_category[]" id="label_category_<?=$i?>"
+                                                    <?php
+                                                        if (strpos($label_category, $label["code_no"]) !== false) {
+                                                            echo "checked";
+                                                        } 
+                                                    ?> value="<?=$label["code_no"]?>"/>
+                                                <?=$label["code_name"]?>
+                                            </label>
+                                        <?php
+                                            $i++;
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <th>최소 예약 및 출발 안내</th>
                                     <td colspan="3">
@@ -1071,18 +1094,20 @@
                                                     $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                     // $img ="/data/product/" . ${"ufile" . $i};
                                                     ?>
-                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                            onchange="productImageMainPreview(this, '<?= $i ?>')">
-                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                        <button type="button" class="remove_btn"
-                                                                onclick="productImageMainPreviewRemove(this)"></button>
-                                                        <?php if(${"ufile" . $i}) { ?>		
-                                                            <a class="img_txt imgpop" href="<?= $img ?>"
-                                                            id="text_ufile<?= $i ?>">미리보기</a>
-                                                        <?php } ?>   
-
+                                                    <div class="file_input_wrap">
+                                                        <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                                onchange="productImageMainPreview(this, '<?= $i ?>')">
+                                                            <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                            <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                            <button type="button" class="remove_btn"
+                                                                    onclick="productImageMainPreviewRemove(this)"></button>
+                                                            <?php if(${"ufile" . $i}) { ?>		
+                                                                <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                            <?php } ?>   
+    
+                                                        </div>
                                                     </div>
                                                 <?php
                                                 endfor;
