@@ -236,7 +236,7 @@
                                     <td colspan="4">
                                         <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                             <p>방콕 필수 코스 5가지</p>
-                                            <button type="button" class="btn btn-primary" onclick="add_area_product();" style="margin: unset;">추가</button>
+                                            <button type="button" class="btn btn-primary" onclick="add_area_product(this);" style="margin: unset;">추가</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -289,7 +289,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
-                                                            <button type="button" onclick="del_area_product();" class="btn btn-danger">삭제</button>
+                                                            <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
                                                         </div>
                                                     </td>
                                                 </tr>               
@@ -473,7 +473,7 @@
 
 <script>
 
-    function add_area_product() {        
+    function add_area_product(button) {        
 
         let count = $('.area_wrap').length - 1;
         count = count + 1;
@@ -513,6 +513,10 @@
 
         $(".tbl_area_product tbody").append(html);
 
+    }
+
+    function del_area_product(button) {
+        $(button).closest("tr").remove();
     }
 
     function add_promotion_product(button) {        
@@ -558,6 +562,10 @@
 
         $(button).closest("table").find(".tbl_promotion_product tbody").append(html);
 
+    }
+
+    function del_promotion_product(button) {
+        $(button).closest("tr").remove();
     }
 
     function delete_all_image() {
