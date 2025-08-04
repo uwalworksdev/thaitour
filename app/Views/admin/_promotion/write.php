@@ -538,7 +538,7 @@
         let category_code_1 = $(button).closest("table").data("category_code_1");
         let category_code_2 = $(button).closest("table").data("category_code_2");
         let count = $(button).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
-        count = count + 1;
+        count = count + 2;
         
         let html = `
             <tr class="promotion_product">
