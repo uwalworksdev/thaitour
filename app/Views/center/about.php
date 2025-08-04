@@ -16,6 +16,11 @@ $setting = homeSetInfo();
             top: 60%;
         }
 
+        #sub_container {
+            padding-top: 0;
+            padding-bottom: 100px;
+            position: relative;
+        }
         @media screen and (min-width: 1921px) {
             .side-bar-inc {
                 top: 57%;
