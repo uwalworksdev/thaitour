@@ -1516,47 +1516,33 @@ class ProductModel extends Model
         }
 
         if (!empty($where['arr_search_txt'])) {
-            $raw = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $words = preg_split('/\s+/', $raw, -1, PREG_SPLIT_NO_EMPTY);
-            $conditions = [];
-            foreach ($words as $word) {
-                $escaped = $this->db->escapeLikeString($word);
-                $likePattern = "%{$escaped}%";
-                $conditions[] = "(product_name LIKE {$builder->escape($likePattern)} OR product_name_en LIKE {$builder->escape($likePattern)} OR keyword LIKE {$builder->escape($likePattern)})";
+            $builder->groupStart();
+            // $str_search_txt = trim($where['arr_search_txt']);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                // $builder->orLike('product_name_en', $escapedTxt);
+                // $builder->orLike('keyword', $escapedTxt);
+
+                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
             }
-            if (!empty($conditions)) {
-                $builder->where('(' . implode(' AND ', $conditions) . ')');
-            }
+            $builder->groupEnd();
         }
-
-        // if (!empty($where['arr_search_txt'])) {
-        //     $builder->groupStart();
-        //     // $str_search_txt = trim($where['arr_search_txt']);
-        //     // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-
-        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-
-        //     foreach ($arr_search_txt as $index => $txt) {
-
-        //         if ($index > 0) {
-        //             $builder->orGroupStart();
-        //         }
-
-        //         $escapedTxt = $this->db->escapeLikeString($txt);
-        //         $builder->like('product_name', $escapedTxt);
-        //         $builder->orLike('product_name_en', $escapedTxt);
-        //         $builder->orLike('keyword', $escapedTxt);
-
-        //         // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-        //         // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
-
-        //         if ($index > 0) {
-        //             $builder->groupEnd();
-        //         }
-        //     }
-        //     $builder->groupEnd();
-        // }
 
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
