@@ -625,7 +625,7 @@
 
         if(arr_img.length > 0){
             $.ajax({
-                url: "/AdmMaster/_hotel/del_all_image",
+                url: "/AdmMaster/_promotion/del_all_image",
                 type: "POST",
                 data: JSON.stringify({ arr_img: arr_img }),
                 contentType: "application/json",
@@ -727,7 +727,7 @@
                 }
     
                 $.ajax({
-                    url: "/AdmMaster/_hotel/del_image",
+                    url: "/AdmMaster/_promotion/del_image",
                     type: "POST",
                     data: { "i_idx": i_idx },
                     success: function (data) {
