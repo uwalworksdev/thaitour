@@ -13,6 +13,7 @@ class AdminPromotionController extends BaseController
     protected $productPromotion;
     protected $codeModel;
     protected $promotionList;
+    protected $promotionImg;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class AdminPromotionController extends BaseController
         $this->productPromotion = model("ProductPromotion");
         $this->codeModel        = model("Code");
         $this->promotionList    = model("PromotionList");
+        $this->promotionImg     = model("PromotionImg");
     }
 
     public function list()
@@ -70,6 +72,7 @@ class AdminPromotionController extends BaseController
 
         if ($idx) {
             $row = $this->promotionList->find($idx);
+            $img_list = $this->promotionImg->getImg($idx);
         }
 
         $data = [
@@ -79,11 +82,12 @@ class AdminPromotionController extends BaseController
             'search_category' => $search_category,
             'row' => $row ?? [],
             'fresult' => $fresult ?? [],
+            'img_list' => $img_list ?? [],
         ];
         return view("admin/_promotion/write", $data);
     }
 
-        public function write_ok($idx = null)
+    public function write_ok($idx = null)
     {
         try {
             $files = $this->request->getFiles();
@@ -106,16 +110,75 @@ class AdminPromotionController extends BaseController
                 }
             }
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+
+            $files = $this->request->getFileMultiple('ufile') ?? [];
+
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->promotionList->updateData($idx, $data);
+
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
+
+                        if (!empty($i_idx)) {
+                            $this->promotionImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+                
+                            if (!empty($i_idx)) {
+                                $this->promotionImg->updateData($i_idx, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            } else {
+                                $this->promotionImg->insertData([
+                                    "promotion_idx" => $idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
 
             } else {
 
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $insertId = $this->promotionList->insertData($data);
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->promotionImg->insertData([
+                                "promotion_idx" => $insertId,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
+
             }
 
             if ($idx) {
