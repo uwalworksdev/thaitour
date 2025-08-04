@@ -584,6 +584,29 @@
         $(button).closest("tr").remove();
     }
 
+    function add_sub_image() {        
+
+        let i = Date.now();
+        
+        let html = `
+            <div class="file_input_wrap">
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}" multiple
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
+            </div>
+        `;
+
+        $(".img_add_group").append(html);
+
+    }
+
     function delete_all_image() {
         if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;
