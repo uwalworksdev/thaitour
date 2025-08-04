@@ -797,7 +797,7 @@
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="select_product[]"
+                                                        <input type="checkbox" name="label_category[]"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
@@ -869,7 +869,7 @@
                                     </td>
                                 </tr>
 
-                                                                <tr>
+                               <!-- <tr>
                                     <th>라벨</th>
                                     <td colspan="3">
                                         <?php
@@ -890,7 +890,7 @@
                                             }
                                         ?>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>최소 예약 및 출발 안내</th>
