@@ -1098,6 +1098,25 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
+
+            if(!empty($value['label_category'])){
+                $arr_category = explode(",", $value['label_category']);
+
+                $arr_category = array_filter($arr_category, function($value) {
+                    return trim($value) !== '';
+                });
+
+                $arr_category = array_reverse($arr_category);
+
+                $label_category = [];
+
+                foreach ($arr_category as $category) {
+                    $row_code = $this->codeModel->getByCodeNo($category);
+                    array_push($label_category, $row_code);
+                }
+
+                $items[$key]['label_list'] = $label_category;
+            }
         }
 
         $today = date("Y-m-d");
