@@ -484,7 +484,7 @@ class AdminSpaController extends BaseController
                 $data['worker_id']   = session()->get('member')['id'];
                 $data['worker_name'] = session()->get('member')['name'];
 
-                $this->productModel->update($product_idx, $data);
+                $this->productModel->updateData($product_idx, $data);
 
                 if (count($files) > 40) {
                     $message = "40개 이미지로 제한이 있습니다.";

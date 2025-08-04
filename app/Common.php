@@ -956,8 +956,8 @@ function updateSQ($textToFilter)
         $textToFilter = str_replace('delete', 'delet&#101', $textToFilter);
         $textToFilter = str_replace('update', 'updat&#101', $textToFilter);
         $textToFilter = str_replace('set', 's&#101t', $textToFilter);
-        $textToFilter = str_replace('flush', 'fl&#117sh', $textToFilter);
-        $textToFilter = str_replace("'", "''", $textToFilter);
+        $textToFilter = str_replace('flush', 'fl&#117sh', subject: $textToFilter);
+        // $textToFilter = str_replace("'", "''", $textToFilter);
         $textToFilter = str_replace('"', "&#34", $textToFilter);
         $textToFilter = str_replace('>', "&gt;", $textToFilter);
         $textToFilter = str_replace('<', "&lt;", $textToFilter);
