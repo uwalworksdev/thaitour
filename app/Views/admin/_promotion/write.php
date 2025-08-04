@@ -164,7 +164,7 @@
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
                                             <?php
-                                                $i = 2;
+                                                $i = 3;
                                                 foreach ($img_list as $img) :
                                                     $s_img = "/data/promotion/" . $img["ufile"];
                                             ?>
