@@ -3729,8 +3729,8 @@
 
 .product-card-item-left .product-card-label-list {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     display: flex;
     gap: 3px;
 }
@@ -3738,9 +3738,9 @@
 .product-card-item-left .product-card-label-list .product-card-label {
     background-color: #000;
     color: #fff;
-    padding: 4px 8px;
+    padding: 5px 8px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
