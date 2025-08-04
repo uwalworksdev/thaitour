@@ -791,9 +791,8 @@
                                     <td colspan="3">
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                            $_product_theme_arr = isset($label_category) ? explode("|", $label_category) : [];
+                                            $_product_theme_arr = isset($label_category) ? explode(",", $label_category) : [];
                                             $_product_theme_arr = array_filter($_product_theme_arr);
-                                            var_dump($_product_theme_arr);
                                             ?>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <div class="checkbox-item">
