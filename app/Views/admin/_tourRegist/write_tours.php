@@ -791,7 +791,7 @@
                                     <td colspan="3">
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
+                                            $_product_theme_arr = isset($label_category) ? explode("|", $label_category) : [];
                                             $_product_theme_arr = array_filter($_product_theme_arr);
                                             ?>
                                             <?php foreach ($pthemes as $item) { ?>
