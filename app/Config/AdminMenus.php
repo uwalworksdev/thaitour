@@ -137,30 +137,30 @@ class AdminMenus extends BaseConfig
                     'url' => ['/AdmMaster/_promotion/list'],
                     'alias' => ['AdminPromotionController::list', 'AdminPromotionController::write']
                 ],
-                [
-                    'name' => '방콕 필수 코스 5가지',
-                    'code' => 'L2',
-                    'url' => ['/AdmMaster/_promotion/list_area'],
-                    'alias' => ['AdminPromotionController::list_area', 'AdminPromotionController::write_area']
-                ],
-                [
-                    'name' => '호텔 & 리조트',
-                    'code' => 'L3',
-                    'url' => ['/AdmMaster/_promotion/list_product?type=hotel'],
-                    'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
-                ],
-                [
-                    'name' => '투어',
-                    'code' => 'L4',
-                    'url' => ['/AdmMaster/_promotion/list_product?type=tour'],
-                    'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
-                ],
-                [
-                    'name' => '골프',
-                    'code' => 'L5',
-                    'url' => ['/AdmMaster/_promotion/list_product?type=golf'],
-                    'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
-                ],
+                // [
+                //     'name' => '방콕 필수 코스 5가지',
+                //     'code' => 'L2',
+                //     'url' => ['/AdmMaster/_promotion/list_area'],
+                //     'alias' => ['AdminPromotionController::list_area', 'AdminPromotionController::write_area']
+                // ],
+                // [
+                //     'name' => '호텔 & 리조트',
+                //     'code' => 'L3',
+                //     'url' => ['/AdmMaster/_promotion/list_product?type=hotel'],
+                //     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
+                // ],
+                // [
+                //     'name' => '투어',
+                //     'code' => 'L4',
+                //     'url' => ['/AdmMaster/_promotion/list_product?type=tour'],
+                //     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
+                // ],
+                // [
+                //     'name' => '골프',
+                //     'code' => 'L5',
+                //     'url' => ['/AdmMaster/_promotion/list_product?type=golf'],
+                //     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
+                // ],
             ]
         ],
         [
