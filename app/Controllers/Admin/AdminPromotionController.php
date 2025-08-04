@@ -100,7 +100,7 @@ class AdminPromotionController extends BaseController
 
                 ${"checkImg_" . $i} = $this->request->getPost("m_checkImg_" . $i);
                 if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
-                    $this->areaPromotion->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                    $this->promotionList->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
