@@ -300,7 +300,6 @@
                             </tbody>
                         </table>
                         <?php
-                            $count = 1;
                             foreach ($fresult as $code_parent) {
                         ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -323,6 +322,7 @@
                                     <tr>
                                         <td colspan="4">
                                             <?php
+                                                $count = 1;
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
                                             ?>
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
