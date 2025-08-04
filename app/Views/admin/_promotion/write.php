@@ -326,7 +326,7 @@
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
                                             ?>
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                                    style="table-layout:fixed;">
+                                                    style="table-layout:fixed;" data-category_code_1="<?= $code_parent['code_no'] ?>" data-category_code_2="<?= $code_child['code_no'] ?>">
         
                                                 <colgroup>
                                                     <col width="10%" />
@@ -346,7 +346,7 @@
                                                     <tr>
                                                         <td colspan="4">
                                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_promotion_product"
-                                                                style="table-layout:fixed;" data-category_code_1="<?= $code_parent['code_no'] ?>" data-category_code_2="<?= $code_child['code_no'] ?>">
+                                                                style="table-layout:fixed;">
                         
                                                                 <colgroup>
                                                                     <col width="20%" />
@@ -383,9 +383,9 @@
                                                                             <div class="img_add flex_c_c">                                                   
                                                                                 <div class="file_input_wrap">
                                                                                     <div class="file_input">
-                                                                                        <input type="file" name='product_ufile[]' id="product_ufile_<?=$count?>"
+                                                                                        <input type="file" name='product_ufile[]' id="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
                                                                                             onchange="productImagePreview(this, '')">
-                                                                                        <label for="product_ufile_<?=$count?>"></label>
+                                                                                        <label for="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"></label>
                                                                                         <input type="hidden" name="product_checkImg[]" class="checkImg">
                                                                                         <button type="button" class="remove_btn"
                                                                                             onclick="productImagePreviewRemove(this)"></button>
@@ -535,8 +535,9 @@
     }
 
     function add_promotion_product(button) {        
-
-        let count = $(".promotion_product").length - 1;
+        let category_code_1 = $(button).closest("table").data("category_code_1");
+        let category_code_2 = $(button).closest("table").data("category_code_2");
+        let count = $(button).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
         count = count + 1;
         
         let html = `
@@ -554,9 +555,9 @@
                     <div class="img_add flex_c_c">                                                   
                         <div class="file_input_wrap">
                             <div class="file_input">
-                                <input type="file" name='product_ufile[]' id="product_ufile_${count}"
+                                <input type="file" name='product_ufile[]' id="product_ufile_${category_code_2}_${count}"
                                     onchange="productImagePreview(this, '')">
-                                <label for="product_ufile_${count}"></label>
+                                <label for="product_ufile_${category_code_2}_${count}"></label>
                                 <input type="hidden" name="product_checkImg[]" class="checkImg">
                                 <button type="button" class="remove_btn"
                                     onclick="productImagePreviewRemove(this)"></button>
