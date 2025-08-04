@@ -236,14 +236,14 @@
                                     <td colspan="4">
                                         <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                             <p>방콕 필수 코스 5가지</p>
-                                            <button type="button" class="btn btn-primary" style="margin: unset;">추가</button>
+                                            <button type="button" class="btn btn-primary" onclick="add_area_product();" style="margin: unset;">추가</button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4">
 
-                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_area_product"
                                             style="table-layout:fixed;">
     
                                             <colgroup>
@@ -263,7 +263,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <tr class="area_wrap">
                                                     <td>
                                                         <input type="text" name="area_title[]" class="text">
                                                     </td>
@@ -274,10 +274,10 @@
                                                         <div class="img_add flex_c_c">                                                   
                                                             <div class="file_input_wrap">
                                                                 <div class="file_input">
-                                                                    <input type="file" name='area_ufile' id="area_ufile"
+                                                                    <input type="file" name='area_ufile[]' id="area_ufile"
                                                                         onchange="productImagePreview(this, '')">
                                                                     <label for="area_ufile"></label>
-                                                                    <input type="hidden" name="area_checkImg" class="checkImg">
+                                                                    <input type="hidden" name="area_checkImg[]" class="checkImg">
                                                                     <button type="button" class="remove_btn"
                                                                         onclick="productImagePreviewRemove(this)"></button>
                                                                 </div>
@@ -289,7 +289,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
-                                                            <button type="button" class="btn btn-danger">삭제</button>
+                                                            <button type="button" onclick="del_area_product();" class="btn btn-danger">삭제</button>
                                                         </div>
                                                     </td>
                                                 </tr>               
@@ -333,13 +333,13 @@
                                                     <td colspan="4">
                                                         <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
                                                             <p>럭셔리 호텔</p>
-                                                            <button type="button" class="btn btn-primary" style="margin: unset;">추가</button>
+                                                            <button type="button" class="btn btn-primary" onclick="add_promotion_product(this);" style="margin: unset;">추가</button>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">
-                                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_promotion_product"
                                                             style="table-layout:fixed;">
                     
                                                             <colgroup>
@@ -361,7 +361,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="promotion_product">
                                                                     <td>
                                                                         <input type="text" name="product_title[]" class="text">
                                                                     </td>
@@ -375,10 +375,10 @@
                                                                         <div class="img_add flex_c_c">                                                   
                                                                             <div class="file_input_wrap">
                                                                                 <div class="file_input">
-                                                                                    <input type="file" name='area_ufile' id="area_ufile"
+                                                                                    <input type="file" name='product_ufile[]' id="product_ufile"
                                                                                         onchange="productImagePreview(this, '')">
-                                                                                    <label for="area_ufile"></label>
-                                                                                    <input type="hidden" name="area_checkImg" class="checkImg">
+                                                                                    <label for="product_ufile"></label>
+                                                                                    <input type="hidden" name="product_checkImg[]" class="checkImg">
                                                                                     <button type="button" class="remove_btn"
                                                                                         onclick="productImagePreviewRemove(this)"></button>
                                                                                 </div>
@@ -386,11 +386,11 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" name="area_onum[]" class="text">
+                                                                        <input type="text" name="product_onum[]" class="text">
                                                                     </td>
                                                                     <td>
                                                                         <div class="flex_c_c">
-                                                                            <button type="button" class="btn btn-danger">삭제</button>
+                                                                            <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
                                                                         </div>
                                                                     </td>
                                                                 </tr>               
@@ -473,26 +473,90 @@
 
 <script>
 
-    function add_sub_image() {        
+    function add_area_product() {        
 
-        let i = Date.now();
+        let count = $('.area_wrap').length - 1;
+        count = count + 1;
         
         let html = `
-            <div class="file_input_wrap">
-                <div class="file_input">
-                    <input type="hidden" name="i_idx[]" value="">
-                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
-                    <input type="file" name='ufile[]' id="ufile${i}" multiple
-                            onchange="productImagePreview(this, '${i}')">
-                    <label for="ufile${i}"></label>
-                    <input type="hidden" name="checkImg_${i}" class="checkImg">
-                    <button type="button" class="remove_btn"
-                            onclick="productImagePreviewRemove(this)"></button>
-                </div>
-            </div>
+            <tr class="area_wrap">
+                <td>
+                    <input type="text" name="area_title[]" class="text">
+                </td>
+                <td>
+                    <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                </td>
+                <td>
+                    <div class="img_add flex_c_c">                                                   
+                        <div class="file_input_wrap">
+                            <div class="file_input">
+                                <input type="file" name='area_ufile[]' id="area_ufile_${count}"
+                                    onchange="productImagePreview(this, '')">
+                                <label for="area_ufile_${count}"></label>
+                                <input type="hidden" name="area_checkImg[]" class="checkImg">
+                                <button type="button" class="remove_btn"
+                                    onclick="productImagePreviewRemove(this)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" name="area_onum[]" class="text">
+                </td>
+                <td>
+                    <div class="flex_c_c">
+                        <button type="button" onclick="del_area_product();" class="btn btn-danger">삭제</button>
+                    </div>
+                </td>
+            </tr>           
         `;
 
-        $(".img_add_group").append(html);
+        $(".tbl_area_product tbody").append(html);
+
+    }
+
+    function add_promotion_product(button) {        
+
+        let count = $(this).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
+        count = count + 1;
+        
+        let html = `
+            <tr class="promotion_product">
+                <td>
+                    <input type="text" name="product_title[]" class="text">
+                </td>
+                <td>
+                    <input type="text" name="product_keyword[]" class="text">
+                </td>
+                <td>
+                    <input type="text" name="product_subtitle[]" class="text">
+                </td>
+                <td>
+                    <div class="img_add flex_c_c">                                                   
+                        <div class="file_input_wrap">
+                            <div class="file_input">
+                                <input type="file" name='product_ufile[]' id="product_ufile_${count}"
+                                    onchange="productImagePreview(this, '')">
+                                <label for="product_ufile_${count}"></label>
+                                <input type="hidden" name="product_checkImg[]" class="checkImg">
+                                <button type="button" class="remove_btn"
+                                    onclick="productImagePreviewRemove(this)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" name="product_onum[]" class="text">
+                </td>
+                <td>
+                    <div class="flex_c_c">
+                        <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                    </div>
+                </td>
+            </tr>        
+        `;
+
+        $(this).closest("table").find(".tbl_promotion_product tbody").append(html);
 
     }
 
