@@ -168,7 +168,7 @@
                                 <?php
                                     foreach($product["label_list"] as $label){
                                 ?>
-                                    <div class="product-card-label"><?=$label["code_name"]?></div>
+                                    <div class="product-card-label" style="background-color: <?=$label["color"] ?>"><?=$label["code_name"]?></div>
                                 <?php
                                     }
                                 ?>
