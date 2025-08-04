@@ -38,8 +38,12 @@ class ProductModel extends Model
         "use_time_line", "not_included_product", "guide_contents", "contents_field_more", "label_category"
     ];
 
-    protected function initialize()
+    protected $codeModel;
+
+    public function __construct()
     {
+        parent::__construct();
+        $this->codeModel = new Code();
     }
 
     public function getById($product_idx)
@@ -1895,6 +1899,23 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
+            if(!empty($value['label_category'])){
+                $arr_category = explode(",", $value['label_category']);
+
+                $arr_category = array_filter($arr_category, callback: function($value) {
+                    return trim($value) !== '';
+                });
+
+                $label_category = [];
+
+                foreach ($arr_category as $category) {
+                    $row_code = $this->codeModel->getByCodeNo($category);
+                    array_push($label_category, $row_code);
+                }
+
+                $items[$key]['label_list'] = $label_category;
+            }
+
         }
 		
         //write_log("golf last- ". $this->db->getLastQuery());

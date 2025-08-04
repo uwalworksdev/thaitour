@@ -3724,6 +3724,26 @@
     /* height: 210px; */
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+}
+
+.product-card-item-left .product-card-label-list {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    gap: 3px;
+}
+
+.product-card-item-left .product-card-label-list .product-card-label {
+    background-color: #000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* .custom-product-golf .product-card-item-container {
