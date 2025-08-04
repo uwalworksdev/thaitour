@@ -2022,6 +2022,9 @@ public function list_room_pricex()
         $data['product'] = $product;
         $data['category3'] = $category3;
 
+        $label_list = $this->codeModel->getByParentCode('63')->getResultArray();
+        $data['label_list'] = $label_list;
+
         $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);
     }

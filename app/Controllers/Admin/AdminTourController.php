@@ -186,6 +186,8 @@ class AdminTourController extends BaseController
             $minimun_reservation = updateSQ($_POST["minimun_reservation" ?? '']);
             $field_more_arr = $_POST["field_more"] ?? [];
 
+            $label_category = implode(",", $_POST['label_category'] ?? []);
+
             $field_more = "";
             for($j =0; $j< count($field_more_arr); $j++){
                 if($j == 0){
@@ -372,6 +374,7 @@ class AdminTourController extends BaseController
 			                ,worker_name            = '" . session()->get('member')['name'] ."'
                             ,field_more             = '" . $field_more ."'
                             ,contents_field_more    = '" . $contents_field_more ."'
+                            ,label_category			= '" . $label_category . "'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -573,6 +576,7 @@ class AdminTourController extends BaseController
 							,description            = '" . $description . "'
                             ,field_more             = '" . $field_more . "'
                             ,contents_field_more    = '" . $contents_field_more . "'
+                            ,label_category			= '" . $label_category . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";

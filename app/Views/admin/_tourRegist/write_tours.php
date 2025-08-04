@@ -869,6 +869,29 @@
                                     </td>
                                 </tr>
 
+                                                                <tr>
+                                    <th>라벨</th>
+                                    <td colspan="3">
+                                        <?php
+                                            $i = 1;
+                                            foreach($label_list as $label){
+                                        ?>
+                                            <label for="label_category_<?=$i?>">
+                                                <input type="checkbox" name="label_category[]" id="label_category_<?=$i?>"
+                                                    <?php
+                                                        if (strpos($label_category, $label["code_no"]) !== false) {
+                                                            echo "checked";
+                                                        } 
+                                                    ?> value="<?=$label["code_no"]?>"/>
+                                                <?=$label["code_name"]?>
+                                            </label>
+                                        <?php
+                                            $i++;
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <th>최소 예약 및 출발 안내</th>
                                     <td colspan="3">
