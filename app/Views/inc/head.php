@@ -9,7 +9,7 @@
     <meta content="<?= $setting['meta_keyword'] ?>" name="Keyword">
     <meta property="og:title" content="<?= $setting['og_title'] ?>">
     <meta property="og:description" content="<?= $setting['og_des'] ?>">
-    <!-- <meta property="og:image" content="/uploads/setting/<?= $setting['og_img'] ?>"> -->
+    <meta property="og:image" content="/uploads/setting/<?= $setting['og_img'] ?>">
     <meta property="og:url" content="<?= $setting['og_url'] ?>">
     <meta property="al:web:url" content="<?= $setting['og_url'] ?>">
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
