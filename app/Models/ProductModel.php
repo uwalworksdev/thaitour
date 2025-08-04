@@ -1902,7 +1902,7 @@ class ProductModel extends Model
             if(!empty($value['label_category'])){
                 $arr_category = explode(",", $value['label_category']);
 
-                $arr_category = array_filter($arr_category, callback: function($value) {
+                $arr_category = array_filter($arr_category, function($value) {
                     return trim($value) !== '';
                 });
 
