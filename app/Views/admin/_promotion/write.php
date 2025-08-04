@@ -299,111 +299,126 @@
                                 </tr>           
                             </tbody>
                         </table>
+                        <?php
+                            $count = 1;
+                            foreach ($fresult as $code_parent) {
+                        ?>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                style="table-layout:fixed;">
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                            style="table-layout:fixed;">
-
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="40%" />
-                                <col width="10%" />
-                                <col width="40%" />
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
-                                            <p>호텔 & 리조트</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                            style="table-layout:fixed;">
-    
-                                            <colgroup>
-                                                <col width="10%" />
-                                                <col width="40%" />
-                                                <col width="10%" />
-                                                <col width="40%" />
-                                            </colgroup>
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="4">
-                                                        <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
-                                                            <p>럭셔리 호텔</p>
-                                                            <button type="button" class="btn btn-primary" onclick="add_promotion_product(this);" style="margin: unset;">추가</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="4">
-                                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_promotion_product"
-                                                            style="table-layout:fixed;">
-                    
-                                                            <colgroup>
-                                                                <col width="20%" />
-                                                                <col width="*%" />
-                                                                <col width="20%" />
-                                                                <col width="10%" />
-                                                                <col width="10%" />
-                                                                <col width="10%" />
-                                                            </colgroup>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>제목</th>
-                                                                    <th>Keyword</th>
-                                                                    <th>부제</th>
-                                                                    <th>썸네일이미지</th>
-                                                                    <th>순위</th>
-                                                                    <th>관리</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr class="promotion_product">
-                                                                    <td>
-                                                                        <input type="text" name="product_title[]" class="text">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" name="product_keyword[]" class="text">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" name="product_subtitle[]" class="text">
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="img_add flex_c_c">                                                   
-                                                                            <div class="file_input_wrap">
-                                                                                <div class="file_input">
-                                                                                    <input type="file" name='product_ufile[]' id="product_ufile"
-                                                                                        onchange="productImagePreview(this, '')">
-                                                                                    <label for="product_ufile"></label>
-                                                                                    <input type="hidden" name="product_checkImg[]" class="checkImg">
-                                                                                    <button type="button" class="remove_btn"
-                                                                                        onclick="productImagePreviewRemove(this)"></button>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="40%" />
+                                    <col width="10%" />
+                                    <col width="40%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                                <p><?= $code_parent['code_name'] ?></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <?php
+                                                foreach ($code_parent['code_child_list'] as $code_child) {
+                                            ?>
+                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                    style="table-layout:fixed;">
+        
+                                                <colgroup>
+                                                    <col width="10%" />
+                                                    <col width="40%" />
+                                                    <col width="10%" />
+                                                    <col width="40%" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                                                <p><?= $code_child['code_name'] ?></p>
+                                                                <button type="button" class="btn btn-primary" onclick="add_promotion_product(this);" style="margin: unset;">추가</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_promotion_product"
+                                                                style="table-layout:fixed;" data-category_code_1="<?= $code_parent['code_no'] ?>" data-category_code_2="<?= $code_child['code_no'] ?>">
+                        
+                                                                <colgroup>
+                                                                    <col width="20%" />
+                                                                    <col width="*%" />
+                                                                    <col width="20%" />
+                                                                    <col width="10%" />
+                                                                    <col width="10%" />
+                                                                    <col width="10%" />
+                                                                </colgroup>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>제목</th>
+                                                                        <th>Keyword</th>
+                                                                        <th>부제</th>
+                                                                        <th>썸네일이미지</th>
+                                                                        <th>순위</th>
+                                                                        <th>관리</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="promotion_product">
+                                                                        <td>
+                                                                            <input type="hidden" name="category_code_1[]" class="category_code_1" value="<?= $code_parent['code_no'] ?>">
+                                                                            <input type="hidden" name="category_code_2[]" class="category_code_2" value="<?= $code_child['code_no'] ?>">
+                                                                            <input type="text" name="product_title[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_keyword[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_subtitle[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="img_add flex_c_c">                                                   
+                                                                                <div class="file_input_wrap">
+                                                                                    <div class="file_input">
+                                                                                        <input type="file" name='product_ufile[]' id="product_ufile_<?=$count?>"
+                                                                                            onchange="productImagePreview(this, '')">
+                                                                                        <label for="product_ufile_<?=$count?>"></label>
+                                                                                        <input type="hidden" name="product_checkImg[]" class="checkImg">
+                                                                                        <button type="button" class="remove_btn"
+                                                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" name="product_onum[]" class="text">
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="flex_c_c">
-                                                                            <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>               
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>           
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>           
-                            </tbody>
-                        </table>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_onum[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="flex_c_c">
+                                                                                <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>               
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>           
+                                                </tbody>
+                                            </table>
+                                            <?php
+                                                $count++;
+                                                }
+                                            ?>
+                                        </td>
+                                    </tr>           
+                                </tbody>
+                            </table>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </form>
 
@@ -521,7 +536,7 @@
 
     function add_promotion_product(button) {        
 
-        let count = $(button).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
+        let count = $(".promotion_product").length - 1;
         count = count + 1;
         
         let html = `

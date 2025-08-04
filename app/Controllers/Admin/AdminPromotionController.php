@@ -59,6 +59,15 @@ class AdminPromotionController extends BaseController
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
 
+        $fresult = $this->codeModel->whereIn('code_no', ['6201', '6202', '6203'])
+                            ->where('status', 'Y')
+                            ->orderBy('onum', 'ASC')
+                            ->orderBy('code_idx', 'ASC')->findAll();
+
+        foreach ($fresult as $key => $value) {
+            $fresult[$key]["code_child_list"] = $this->codeModel->getByParentCode($value["code_no"])->getResultArray();
+        }
+
         if ($idx) {
             $row = $this->promotionList->find($idx);
         }
@@ -69,6 +78,7 @@ class AdminPromotionController extends BaseController
             'search_name' => $search_name,
             'search_category' => $search_category,
             'row' => $row ?? [],
+            'fresult' => $fresult ?? [],
         ];
         return view("admin/_promotion/write", $data);
     }
