@@ -35,11 +35,15 @@ class ProductModel extends Model
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
         "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_won_bath", "room_guides", 
 	    "important_notes", "note_news", "worker_id", "worker_name", "description", "tour_group", "company_name", "company_contact", "company_url", "company_notes",
-        "use_time_line", "not_included_product", "guide_contents", "contents_field_more"
+        "use_time_line", "not_included_product", "guide_contents", "contents_field_more", "label_category"
     ];
 
-    protected function initialize()
+    protected $codeModel;
+
+    public function __construct()
     {
+        parent::__construct();
+        $this->codeModel = new Code();
     }
 
     public function getById($product_idx)
@@ -1094,6 +1098,25 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
+
+            if(!empty($value['label_category'])){
+                $arr_category = explode(",", $value['label_category']);
+
+                $arr_category = array_filter($arr_category, function($value) {
+                    return trim($value) !== '';
+                });
+
+                $arr_category = array_reverse($arr_category);
+
+                $label_category = [];
+
+                foreach ($arr_category as $category) {
+                    $row_code = $this->codeModel->getByCodeNo($category);
+                    array_push($label_category, $row_code);
+                }
+
+                $items[$key]['label_list'] = $label_category;
+            }
         }
 
         $today = date("Y-m-d");
@@ -1492,34 +1515,34 @@ class ProductModel extends Model
             }
         }
 
-        if (!empty($where['arr_search_txt'])) {
-            $builder->groupStart();
-            // $str_search_txt = trim($where['arr_search_txt']);
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        // if (!empty($where['arr_search_txt'])) {
+        //     $builder->groupStart();
+        //     // $str_search_txt = trim($where['arr_search_txt']);
+        //     // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            foreach ($arr_search_txt as $index => $txt) {
+        //     foreach ($arr_search_txt as $index => $txt) {
 
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
+        //         if ($index > 0) {
+        //             $builder->orGroupStart();
+        //         }
 
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+        //         $escapedTxt = $this->db->escapeLikeString($txt);
+        //         $builder->like('product_name', $escapedTxt);
+        //         $builder->orLike('product_name_en', $escapedTxt);
+        //         $builder->orLike('keyword', $escapedTxt);
 
-                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+        //         // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+        //         // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
 
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
-            $builder->groupEnd();
-        }
+        //         if ($index > 0) {
+        //             $builder->groupEnd();
+        //         }
+        //     }
+        //     $builder->groupEnd();
+        // }
 
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
@@ -1895,6 +1918,25 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
+            if(!empty($value['label_category'])){
+                $arr_category = explode(",", $value['label_category']);
+
+                $arr_category = array_filter($arr_category, function($value) {
+                    return trim($value) !== '';
+                });
+
+                $arr_category = array_reverse($arr_category);
+
+                $label_category = [];
+
+                foreach ($arr_category as $category) {
+                    $row_code = $this->codeModel->getByCodeNo($category);
+                    array_push($label_category, $row_code);
+                }
+
+                $items[$key]['label_list'] = $label_category;
+            }
+
         }
 		
         //write_log("golf last- ". $this->db->getLastQuery());

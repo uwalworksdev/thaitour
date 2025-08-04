@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/magazines/magazines.css">
     <main id="container" class="sub magazines_page_">
         <div class="inner magazines_area_">
-            <div class="magazines_breadcrumb_">
+            <!-- <div class="magazines_breadcrumb_">
                 <ul class="breadcrumb_">
                     <li class="breadcrumb_item_">
                         <a href="#"><img class="home_icon_" src="/images/ico/home_icon_14_12.png" alt=""></a>
@@ -18,6 +18,9 @@
                             <img class="circle_direct_" src="/images/ico/circle_direct_18_18.png" alt=""></a>
                     </li>
                 </ul>
+            </div> -->
+            <div class="sect_ttl_box">
+                <h2>매거진</h2>
             </div>
 
             <div class="magazines_list_">

@@ -164,6 +164,15 @@
                             <a href="/product-golf/golf-detail/<?=$product['product_idx']?>">
                                 <img style="height: 100%;" src="<?=getImage("/data/product/{$product['ufile1']}")?>" alt="sub_hotel_1">
                             </a>
+                            <div class="product-card-label-list">
+                                <?php
+                                    foreach($product["label_list"] as $label){
+                                ?>
+                                    <div class="product-card-label" style="background-color: <?=$label["color"] ?>"><?=$label["code_name"]?></div>
+                                <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                         <div class="product-card-item-right">
                             <div class="title-container">

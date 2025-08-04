@@ -37,11 +37,16 @@ class PromotionController extends BaseController
 
         $product_list = $this->productPromotion->get_list();
 
+        $code_1 = $this->codeModel->getByCodeNo('6204');
+        $code_2 = $this->codeModel->getByCodeNo('6205');
+
         return view('event/promotion',[
             'banner_promotion' => $banner_promotion,
             'area_list' => $area_list,
             'code_list' => $code_list,
             'product_list' => $product_list,
+            'code_1' => $code_1,
+            'code_2' => $code_2,
         ]);
     }
 }
