@@ -53,6 +53,37 @@
   font-size: normal;
 }
 
+@font-face {
+  font-family: "NotoSansCJKkr";
+  src: url("/fonts/NotoSansCJKkr-Black.otf") format('opentype');
+  font-weight: 900;
+  font-size: normal;
+}
+
+@font-face {
+  font-family: "NotoSansCJKkr";
+  src: url("/fonts/NotoSansCJKkr-Bold.otf") format('opentype');
+  font-weight: 700;
+  font-size: normal;
+}
+
+
+@font-face {
+  font-family: "NotoSansCJKkr";
+  src: url("/fonts/NotoSansCJKkr-Medium.otf") format('opentype');
+  font-weight: 500;
+  font-size: normal;
+}
+
+
+@font-face {
+  font-family: "NotoSansCJKkr";
+  src: url("/fonts/NotoSansCJKkr-Regular.otf") format('opentype');
+  font-weight: 400;
+  font-size: normal;
+}
+
+
 
 
 /* @font-face {
