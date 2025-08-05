@@ -135,11 +135,11 @@
                                         </td>
                                         <td class="tac">
                                             <select name="status[]" id="status_<?= $row["idx"] ?>">
-                                                <option value="Y" <?php if (isset($row["status"]) && $row["status"] == "Y") {
+                                                <option value="Y" <?php if ($row["status"] == "Y" || empty($row["status"])) {
                                                     echo "selected";
                                                 } ?>>노출
                                                 </option>
-                                                <option value="N" <?php if (isset($row["status"]) && $row["status"] != "Y") {
+                                                <option value="N" <?php if (isset($row["status"]) && $row["status"] == "N") {
                                                     echo "selected";
                                                 } ?>>비노출
                                                 </option>
