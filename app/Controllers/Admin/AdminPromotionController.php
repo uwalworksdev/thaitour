@@ -74,8 +74,8 @@ class AdminPromotionController extends BaseController
             $row = $this->promotionList->find($idx);
             $img_list = $this->promotionImg->getImg($idx);
 
-            $area_list = $this->areaPromotion->where("promotion_idx", $idx)->findAll();
-            $product_list = $this->productPromotion->where("promotion_idx", $idx)->findAll();
+            $area_list = $this->areaPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
+            $product_list = $this->productPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
         }
 
         $data = [
