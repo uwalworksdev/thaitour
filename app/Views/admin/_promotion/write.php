@@ -520,7 +520,7 @@
                 </td>
                 <td>
                     <div class="flex_c_c">
-                        <button type="button" onclick="del_area_product();" class="btn btn-danger">삭제</button>
+                        <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
                     </div>
                 </td>
             </tr>           
