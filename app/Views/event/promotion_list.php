@@ -36,7 +36,7 @@
                     <div class="magazines_list__top_right_">
                         <div class="form_el_">
                             <select name="search_category" id="search_mode_" class="select_sort_">
-                                <option value="subject" <?php if($search_category == "subject"){ echo "selected"; }?>>제목</option>
+                                <option value="title" <?php if($search_category == "title"){ echo "selected"; }?>>제목</option>
                             </select>
                         </div>
                         <div class="form_el_">
