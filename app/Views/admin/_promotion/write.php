@@ -270,6 +270,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                    $i = 1;
                                                     foreach($area_list as $area){
                                                         $area_img = "/data/promotion/" . $area["ufile1"];
                                                 ?>
@@ -290,9 +291,9 @@
                                                             <div class="img_add flex_c_c">                                                   
                                                                 <div class="file_input_wrap">
                                                                     <div class="file_input">
-                                                                        <input type="file" name='area_ufile[]' id="area_ufile"
+                                                                        <input type="file" name='area_ufile[]' id="area_ufile_<?=$i?>"
                                                                             onchange="productImagePreview(this, '')">
-                                                                        <label for="area_ufile" <?= !empty($area["ufile1"]) ? "style='background-image:url($area_img)'" : "" ?>></label>
+                                                                        <label for="area_ufile_<?=$i?>" <?= !empty($area["ufile1"]) ? "style='background-image:url($area_img)'" : "" ?>></label>
                                                                         <input type="hidden" name="area_checkImg[]" class="checkImg">
                                                                         <button type="button" class="remove_btn"
                                                                             onclick="productImagePreviewRemove(this)"></button>
@@ -313,6 +314,7 @@
                                                         </td>
                                                     </tr>       
                                                 <?php
+                                                    $i++;
                                                     }
                                                 ?>        
                                             </tbody>
