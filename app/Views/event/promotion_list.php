@@ -32,19 +32,21 @@
                     </div>
                 </div>
 
-                <div class="magazines_list__top_right_">
-                    <div class="form_el_">
-                        <select name="search_category" id="search_mode_" class="select_sort_">
-                            <option value="subject">제목</option>
-                        </select>
-                    </div>
-                    <div class="form_el_">
-                        <input type="text" class="input_search_" name="search_txt" id="search_word_" value="" placeholder="검색어를 입력해 주세요">
-                        <div class="icon_">
-                            <img role="button" src="/images/ico/icon_search_23_22.png" alt="" class="icon_search_" id="icon_search_">
+                <form name="frmSearch" id="frmSearch" method="GET">
+                    <div class="magazines_list__top_right_">
+                        <div class="form_el_">
+                            <select name="search_category" id="search_mode_" class="select_sort_">
+                                <option value="subject" <?php if($search_category == "subject"){ echo "selected"; }?>>제목</option>
+                            </select>
+                        </div>
+                        <div class="form_el_">
+                            <input type="text" class="input_search_" name="search_txt" id="search_word_" value="<?=$search_word?>" placeholder="검색어를 입력해 주세요">
+                            <div class="icon_">
+                                <img role="button" src="/images/ico/icon_search_23_22.png" alt="" class="icon_search_" id="icon_search_" onclick="search_it()">
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="magazines_list__content_">
                 <?php
@@ -58,44 +60,30 @@
                     <a href="/promotion?idx=<?=$row["title"]?>" class="magazines_list__item_">
                         <img src="<?=$img?>" alt="<?=$row["ufile1"]?>" class="magazines_list__item_image_">
                         <div class="magazines_list__item_title_ text_truncate_">
-                            <?=$row["title"]?> </div>
+                            <?=$row["title"]?> 
+                        </div>
                         <div class="magazines_list__item_desc_">
-                            <?=date("Y-m-d", strtotime($row["r_date"]))?> (금) <span class="src_">|</span> <span class="view_">36</span>
+                            <?=date("Y-m-d", strtotime($row["r_date"]))?> (<?=dateToYoil($row["r_date"])?>) <span class="src_">|</span> <span class="view_"><?=$row["hit"]?></span>
                         </div>
                         <div class="magazines_list__item_author_">
-                            관리자 </div>
+                            <?=$row["author"]?> 
+                        </div>
                     </a>
                 <?php
                     }
                 ?>
             </div>
 
-            <div class="pagination_">
-                <div class="customer-center-page">
-                    <div class="pagination">
-                        <a class="page-link" href="javascript:void(0);" aria-label="First"><img src="/images/community/pagination_prev.png" alt="pagination_prev">
-                        </a>
-                        <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                            <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-                        </a>
-                        <a class="page-link active" href="https://thetourlab.com/magazines/list?page=1">
-                            1 </a>
-                        <a class="page-link" href="javascript:void(0);" aria-label="Next"><img src="/images/community/pagination_next_s.png" alt="pagination_next">
-                        </a>
-                        <a class="page-link" href="javascript:void(0);" aria-label="Last">
-                            <img src="/images/community/pagination_next.png" alt="pagination_next">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <?php 
+                echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?search_category=". $search_category ."&search_txt=". $search_txt ."&pg=")
+            ?>
         </div>
     </div>
 </main>
 <script>
-    $("#icon_search_").click(function() {
-        const search_mode = $("#search_mode_").val();
-        const search_word = $("#search_word_").val();
-        location.href = "/magazines/list?search_mode=" + search_mode + "&search_word=" + search_word
-    })
+    function search_it() {
+        let frm = document.frmSearch;
+        frm.submit();
+    }
 </script>
 <?php $this->endSection(); ?>

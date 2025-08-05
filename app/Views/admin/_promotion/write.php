@@ -123,7 +123,7 @@
                                             value="<?= $title ?? "" ?>"
                                             class="text" maxlength="100" />
                                     </td>
-                                    <th>제목</th>
+                                    <th>작가</th>
                                     <td>
                                         <input type="text" name="author"
                                             value="<?= !empty($author) ? $author : (session()->get('member')["name"]) ?>"
