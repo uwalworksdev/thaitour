@@ -235,7 +235,7 @@
                                 </a><a href="/coupon/list" class="sub_item">
                                     <p>여행 쿠폰 </p>
                                 </a>
-                                <a href="/promotion" class="sub_item">
+                                <a href="/event/promotion_list" class="sub_item">
                                     <p>프로모션</p>
                                 </a>
                             </div>

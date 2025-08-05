@@ -1012,6 +1012,7 @@ $routes->group("event", static function ($routes) {
     $routes->get("event_list", "EventController::event_list");
     $routes->get("winning_list", "EventController::winning_list");
     $routes->get("event_view", "EventController::event_view");
+    $routes->get("promotion_list", "EventController::promotion_list");
 });
 $routes->group("center", static function ($routes) {
     $routes->get("insurance", "CustomerCenterController::insurance");
