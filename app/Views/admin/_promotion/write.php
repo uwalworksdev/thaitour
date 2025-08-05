@@ -275,7 +275,7 @@
                                                         <input type="text" name="area_title[]" class="text">
                                                     </td>
                                                     <td>
-                                                        <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                                                        <textarea name="area_desc[]" rows="10" cols="100" style="width:100%; height:100px;"></textarea>
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
@@ -517,7 +517,7 @@
                     <input type="text" name="area_title[]" class="text">
                 </td>
                 <td>
-                    <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                    <textarea name="area_desc[]" rows="10" cols="100" style="width:100%; height:100px;"></textarea>
                 </td>
                 <td>
                     <div class="flex_c_c">
