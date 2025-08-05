@@ -125,11 +125,8 @@
                                     </td>
                                     <th>제목</th>
                                     <td>
-                                        <?php
-                                            var_dump(session()->get('member'));
-                                        ?>
                                         <input type="text" name="author"
-                                            value="<?= $author ?? session()->get('member.name') ?>"
+                                            value="<?= !empty($author) ? $author : (session()->get('member')["name"]) ?>"
                                             class="text" maxlength="100" />
                                     </td>
                                 </tr>
