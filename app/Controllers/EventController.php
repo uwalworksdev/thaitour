@@ -112,4 +112,8 @@ class EventController extends BaseController
     {
         return $this->renderView('travel-insurance/index');
     }
+    public function promotion_list()
+    {
+        return view("event/promotion_list");
+    }
 }
