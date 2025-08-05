@@ -283,7 +283,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="flex_c_c">
-                                                                <input type="color" name="area_color[]" style="width: 100px;" value="<?= $area['desc'] ?>">
+                                                                <input type="color" name="area_color[]" style="width: 100px;" value="<?= $area['color'] ?? "" ?>">
                                                             </div>
                                                         </td>
                                                         <td>
