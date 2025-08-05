@@ -396,6 +396,8 @@ class TourRegistController extends BaseController
 		//write_log("xxx- ". $sql);
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
+
+        $label_list = $this->codeModel->getByParentCode('64')->getResultArray();
 		
         $new_data = [
             'product_idx' => $product_idx,
@@ -407,7 +409,8 @@ class TourRegistController extends BaseController
             'filters'     => $filters,
             'mcodes'      => $mcodes,
 			'category3'   => $category3,
-            'img_list'    => $img_list
+            'img_list'    => $img_list,
+            'label_list'  => $label_list,
         ];
 
         $data = array_merge($data, $new_data);
@@ -438,6 +441,7 @@ class TourRegistController extends BaseController
         //$data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
+        $data['label_category'] = implode(",", $data['label_category'] ?? []);
         
         $data['tour_info']       = $data["tour_info"] ?? '';
         $data['tour_detail']     = $data["tour_detail"] ?? '';
@@ -1882,6 +1886,8 @@ public function list_room_pricex()
 
         $data['category3'] = $category3;
 
+        $label_list = $this->codeModel->getByParentCode('63')->getResultArray();
+
         $new_data = [
             'product_idx'     => $product_idx,
             'codes'           => $fresult_c,
@@ -1889,7 +1895,8 @@ public function list_room_pricex()
             'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'          => $mcodes,
-            'img_list'        => $img_list
+            'img_list'        => $img_list,
+            'label_list'      => $label_list,
         ];
 
         $data = array_merge($data, $new_data);
@@ -2014,6 +2021,9 @@ public function list_room_pricex()
 
         $data['product'] = $product;
         $data['category3'] = $category3;
+
+        $label_list = $this->codeModel->getByParentCode('63')->getResultArray();
+        $data['label_list'] = $label_list;
 
         $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);

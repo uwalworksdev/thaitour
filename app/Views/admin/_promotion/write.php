@@ -1,0 +1,789 @@
+<?php
+    $formAction = $idx ? "/AdmMaster/_promotion/write_ok/$idx" : "/AdmMaster/_promotion/write_ok";
+    helper("my_helper");
+?>
+
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css" />
+
+<?= $this->extend("admin/inc/layout_admin") ?>
+<?= $this->section("body") ?>
+
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css" />
+<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+
+<style>
+    .btn_01 {
+        height: 30px !important;
+        padding: 0px 10px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img_add #input_file_ko {
+        display: none;
+    }
+
+    ul#reg_cate li.new {
+        width: 100%;
+    }
+
+    .img_add.img_add_group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .img_add .file_input+.file_input {
+        margin-left: 0;
+    }
+
+    .img_add #input_file_ko {
+        display: none;
+    }
+
+    .only_number {
+        text-align: center;
+    }
+</style>
+
+<?php
+    if (isset($idx) && isset($row)) {
+        foreach ($row as $keys => $vals) {
+            ${$keys} = $vals;
+        }
+    }
+
+    $titleStr = "목록 프로모션";
+?>
+<div id="container">
+    <div id="print_this"><!-- 인쇄영역 시작 //-->
+        <header id="headerContainer">
+            <div class="inner">
+                <h2><?= $titleStr ?></h2>
+                <div class="menus">
+                    <ul>
+                        <li><a href="/AdmMaster/_promotion/list" class="btn btn-default"><span
+                                    class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                        </li>
+
+                        <?php if ($idx) { ?>
+                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
+                            </li>
+                        <?php } else { ?>
+                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+            <!-- // inner -->
+
+        </header>
+        <!-- // headerContainer -->
+
+        <div id="contents">
+            <div class="listWrap_noline">
+                <!--  target="hiddenFrame22"  -->
+                <form name="frm" id="frm" action="<?= $formAction ?>" method="post"
+                    enctype="multipart/form-data"
+                    target="hiddenFrame22"> <!--  -->
+                    <!-- 상품 고유 번호 -->
+                    <input type="hidden" id="check_img_ufile1" value="<?= $ufile1 ?>">
+
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="table-layout:fixed;">
+
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="40%" />
+                                <col width="10%" />
+                                <col width="40%" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=""
+                                            style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>상품 기본정보</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>제목</th>
+                                    <td colspan="3">
+                                        <input type="text" name="title"
+                                            value="<?= $title ?? "" ?>"
+                                            class="text" maxlength="100" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>대표이미지(600X440)</th>
+                                    <td colspan="3">
+
+                                        <div class="img_add">
+                                            <?php
+                                                for ($i = 1; $i <= 1; $i++) :
+                                                    $img = "/data/promotion/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="m_checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                        <?php if (${"ufile" . $i}) { ?>
+                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>
+
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                endfor;
+                                            ?>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        배너 이미지(1000X600)
+                                        <div class="flex" style="flex-direction: column; gap: 10px; margin-top: 5px;">
+                                            <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image();">추가</button>
+                                            <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image();">전체 삭제</button>
+                                        </div>
+                                    </th>
+                                    <td colspan="3">
+                                        <div class="img_add img_add_group">
+                                            <?php
+                                                $i = 3;
+                                                foreach ($img_list as $img) :
+                                                    $s_img = "/data/promotion/" . $img["ufile"];
+                                            ?>
+                                            <div class="file_input_wrap">
+                                                <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
+                                                    <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                    <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;" 
+                                                        id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            </div>
+                                            <?php
+                                                $i++;
+                                                endforeach;
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>지도 이미지</th>
+                                    <td colspan="3">
+
+                                        <div class="img_add">
+                                            <?php
+                                                for ($i = 2; $i <= 2; $i++) :
+                                                    $img = "/data/promotion/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="m_checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                        <?php if (${"ufile" . $i}) { ?>
+                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>
+
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                endfor;
+                                            ?>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="table-layout:fixed;">
+
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="40%" />
+                                <col width="10%" />
+                                <col width="40%" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                            <p>방콕 필수 코스 5가지</p>
+                                            <button type="button" class="btn btn-primary" onclick="add_area_product(this);" style="margin: unset;">추가</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_area_product"
+                                            style="table-layout:fixed;">
+    
+                                            <colgroup>
+                                                <col width="25%" />
+                                                <col width="*%" />
+                                                <col width="10%" />
+                                                <col width="10%" />
+                                                <col width="10%" />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>제목</th>
+                                                    <th>내용</th>
+                                                    <th>썸네일이미지</th>
+                                                    <th>순위</th>
+                                                    <th>관리</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="area_wrap">
+                                                    <td>
+                                                        <input type="text" name="area_title[]" class="text">
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <div class="img_add flex_c_c">                                                   
+                                                            <div class="file_input_wrap">
+                                                                <div class="file_input">
+                                                                    <input type="file" name='area_ufile[]' id="area_ufile"
+                                                                        onchange="productImagePreview(this, '')">
+                                                                    <label for="area_ufile"></label>
+                                                                    <input type="hidden" name="area_checkImg[]" class="checkImg">
+                                                                    <button type="button" class="remove_btn"
+                                                                        onclick="productImagePreviewRemove(this)"></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="area_onum[]" class="text only_number">
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
+                                                            <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>               
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>           
+                            </tbody>
+                        </table>
+                        <?php
+                            foreach ($fresult as $code_parent) {
+                        ?>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                style="table-layout:fixed;">
+
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="40%" />
+                                    <col width="10%" />
+                                    <col width="40%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                                <p><?= $code_parent['code_name'] ?></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <?php
+                                                $count = 1;
+                                                foreach ($code_parent['code_child_list'] as $code_child) {
+                                            ?>
+                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                    style="table-layout:fixed;" data-category_code_1="<?= $code_parent['code_no'] ?>" data-category_code_2="<?= $code_child['code_no'] ?>">
+        
+                                                <colgroup>
+                                                    <col width="10%" />
+                                                    <col width="40%" />
+                                                    <col width="10%" />
+                                                    <col width="40%" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <div style="width: 100%; display: flex; align-items: center; gap: 15px;">
+                                                                <p><?= $code_child['code_name'] ?></p>
+                                                                <button type="button" class="btn btn-primary" onclick="add_promotion_product(this);" style="margin: unset;">추가</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail tbl_promotion_product"
+                                                                style="table-layout:fixed;">
+                        
+                                                                <colgroup>
+                                                                    <col width="20%" />
+                                                                    <col width="*%" />
+                                                                    <col width="20%" />
+                                                                    <col width="10%" />
+                                                                    <col width="10%" />
+                                                                    <col width="10%" />
+                                                                </colgroup>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>제목</th>
+                                                                        <th>Keyword</th>
+                                                                        <th>부제</th>
+                                                                        <th>썸네일이미지</th>
+                                                                        <th>순위</th>
+                                                                        <th>관리</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="promotion_product">
+                                                                        <td>
+                                                                            <input type="hidden" name="category_code_1[]" class="category_code_1" value="<?= $code_parent['code_no'] ?>">
+                                                                            <input type="hidden" name="category_code_2[]" class="category_code_2" value="<?= $code_child['code_no'] ?>">
+                                                                            <input type="text" name="product_title[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_keyword[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_subtitle[]" class="text">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="img_add flex_c_c">                                                   
+                                                                                <div class="file_input_wrap">
+                                                                                    <div class="file_input">
+                                                                                        <input type="file" name='product_ufile[]' id="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
+                                                                                            onchange="productImagePreview(this, '')">
+                                                                                        <label for="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"></label>
+                                                                                        <input type="hidden" name="product_checkImg[]" class="checkImg">
+                                                                                        <button type="button" class="remove_btn"
+                                                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="product_onum[]" class="text only_number">
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="flex_c_c">
+                                                                                <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>               
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>           
+                                                </tbody>
+                                            </table>
+                                            <?php
+                                                $count++;
+                                                }
+                                            ?>
+                                        </td>
+                                    </tr>           
+                                </tbody>
+                            </table>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </form>
+
+                <div class="tail_menu">
+                    <ul>
+                        <li class="left"></li>
+                        <li class="right_sub">
+                            <a href="/AdmMaster/_promotion/list" class="btn btn-default"><span
+                                    class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                            <?php if ($idx == "") { ?>
+                                <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                            <?php } else { ?>
+                                <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
+                            <?php } ?>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- // listWrap -->
+
+        </div>
+        <!-- // contents -->
+
+    </div><!-- 인쇄 영역 끝 //-->
+</div>
+
+<script>
+    $(".imgpop_p").each(function() {
+        if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+            $(this).colorbox({
+                rel: 'imgpop_p',
+                maxWidth: '90%',
+                maxHeight: '90%'
+            });
+        }
+    });
+
+    $(".only_number").on('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+</script>
+
+<script>
+    function send_it() {
+
+        var frm = document.frm;
+
+        if (frm.title.value == "") {
+            alert("제목 입력해주세요.");
+            frm.title.focus();
+            return;
+        }
+
+        if ($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0) {
+            alert("이미지를 등록해주세요.");
+            return false;
+        }
+
+        $(".img_add_group .file_input").each(function(index) {
+            $(this).find(".onum_img").val(index + 1);
+        });
+
+        // oEditors1?.getById["m_recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
+
+        $("#ajax_loader").removeClass("display-none");
+
+        frm.submit();
+    }
+</script>
+
+<script>
+
+    function add_area_product(button) {        
+
+        let count = $('.area_wrap').length - 1;
+        count = count + 1;
+        
+        let html = `
+            <tr class="area_wrap">
+                <td>
+                    <input type="text" name="area_title[]" class="text">
+                </td>
+                <td>
+                    <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                </td>
+                <td>
+                    <div class="img_add flex_c_c">                                                   
+                        <div class="file_input_wrap">
+                            <div class="file_input">
+                                <input type="file" name='area_ufile[]' id="area_ufile_${count}"
+                                    onchange="productImagePreview(this, '')">
+                                <label for="area_ufile_${count}"></label>
+                                <input type="hidden" name="area_checkImg[]" class="checkImg">
+                                <button type="button" class="remove_btn"
+                                    onclick="productImagePreviewRemove(this)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" name="area_onum[]" class="text only_number">
+                </td>
+                <td>
+                    <div class="flex_c_c">
+                        <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
+                    </div>
+                </td>
+            </tr>           
+        `;
+
+        $(".tbl_area_product tbody").append(html);
+
+    }
+
+    function del_area_product(button) {
+        $(button).closest("tr").remove();
+    }
+
+    function add_promotion_product(button) {        
+        let category_code_1 = $(button).closest("table").data("category_code_1");
+        let category_code_2 = $(button).closest("table").data("category_code_2");
+        let count = $(button).closest("table").find(".tbl_promotion_product .promotion_product").length - 1;
+        count = count + 2;
+        
+        let html = `
+            <tr class="promotion_product">
+                <td>
+                    <input type="text" name="product_title[]" class="text">
+                </td>
+                <td>
+                    <input type="text" name="product_keyword[]" class="text">
+                </td>
+                <td>
+                    <input type="text" name="product_subtitle[]" class="text">
+                </td>
+                <td>
+                    <div class="img_add flex_c_c">                                                   
+                        <div class="file_input_wrap">
+                            <div class="file_input">
+                                <input type="file" name='product_ufile[]' id="product_ufile_${category_code_2}_${count}"
+                                    onchange="productImagePreview(this, '')">
+                                <label for="product_ufile_${category_code_2}_${count}"></label>
+                                <input type="hidden" name="product_checkImg[]" class="checkImg">
+                                <button type="button" class="remove_btn"
+                                    onclick="productImagePreviewRemove(this)"></button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" name="product_onum[]" class="text only_number">
+                </td>
+                <td>
+                    <div class="flex_c_c">
+                        <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                    </div>
+                </td>
+            </tr>        
+        `;
+
+        $(button).closest("table").find(".tbl_promotion_product tbody").append(html);
+
+    }
+
+    function del_promotion_product(button) {
+        $(button).closest("tr").remove();
+    }
+
+    function add_sub_image() {        
+
+        let i = Date.now();
+        
+        let html = `
+            <div class="file_input_wrap">
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}" multiple
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
+            </div>
+        `;
+
+        $(".img_add_group").append(html);
+
+    }
+
+    function delete_all_image() {
+        if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+            return false;
+        }
+
+        let arr_img = [];
+
+		$(".img_add_group .file_input").each(function() {
+            let id = $(this).find("input[name='i_idx[]']").val();
+            if(id){
+                arr_img.push({
+                    i_idx: id,
+                });
+            }
+		});
+
+        if(arr_img.length > 0){
+            $.ajax({
+                url: "/AdmMaster/_promotion/del_all_image",
+                type: "POST",
+                data: JSON.stringify({ arr_img: arr_img }),
+                contentType: "application/json",
+                success: function(response) {
+                    alert(response.message);
+                    if(response.result == true){
+                        $(".img_add_group").html("");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("error:", error);
+                }
+            });
+        }else{
+            $(".img_add_group").html("");
+        }
+    }
+
+    function productImagePreview(inputFile, onum) {
+        if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
+            
+            $(inputFile).closest('.file_input').addClass('applied');
+            $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+            let lastElement = $(inputFile).closest('.file_input_wrap');
+            let files = Array.from(inputFile.files);
+
+            let imageReader = new FileReader();
+            imageReader.onload = function () {
+                $(inputFile).closest('.file_input').find('label').css("background-image", "url(" + imageReader.result + ")");
+            };
+            imageReader.readAsDataURL(files[0]);
+
+            if (files.length > 1) {
+                files.slice(1).forEach((file, index) => {
+                    let newReader = new FileReader();
+                    let i = Date.now();
+
+                    newReader.onload = function () {
+                        let imagePreview = `
+                            <div class="file_input_wrap">
+                                <div class="file_input applied">
+                                    <input type="hidden" name="i_idx[]" value="">
+                                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                    <input type="file" id="ufile${i}_${index}" 
+                                        onchange="productImagePreview(this, '${i}_${index}')" disabled>
+                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                    <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                </div>
+                            </div>`;
+
+                        lastElement.after(imagePreview);
+                        lastElement = lastElement.next();
+                    };
+
+                    newReader.readAsDataURL(file);
+                });
+            }
+        }else{
+            alert('40개 이미지로 제한이 있습니다.');
+        }
+    }
+
+    function productImagePreviewRemove(element) {
+        let parent = $(element).closest('.file_input_wrap');
+        if(parent.find('input[name="ufile[]"]').length > 0){
+            let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                            || parent.prevAll().find('input[type="file"][multiple]')[0];
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="i_idx[]"]').val();
+    
+            let dt = new DataTransfer();
+            let fileArray = Array.from(inputFile.files);
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            
+            fileArray.forEach((file) => {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {      
+                        dt.items.add(file);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+    
+            setTimeout(() => {
+                inputFile.files = dt.files;
+                if(parent.find('input[type="file"][multiple]')[0]){
+                    parent.css("display", "none");
+                }else{
+                    parent.remove();
+                }
+            }, 100);
+    
+            if (i_idx) {
+                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+                    return false;
+                }
+    
+                $.ajax({
+                    url: "/AdmMaster/_promotion/del_image",
+                    type: "POST",
+                    data: { "i_idx": i_idx },
+                    success: function (data) {
+                        alert(data.message);
+                        if (data.result) {
+                            parent.css("display", "none");
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                    }
+                });
+            }
+        }else{            
+            parent.find('input[type="file"]').val("");
+            parent.find('label').css("background-image", "");
+            parent.find('.file_input').removeClass('applied');
+            parent.find('.checkImg').val('N');
+            parent.find('.imgpop').attr("href", "");
+            parent.find('.imgpop').remove();
+        }
+    }
+    
+    function sizeAndExtCheck(input) {
+        let fileSize = input.files[0].size;
+        let fileName = input.files[0].name;
+
+        // 20MB
+        let megaBite = 20;
+        let maxSize = 1024 * 1024 * megaBite;
+
+        if (fileSize > maxSize) {
+            alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
+            return false;
+        }
+
+        let fileNameLength = fileName.length;
+        let findExtension = fileName.lastIndexOf('.');
+        let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+        if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+            alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
+<?= $this->endSection() ?>

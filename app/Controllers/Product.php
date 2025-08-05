@@ -3810,6 +3810,15 @@ class Product extends BaseController
 
             $products['nTotalCount'] = count($products['items']);
 
+            if($search_product_category == "") {
+                $search_area  = "전체";
+            } else {
+                $sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+                $result      = $this->db->query($sql);
+                $row         = $result->getRowArray();
+                $search_area = $row['code_name'];
+            } 
+
             $data = [
                 'baht_thai' => $this->setting['baht_thai'],
                 'codes' => $codes,
@@ -3827,6 +3836,7 @@ class Product extends BaseController
                 'product_theme' => $product_theme,
                 'product_keyword_list' => $product_keyword_list,
                 'search_product_tour' => $search_product_tour,
+                'search_area' => $search_area,
             ];
 
             return $this->renderView('tours/list-tour', $data);

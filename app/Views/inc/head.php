@@ -14,6 +14,7 @@
     <meta property="al:web:url" content="<?= $setting['og_url'] ?>">
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
     <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="noimageindex">
 
     <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
     <link rel="canonical" href="<?= $setting['og_url'] ?>">

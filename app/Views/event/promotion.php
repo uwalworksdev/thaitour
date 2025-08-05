@@ -100,8 +100,8 @@
         <!-- 전체 배경 지도 (중앙) -->
         <div class="only_web">
             <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-                <p class="text_head_sec"> 지도로보는 방콘 명소</p>
-                <h2 class="text_title_sec">방콕 명소 요약 가이드</h2>
+                <p class="text_head_sec"><?=$code_2['code_name']?></p>
+                <h2 class="text_title_sec"><?=$code_2['code_memo']?></h2>
                 <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
                 <!-- 중앙 지도 -->
                 <div class="hidden lg:block">
@@ -153,8 +153,8 @@
         <div class="only_mo">
             <div class="title_map">
                 <!-- <img src="/event/images/map_pro_ttl.png" alt=""> -->
-                 <p class="text_head_sec"> 지도로보는 방콘 명소</p>
-                 <h2 class="text_title_sec">방콕 명소 요약 가이드</h2>
+                 <p class="text_head_sec"><?=$code_2['code_name']?></p>
+                 <h2 class="text_title_sec"><?=$code_2['code_memo']?></h2>
             </div>
             <div class="promotion_map">
                 <div class="location" id="location01">
@@ -295,9 +295,9 @@
 
     <div class="bg-gradient section_gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
         <!-- <div class="title-section-best sub-1"></div> -->
-         <div class="flex flex-col items-center"><img class="po_local" src="/event/images/po_local_ic.png" alt=""></div>
-         <p class="text_head_sec"> 방콕여행 꼭알고가야할 5가지 포인트</p>
-         <h2 class="text_title_sec">방콕 필수 코스 5가지</h2>
+         <div class="flex flex-col items-center"><img class="po_local" src="/data/code/<?=$code_1["ufile1"]?>" alt="<?=$code_1["code_name"]?>"></div>
+         <p class="text_head_sec"><?=$code_1["code_name"]?></p>
+         <h2 class="text_title_sec"><?=$code_1["code_memo"]?></h2>
         <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]"
             style="gap: 45px;">
             <?php

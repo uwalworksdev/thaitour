@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+
+User-agent: Yeti
+Disallow: /uploads/
+Disallow: /images/
+Disallow: /data/
