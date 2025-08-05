@@ -49,11 +49,11 @@
             <div class="slider-container w-full h-full relative">
                 <?php
                 foreach ($banner_promotion as $banner) {
-                    if (!empty($banner['ufile1']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile1"])) {
-                        $img_banner = "/data/promotion/" . $banner['ufile1'];
+                    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
+                        $img_banner = "/data/promotion/" . $banner['ufile'];
                 ?>
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['title'] ?>" class="w-full h-full object-cover">
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-transparent"></div>
                         </div>
                 <?php
@@ -451,7 +451,7 @@
                         <h5 class="ttl"><?= $code_child["code_name"] ?></h5>
                         <p class="ttl_sub"><?= $code_child["code_memo"] ?></p>
                         <?php
-                        $filtered_list = array_filter($product_list['items'], function ($item) use ($code_parent, $code_child) {
+                        $filtered_list = array_filter($product_list, function ($item) use ($code_parent, $code_child) {
                             return $item['category_code_1'] === $code_parent["code_no"] && $item['category_code_2'] === $code_child["code_no"];
                         });
                         ?>

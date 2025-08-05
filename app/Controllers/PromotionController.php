@@ -28,7 +28,7 @@ class PromotionController extends BaseController
     }
     public function index() {
         $idx = updateSQ($_GET["idx"] ?? '');
-        $banner_promotion = $this->cateBannerModel->getBanners("5904");
+        // $banner_promotion = $this->cateBannerModel->getBanners("5904");
         
         $code_list = $this->codeModel->whereIn('code_no', ['6201', '6202', '6203'])
                             ->where('status', 'Y')
