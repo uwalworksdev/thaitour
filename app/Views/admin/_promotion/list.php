@@ -79,6 +79,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px" />
+                                <col width="100px" />
                                 <col width="*" />
                                 <col width="100px" />
                                 <col width="100px" />
@@ -88,8 +89,9 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>제목</th>
                                     <th>썸네일이미지</th>
+                                    <th>제목</th>
+                                    <th>판매상태결정</th>
                                     <th>순위</th>
                                     <th>등록일</th>
                                     <th>관리</th>
@@ -109,12 +111,6 @@
                                     <tr style="height:30px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <div class="flex_c_c">
-                                                <a href="./write?idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
-                                            </div>
-                                        </td>
-                                       
-                                        <td class="tac">
                                             <?php
                                             if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $row["ufile1"])) {
                                                 $src = "/data/promotion/" . $row["ufile1"];
@@ -126,6 +122,29 @@
                                                 <img src="<?= $src ?>"
                                                     style="max-width:150px;max-height:100px"></a>
                                         </td>
+                                        <td class="tac">
+                                            <div class="flex_c_c">
+                                                <?= $row["title"] ?>
+                                            </div>
+                                            <div class="flex_c_c" style="gap: 10px;">
+                                                <a href="/promotion?idx=<?= $row["idx"] ?>"
+                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                                <a href="./write?idx=<?= $row["idx"] ?>"
+                                                class="product_view" style="color: red;">[<span>상세수정</span>]</a>
+                                            </div>
+                                        </td>
+                                        <td class="tac">
+                                            <select name="status[]" id="status_<?= $row["idx"] ?>">
+                                                <option value="Y" <?php if (isset($row["status"]) && $row["status"] == "Y") {
+                                                    echo "selected";
+                                                } ?>>노출
+                                                </option>
+                                                <option value="N" <?php if (isset($row["status"]) && $row["status"] != "Y") {
+                                                    echo "selected";
+                                                } ?>>비노출
+                                                </option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
                                                 value="<?= $row['onum'] ?>" style="width:66px; text-align:center;">                                    
@@ -136,7 +155,7 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="./write?idx=<?= $row["idx"] ?>"><img
+                                            <a href="javascript:prod_update('<?= $row['idx'] ?>');"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
                                             <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
@@ -190,6 +209,37 @@
 </script>
 
 <script>
+    function prod_update(idx) {
+        let onum = $("#onum_" + idx).val();
+        let status = $("#status" + idx).val();
+
+
+        if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
+            return false;
+
+        let message = "";
+        $.ajax({
+            url: '/AdmMaster/_promotion/prod_update',
+            type: "POST",
+            data: {
+                "idx": idx,
+                "status": status,
+                "onum": onum
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
     function change_it() {
         let f = document.frm_l;
 

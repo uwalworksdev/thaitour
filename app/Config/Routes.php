@@ -248,7 +248,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("change", "Admin\AdminPromotionController::change", ['as' => "admin._promotion.change"]);
         $routes->post("del_area", "Admin\AdminPromotionController::del_area", ['as' => "admin._promotion.del_area"]);
         $routes->post("del_product", "Admin\AdminPromotionController::del_product", ['as' => "admin._promotion.del_product"]);
-    
+        $routes->post("prod_update", "Admin\AdminPromotionController::prod_update", ['as' => "admin._promotion.prod_update"]);
     });
 
     $routes->group("_hotel", static function ($routes) {

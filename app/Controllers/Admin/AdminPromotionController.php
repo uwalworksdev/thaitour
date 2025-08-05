@@ -471,6 +471,7 @@ class AdminPromotionController extends BaseController
         try {
             $idx = $this->request->getPost('code_idx') ?? [];
             $onum = $this->request->getPost('onum') ?? [];
+            $status = $this->request->getPost('status') ?? [];
 
             if (!is_array($idx) || !is_array($onum) || count($idx) !== count($onum)) {
                 return $this->response->setStatusCode(400)->setJSON([
@@ -484,6 +485,7 @@ class AdminPromotionController extends BaseController
             for ($j = 0; $j < $tot; $j++) {
                 $data = [
                     'onum' => $onum[$j],
+                    'status' => $status[$j],
                 ];
 
                 $result = $this->promotionList->updateData($idx[$j], $data);
@@ -506,6 +508,45 @@ class AdminPromotionController extends BaseController
                 'status' => 'error',
                 'message' => $e->getMessage()
             ]);
+        }
+    }
+
+    public function prod_update()
+    {
+        try {
+            $idx = $this->request->getPost('idx');
+            $status = $this->request->getPost('status');
+            $onum = $this->request->getPost('onum');
+
+            $db = $this->promotionList->update($idx, [
+                'onum' => $onum,
+                'status' => $status,
+            ]);
+
+            if (!$db) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON(
+                        [
+                            'status' => 'error',
+                            'message' => '수정 중 오류가 발생했습니다!!'
+                        ]
+                    );
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status' => 'success',
+                        'message' => '수정 했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
         }
     }
 }
