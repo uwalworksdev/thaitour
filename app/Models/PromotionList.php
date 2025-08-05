@@ -11,7 +11,7 @@ class PromotionList extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "status", "ufile1", "rfile1", "ufile2", "rfile2", "onum", "r_date", "m_date"
+        "title", "status", "author", "hit", "ufile1", "rfile1", "ufile2", "rfile2", "onum", "r_date", "m_date"
     ];
 
     public function __construct()
@@ -68,6 +68,12 @@ class PromotionList extends Model
                 $builder->like('title', $where['search_txt']);
                 $builder->groupEnd();
             }
+        }
+
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
+            $builder->where('status = ', 'Y');
         }
 
         $nTotalCount = $builder->countAllResults(false);

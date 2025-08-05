@@ -8,11 +8,16 @@ class EventController extends BaseController
 {
     private $ReviewModel;
     private $Bbs;
+    private $db;
+    private $promotionList;
+
     public function __construct()
     {
         $this->db = db_connect();
         $this->ReviewModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
+        $this->promotionList = model("PromotionList");
+
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -114,6 +119,30 @@ class EventController extends BaseController
     }
     public function promotion_list()
     {
-        return view("event/promotion_list");
+
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 10; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $search_category    = updateSQ($_GET["search_category"] ?? '');
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'search_category'   => $search_category,
+        ];
+
+        $result = $this->promotionList->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'result'                => $result['items'],
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+        ];
+
+        return view("event/promotion_list", $data);
     }
 }

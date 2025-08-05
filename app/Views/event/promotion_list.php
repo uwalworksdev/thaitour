@@ -28,7 +28,7 @@
                 <div class="magazines_list__top_left_">
                     <div class="total_">
                         총 상품
-                        <span class="count_">5</span>
+                        <span class="count_"><?=$nTotalCount?></span>
                     </div>
                 </div>
 
@@ -47,156 +47,28 @@
                 </div>
             </div>
             <div class="magazines_list__content_">
-                <a href="/promotion" class="magazines_list__item_">
-                    <img src="/data/bbs/20250620171833458.jpg" alt="" class="magazines_list__item_image_">
-                    <div class="magazines_list__item_title_ text_truncate_">
-                        매거진 5 </div>
-                    <div class="magazines_list__item_desc_">
-                        2025-06-20 (금) <span class="src_">|</span> <span class="view_">36</span>
-                    </div>
-                    <div class="magazines_list__item_author_">
-                        관리자 </div>
-                </a>
-                <a href="/promotion" class="magazines_list__item_">
-                    <img src="/data/bbs/20250527191949650.jpg" alt="" class="magazines_list__item_image_">
-                    <div class="magazines_list__item_title_ text_truncate_">
-                        매거진4 </div>
-                    <div class="magazines_list__item_desc_">
-                        2025-05-27 (화) <span class="src_">|</span> <span class="view_">26</span>
-                    </div>
-                    <div class="magazines_list__item_author_">
-                        관리자 </div>
-                </a>
-                <a href="/promotion" class="magazines_list__item_">
-                    <img src="/data/bbs/20250527191849038.jpg" alt="" class="magazines_list__item_image_">
-                    <div class="magazines_list__item_title_ text_truncate_">
-                        매거진3 </div>
-                    <div class="magazines_list__item_desc_">
-                        2025-05-27 (화) <span class="src_">|</span> <span class="view_">28</span>
-                    </div>
-                    <div class="magazines_list__item_author_">
-                        관리자 </div>
-                </a>
-                <a href="/promotion" class="magazines_list__item_">
-                    <img src="/data/bbs/20250527191658510.jpg" alt="" class="magazines_list__item_image_">
-                    <div class="magazines_list__item_title_ text_truncate_">
-                        매거진2 </div>
-                    <div class="magazines_list__item_desc_">
-                        2025-05-27 (화) <span class="src_">|</span> <span class="view_">21</span>
-                    </div>
-                    <div class="magazines_list__item_author_">
-                        관리자 </div>
-                </a>
-                <a href="/promotion" class="magazines_list__item_">
-                    <img src="/data/bbs/20250527191624097.jpg" alt="" class="magazines_list__item_image_">
-                    <div class="magazines_list__item_title_ text_truncate_">
-                        매거진1 </div>
-                    <div class="magazines_list__item_desc_">
-                        2025-05-27 (화) <span class="src_">|</span> <span class="view_">18</span>
-                    </div>
-                    <div class="magazines_list__item_author_">
-                        관리자 </div>
-                </a>
-
-                <!-- <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_02.png" alt=""
-                             class="magazines_list__item_image_">
+                <?php
+                    foreach($result as $row) {
+                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $row["ufile1"])) {
+                            $img = "/data/promotion/" . $row["ufile1"];
+                        } else {
+                            $img = "/data/product/noimg.png";
+                        }
+                ?>
+                    <a href="/promotion?idx=<?=$row["title"]?>" class="magazines_list__item_">
+                        <img src="<?=$img?>" alt="<?=$row["ufile1"]?>" class="magazines_list__item_image_">
                         <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진99호]정글 감성 하이엔드 스테이, 인터컨티넨탈 ...
-                        </div>
+                            <?=$row["title"]?> </div>
                         <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
+                            <?=date("Y-m-d", strtotime($row["r_date"]))?> (금) <span class="src_">|</span> <span class="view_">36</span>
                         </div>
                         <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
+                            관리자 </div>
                     </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_03.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 98] 위치 최고! 24년 오픈 신상 5성급 10만..
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_04.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 97호] 몽키트래블은 부채 0원, 신용도 AAA / ...
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_05.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 100호] 아마리 후아힌 천원대 찬스, 푸른 ...
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_06.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진99호]정글 감성 하이엔드 스테이, 인터컨티넨탈 ...
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_07.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 98] 위치 최고! 24년 오픈 신상 5성급 10만..
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
-
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_08.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 97호] 몽키트래블은 부채 0원, 신용도 AAA / ...
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a> -->
+                <?php
+                    }
+                ?>
             </div>
-            <!-- DEBUG-VIEW START 1 APPPATH/Views/Pagers/custom1.php -->
 
             <div class="pagination_">
                 <div class="customer-center-page">
@@ -216,7 +88,6 @@
                     </div>
                 </div>
             </div>
-            <!-- DEBUG-VIEW ENDED 1 APPPATH/Views/Pagers/custom1.php -->
         </div>
     </div>
 </main>

@@ -118,9 +118,15 @@
 
                                 <tr>
                                     <th>제목</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="title"
                                             value="<?= $title ?? "" ?>"
+                                            class="text" maxlength="100" />
+                                    </td>
+                                    <th>제목</th>
+                                    <td>
+                                        <input type="text" name="author"
+                                            value="<?= $author ?? session()->get('member')["name"] ?>"
                                             class="text" maxlength="100" />
                                     </td>
                                 </tr>

@@ -97,6 +97,7 @@ class AdminPromotionController extends BaseController
         try {
             $files = $this->request->getFiles();
             $data['title']  = updateSQ($_POST["title"] ?? '');
+            $data['author'] = updateSQ($_POST["author"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 
@@ -160,7 +161,6 @@ class AdminPromotionController extends BaseController
                 }
 
             } else {
-
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $idx = $this->promotionList->insertData($data);
