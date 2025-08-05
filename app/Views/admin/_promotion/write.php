@@ -290,7 +290,7 @@
                                                         <td>
                                                             <div class="img_add flex_c_c">                                                   
                                                                 <div class="file_input_wrap">
-                                                                    <div class="file_input">
+                                                                    <div class="file_input  <?= empty($area["ufile1"]) ? "" : "applied" ?>">
                                                                         <input type="file" name='area_ufile[]' id="area_ufile_<?=$i?>"
                                                                             onchange="productImagePreview(this, '')">
                                                                         <label for="area_ufile_<?=$i?>" <?= !empty($area["ufile1"]) ? "style='background-image:url($area_img)'" : "" ?>></label>
@@ -415,7 +415,7 @@
                                                                             <td>
                                                                                 <div class="img_add flex_c_c">                                                   
                                                                                     <div class="file_input_wrap">
-                                                                                        <div class="file_input">
+                                                                                        <div class="file_input <?= empty($product["ufile1"]) ? "" : "applied" ?>">
                                                                                             <input type="file" name='product_ufile[]' id="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
                                                                                                 onchange="productImagePreview(this, '')">
                                                                                             <label for="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
