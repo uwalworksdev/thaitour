@@ -44,6 +44,10 @@
     .img_add #input_file_ko {
         display: none;
     }
+
+    .only_number {
+        text-align: center;
+    }
 </style>
 
 <?php
@@ -285,7 +289,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="area_onum[]" class="text">
+                                                        <input type="text" name="area_onum[]" class="text only_number">
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
@@ -394,7 +398,7 @@
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <input type="text" name="product_onum[]" class="text">
+                                                                            <input type="text" name="product_onum[]" class="text only_number">
                                                                         </td>
                                                                         <td>
                                                                             <div class="flex_c_c">
@@ -456,6 +460,10 @@
             });
         }
     });
+
+    $(".only_number").on('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
 </script>
 
 <script>
@@ -516,7 +524,7 @@
                     </div>
                 </td>
                 <td>
-                    <input type="text" name="area_onum[]" class="text">
+                    <input type="text" name="area_onum[]" class="text only_number">
                 </td>
                 <td>
                     <div class="flex_c_c">
@@ -566,7 +574,7 @@
                     </div>
                 </td>
                 <td>
-                    <input type="text" name="product_onum[]" class="text">
+                    <input type="text" name="product_onum[]" class="text only_number">
                 </td>
                 <td>
                     <div class="flex_c_c">
