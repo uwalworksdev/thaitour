@@ -11,7 +11,7 @@ class AreaPromotion extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "desc", "color", "ufile1", "rfile1", "onum", "r_date", "m_date"
+        "promotion_idx", "title", "desc", "color", "ufile1", "rfile1", "onum", "r_date", "m_date"
     ];
 
     public function __construct()

@@ -14,10 +14,6 @@ class PromotionImg extends Model
         "promotion_idx", "ufile", "rfile", "onum", "m_date", "r_date"
     ];
 
-    protected function initialize()
-    {
-    }
-
     public function getImg($promotion_idx)
     {
 		return $this->where('promotion_idx', $promotion_idx)
