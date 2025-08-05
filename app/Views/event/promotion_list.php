@@ -57,8 +57,8 @@
                             $img = "/data/product/noimg.png";
                         }
                 ?>
-                    <a href="/promotion?idx=<?=$row["title"]?>" class="magazines_list__item_">
-                        <img src="<?=$img?>" alt="<?=$row["ufile1"]?>" class="magazines_list__item_image_">
+                    <a href="/promotion?idx=<?=$row["idx"]?>" class="magazines_list__item_">
+                        <img src="<?=$img?>" alt="<?=$row["title"]?>" class="magazines_list__item_image_">
                         <div class="magazines_list__item_title_ text_truncate_">
                             <?=$row["title"]?> 
                         </div>
