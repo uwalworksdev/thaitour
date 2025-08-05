@@ -211,8 +211,7 @@
 <script>
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
-        let status = $("#status" + idx).val();
-
+        let status = $("#status_" + idx).val();
 
         if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
             return false;
