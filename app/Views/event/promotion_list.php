@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <div class="form_el_">
-                            <input type="text" class="input_search_" name="search_txt" id="search_word_" value="<?=$search_word?>" placeholder="검색어를 입력해 주세요">
+                            <input type="text" class="input_search_" name="search_txt" id="search_word_" value="<?=$search_txt?>" placeholder="검색어를 입력해 주세요">
                             <div class="icon_">
                                 <img role="button" src="/images/ico/icon_search_23_22.png" alt="" class="icon_search_" id="icon_search_" onclick="search_it()">
                             </div>
