@@ -715,7 +715,7 @@ class SpaController extends BaseController
         $builder->join('tbl_product_spas_info si', 'si.info_idx = s.info_idx', 'left');
         $builder->where("p.product_idx =", $product_idx);
         $builder->where("p.goods_date =", $date);
-        // $builder->where("si.yoil_$weekday =", 'Y');
+        $builder->where("si.yoil_$weekday =", 'Y');
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
         $builder->where("si.o_sdate !=", '0000-00-00 00:00:00');
