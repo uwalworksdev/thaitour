@@ -12,6 +12,7 @@
 <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000"
     data-border-radius="small"></script>
 <script src="/event/js/tailwind.config.js"></script>
+
 <style>
     .icon-menu-item {
         display: flex;
@@ -29,12 +30,15 @@
         padding-bottom: 10rem !important;
     }
 
+    .po_head::after {
+        background-color: var(--after-bg) !important;
+    }
+
     /* @media screen and (max-width: 700px) {
         .box_img {
             margin: 0 16rem;
         }
     } */
-    </style>
 </style>
 
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
@@ -44,14 +48,14 @@
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
                 <?php
-                    foreach($banner_promotion as $banner){
-                        if(!empty($banner['ufile1']) && is_file(ROOTPATH . "/public/data/cate_banner/" . $banner["ufile1"])){
-                            $img_banner = "/data/cate_banner/" . $banner['ufile1'];
+                foreach ($banner_promotion as $banner) {
+                    if (!empty($banner['ufile1']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile1"])) {
+                        $img_banner = "/data/promotion/" . $banner['ufile1'];
                 ?>
-                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                        <img src="<?= $img_banner ?>" alt="<?=$banner['title']?>" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-transparent"></div>
-                    </div>
+                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['title'] ?>" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-transparent"></div>
+                        </div>
                 <?php
                     }
                 }
@@ -100,8 +104,8 @@
         <!-- 전체 배경 지도 (중앙) -->
         <div class="only_web">
             <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-                <p class="text_head_sec"><?=$code_2['code_name']?></p>
-                <h2 class="text_title_sec"><?=$code_2['code_memo']?></h2>
+                <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
+                <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
                 <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
                 <!-- 중앙 지도 -->
                 <div class="hidden lg:block">
@@ -153,8 +157,8 @@
         <div class="only_mo">
             <div class="title_map">
                 <!-- <img src="/event/images/map_pro_ttl.png" alt=""> -->
-                 <p class="text_head_sec"><?=$code_2['code_name']?></p>
-                 <h2 class="text_title_sec"><?=$code_2['code_memo']?></h2>
+                <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
+                <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
             </div>
             <div class="promotion_map">
                 <div class="location" id="location01">
@@ -295,24 +299,24 @@
 
     <div class="bg-gradient section_gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
         <!-- <div class="title-section-best sub-1"></div> -->
-         <div class="flex flex-col items-center"><img class="po_local" src="/data/code/<?=$code_1["ufile1"]?>" alt="<?=$code_1["code_name"]?>"></div>
-         <p class="text_head_sec"><?=$code_1["code_name"]?></p>
-         <h2 class="text_title_sec"><?=$code_1["code_memo"]?></h2>
+        <div class="flex flex-col items-center"><img class="po_local" src="/data/code/<?= $code_1["ufile1"] ?>" alt="<?= $code_1["code_name"] ?>"></div>
+        <p class="text_head_sec"><?= $code_1["code_name"] ?></p>
+        <h2 class="text_title_sec"><?= $code_1["code_memo"] ?></h2>
         <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]"
             style="gap: 45px;">
             <?php
-                $number = 1;
-                foreach($area_list["items"] as $area) {
-                    if ($area["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $area["ufile1"])) {
-                        $img = "/data/promotion/" . $area["ufile1"];
-                    } else {
-                        $img = "/data/product/noimg.png";
-                    }
-                    $formatted = sprintf('%02d', $number);
+            $number = 1;
+            foreach ($area_list as $area) {
+                if ($area["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $area["ufile1"])) {
+                    $img = "/data/promotion/" . $area["ufile1"];
+                } else {
+                    $img = "/data/product/noimg.png";
+                }
+                $formatted = sprintf('%02d', $number);
             ?>
                 <div class="wrap_item card-animation">
                     <div class="num_box">
-                        <span class="blue" style="background-color: <?=$area["color"]?> !important;"><?= $formatted?></span>
+                        <span class="blue" style="background-color: <?= $area["color"] ?> !important;"><?= $formatted ?></span>
                     </div>
                     <div class="text_box">
                         <div class="title"><?= $area["title"] ?></div>
@@ -323,8 +327,8 @@
                     </div>
                 </div>
             <?php
-                $number++;      
-                }
+                $number++;
+            }
             ?>
             <!-- <div class="wrap_item card-animation">
                 <div class="num_box">
@@ -426,76 +430,72 @@
         </div>
     </div>
     <?php
-        foreach($code_list as $code_parent) {
+    foreach ($code_list as $code_parent) {
     ?>
 
-    <div class="sec_banner">
-        <div class="promotion_banner_img">
-            <img class="only_web" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
-            <img class="only_mo" src="/data/code/<?=$code_parent["ufile1"]?>" alt="<?=$code_parent["code_name"]?>">
-        </div>
-        <div class="promotion_banner_content">
-            <div class="po_round">
-                <img src="/data/code/<?=$code_parent["ufile2"]?>" alt="<?=$code_parent["code_name"]?>">
+        <div class="sec_banner">
+            <div class="promotion_banner_img">
+                <img class="only_web" src="/data/code/<?= $code_parent["ufile1"] ?>" alt="<?= $code_parent["code_name"] ?>">
+                <img class="only_mo" src="/data/code/<?= $code_parent["ufile1"] ?>" alt="<?= $code_parent["code_name"] ?>">
             </div>
-            <h3 class="po_head" style="--after-bg: <?= $code_parent['color'] ?>;"><?=$code_parent["code_name"]?></h3>
-            <p class="po_head_sub"><?=$code_parent["code_memo"]?></p>
-            <?php
-                foreach($code_parent["code_child_list"] as $code_child) {
-            ?>
-                <div class="promotion_box">
-                    <h5 class="ttl"><?=$code_child["code_name"]?></h5>
-                    <p class="ttl_sub"><?=$code_child["code_memo"]?></p>
-                    <?php
-                        $filtered_list = array_filter($product_list['items'], function($item) use ($code_parent, $code_child) {
+            <div class="promotion_banner_content">
+                <div class="po_round">
+                    <img src="/data/code/<?= $code_parent["ufile2"] ?>" alt="<?= $code_parent["code_name"] ?>">
+                </div>
+                <h3 class="po_head" style="--after-bg: <?= $code_parent['color'] ?>;"><?= $code_parent["code_name"] ?></h3>
+                <p class="po_head_sub"><?= $code_parent["code_memo"] ?></p>
+                <?php
+                foreach ($code_parent["code_child_list"] as $code_child) {
+                ?>
+                    <div class="promotion_box">
+                        <h5 class="ttl"><?= $code_child["code_name"] ?></h5>
+                        <p class="ttl_sub"><?= $code_child["code_memo"] ?></p>
+                        <?php
+                        $filtered_list = array_filter($product_list['items'], function ($item) use ($code_parent, $code_child) {
                             return $item['category_code_1'] === $code_parent["code_no"] && $item['category_code_2'] === $code_child["code_no"];
                         });
-                    ?>
-                    
-                    <div class="promotion_box_contain">
-                        <?php
-                            foreach($filtered_list as $product) {
+                        ?>
+
+                        <div class="promotion_box_contain">
+                            <?php
+                            foreach ($filtered_list as $product) {
                                 if ($product["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $product["ufile1"])) {
                                     $src = "/data/promotion/" . $product["ufile1"];
                                 } else {
                                     $src = "/data/product/noimg.png";
                                 }
-                        ?>
-                        <div class="promotion_box_item">
-                            <div class="box_img"><img src="<?=$src?>" alt="<?=$product["title"]?>"></div>
-                            <div class="box_info">
-                                <div class="info_name"><?=$product["title"]?></div>
-                                <div class="info_hash_tag">
-                                    <p><span style="white-space:wrap"><?=$product["keyword"]?></span></p>
-                                </div>
-                                <div class="special">
-                                    <div class="special_label">
-                                        트전
-                                    </div>
-                                    <!-- <img class="only_web" src="/event/images/special_label.png" alt="">
+                            ?>
+                                <div class="promotion_box_item">
+                                    <div class="box_img"><img src="<?= $src ?>" alt="<?= $product["title"] ?>"></div>
+                                    <div class="box_info">
+                                        <div class="info_name"><?= $product["title"] ?></div>
+                                        <div class="info_hash_tag">
+                                            <p><span style="white-space:wrap"><?= $product["keyword"] ?></span></p>
+                                        </div>
+                                        <div class="special">
+                                            <div class="special_label">
+                                                트전
+                                            </div>
+                                            <!-- <img class="only_web" src="/event/images/special_label.png" alt="">
                                     <img class="only_mo" src="/event/images/special_label_mo.png" alt=""> -->
-                                    <p><?=$product["subtitle"]?></p>
+                                            <p><?= $product["subtitle"] ?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <?php
+                            <?php
                             }
-                        ?>
+                            ?>
+                        </div>
                     </div>
-                </div>
-            <?php
+                <?php
                 }
-            ?>
+                ?>
+            </div>
         </div>
-    </div>
     <?php
-        }
+    }
     ?>
-    <style>
-        .po_head::after {
-            background-color: var(--after-bg) !important;
-        }
-    </style>
+
     <!-- <div class="sec_banner">
         <div class="promotion_banner_img">
             <img class="only_web" src="/event/images/promotion_banner-1.png" alt="">
