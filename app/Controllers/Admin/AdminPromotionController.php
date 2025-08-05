@@ -200,6 +200,7 @@ class AdminPromotionController extends BaseController
             $product_title = $this->request->getPost("product_title") ?? [];
             $product_keyword = $this->request->getPost("product_keyword") ?? [];
             $product_subtitle = $this->request->getPost("product_subtitle") ?? [];
+            $product_onum = $this->request->getPost("product_onum") ?? [];
             $arr_product_ufile = $files['product_ufile'] ?? [];
             $product_checkImg = $this->request->getPost("product_checkImg") ?? [];
 
@@ -243,7 +244,7 @@ class AdminPromotionController extends BaseController
                     "category_code_1" => $category_code_1[$key],
                     "category_code_2" => $category_code_2[$key],
                     "keyword" => $product_keyword[$key],
-                    "onum" => $area_onum[$key]
+                    "onum" => $product_onum[$key]
                 ];
 
                 $product_ufile = isset($arr_product_ufile[$key]) ? $arr_product_ufile[$key] : null;
