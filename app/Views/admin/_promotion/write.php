@@ -278,7 +278,9 @@
                                                         <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
                                                     </td>
                                                     <td>
-                                                        <input type="color" name="area_color[]" value="">
+                                                        <div class="flex_c_c">
+                                                            <input type="color" name="area_color[]" style="width: 100px;" value="">
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="img_add flex_c_c">                                                   
@@ -518,7 +520,9 @@
                     <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
                 </td>
                 <td>
-                    <input type="color" name="area_color[]" value="">
+                    <div class="flex_c_c">
+                        <input type="color" name="area_color[]" style="width: 100px;" value="">
+                    </div>
                 </td>
                 <td>
                     <div class="img_add flex_c_c">                                                   
