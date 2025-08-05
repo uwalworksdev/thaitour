@@ -368,6 +368,64 @@ class AdminPromotionController extends BaseController
         }
     }
 
+    public function del_area()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                $data = [
+                    'status' => 'error',
+                    'msg' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->areaPromotion->delete($idx);
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+
+            return $this->response->setJSON(['message' => $msg]);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_product()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                $data = [
+                    'status' => 'error',
+                    'msg' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->productPromotion->delete($idx);
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+
+            return $this->response->setJSON(['message' => $msg]);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function del()
     {
         try {
@@ -381,7 +439,9 @@ class AdminPromotionController extends BaseController
             }
 
             foreach ($idx as $iValue) {
-                $db1 = $this->areaPromotion->delete($iValue)   ;
+                $db1 = $this->promotionList->delete($iValue);
+                $this->areaPromotion->where('promotion_idx', $iValue)->delete();
+                $this->productPromotion->where('promotion_idx', $iValue)->delete();
                 if (!$db1) {
                     $data = [
                         'status' => 'error',
@@ -424,7 +484,7 @@ class AdminPromotionController extends BaseController
                     'onum' => $onum[$j],
                 ];
 
-                $result = $this->areaPromotion->updateData($idx[$j], $data);
+                $result = $this->promotionList->updateData($idx[$j], $data);
 
                 if (!$result) {
                     return $this->response->setStatusCode(400)->setJSON([

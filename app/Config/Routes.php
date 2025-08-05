@@ -245,20 +245,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\AdminPromotionController::write_ok/$1", ['as' => "admin._promotion.write_ok.id"]);
         $routes->post("del_image", "Admin\AdminPromotionController::del_image", ['as' => "admin._promotion.del_image"]);
         $routes->post("del_all_image", "Admin\AdminPromotionController::del_all_image", ['as' => "admin._promotion.del_all_image"]);
-
-        $routes->get("list_area", "Admin\AdminPromotionController::list_area");
-        $routes->get("write_area", "Admin\AdminPromotionController::write_area");
-        $routes->post("write_area_ok", "Admin\AdminPromotionController::write_area_ok", ['as' => "admin._promotion.write_area_ok"]);
-        $routes->post("write_area_ok/(:segment)", "Admin\AdminPromotionController::write_area_ok/$1", ['as' => "admin._promotion.write_area_ok.id"]);
-        $routes->post("del", "Admin\AdminPromotionController::del", ['as' => "admin._promotion.del"]);
         $routes->post("change", "Admin\AdminPromotionController::change", ['as' => "admin._promotion.change"]);
-
-        $routes->get("list_product", "Admin\AdminPromotionController::list_product");
-        $routes->get("write_product", "Admin\AdminPromotionController::write_product");
-        $routes->post("write_product_ok", "Admin\AdminPromotionController::write_product_ok", ['as' => "admin._promotion.write_product_ok"]);
-        $routes->post("write_product_ok/(:segment)", "Admin\AdminPromotionController::write_product_ok/$1", ['as' => "admin._promotion.write_product_ok.id"]);
+        $routes->post("del_area", "Admin\AdminPromotionController::del_area", ['as' => "admin._promotion.del_area"]);
         $routes->post("del_product", "Admin\AdminPromotionController::del_product", ['as' => "admin._promotion.del_product"]);
-        $routes->post("change_product", "Admin\AdminPromotionController::change_product", ['as' => "admin._promotion.change_product"]);
+    
     });
 
     $routes->group("_hotel", static function ($routes) {

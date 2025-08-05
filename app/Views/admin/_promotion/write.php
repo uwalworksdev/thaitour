@@ -435,7 +435,7 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="flex_c_c">
-                                                                                    <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                                                                                    <button type="button" onclick="del_promotion_product(this, '<?= $product['idx']?>');" class="btn btn-danger">삭제</button>
                                                                                 </div>
                                                                             </td>
                                                                         </tr>    
@@ -570,7 +570,7 @@
                 </td>
                 <td>
                     <div class="flex_c_c">
-                        <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
+                        <button type="button" onclick="del_area_product(this, '');" class="btn btn-danger">삭제</button>
                     </div>
                 </td>
             </tr>           
@@ -580,8 +580,34 @@
 
     }
 
-    function del_area_product(button) {
-        $(button).closest("tr").remove();
+    function del_area_product(button, idx) {
+
+        if(idx){
+			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+				return false;
+			}
+
+			$.ajax({
+				url: "/AdmMaster/_promotion/del_area",
+				type: "POST",
+				data: {
+					"idx": idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest("tr").remove();
+		}
+
     }
 
     function add_promotion_product(button) {        
@@ -623,7 +649,7 @@
                 </td>
                 <td>
                     <div class="flex_c_c">
-                        <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                        <button type="button" onclick="del_promotion_product(this, '');" class="btn btn-danger">삭제</button>
                     </div>
                 </td>
             </tr>        
@@ -633,8 +659,32 @@
 
     }
 
-    function del_promotion_product(button) {
-        $(button).closest("tr").remove();
+    function del_promotion_product(button, idx) {
+        if(idx){
+			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+				return false;
+			}
+
+			$.ajax({
+				url: "/AdmMaster/_promotion/del_product",
+				type: "POST",
+				data: {
+					"idx": idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest("tr").remove();
+		}
     }
 
     function add_sub_image() {        
