@@ -126,7 +126,7 @@
                                     <th>제목</th>
                                     <td>
                                         <input type="text" name="author"
-                                            value="<?= $author ?? session()->get('member')["name"] ?>"
+                                            value="<?= $author ?? session()->get('member.name') ?>"
                                             class="text" maxlength="100" />
                                     </td>
                                 </tr>
