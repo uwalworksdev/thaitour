@@ -753,12 +753,13 @@ class AdminSpaController extends BaseController
 
             if ($info_id) {
                 $infoIndex = $this->productSpasInfo->find($info_id);
-            } else {
-                $infoIndex = $this->productSpasInfo->where('product_idx', $productIdx)
-                    ->where('o_sdate', $start_date)
-                    ->where('o_edate', $end_date)
-                    ->first();
-            }
+            } 
+            // else {
+            //     $infoIndex = $this->productSpasInfo->where('product_idx', $productIdx)
+            //         ->where('o_sdate', $start_date)
+            //         ->where('o_edate', $end_date)
+            //         ->first();
+            // }
 
             $infoData = [
                 'product_idx' => $productIdx,
