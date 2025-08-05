@@ -269,42 +269,52 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="area_wrap">
-                                                    <td>
-                                                        <input type="hidden" name="area_idx[]" value="">
-                                                        <input type="text" name="area_title[]" class="text">
-                                                    </td>
-                                                    <td>
-                                                        <textarea name="area_desc[]" rows="10" cols="100" style="width:100%; height:100px;"></textarea>
-                                                    </td>
-                                                    <td>
-                                                        <div class="flex_c_c">
-                                                            <input type="color" name="area_color[]" style="width: 100px;" value="">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="img_add flex_c_c">                                                   
-                                                            <div class="file_input_wrap">
-                                                                <div class="file_input">
-                                                                    <input type="file" name='area_ufile[]' id="area_ufile"
-                                                                        onchange="productImagePreview(this, '')">
-                                                                    <label for="area_ufile"></label>
-                                                                    <input type="hidden" name="area_checkImg[]" class="checkImg">
-                                                                    <button type="button" class="remove_btn"
-                                                                        onclick="productImagePreviewRemove(this)"></button>
+                                                <?php
+                                                    foreach($area_list as $area){
+                                                        $area_img = "/data/promotion/" . $area["ufile1"];
+                                                ?>
+                                                    <tr class="area_wrap">
+                                                        <td>
+                                                            <input type="hidden" name="area_idx[]" value="<?= $area['idx'] ?>">
+                                                            <input type="text" name="area_title[]" class="text" value="<?= $area['title'] ?>">
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="area_desc[]" rows="10" cols="100" style="width:100%; height:100px;"><?= $area['desc'] ?></textarea>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex_c_c">
+                                                                <input type="color" name="area_color[]" style="width: 100px;" value="<?= $area['desc'] ?>">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="img_add flex_c_c">                                                   
+                                                                <div class="file_input_wrap">
+                                                                    <div class="file_input">
+                                                                        <input type="file" name='area_ufile[]' id="area_ufile"
+                                                                            onchange="productImagePreview(this, '')">
+                                                                        <label for="area_ufile" <?= !empty($area["ufile1"]) ? "style='background-image:url($area_img)'" : "" ?>></label>
+                                                                        <input type="hidden" name="area_checkImg[]" class="checkImg">
+                                                                        <button type="button" class="remove_btn"
+                                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                                        <?php if ($area["ufile1"]) { ?>
+                                                                            <a class="img_txt imgpop" href="<?= $area_img ?>">미리보기</a>
+                                                                        <?php } ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="area_onum[]" class="text only_number">
-                                                    </td>
-                                                    <td>
-                                                        <div class="flex_c_c">
-                                                            <button type="button" onclick="del_area_product(this);" class="btn btn-danger">삭제</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>               
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="area_onum[]" class="text only_number" value="<?= $area['onum'] ?>">
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex_c_c">
+                                                                <button type="button" onclick="del_area_product(this, '<?= $area['idx'] ?>');" class="btn btn-danger">삭제</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>       
+                                                <?php
+                                                    }
+                                                ?>        
                                             </tbody>
                                         </table>
                                     </td>
@@ -336,6 +346,10 @@
                                             <?php
                                                 $count = 1;
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
+
+                                                    $product_list = array_filter($product_list, function($item) use ($code_parent, $code_child) {
+                                                        return $item['category_code_1'] === $code_parent['code_no'] && $item['category_code_2'] === $code_child['code_no'];
+                                                    });
                                             ?>
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                                     style="table-layout:fixed;" data-category_code_1="<?= $code_parent['code_no'] ?>" data-category_code_2="<?= $code_child['code_no'] ?>">
@@ -379,42 +393,53 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr class="promotion_product">
-                                                                        <td>
-                                                                            <input type="hidden" name="product_idx[]" value="">
-                                                                            <input type="hidden" name="category_code_1[]" class="category_code_1" value="<?= $code_parent['code_no'] ?>">
-                                                                            <input type="hidden" name="category_code_2[]" class="category_code_2" value="<?= $code_child['code_no'] ?>">
-                                                                            <input type="text" name="product_title[]" class="text">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="product_keyword[]" class="text">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="product_subtitle[]" class="text">
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="img_add flex_c_c">                                                   
-                                                                                <div class="file_input_wrap">
-                                                                                    <div class="file_input">
-                                                                                        <input type="file" name='product_ufile[]' id="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
-                                                                                            onchange="productImagePreview(this, '')">
-                                                                                        <label for="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"></label>
-                                                                                        <input type="hidden" name="product_checkImg[]" class="checkImg">
-                                                                                        <button type="button" class="remove_btn"
-                                                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                                    <?php
+                                                                        foreach($product_list as $product) {
+                                                                            $product_img = "/data/promotion/" . $product["ufile1"];
+                                                                    ?>
+                                                                        <tr class="promotion_product">
+                                                                            <td>
+                                                                                <input type="hidden" name="product_idx[]" value="<?= $product['idx'] ?>">
+                                                                                <input type="hidden" name="category_code_1[]" class="category_code_1" value="<?= $code_parent['code_no'] ?>">
+                                                                                <input type="hidden" name="category_code_2[]" class="category_code_2" value="<?= $code_child['code_no'] ?>">
+                                                                                <input type="text" name="product_title[]" class="text" value="<?= $product['title'] ?>">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="product_keyword[]" class="text" value="<?= $product['keyword'] ?>">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="product_subtitle[]" class="text" value="<?= $product['subtitle'] ?>">
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="img_add flex_c_c">                                                   
+                                                                                    <div class="file_input_wrap">
+                                                                                        <div class="file_input">
+                                                                                            <input type="file" name='product_ufile[]' id="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
+                                                                                                onchange="productImagePreview(this, '')">
+                                                                                            <label for="product_ufile_<?=$code_child['code_no']?>_<?=$count?>"
+                                                                                                <?= !empty($product["ufile1"]) ? "style='background-image:url($product_img)'" : "" ?>></label>
+                                                                                            <input type="hidden" name="product_checkImg[]" class="checkImg">
+                                                                                            <button type="button" class="remove_btn"
+                                                                                                onclick="productImagePreviewRemove(this)"></button>
+                                                                                            <?php if ($product["ufile1"]) { ?>
+                                                                                                <a class="img_txt imgpop" href="<?= $product_img ?>">미리보기</a>
+                                                                                            <?php } ?>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="product_onum[]" class="text only_number">
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="flex_c_c">
-                                                                                <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>               
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="product_onum[]" class="text only_number">
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="flex_c_c">
+                                                                                    <button type="button" onclick="del_promotion_product(this);" class="btn btn-danger">삭제</button>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>    
+                                                                    <?php
+                                                                        }
+                                                                    ?>           
                                                                 </tbody>
                                                             </table>
                                                         </td>

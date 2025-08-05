@@ -73,6 +73,9 @@ class AdminPromotionController extends BaseController
         if ($idx) {
             $row = $this->promotionList->find($idx);
             $img_list = $this->promotionImg->getImg($idx);
+
+            $area_list = $this->areaPromotion->where("promotion_idx", $idx)->findAll();
+            $product_list = $this->productPromotion->where("promotion_idx", $idx)->findAll();
         }
 
         $data = [
@@ -83,6 +86,8 @@ class AdminPromotionController extends BaseController
             'row' => $row ?? [],
             'fresult' => $fresult ?? [],
             'img_list' => $img_list ?? [],
+            'area_list' => $area_list ?? [],
+            'product_list' => $product_list ?? [],
         ];
         return view("admin/_promotion/write", $data);
     }
