@@ -349,7 +349,7 @@
                                                 $count = 1;
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
 
-                                                    $product_list = array_filter($product_list, function($item) use ($code_parent, $code_child) {
+                                                    $product_arr = array_filter($product_list, function($item) use ($code_parent, $code_child) {
                                                         return $item['category_code_1'] === $code_parent['code_no'] && $item['category_code_2'] === $code_child['code_no'];
                                                     });
                                             ?>
@@ -396,7 +396,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
-                                                                        foreach($product_list as $product) {
+                                                                        foreach($product_arr as $product) {
                                                                             $product_img = "/data/promotion/" . $product["ufile1"];
                                                                     ?>
                                                                         <tr class="promotion_product">
@@ -431,7 +431,7 @@
                                                                                 </div>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="text" name="product_onum[]" class="text only_number">
+                                                                                <input type="text" name="product_onum[]" class="text only_number" value="<?= $product['onum'] ?>">
                                                                             </td>
                                                                             <td>
                                                                                 <div class="flex_c_c">
