@@ -256,11 +256,13 @@
                                                 <col width="10%" />
                                                 <col width="10%" />
                                                 <col width="10%" />
+                                                <col width="10%" />
                                             </colgroup>
                                             <thead>
                                                 <tr>
                                                     <th>제목</th>
                                                     <th>내용</th>
+                                                    <th>배경</th>
                                                     <th>썸네일이미지</th>
                                                     <th>순위</th>
                                                     <th>관리</th>
@@ -269,10 +271,14 @@
                                             <tbody>
                                                 <tr class="area_wrap">
                                                     <td>
+                                                        <input type="hidden" name="area_idx[]" value="">
                                                         <input type="text" name="area_title[]" class="text">
                                                     </td>
                                                     <td>
                                                         <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input type="color" name="area_color[]" value="">
                                                     </td>
                                                     <td>
                                                         <div class="img_add flex_c_c">                                                   
@@ -373,6 +379,7 @@
                                                                 <tbody>
                                                                     <tr class="promotion_product">
                                                                         <td>
+                                                                            <input type="hidden" name="product_idx[]" value="">
                                                                             <input type="hidden" name="category_code_1[]" class="category_code_1" value="<?= $code_parent['code_no'] ?>">
                                                                             <input type="hidden" name="category_code_2[]" class="category_code_2" value="<?= $code_child['code_no'] ?>">
                                                                             <input type="text" name="product_title[]" class="text">
@@ -504,10 +511,14 @@
         let html = `
             <tr class="area_wrap">
                 <td>
+                    <input type="hidden" name="area_idx[]" value="">
                     <input type="text" name="area_title[]" class="text">
                 </td>
                 <td>
                     <textarea name="area_desc[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"></textarea>
+                </td>
+                <td>
+                    <input type="color" name="area_color[]" value="">
                 </td>
                 <td>
                     <div class="img_add flex_c_c">                                                   
@@ -551,6 +562,9 @@
         let html = `
             <tr class="promotion_product">
                 <td>
+                    <input type="hidden" name="product_idx[]" value="">
+                    <input type="hidden" name="category_code_1[]" class="category_code_1" value="${category_code_1}">
+                    <input type="hidden" name="category_code_2[]" class="category_code_2" value="${category_code_2}">
                     <input type="text" name="product_title[]" class="text">
                 </td>
                 <td>

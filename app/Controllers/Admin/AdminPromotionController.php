@@ -113,15 +113,15 @@ class AdminPromotionController extends BaseController
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files = $this->request->getFileMultiple('ufile') ?? [];
+            $ufiles = $this->request->getFileMultiple('ufile') ?? [];
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->promotionList->updateData($idx, $data);
 
-                if (isset($files) && count($files) > 0) {
-                    foreach ($files as $key => $file) {
+                if (isset($ufiles) && count($ufiles) > 0) {
+                    foreach ($ufiles as $key => $file) {
                         $i_idx = $arr_i_idx[$key] ?? null;
 
                         if (!empty($i_idx)) {
@@ -158,10 +158,10 @@ class AdminPromotionController extends BaseController
 
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $insertId = $this->promotionList->insertData($data);
+                $idx = $this->promotionList->insertData($data);
 
-                if (isset($files)) {
-                    foreach ($files as $key => $file) {
+                if (isset($ufiles)) {
+                    foreach ($ufiles as $key => $file) {
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
@@ -169,7 +169,7 @@ class AdminPromotionController extends BaseController
                             $file->move($publicPath, $ufile);
 
                             $this->promotionImg->insertData([
-                                "promotion_idx" => $insertId,
+                                "promotion_idx" => $idx,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "onum" => $arr_onum[$key],
@@ -179,6 +179,89 @@ class AdminPromotionController extends BaseController
                     }
                 }
 
+            }
+
+            $area_idx = $this->request->getPost("area_idx") ?? [];
+            $area_title = $this->request->getPost("area_title") ?? [];
+            $area_desc = $this->request->getPost("area_desc") ?? [];
+            $area_color = $this->request->getPost("area_color") ?? [];
+            $area_onum = $this->request->getPost("area_onum") ?? [];
+            $arr_area_ufile = $files['area_ufile'] ?? [];
+            $area_checkImg = $this->request->getPost("area_checkImg") ?? [];
+
+            $product_idx = $this->request->getPost("product_idx") ?? [];
+            $category_code_1 = $this->request->getPost("category_code_1") ?? [];
+            $category_code_2 = $this->request->getPost("category_code_2") ?? [];
+            $product_title = $this->request->getPost("product_title") ?? [];
+            $product_keyword = $this->request->getPost("product_keyword") ?? [];
+            $product_subtitle = $this->request->getPost("product_subtitle") ?? [];
+            $arr_product_ufile = $files['product_ufile'] ?? [];
+            $product_checkImg = $this->request->getPost("product_checkImg") ?? [];
+
+            foreach ($area_idx as $key => $value) {
+                $data_area = [
+                    "promotion_idx" => $idx,
+                    "title" => $area_title[$key],
+                    "desc" => $area_desc[$key],
+                    "color" => $area_color[$key],
+                    "onum" => $area_onum[$key]
+                ];
+
+                $area_ufile = isset($arr_area_ufile[$key]) ? $arr_area_ufile[$key] : null;
+    
+                if (isset($area_ufile) && $area_ufile->isValid() && !$area_ufile->hasMoved()) {
+                    $data_area["rfile1"] = $area_ufile->getClientName();
+                    $data_area["ufile1"] = $area_ufile->getRandomName();
+                    $area_ufile->move($publicPath, $data_area["ufile1"]);
+                }
+
+                $checkImg = isset($area_checkImg[$key]) ? $area_checkImg[$key] : null;
+                if (isset($checkImg) && $checkImg == "N") {
+                    $data_area["rfile1"] = '';
+                    $data_area["ufile1"] = '';
+                }
+
+                if(!empty($value)) {
+                    $data_area["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                    $this->areaPromotion->updateData($value, $data_area);
+                }else {
+                    $data_area["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                    $this->areaPromotion->insertData($data_area);
+                }
+            }
+
+             foreach ($product_idx as $key => $value) {
+                $data_product = [
+                    "promotion_idx" => $idx,
+                    "title" => $product_title[$key],
+                    "subtitle" => $product_subtitle[$key],
+                    "category_code_1" => $category_code_1[$key],
+                    "category_code_2" => $category_code_2[$key],
+                    "keyword" => $product_keyword[$key],
+                    "onum" => $area_onum[$key]
+                ];
+
+                $product_ufile = isset($arr_product_ufile[$key]) ? $arr_product_ufile[$key] : null;
+    
+                if (isset($product_ufile) && $product_ufile->isValid() && !$product_ufile->hasMoved()) {
+                    $data_product["rfile1"] = $product_ufile->getClientName();
+                    $data_product["ufile1"] = $product_ufile->getRandomName();
+                    $product_ufile->move($publicPath, $data_product["ufile1"]);
+                }
+
+                $checkImg = isset($product_checkImg[$key]) ? $product_checkImg[$key] : null;
+                if (isset($checkImg) && $checkImg == "N") {
+                    $data_product["rfile1"] = '';
+                    $data_product["ufile1"] = '';
+                }
+
+                if(!empty($value)) {
+                    $data_product["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                    $this->productPromotion->updateData($value, $data_product);
+                }else {
+                    $data_product["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                    $this->productPromotion->insertData($data_product);
+                }
             }
 
             if ($idx) {
