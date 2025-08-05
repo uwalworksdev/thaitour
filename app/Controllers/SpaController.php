@@ -706,6 +706,7 @@ class SpaController extends BaseController
 
         $product_idx = $this->request->getVar('product_idx');
         $date = $this->request->getVar('date');
+        $weekday = date('w', strtotime($date));
 
         $builder = $db->table('tbl_spas_price p');
 
@@ -714,6 +715,7 @@ class SpaController extends BaseController
         $builder->join('tbl_product_spas_info si', 'si.info_idx = s.info_idx', 'left');
         $builder->where("p.product_idx =", $product_idx);
         $builder->where("p.goods_date =", $date);
+        $builder->where("si.yoil_$weekday =", 'Y');
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
         $builder->where("si.o_sdate !=", '0000-00-00 00:00:00');
