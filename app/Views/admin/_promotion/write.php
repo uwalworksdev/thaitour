@@ -387,7 +387,7 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th>제목</th>
-                                                                        <th>Keyword</th>
+                                                                        <th>Keyword / URL</th>
                                                                         <th>부제</th>
                                                                         <th>썸네일이미지</th>
                                                                         <th>순위</th>
@@ -407,7 +407,9 @@
                                                                                 <input type="text" name="product_title[]" class="text" value="<?= $product['title'] ?>">
                                                                             </td>
                                                                             <td>
-                                                                                <input type="text" name="product_keyword[]" class="text" value="<?= $product['keyword'] ?>">
+                                                                                <input type="text" name="product_keyword[]" placeholder="키워드 입력해주세요!" class="text" value="<?= $product['keyword'] ?>">
+                                                                                <br>
+                                                                                <input type="text" name="product_url[]" style="margin-top: 10px;" placeholder="링크 입력해주세요!" class="text" value="<?= $product['url'] ?>">
                                                                             </td>
                                                                             <td>
                                                                                 <input type="text" name="product_subtitle[]" class="text" value="<?= $product['subtitle'] ?>">
@@ -625,7 +627,9 @@
                     <input type="text" name="product_title[]" class="text">
                 </td>
                 <td>
-                    <input type="text" name="product_keyword[]" class="text">
+                    <input type="text" name="product_keyword[]" placeholder="키워드 입력해주세요!" class="text">
+                    <br>
+                    <input type="text" name="product_url[]" style="margin-top: 10px;" placeholder="링크 입력해주세요!" class="text" value="">
                 </td>
                 <td>
                     <input type="text" name="product_subtitle[]" class="text">

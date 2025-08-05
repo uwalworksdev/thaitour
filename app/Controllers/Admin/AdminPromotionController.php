@@ -199,6 +199,7 @@ class AdminPromotionController extends BaseController
             $category_code_2 = $this->request->getPost("category_code_2") ?? [];
             $product_title = $this->request->getPost("product_title") ?? [];
             $product_keyword = $this->request->getPost("product_keyword") ?? [];
+            $product_url = $this->request->getPost("product_url") ?? [];
             $product_subtitle = $this->request->getPost("product_subtitle") ?? [];
             $product_onum = $this->request->getPost("product_onum") ?? [];
             $arr_product_ufile = $files['product_ufile'] ?? [];
@@ -244,6 +245,7 @@ class AdminPromotionController extends BaseController
                     "category_code_1" => $category_code_1[$key],
                     "category_code_2" => $category_code_2[$key],
                     "keyword" => $product_keyword[$key],
+                    "url" => $product_url[$key],
                     "onum" => $product_onum[$key]
                 ];
 
