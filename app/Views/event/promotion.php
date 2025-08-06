@@ -461,16 +461,22 @@
                                 } else {
                                     $src = "/data/product/noimg.png";
                                 }
+
+                                $url = $product["url"];
+
+                                if (empty($product["url"])) {
+                                    $url = "#";
+                                }
                             ?>
                                 <div class="promotion_box_item">
                                     <div class="box_img">
-                                        <a href="<?=$product["url"]?>">
+                                        <a href="<?=$url?>">
                                             <img src="<?= $src ?>" alt="<?= $product["title"] ?>">
                                         </a>
                                     </div>
                                     <div class="box_info">
                                         <div class="info_name">
-                                            <a href="<?=$product["url"]?>">
+                                            <a href="<?=$url?>">
                                                 <?= $product["title"] ?>
                                             </a>
                                         </div>
