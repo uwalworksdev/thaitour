@@ -97,7 +97,6 @@ class AdminPromotionController extends BaseController
         try {
             $files = $this->request->getFiles();
             $data['title']  = updateSQ($_POST["title"] ?? '');
-            $data['author'] = updateSQ($_POST["author"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 

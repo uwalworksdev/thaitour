@@ -65,9 +65,6 @@
                         <div class="magazines_list__item_desc_">
                             <?=date("Y-m-d", strtotime($row["r_date"]))?> (<?=dateToYoil($row["r_date"])?>) <span class="src_">|</span> <span class="view_"><?=$row["hit"]?></span>
                         </div>
-                        <div class="magazines_list__item_author_">
-                            <?=$row["author"]?> 
-                        </div>
                     </a>
                 <?php
                     }
