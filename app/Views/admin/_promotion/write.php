@@ -118,15 +118,9 @@
 
                                 <tr>
                                     <th>제목</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="title"
                                             value="<?= $title ?? "" ?>"
-                                            class="text" maxlength="100" />
-                                    </td>
-                                    <th>작가</th>
-                                    <td>
-                                        <input type="text" name="author"
-                                            value="<?= !empty($author) ? $author : (session()->get('member')["name"]) ?>"
                                             class="text" maxlength="100" />
                                     </td>
                                 </tr>
