@@ -528,9 +528,6 @@ body {
     padding-bottom: 100px;
 }
 
-.section_gradient .po_local {
-    width: 5rem;
-}
 
 
 .wrap_item.card-animation {
@@ -1284,5 +1281,10 @@ img.news.main_title {
     font-family: "Korail";
     text-align: center;
 }
+
+.section_gradient .po_local {
+    width: 5rem;
+}
+
 
 }
