@@ -102,61 +102,58 @@
         <!-- <h1 class="text-4xl font-bold text-center mb-16 text-gray-800">방콕 한눈에 살펴보기</h1> -->
 
         <!-- 전체 배경 지도 (중앙) -->
-        <div class="only_web">
-            <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-                <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
-                <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
-                <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
-                <!-- 중앙 지도 -->
-                <div class="hidden lg:block">
-                    <div
-                        class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
-                        <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
-                    </div>
-
-                    <!-- 사원 -->
-                    <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
-                    </div>
-
-                    <!-- 강 -->
-                    <div
-                        class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
-                    </div>
-
-                    <!-- 야시장 -->
-                    <div
-                        class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
-                    </div>
-
-                    <!-- 카오산 -->
-                    <div
-                        class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
-                    </div>
-
-                    <!-- 쇼핑몰 -->
-                    <div
-                        class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
-                    </div>
-
-                    <!-- 무에타이 -->
-                    <div
-                        class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
-                        <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
-                    </div>
+        <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
+            <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
+            <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
+            <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
+            <!-- 중앙 지도 -->
+            <div class="hidden lg:block">
+                <div
+                    class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
+                    <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
                 </div>
-                <!-- <div class="lg:hidden">
-                     <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
-                 </div> -->
+
+                <!-- 사원 -->
+                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
+                </div>
+
+                <!-- 강 -->
+                <div
+                    class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
+                </div>
+
+                <!-- 야시장 -->
+                <div
+                    class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
+                </div>
+
+                <!-- 카오산 -->
+                <div
+                    class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
+                </div>
+
+                <!-- 쇼핑몰 -->
+                <div
+                    class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
+                </div>
+
+                <!-- 무에타이 -->
+                <div
+                    class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
+                </div>
             </div>
+            <!-- <div class="lg:hidden">
+                 <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
+             </div> -->
         </div>
-        <div class="only_mo">
+        <!-- <div class="only_mo">
             <div class="title_map">
-                <!-- <img src="/event/images/map_pro_ttl.png" alt=""> -->
                 <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
                 <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
             </div>
@@ -294,7 +291,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="bg-gradient section_gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
@@ -466,9 +463,17 @@
                                 }
                             ?>
                                 <div class="promotion_box_item">
-                                    <div class="box_img"><img src="<?= $src ?>" alt="<?= $product["title"] ?>"></div>
+                                    <div class="box_img">
+                                        <a href="<?=$product["url"]?>">
+                                            <img src="<?= $src ?>" alt="<?= $product["title"] ?>">
+                                        </a>
+                                    </div>
                                     <div class="box_info">
-                                        <div class="info_name"><?= $product["title"] ?></div>
+                                        <div class="info_name">
+                                            <a href="<?=$product["url"]?>">
+                                                <?= $product["title"] ?>
+                                            </a>
+                                        </div>
                                         <div class="info_hash_tag">
                                             <p><span style="white-space:wrap"><?= $product["keyword"] ?></span></p>
                                         </div>
