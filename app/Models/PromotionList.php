@@ -73,7 +73,7 @@ class PromotionList extends Model
         $currentUrl = current_url();
         $link = '/AdmMaster/';
         if (strpos($currentUrl, $link) === false) {
-            $builder->where('status = ', 'Y');
+            $builder->where('status != ', 'N');
         }
 
         $nTotalCount = $builder->countAllResults(false);
