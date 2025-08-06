@@ -41,7 +41,7 @@
     } */
 
     .map_wrap_image img {
-        height: 500px;
+        height: 600px;
     }
 </style>
 
