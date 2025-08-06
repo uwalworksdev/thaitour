@@ -127,7 +127,7 @@ a.btn.btn-lg {
 
 .btn.arrow_w {
   padding-right: 2.5rem;
-  background-image: url(../img/ico/btn_arrow_w.png);
+  /* background-image: url(../img/ico/btn_arrow_w.png); */
   background-position: center right 1.25rem;
   background-repeat: no-repeat;
   text-align: left;
@@ -330,7 +330,7 @@ a.btn.btn-lg {
   border-radius: 50%;
   top: 12px;
   right: 12px;
-  background: #fff url(../img/ico/chk_ico.png) no-repeat 50% 50%;
+  /* background: #fff url(../img/ico/chk_ico.png) no-repeat 50% 50%; */
 }
 
 [class^="chk_"] input[type="radio"],
@@ -394,7 +394,7 @@ a.btn.btn-lg {
   border-radius: 50%;
   top: 12px;
   right: 12px;
-  background: #fff url(../img/ico/chk_ico.png) no-repeat 50% 50%;
+  /* background: #fff url(../img/ico/chk_ico.png) no-repeat 50% 50%; */
 }
 
 .chk_square label {
@@ -485,12 +485,12 @@ a.btn.btn-lg {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: url(../img/ico/chk_ico.png) no-repeat center / cover;
+  /* background: url(../img/ico/chk_ico.png) no-repeat center / cover; */
 
 }
 
 .ico_chk_box input[type="checkbox"]:checked+label::after {
-  background-image: url(../img/ico/chk_ico_on.png);
+  /* background-image: url(../img/ico/chk_ico_on.png); */
 }
 
 .chk_box input[type="checkbox"] {
@@ -523,7 +523,7 @@ a.btn.btn-lg {
 }
 
 .chk_box input[type="checkbox"]:checked+label::after {
-  background-image: url(../img/ico/chk_ico.png);
+  /* background-image: url(../img/ico/chk_ico.png); */
 }
 
 .radiobox_wrap>div {
@@ -1074,7 +1074,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .btn.arrow_w {
     padding-right: 2.6315rem;
-    background-image: url(../img/ico/mo_btn_arrow_w.png);
+    /* background-image: url(../img/ico/mo_btn_arrow_w.png); */
     background-position: center right 1.3157rem;
     background-size: 1.4736rem auto;
   }
@@ -1253,7 +1253,7 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 1.5789rem;
     top: 0.7894rem;
     right: 0.7894rem;
-    background-image: url(../img/ico/mo_chk_ico.png);
+    /* background-image: url(../img/ico/mo_chk_ico.png); */
     background-size: cover;
   }
 
@@ -1323,7 +1323,7 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .chk_box input[type="checkbox"]:checked+label::after {
-    background-image: url(../img/ico/chk_ico.png);
+    /* background-image: url(../img/ico/chk_ico.png); */
   }
 
   .radiobox_wrap>div {
