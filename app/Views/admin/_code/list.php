@@ -202,15 +202,13 @@
             data: {
                 "code_idx": idx
             },
-            // dataType: "json",
-            // async: false,
-            // cache: false,
+            dataType: "json",
+            async: false,
+            cache: false,
             success: function (data, textStatus) {
-                console.log(data);
-                
-                // message = data.message;
-                // alert(message);
-                // location.reload();
+                message = data.message;
+                alert(message);
+                location.reload();
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

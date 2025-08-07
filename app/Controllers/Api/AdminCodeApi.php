@@ -121,10 +121,18 @@ class AdminCodeApi extends BaseController
         try {
             $code_idx = $_POST['code_idx'];
 
-            $childCnt = $this->codeModel->getTotalCount($code_idx);
+            if(empty($code_idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status'  => 'error',
+                        'message' => 'No code_idx provided'
+                    ]);
+            }
 
-            var_dump($childCnt);
-            die();
+            $code_no = $this->codeModel->find($code_idx)['code_no'] ?? '';
+
+            $childCnt = $this->codeModel->getTotalCount($code_no);
 
 			if ($childCnt == 0) {
                 $this->codeModel->delete($code_idx);
