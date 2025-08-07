@@ -347,7 +347,6 @@
                                         <td colspan="4">
                                             <?php
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
-                                                    $count = 1;
 
                                                     $product_arr = array_filter($product_list, function($item) use ($code_parent, $code_child) {
                                                         return $item['category_code_1'] === $code_parent['code_no'] && $item['category_code_2'] === $code_child['code_no'];
@@ -396,6 +395,8 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
+                                                                        $count = 1;
+
                                                                         foreach($product_arr as $product) {
                                                                             $product_img = "/data/promotion/" . $product["ufile1"];
                                                                     ?>
@@ -442,6 +443,7 @@
                                                                             </td>
                                                                         </tr>    
                                                                     <?php
+                                                                        $count++;
                                                                         }
                                                                     ?>           
                                                                 </tbody>
@@ -451,7 +453,6 @@
                                                 </tbody>
                                             </table>
                                             <?php
-                                                $count++;
                                                 }
                                             ?>
                                         </td>
