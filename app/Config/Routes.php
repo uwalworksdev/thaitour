@@ -243,6 +243,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminPromotionController::write");
         $routes->post("write_ok", "Admin\AdminPromotionController::write_ok", ['as' => "admin._promotion.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminPromotionController::write_ok/$1", ['as' => "admin._promotion.write_ok.id"]);
+        $routes->post("del", "Admin\AdminPromotionController::del", ['as' => "admin._promotion.del"]);
         $routes->post("del_image", "Admin\AdminPromotionController::del_image", ['as' => "admin._promotion.del_image"]);
         $routes->post("del_all_image", "Admin\AdminPromotionController::del_all_image", ['as' => "admin._promotion.del_all_image"]);
         $routes->post("change", "Admin\AdminPromotionController::change", ['as' => "admin._promotion.change"]);
