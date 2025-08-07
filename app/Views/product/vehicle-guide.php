@@ -3894,8 +3894,10 @@ function showProductList(el) {
             data: { golf_code: golfCode },
             success: function(response) {
                 const products = response.products;
-                console.log(products);
-
+                if (!products || products.length === 0) {
+                    $('#product-hover-box').remove(); 
+                    return;
+                }
                 let html = `<div id="product-hover-box" class="product-hover-box">`;
                 if (products.length > 0) {
                     html += `<ul>`;
@@ -3903,8 +3905,6 @@ function showProductList(el) {
                         html += `<li>${products[i].product_name}</li>`;
                     }
                     html += `</ul>`;
-                } else {
-                    html += `<p>상품이 없습니다.</p>`;
                 }
                 html += `</div>`;
 
@@ -3914,7 +3914,7 @@ function showProductList(el) {
 
                 const offset = $(el).offset();
                 $('#product-hover-box').css({
-                    top: offset.top + $(el).outerHeight(),
+                    top: offset.top + $(el).outerHeight() + 10,
                     left: offset.left,
                     position: 'absolute',
                     zIndex: 9999,

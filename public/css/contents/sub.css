@@ -3170,6 +3170,7 @@
     border: 1px solid #ddd;
     padding: 10px;
     font-size: 14px;
+    top: 10px;
 }
 
 .product-hover-box ul {
@@ -3179,7 +3180,7 @@
 }
 
 .product-hover-box li {
-    padding: 5px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
 
