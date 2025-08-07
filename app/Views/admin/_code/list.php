@@ -134,7 +134,7 @@
                                     </td>
                                     <td>
                                         <?php if ($row["cnt"] == 0) { ?>
-                                            <a href="#!" onclick="code_delete('<?= $row["code_idx"] ?>');"
+                                            <a href="#!" onclick="code_delete('<?= $row['code_idx'] ?>');"
                                                class="btn btn-default">코드삭제</a>
                                         <?php } ?>
                                         <a href="write?s_parent_code_no=<?= $row["code_no"] ?>"

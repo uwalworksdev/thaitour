@@ -123,6 +123,9 @@ class AdminCodeApi extends BaseController
 
             $childCnt = $this->codeModel->getTotalCount($code_idx);
 
+            var_dump($childCnt);
+            die();
+
 			if ($childCnt == 0) {
                 $this->codeModel->delete($code_idx);
 			}
