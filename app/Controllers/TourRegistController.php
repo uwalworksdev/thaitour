@@ -375,6 +375,10 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '5406' ORDER BY onum ASC";
+        $query = $db->query($sql);
+        $data['golfCode'] = $query->getResultArray();
+
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
         foreach ($filters as $key => $filter) {
@@ -491,6 +495,7 @@ class TourRegistController extends BaseController
         $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
         $data['not_included_product'] = updateSQ($_POST["not_included_product"] ?? '');
         $data['guide_contents'] = updateSQ($_POST["guide_contents"] ?? '');
+        $data['golf_code'] = updateSQ($_POST["golf_code"] ?? '');
 
 
         // $afternoon_y = explode(",", $data['afternoon_y']);

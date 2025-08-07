@@ -505,7 +505,7 @@
                                 </tr>
                                 <tr>
                                     <th>라벨</th>
-                                    <td colspan="3">
+                                    <td>
                                         <?php
                                             $i = 1;
                                             foreach($label_list as $label){
@@ -523,6 +523,17 @@
                                             $i++;
                                             }
                                         ?>
+                                    </td>
+                                    <th>골프장 지역</th>
+                                    <td>
+                                        <select name="golf_code" id="golf_code" class="input_select">
+                                        <option value="">선택</option>
+                                        <?php foreach ($golfCode as $code) : ?>
+                                            <option value="<?= $code['code_no'] ?>"  <?php if ($golf_code == $code['code_no']) {
+                                                    echo "selected";
+                                                } ?>><?= $code['code_name'] ?></option>
+                                        <?php endforeach; ?>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
