@@ -346,8 +346,8 @@
                                     <tr>
                                         <td colspan="4">
                                             <?php
-                                                $count = 1;
                                                 foreach ($code_parent['code_child_list'] as $code_child) {
+                                                    $count = 1;
 
                                                     $product_arr = array_filter($product_list, function($item) use ($code_parent, $code_child) {
                                                         return $item['category_code_1'] === $code_parent['code_no'] && $item['category_code_2'] === $code_child['code_no'];
