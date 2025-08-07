@@ -202,12 +202,14 @@
             data: {
                 "code_idx": idx
             },
-            dataType: "json",
-            async: false,
-            cache: false,
+            // dataType: "json",
+            // async: false,
+            // cache: false,
             success: function (data, textStatus) {
-                message = data.message;
-                alert(message);
+                console.log(data);
+                
+                // message = data.message;
+                // alert(message);
                 // location.reload();
             },
             error: function (request, status, error) {
