@@ -3890,6 +3890,7 @@ function showProductList(el) {
             type: 'GET',
             data: { golf_code: golfCode },
             success: function(response) {
+                console.log(response);
                 const products = response.products;
 
                 let html = `<div id="product-hover-box" class="product-hover-box">`;
