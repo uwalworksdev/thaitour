@@ -3881,11 +3881,8 @@
 
 function showProductList(el) {
     const golfCode = el.dataset.golf_code;
-    console.log(golfCode);
-    let code_first = "5406";
-    
 
-    if (code_first === "5406") {
+    if (typeof code_first !== 'undefined' && code_first === "5406") {
         clearTimeout(productListTimeout);
 
         $.ajax({
@@ -3894,27 +3891,25 @@ function showProductList(el) {
             data: { golf_code: golfCode },
             success: function(response) {
                 const products = response.products;
-                console.log(products);
+
+                if (!products || products.length === 0) {
+                    $('#product-hover-box').remove();
+                    return;
+                }
 
                 let html = `<div id="product-hover-box" class="product-hover-box">`;
-                if (products.length > 0) {
-                    html += `<ul>`;
-                    for (let i = 0; i < products.length; i++) {
-                        html += `<li>${products[i].product_name}</li>`;
-                    }
-                    html += `</ul>`;
-                } else {
-                    html += `<p>상품이 없습니다.</p>`;
+                html += `<ul>`;
+                for (let i = 0; i < products.length; i++) {
+                    html += `<li>${products[i].product_name}</li>`;
                 }
-                html += `</div>`;
+                html += `</ul></div>`;
 
-                $('#product-hover-box').remove();
-
+                $('#product-hover-box').remove(); 
                 $('body').append(html);
 
                 const offset = $(el).offset();
                 $('#product-hover-box').css({
-                    top: offset.top + $(el).outerHeight(),
+                    top: offset.top + $(el).outerHeight() + 10,
                     left: offset.left,
                     position: 'absolute',
                     zIndex: 9999,
@@ -3927,6 +3922,7 @@ function showProductList(el) {
         });
     }
 }
+
 
 function hideProductList() {
     productListTimeout = setTimeout(() => {
