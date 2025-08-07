@@ -3166,6 +3166,8 @@
 
 .product-hover-box {
     min-width: 200px;
+    max-height: 400px;
+    overflow-y: auto;
     background: white;
     border: 1px solid #ddd;
     padding: 10px;
