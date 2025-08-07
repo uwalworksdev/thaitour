@@ -3881,7 +3881,6 @@
 
 function showProductList(el) {
     const golfCode = el.dataset.golf_code;
-    console.log(golfCode);
     let code_first = "5406";
     
 
