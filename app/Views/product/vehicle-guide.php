@@ -2337,7 +2337,7 @@
                         html += `<ul class="section_vehicle_2_2__head__tabs cars_category_depth_${depth}">`;
                         for (let i = 0; i < data.length; i++) {
 
-                            html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}" data-golf_code = "${data[i]["code_no"]}"     onmouseenter="showProductList(this)" 
+                            html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}" data-golf_code = "${data[i]["code_no"]}" onmouseenter="showProductList(this)" 
                                         onmouseleave="hideProductList()">
                                         <a href="#!">${data[i]["code_name"]}</a>
                                     </li>`;
@@ -3881,8 +3881,11 @@
 
 function showProductList(el) {
     const golfCode = el.dataset.golf_code;
+    console.log(golfCode);
+    
+    
 
-    if (typeof code_first !== 'undefined' && code_first === "5406") {
+    if (code_first === "5406") {
         clearTimeout(productListTimeout);
 
         $.ajax({
