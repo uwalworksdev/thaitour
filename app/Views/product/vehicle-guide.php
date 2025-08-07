@@ -3,15 +3,17 @@
 <?php $this->section('content'); ?>
 <!-- Moment.js -->
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css" />
 
 <style>
     .white-icon {
         filter: brightness(0) invert(1);
     }
+
     .popup_wrap.place_pop.cart_info_pop .pop_box {
         max-width: 1000px;
     }
+
     .item-info-check .view-policy {
         margin-right: 40px;
     }
@@ -23,9 +25,11 @@
     .select-width {
         width: 280px;
     }
+
     .email-group input {
         width: 230px;
     }
+
     .ui-state-disabled .ui-state-default {
         color: #ccc;
         pointer-events: none;
@@ -1044,12 +1048,13 @@
     .title-second {
         font-size: 18px;
     }
-    
+
     .title-second {
         margin-bottom: 20px;
     }
 
-    .item_check_term_all_, .item_check_term_ {
+    .item_check_term_all_,
+    .item_check_term_ {
         background: url(/uploads/icons/form_check_icon.png) no-repeat calc(100% - 15px) 50% #f3f5f7;
         background-size: 23px 15px;
     }
@@ -1059,10 +1064,12 @@
         cursor: pointer;
     }
 
-    .item_check_term_all_.checked_, .item_check_term_.checked_ {
-        background: url(/images/ico/check_2.png) no-repeat  calc(100% - 15px) 50% #f3f5f7;
+    .item_check_term_all_.checked_,
+    .item_check_term_.checked_ {
+        background: url(/images/ico/check_2.png) no-repeat calc(100% - 15px) 50% #f3f5f7;
         background-size: 23px 15px;
     }
+
     @media screen and (min-width: 1921px) {
         .side-bar-inc {
             top: 78%;
@@ -1539,14 +1546,12 @@
         <div class="body_inner">
             <div class="swiper_container_ticket swiper">
                 <div class="swiper-wrapper">
-                    <?php foreach ($bannerTop as $banner) : ?>
+                    <?php foreach ($bannerTop as $banner): ?>
                         <div class="swiper-slide">
                             <div class="img_box img_box_14">
                                 <picture>
-                                    <source media="(min-width: 851px)"
-                                        srcset="/data/cate_banner/<?= $banner['ufile1'] ?>">
-                                    <img class="img_box__img" src="/data/cate_banner/<?= $banner['ufile2'] ?>"
-                                        alt="">
+                                    <source media="(min-width: 851px)" srcset="/data/cate_banner/<?= $banner['ufile1'] ?>">
+                                    <img class="img_box__img" src="/data/cate_banner/<?= $banner['ufile2'] ?>" alt="">
                                 </picture>
                             </div>
                         </div>
@@ -1578,7 +1583,8 @@
                                 <a href="javascript:show_popup_caution()">
                                     <img src="/images/ico/ico_warning.svg" alt="">
                                     주의사항
-                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide-vehicle white-icon">
+                                    <img src="/uploads/icons/arrow_up_icon.png" alt=""
+                                        class="arrow-slide-vehicle white-icon">
                                 </a>
                                 <div class="caution_popup">
                                     <!-- <div class="caution_top" onclick="close_popup_caution()">
@@ -1596,9 +1602,9 @@
                         <script>
                             function show_popup_caution() {
                                 $(".caution_popup").toggle();
-                                if($(".caution_popup").css('display') !== 'none') {
+                                if ($(".caution_popup").css('display') !== 'none') {
                                     $(".arrow-slide-vehicle").css('transform', 'rotate(180deg)');
-                                }else{
+                                } else {
                                     $(".arrow-slide-vehicle").css('transform', 'rotate(0)');
                                 }
                             }
@@ -1629,8 +1635,7 @@
                                 </div>
                                 <div></div>
                                 <div class="place_chosen__people_wrap">
-                                    <div class="place_chosen__people bg_gray" role="button"
-                                        id="place_chosen__people">
+                                    <div class="place_chosen__people bg_gray" role="button" id="place_chosen__people">
                                         <img src="/images/ico/ico_person_1.png" alt="">
                                         <p>성인 <span id="people_adult_cnt">1</span>명,&nbsp;&nbsp;소아 <span
                                                 id="people_child_cnt">0</span>명</p>
@@ -1642,8 +1647,7 @@
                                                 <button class="btn_minus">
                                                     <img src="/images/ico/ico_minus1.png" alt="">
                                                 </button>
-                                                <input type="text" class="pickup_amount__num" name="adult_cnt"
-                                                    value="1"
+                                                <input type="text" class="pickup_amount__num" name="adult_cnt" value="1"
                                                     min="0">
                                                 <button class="btn_plus">
                                                     <img src="/images/ico/ico_plus1.png" alt="">
@@ -1656,8 +1660,7 @@
                                                 <button class="btn_minus">
                                                     <img src="/images/ico/ico_minus1.png" alt="">
                                                 </button>
-                                                <input type="text" class="pickup_amount__num" name="child_cnt"
-                                                    value="0"
+                                                <input type="text" class="pickup_amount__num" name="child_cnt" value="0"
                                                     min="0">
                                                 <button class="btn_plus">
                                                     <img src="/images/ico/ico_plus1.png" alt="">
@@ -1680,8 +1683,7 @@
                         <div class="section_vehicle_2_2__head">
                             <div class="section_vehicle_2_2__head__ttl vehicle_ttl">
                                 상품선택 <span>상품 선택후 아래 세부항목을 선택해주세요.</span>
-                                <img style="vertical-align: middle;margin-left: 3px"
-                                    src="/images/ico/ico_question.png"
+                                <img style="vertical-align: middle;margin-left: 3px" src="/images/ico/ico_question.png"
                                     alt="">
                             </div>
 
@@ -1899,7 +1901,7 @@
                             <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
                                     상품 예약하기
                                 </button> -->
-                            
+
                         </div>
                     </form>
                     <!-- <section class="section_vehicle_2_7" style="display: none;">
@@ -1933,19 +1935,19 @@
 <script>
     function redirect_contact() {
         <?php
-            if (empty(session()->get("member")["id"])) {
-        ?>
+        if (empty(session()->get("member")["id"])) {
+            ?>
             // alert("주문하시려면 로그인해주세요!");
             showOrHideLoginItem();
             return false;
-        <?php
-            }
+            <?php
+        }
         ?>
 
         window.location.href = '/mypage/consultation';
     }
-    $(document).ready(function() {
-        $('.tab_title_item_').click(function() {
+    $(document).ready(function () {
+        $('.tab_title_item_').click(function () {
             $('.tab_title_item_').removeClass('active_');
             $('.tab_content_item_').removeClass('active_');
 
@@ -1971,15 +1973,16 @@
                         <ul class="popup_place__list">
                             <?php
                             $i = 1;
-                            foreach ($departure_list as $key => $value) :
-                            ?>
+                            foreach ($departure_list as $key => $value):
+                                ?>
                                 <li data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>"
                                     onclick="change_departure_category(this);">
-                                    <span class="<?php if ($i == 1) {
-                                                        echo "active";
-                                                    } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
+                                    <span
+                                        class="<?php if ($i == 1) {
+                                            echo "active";
+                                        } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
                                 </li>
-                            <?php
+                                <?php
                                 $i++;
                             endforeach;
                             ?>
@@ -2063,7 +2066,7 @@
                 <form action="" name="frm_pop_cart" id="frm_pop_cart">
                     <div class="popup_place__body section_vehicle_2_7__body">
                         <div class="popup_vehicle_wrap">
-    
+
                         </div>
                         <div class="flex_c_c">
                             <button type="button" class="btn_add_cart" id="add_cart">
@@ -2082,14 +2085,14 @@
     $(".view-policy").on("click", function (event) {
         event.stopPropagation();
         let type = $(this).data("type");
-        if(type == 1) {
-            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
-        }else if(type == 2) {
-            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
-        }else if(type == 3) {
-            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
-        }else {
-            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+        if (type == 1) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[1]["policy_contents"]) ?>`);
+        } else if (type == 2) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[0]["policy_contents"]) ?>`);
+        } else if (type == 3) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[2]["policy_contents"]) ?>`);
+        } else {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[3]["policy_contents"]) ?>`);
         }
 
         let title = $(this).closest(".item-info-check").find("label").text().trim();
@@ -2098,14 +2101,14 @@
         $(".reservation_pop").show();
     });
 
-    $(document).on("click", ".vehicle_ttl__link", function() {
+    $(document).on("click", ".vehicle_ttl__link", function () {
         let productIdx = $(this).attr("data-product-idx");
 
         $.ajax({
             url: "/mypage/getPolicyContents/" + productIdx,
             type: "GET",
             dataType: "json",
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     $("#policyContent").html(response.policy_contents);
                 } else {
@@ -2113,7 +2116,7 @@
                 }
                 $(".policy_pop, .policy_pop .dim").show();
             },
-            error: function() {
+            error: function () {
                 $(".policy_pop, .policy_pop .dim").show();
             }
         });
@@ -2192,10 +2195,10 @@
                 ca_idx,
                 code_no
             },
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             },
-            success: function(data, textStatus) {
+            success: function (data, textStatus) {
                 let html = ``;
 
                 let first_ca_idx = 0;
@@ -2232,10 +2235,10 @@
             data: {
                 ca_idx
             },
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             },
-            success: function(response, textStatus) {
+            success: function (response, textStatus) {
                 let data = response.category_list;
                 let html = ``;
 
@@ -2312,10 +2315,10 @@
             data: {
                 ca_idx
             },
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             },
-            success: function(response, textStatus) {
+            success: function (response, textStatus) {
                 let data = response.category_list;
                 let count_child = response.count_child;
 
@@ -2334,7 +2337,8 @@
                         html += `<ul class="section_vehicle_2_2__head__tabs cars_category_depth_${depth}">`;
                         for (let i = 0; i < data.length; i++) {
 
-                            html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}">
+                            html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}" data-golf_code = "${data[i]["code_no"]}"     onmouseenter="showProductList(this)" 
+                                        onmouseleave="hideProductList()">
                                         <a href="#!">${data[i]["code_name"]}</a>
                                     </li>`;
                         }
@@ -2501,7 +2505,7 @@
             },
             async: false,
             cache: false,
-            success: function(data, textStatus) {
+            success: function (data, textStatus) {
                 let products = data;
 
                 renderPrdList(products, ca_idx);
@@ -2512,7 +2516,7 @@
                 $(".section_vehicle_info_wrap").empty();
                 calculatePrice();
             },
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
         });
@@ -2523,7 +2527,7 @@
         let totalPriceWon = 0;
         let totalCnt = 0;
         let arr_cnt = [];
-        $("#product_vehicle_list_selected > tr").each(function() {
+        $("#product_vehicle_list_selected > tr").each(function () {
 
             const price = Number($(this).data("price")) ?? 0;
             const price_won = Number($(this).data("price_won")) ?? 0;
@@ -2660,7 +2664,7 @@
         let child_cnt = Number($("#child_cnt").val()) ?? 0;
 
         let arr_category_text = [];
-        $(".cars_category_wrap").find(".category_item.active").each(function() {
+        $(".cars_category_wrap").find(".category_item.active").each(function () {
             let cat_text = $(this).find("a").text().trim();
             arr_category_text.push(cat_text);
         });
@@ -2717,22 +2721,22 @@
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $hour ?>"><?= $hour ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="hours">시</label>
                                         <select name="minutes[]" class="s_minutes" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i += 5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $minute ?>"><?= $minute ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="minutes">분</label>
                                     </div>
@@ -2800,22 +2804,22 @@
                                                     <?php
                                                     for ($i = 0; $i < 24; $i++) {
                                                         $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                    ?>
+                                                        ?>
                                                         <option value="<?= $hour ?>"><?= $hour ?></option>
                                                         <?php
                                                     }
-                                                        ?>
+                                                    ?>
                                                 </select>
                                                 <label for="hours">시</label>
                                                 <select name="minutes[]" class="e_minutes" id="minutes">
                                                     <?php
                                                     for ($i = 0; $i < 60; $i += 5) {
                                                         $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                    ?>
+                                                        ?>
                                                         <option value="<?= $minute ?>"><?= $minute ?></option>
                                                         <?php
                                                     }
-                                                        ?>
+                                                    ?>
                                                 </select>
                                                 <label for="minutes">분</label>
                                             </div>
@@ -2885,22 +2889,22 @@
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $hour ?>"><?= $hour ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="hours">시</label>
                                         <select name="minutes[]" class="s_minutes" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i += 5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $minute ?>"><?= $minute ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="minutes">분</label>
                                     </div>
@@ -2978,22 +2982,22 @@
                                                     <?php
                                                     for ($i = 0; $i < 24; $i++) {
                                                         $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                    ?>
+                                                        ?>
                                                         <option value="<?= $hour ?>"><?= $hour ?></option>
                                                         <?php
                                                     }
-                                                        ?>
+                                                    ?>
                                                 </select>
                                                 <label for="hours">시</label>
                                                 <select name="minutes[]" class="s_minutes" id="minutes">
                                                     <?php
                                                     for ($i = 0; $i < 60; $i += 5) {
                                                         $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                    ?>
+                                                        ?>
                                                         <option value="<?= $minute ?>"><?= $minute ?></option>
                                                         <?php
                                                     }
-                                                        ?>
+                                                    ?>
                                                 </select>
                                                 <label for="minutes">분</label>
                                             </div>
@@ -3062,22 +3066,22 @@
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $hour ?>"><?= $hour ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="hours">시</label>
                                         <select name="minutes[]" class="s_minutes" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i += 5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $minute ?>"><?= $minute ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="minutes">분</label>
                                     </div>
@@ -3149,22 +3153,22 @@
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $hour ?>"><?= $hour ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="hours">시</label>
                                         <select name="minutes[]" class="s_minutes" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i += 5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $minute ?>"><?= $minute ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="minutes">분</label>
                                     </div>
@@ -3236,22 +3240,22 @@
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $hour ?>"><?= $hour ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="hours">시</label>
                                         <select name="minutes[]" class="s_minutes" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i += 5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                            ?>
+                                                ?>
                                                 <option value="<?= $minute ?>"><?= $minute ?></option>
                                                 <?php
                                             }
-                                                ?>
+                                            ?>
                                         </select>
                                         <label for="minutes">분</label>
                                     </div>
@@ -3299,17 +3303,17 @@
             let ca_idx = $(".cars_category_depth_2").children(".section_vehicle_2_2__head__tabs__item.active").data("ca_idx");
 
             $("#ca_idx_5401").val(ca_idx);
-            
+
             $.ajax({
                 url: '/ajax/get_flight',
                 type: "GET",
                 data: {
                     ca_idx
                 },
-                error: function(request, status, error) {
+                error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 },
-                success: function(response, textStatus) {
+                success: function (response, textStatus) {
                     let data = response.flight_list;
 
                     let html = `<option value="">항공편 명을 선택해주세요.</option>`;
@@ -3417,7 +3421,7 @@
         }
 
         let cp_idx = $("#cp_idx").val();
-        
+
         let product_idx_c = $(`#product_idx_${id}`).val();
 
         if ($(e).is(":checked")) {
@@ -3470,7 +3474,7 @@
         $("#departure_date").datepicker({
             dateFormat: "yy-mm-dd",
             minDate: today,
-            onSelect: function(dateText, inst) {
+            onSelect: function (dateText, inst) {
                 departureDate = $(this).datepicker('getDate');
 
                 const year = String(departureDate.getFullYear()).slice(-2);
@@ -3499,8 +3503,8 @@
                 $(".section_vehicle_info_wrap").empty();
                 addFormReservation();
             },
-            beforeShowDay: function(date) {
-                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406" &&code_no != "" && destinationDate && date > destinationDate) {
+            beforeShowDay: function (date) {
+                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406" && code_no != "" && destinationDate && date > destinationDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
@@ -3510,7 +3514,7 @@
         $("#destination_date").datepicker({
             dateFormat: "yy-mm-dd",
             minDate: today,
-            onSelect: function(dateText, inst) {
+            onSelect: function (dateText, inst) {
                 destinationDate = $(this).datepicker('getDate');
 
                 const year = String(destinationDate.getFullYear()).slice(-2);
@@ -3528,12 +3532,12 @@
                 $(".section_vehicle_info_wrap").empty();
                 addFormReservation();
             },
-            beforeShowDay: function(date) {
+            beforeShowDay: function (date) {
                 if (date < today) {
                     return [false, 'ui-state-disabled'];
                 }
-                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406" 
-                && departureDate && date < departureDate) {
+                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406"
+                    && departureDate && date < departureDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
@@ -3553,11 +3557,11 @@
         }
     }
 
-    $("#place_chosen__start").on("click", function() {
+    $("#place_chosen__start").on("click", function () {
         $(".place_chosen__start_pop, .place_chosen__start_pop .dim").show();
     });
 
-    $("#place_chosen__end").on("click", function() {
+    $("#place_chosen__end").on("click", function () {
         $(".place_chosen__end_pop, .place_chosen__end_pop .dim").show();
     });
 
@@ -3572,11 +3576,11 @@
         buttonImageOnly: true
     });
 
-    $("#place_chosen__people").on("click", function() {
+    $("#place_chosen__people").on("click", function () {
         $(".place_chosen__people_pop").toggle();
     });
 
-    $(".btn_minus").on("click", function() {
+    $(".btn_minus").on("click", function () {
         const val = Number($(this).parent().find("input").val()) || 0;
         if (val === 1) {
             $(this).attr("disabled", true);
@@ -3586,15 +3590,15 @@
         }
     });
 
-    $(".btn_plus").on("click", function() {
+    $(".btn_plus").on("click", function () {
         const val = Number($(this).parent().find("input").val()) || 0;
         $(this).parent().find("input").val(val + 1);
         $(this).parent().find(".btn_minus").attr("disabled", false);
     });
 
-    $("#btn_pickup_people").on("click", function() {
+    $("#btn_pickup_people").on("click", function () {
 
-        $(".pickup_amount__num").each(function() {
+        $(".pickup_amount__num").each(function () {
             const name = $(this).attr("name");
             $("#people_" + name).text($(this).val());
             $("#" + name).val($(this).val());
@@ -3633,105 +3637,105 @@
 
     });
 
-    $("#add_cart").on("click", function() {
+    $("#add_cart").on("click", function () {
         let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
 
-        if(code_no == "5401"){
-            if($(".s_destination_name").val() == "") {
+        if (code_no == "5401") {
+            if ($(".s_destination_name").val() == "") {
                 alert("목적지 입력해주세요!");
                 $(this).focus();
                 return false;
             }
 
-            if($(".e_departure_name").val() == "") {
+            if ($(".e_departure_name").val() == "") {
                 alert("미팅 장소 입력해주세요!");
                 $(this).focus();
                 return false;
             }
-        }else {
-            if($(".s_departure_name").val() == "") {
+        } else {
+            if ($(".s_departure_name").val() == "") {
                 alert("미팅 장소 입력해주세요!");
                 $(this).focus();
                 return false;
             }
 
-            if($(".s_destination_name").val() == "") {
+            if ($(".s_destination_name").val() == "") {
                 alert("목적지 입력해주세요!");
                 $(this).focus();
                 return false;
             }
         }
 
-        if($(".s_airline_code").val() == "") {
+        if ($(".s_airline_code").val() == "") {
             alert("항공편 명 선택해주세요!");
             return false;
         }
 
-        if($(".s_date_trip").val() == "") {
+        if ($(".s_date_trip").val() == "") {
             alert("항공 도착 날짜 선택해주세요!");
             return false;
         }
 
-        if($(".s_hours").val() == "") {
+        if ($(".s_hours").val() == "") {
             alert("항공 도착 시간 선택해주세요!");
             return false;
         }
 
-        if($(".s_minutes").val() == "") {
+        if ($(".s_minutes").val() == "") {
             alert("항공 도착 시간 선택해주세요!");
             return false;
         }
 
-        if($(".s_schedule_content").val() == "") {
+        if ($(".s_schedule_content").val() == "") {
             alert("이동루트 선택해주세요!");
             $(this).focus();
             return false;
         }
 
-        if($(".s_rest_name").val() == "") {
+        if ($(".s_rest_name").val() == "") {
             alert("경유지 선택해주세요!");
             $(this).focus();
             return false;
         }
 
-        if($(".s_order_memo").val() == "") {
+        if ($(".s_order_memo").val() == "") {
             alert("기타요청 입력해주세요!");
             $(this).focus();
             return false;
         }
 
-        if($(".e_date_trip").val() == "") {
+        if ($(".e_date_trip").val() == "") {
             alert("차량 미팅 날짜 선택해주세요!");
             return false;
         }
 
-        if($(".e_hours").val() == "") {
+        if ($(".e_hours").val() == "") {
             alert("미팅 시간 선택해주세요!");
             return false;
         }
 
-        if($(".e_hours").val() == "") {
+        if ($(".e_hours").val() == "") {
             alert("미팅 시간 선택해주세요!");
             return false;
         }
 
-        if($(".s_minutes").val() == "") {
+        if ($(".s_minutes").val() == "") {
             alert("항공 도착 시간 선택해주세요!");
             return false;
         }
 
-        if($(".e_departure_name").val() == "") {
+        if ($(".e_departure_name").val() == "") {
             alert("미팅 장소 입력해주세요!");
             $(this).focus();
             return false;
         }
 
-        if($(".e_airline_code").val() == "") {
+        if ($(".e_airline_code").val() == "") {
             alert("항공편 명 선택해주세요!");
             return false;
         }
 
-        if($(".e_order_memo").val() == "") {
+        if ($(".e_order_memo").val() == "") {
             alert("기타요청 입력해주세요!");
             $(this).focus();
             return false;
@@ -3746,9 +3750,9 @@
             const value = $original.val();
 
             $('<input>').attr({
-            type: 'hidden',
-            name: name,
-            value: value
+                type: 'hidden',
+                name: name,
+                value: value
             }).appendTo($form1);
         });
 
@@ -3756,10 +3760,10 @@
             url: "/vehicle-guide/vehicle-order",
             type: "POST",
             data: $("#frmCar").serialize(),
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
-            success: function(response, status, request) {
+            success: function (response, status, request) {
                 if (response.result == true) {
                     alert(response.message);
                     window.location.href = '/product/completed-order';
@@ -3770,20 +3774,20 @@
         });
     });
 
-    $(".btn_submit, #btn_show_cart").on("click", function() {
+    $(".btn_submit, #btn_show_cart").on("click", function () {
 
         <?php
         if (empty(session()->get("member")["id"])) {
-        ?>
+            ?>
             alert("주문하시려면 로그인해주세요!");
             return false;
-        <?php
+            <?php
         }
         ?>
 
         let departure_name = $(".place_chosen__start_pop .popup_place__list li span.active").text();
         let destination_name = $(".place_chosen__end_pop .popup_place__list li span.active").text();
-        
+
         $("#text_destination_name").val(departure_name);
         $("#text_departure_name").val(destination_name);
 
@@ -3813,7 +3817,7 @@
 
         addFormReservation();
 
-        if($(this).val() == "B"){
+        if ($(this).val() == "B") {
 
             $(".cart_info_pop").show();
 
@@ -3843,10 +3847,10 @@
             disableOnInteraction: false,
         },
         on: {
-            init: function() {
+            init: function () {
                 updateSlideCounter(this);
             },
-            slideChange: function() {
+            slideChange: function () {
                 updateSlideCounter(this);
             }
         }
@@ -3857,7 +3861,7 @@
         var totalSlides = swiper.slides.length
     }
 
-    document.getElementById('autoplay-button')?.addEventListener('click', function() {
+    document.getElementById('autoplay-button')?.addEventListener('click', function () {
         var playButton = document.getElementById('play-button');
         var pauseButton = document.getElementById('pause-button');
         if (swiper.autoplay.running) {
@@ -3870,6 +3874,61 @@
             pauseButton.style.display = 'block';
         }
     });
+</script>
+
+<script>
+    let productListTimeout;
+
+function showProductList(el) {
+    const golfCode = el.dataset.golf_code;
+
+    if (typeof code_first !== 'undefined' && code_first === "5406") {
+        clearTimeout(productListTimeout);
+
+        $.ajax({
+            url: '/ajax/get_products_by_golf_code',
+            type: 'GET',
+            data: { golf_code: golfCode },
+            success: function(response) {
+                const products = response.products;
+
+                let html = `<div id="product-hover-box" class="product-hover-box">`;
+                if (products.length > 0) {
+                    html += `<ul>`;
+                    for (let i = 0; i < products.length; i++) {
+                        html += `<li>${products[i].product_name}</li>`;
+                    }
+                    html += `</ul>`;
+                } else {
+                    html += `<p>상품이 없습니다.</p>`;
+                }
+                html += `</div>`;
+
+                $('#product-hover-box').remove();
+
+                $('body').append(html);
+
+                const offset = $(el).offset();
+                $('#product-hover-box').css({
+                    top: offset.top + $(el).outerHeight(),
+                    left: offset.left,
+                    position: 'absolute',
+                    zIndex: 9999,
+                    background: '#fff',
+                    border: '1px solid #ccc',
+                    padding: '10px',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+                });
+            }
+        });
+    }
+}
+
+function hideProductList() {
+    productListTimeout = setTimeout(() => {
+        $('#product-hover-box').remove();
+    }, 200);
+}
 </script>
 
 <?php $this->endSection(); ?>

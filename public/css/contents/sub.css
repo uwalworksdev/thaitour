@@ -3164,6 +3164,25 @@
     border: none;
 }
 
+.product-hover-box {
+    min-width: 200px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.product-hover-box ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.product-hover-box li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
 .section_vehicle_2_2__airport {
     margin-top: 30px;
     display: flex;
