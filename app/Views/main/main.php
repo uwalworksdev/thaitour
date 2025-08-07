@@ -7,16 +7,16 @@ $keyword = $_GET['keyword'] ?? '';
 
 // 메인 배너
 $Bbs = model("Bbs");
-$bannerMain = $Bbs->List("banner", ["category" => "1"])->findAll();
+$bannerMain = $Bbs->List("banner", ["category" => "1", "status" => "Y"])->findAll();
 
 // 메인 상단배너
-$bannerTop = $Bbs->List("banner", ["category" => "40"])->findAll();
+$bannerTop = $Bbs->List("banner", ["category" => "40", "status" => "Y"])->findAll();
 
 // 메인 중간 배너
-$bannerMid = $Bbs->List("banner", ["category" => "16"])->findAll();
+$bannerMid = $Bbs->List("banner", ["category" => "16", "status" => "Y"])->findAll();
 
 // 메인 하단배너
-$bannerBottom = $Bbs->List("banner", ["category" => "124"])->findAll();
+$bannerBottom = $Bbs->List("banner", ["category" => "124", "status" => "Y"])->findAll();
 
 // 검색어
 $SearchText = model("SearchText");

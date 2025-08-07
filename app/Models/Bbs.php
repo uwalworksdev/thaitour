@@ -12,10 +12,54 @@ class Bbs extends Model
     protected $primaryKey = 'bbs_idx';
 
     protected $allowedFields = [
-        "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn",
-        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "s_time", "e_time", "reply", "ufile1", "rfile1",
-        "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level",
-        "ip_address", "r_date", "status", "onum", "seq", "encode", "describe", "blank"
+        "code",
+        "category",
+        "category1",
+        "subject",
+        "subject_e",
+        "writer",
+        "email",
+        "user_id",
+        "m_idx",
+        "passwd",
+        "notice_yn",
+        "secure_yn",
+        "recomm_yn",
+        "contents",
+        "simple",
+        "displays",
+        "hit",
+        "cmt_cnt",
+        "country_code",
+        "url",
+        "s_date",
+        "e_date",
+        "s_time",
+        "e_time",
+        "reply",
+        "ufile1",
+        "rfile1",
+        "ufile2",
+        "rfile2",
+        "ufile3",
+        "rfile3",
+        "ufile4",
+        "rfile4",
+        "ufile5",
+        "rfile5",
+        "ufile6",
+        "rfile6",
+        "b_ref",
+        "b_step",
+        "b_level",
+        "ip_address",
+        "r_date",
+        "status",
+        "onum",
+        "seq",
+        "encode",
+        "describe",
+        "blank"
     ];
 
     /**
@@ -23,7 +67,8 @@ class Bbs extends Model
      * * Model 로 페이지네이션 사용용도
      */
 
-    public function list_time_sale() {
+    public function list_time_sale()
+    {
         $currentDateTime = date('Y-m-d H:i:s');
 
         $builder = $this;
@@ -32,12 +77,12 @@ class Bbs extends Model
         $builder->where('code', "time_sale");
         $builder->where("CONCAT(s_date, ' ', s_time) <=", $currentDateTime);
         $builder->where("CONCAT(e_date, ' ', e_time) >=", $currentDateTime);
-        
+
         $builder->orderBy("{$this->table}.r_date", "desc");
         $builder->orderBy("{$this->table}.bbs_idx", "desc");
 
         return $builder;
-    } 
+    }
 
     public function ListFaq($code, $category)
     {
@@ -46,7 +91,7 @@ class Bbs extends Model
         $builder->join('tbl_code', "{$this->table}.category = tbl_code.code_idx", 'left');
         $builder->where("{$this->table}.code", $code);
         $builder->where("{$this->table}.status", "Y");
-        if(!empty($category)){
+        if (!empty($category)) {
             $builder->where("{$this->table}.category", $category);
         }
         $builder->orderBy("{$this->table}.bbs_idx", "desc");
@@ -63,18 +108,18 @@ class Bbs extends Model
         (select count(*) from tbl_wish_list where tbl_wish_list.bbs_idx=tbl_bbs_list.bbs_idx) as cnt_like");
 
         $builder->join('tbl_bbs_category', 'tbl_bbs_category.tbc_idx = tbl_bbs_list.category', 'left');
-        
+
         if (!empty($whereArr['search_word'])) {
             if (!empty($whereArr['search_mode'])) {
-                if($whereArr['search_mode'] == "subject"){
+                if ($whereArr['search_mode'] == "subject") {
                     $builder->like('tbl_bbs_list.subject', $whereArr['search_word']);
-                }else{
+                } else {
                     $builder->like($whereArr['search_mode'], $whereArr['search_word']);
                 }
             } else {
                 $builder->groupStart();
                 $builder->orLike('tbl_bbs_list.subject', $whereArr['search_word']);
-                if($code != "time_sale"){
+                if ($code != "time_sale") {
                     $builder->orLike('contents', $whereArr['search_word']);
                     $builder->orLike('writer', $whereArr['search_word']);
                 }
@@ -89,6 +134,10 @@ class Bbs extends Model
             $builder->where('tbl_bbs_category.type', $whereArr['type']);
         }
 
+        if (!empty($whereArr['status'])) {
+            $builder->where('tbl_bbs_list.status', $whereArr['status']);
+        }
+
         $builder->where('tbl_bbs_list.code', $code);
         $builder->groupBy("{$this->table}.bbs_idx");
         $onumCodeArray = ['banner'];
@@ -97,7 +146,7 @@ class Bbs extends Model
         }
         $builder->orderBy("{$this->table}.bbs_idx", "desc");
 
-        if(!empty($limit)){
+        if (!empty($limit)) {
             $builder->limit($limit);
         }
 
@@ -112,18 +161,18 @@ class Bbs extends Model
         (select count(*) from tbl_wish_list where tbl_wish_list.bbs_idx=tbl_bbs_list.bbs_idx) as cnt_like");
 
         $builder->join('tbl_code', 'tbl_code.code_idx = tbl_bbs_list.category', 'left');
-        
+
         if (!empty($whereArr['search_word'])) {
             if (!empty($whereArr['search_mode'])) {
-                if($whereArr['search_mode'] == "subject"){
+                if ($whereArr['search_mode'] == "subject") {
                     $builder->like('tbl_bbs_list.subject', $whereArr['search_word']);
-                }else{
+                } else {
                     $builder->like($whereArr['search_mode'], $whereArr['search_word']);
                 }
             } else {
                 $builder->groupStart();
                 $builder->orLike('tbl_bbs_list.subject', $whereArr['search_word']);
-                if($code != "time_sale"){
+                if ($code != "time_sale") {
                     $builder->orLike('contents', $whereArr['search_word']);
                     $builder->orLike('writer', $whereArr['search_word']);
                 }
