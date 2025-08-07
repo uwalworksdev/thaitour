@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-class CarsCategoryController extends BaseController {
+class CarsCategoryController extends BaseController
+{
     private $db;
     private $productModel;
     protected $carsCategory;
@@ -11,7 +12,8 @@ class CarsCategoryController extends BaseController {
     protected $codeModel;
     protected $categoryFlight;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = db_connect();
         $this->productModel = model("ProductModel");
         $this->carsCategory = model("CarsCategory");
@@ -21,36 +23,54 @@ class CarsCategoryController extends BaseController {
         $this->categoryFlight = model("CategoryFlight");
     }
 
-	public function get_child_category() {
-		$ca_idx = $this->request->getVar("ca_idx");
+    public function get_child_category()
+    {
+        $ca_idx = $this->request->getVar("ca_idx");
 
-		$category_list = $this->carsCategory->getByParentCode($ca_idx)->getResultArray() ?? [];
+        $category_list = $this->carsCategory->getByParentCode($ca_idx)->getResultArray() ?? [];
 
         $first_category = !empty($category_list) ? $category_list[0] : null;
 
         $count_child = 0;
 
-        if($first_category){
+        if ($first_category) {
             $child_list = $this->carsCategory->getByParentCode($first_category["ca_idx"])->getResultArray() ?? [];
             $count_child = count($child_list);
         }
 
-		return $this->response->setJSON([
+        return $this->response->setJSON([
             "category_list" => $category_list,
             "count_child" => $count_child
         ]);
-	}
+    }
 
-	public function get_destination() {
-		$ca_idx = $this->request->getVar("ca_idx");
-		$code_no = $this->request->getVar("code_no");
+    public function getProductsByGolfCode()
+    {
+        $golf_code = $this->request->getGet('golf_code');
 
-		$destination_list = $this->carsCategory->getByParentAndCodeNo($ca_idx, $code_no) ?? [];
+        $products = $this->db->table('tbl_product_mst')
+            ->select('product_name')
+            ->where('golf_code', $golf_code)
+            ->get()
+            ->getResultArray();
 
-		return $this->response->setJSON($destination_list);
-	}
+        return $this->response->setJSON([
+            'products' => $products
+        ]);
+    }
 
-    public function get_cars_product() {
+    public function get_destination()
+    {
+        $ca_idx = $this->request->getVar("ca_idx");
+        $code_no = $this->request->getVar("code_no");
+
+        $destination_list = $this->carsCategory->getByParentAndCodeNo($ca_idx, $code_no) ?? [];
+
+        return $this->response->setJSON($destination_list);
+    }
+
+    public function get_cars_product()
+    {
         $ca_idx = $this->request->getVar("ca_idx");
 
         $products = $this->productModel->findProductCarPrice($ca_idx);
@@ -64,17 +84,18 @@ class CarsCategoryController extends BaseController {
             $products[$key]["options"] = $options;
         }
 
-		return $this->response->setJSON($products);
+        return $this->response->setJSON($products);
 
-    }   
+    }
 
-    public function get_flight() {
-		$ca_idx = $this->request->getVar("ca_idx");
+    public function get_flight()
+    {
+        $ca_idx = $this->request->getVar("ca_idx");
 
-		$flight_list = $this->categoryFlight->getAllFlightFromCaIdx($ca_idx) ?? [];
+        $flight_list = $this->categoryFlight->getAllFlightFromCaIdx($ca_idx) ?? [];
 
-		return $this->response->setJSON([
+        return $this->response->setJSON([
             "flight_list" => $flight_list
         ]);
-	}
+    }
 }

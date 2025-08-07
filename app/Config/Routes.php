@@ -710,6 +710,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("memberSession", "AjaxController::memberSession");
     $routes->post("check_product_code", "AjaxController::check_product_code");
     $routes->get("get_child_category", "CarsCategoryController::get_child_category");
+    $routes->get("get_products_by_golf_code", "CarsCategoryController::get_products_by_golf_code");
     $routes->get("get_flight", "CarsCategoryController::get_flight");
     $routes->get("get_destination", "CarsCategoryController::get_destination");
     $routes->get("get_cars_product", "CarsCategoryController::get_cars_product");
