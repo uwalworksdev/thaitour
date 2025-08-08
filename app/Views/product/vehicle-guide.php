@@ -3933,19 +3933,7 @@ function hideProductList() {
 
 $(document).on('click', '.product-item', function () {
     const productName = $(this).data('name');
-
-    let existed = false;
-    $('.section_vehicle_golf_choose .selected-product').each(function () {
-        if ($(this).text().trim() === productName.trim()) {
-            existed = true;
-            return false; 
-        }
-    });
-
-    if (!existed) {
-        $('.section_vehicle_golf_choose').append(`<p class="selected-product">(${productName})</p>`);
-    }
-
+    $('.section_vehicle_golf_choose').html(`<p>${productName}</p>`);
     $('#product-hover-box').remove();
 });
 
