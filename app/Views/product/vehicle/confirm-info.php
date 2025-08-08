@@ -860,6 +860,11 @@
                                 </div>
 
                                 <div class="item-info w100" style="gap: 10px;">
+                                    <span>골프장 선택</span>
+                                    <span><?=$product_golf?></span>
+                                </div>
+
+                                <div class="item-info w100" style="gap: 10px;">
                                     <span>성인 <?=!empty($adult_cnt) ? $adult_cnt : 0?>명,  소아 <?=!empty($child_cnt) ? $child_cnt : 0 ?? 0?>명</span>
                                 </div>
                             </div>
