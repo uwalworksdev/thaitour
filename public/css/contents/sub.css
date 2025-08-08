@@ -3193,13 +3193,6 @@
     gap: 20px 40px;
 }
 
-.section_vehicle_golf_choose {
-    display: none;
-    padding-top: 50px;
-    display: flex;
-    gap: 25px;
-}
-
 .section_vehicle_golf_choose .selected-product {
     font-size: 18px;
     font-weight: 500;

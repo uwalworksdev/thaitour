@@ -1700,10 +1700,6 @@
                         </div>
                     </section>
 
-                    <section class="">
-
-                    </section>
-
                     <section class="section_vehicle_2_3">
                         <div class="section_vehicle_2_3__head">
                             <div class="section_vehicle_2_3__head__ttl vehicle_ttl">
