@@ -1700,6 +1700,10 @@
                         </div>
                     </section>
 
+                    <section class="section_vehicle_golf_choose">
+
+                    </section>
+
                     <section class="section_vehicle_2_3">
                         <div class="section_vehicle_2_3__head">
                             <div class="section_vehicle_2_3__head__ttl vehicle_ttl">
@@ -3877,12 +3881,11 @@
 </script>
 
 <script>
-    let productListTimeout;
+let productListTimeout;
 
 function showProductList(el) {
     const golfCode = el.dataset.golf_code;
     let code_first = "5406";
-    
 
     if (code_first === "5406") {
         clearTimeout(productListTimeout);
@@ -3897,18 +3900,16 @@ function showProductList(el) {
                     $('#product-hover-box').remove(); 
                     return;
                 }
-                let html = `<div id="product-hover-box" class="product-hover-box">`;
-                if (products.length > 0) {
-                    html += `<ul>`;
-                    for (let i = 0; i < products.length; i++) {
-                        html += `<li>${products[i].product_name}</li>`;
-                    }
-                    html += `</ul>`;
+
+                let html = `<div id="product-hover-box" class="product-hover-box" onmouseenter="clearTimeout(productListTimeout)" onmouseleave="hideProductList()">`;
+                html += `<ul>`;
+                for (let i = 0; i < products.length; i++) {
+                    html += `<li class="product-item" data-name="${products[i].product_name}">${products[i].product_name}</li>`;
                 }
+                html += `</ul>`;
                 html += `</div>`;
 
                 $('#product-hover-box').remove();
-
                 $('body').append(html);
 
                 const offset = $(el).offset();
@@ -3920,7 +3921,8 @@ function showProductList(el) {
                     background: '#fff',
                     border: '1px solid #ccc',
                     padding: '10px',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                    cursor: 'pointer'
                 });
             }
         });
@@ -3932,6 +3934,13 @@ function hideProductList() {
         $('#product-hover-box').remove();
     }, 200);
 }
+
+$(document).on('click', '.product-item', function () {
+    const productName = $(this).data('name');
+    $('.section_vehicle_golf_choose').html(`<p>${productName}</p>`);
+    $('#product-hover-box').remove();
+});
+
 </script>
 
 <?php $this->endSection(); ?>
