@@ -2348,7 +2348,7 @@
                         if (code_first == "5401") {
                             html += `<p class="ttl_category_depth_child">왕복/편도 여부를 선택해주세요.</p>`;
                         } else if (code_first == "5406") {
-                            html += `<p class="ttl_category_depth_child">홀수 선택 <p class="section_vehicle_golf_choose"> </p></p>`;
+                            html += `<div class="ttl_category_depth_child spe">홀수 선택 <div class="section_vehicle_golf_choose"> </div></div>`;
                         } else {
                             html += `<p class="ttl_category_depth_child">상세상품을 선택해주세요</p>`;
                         }
@@ -3943,7 +3943,7 @@ $(document).on('click', '.product-item', function () {
     });
 
     if (!existed) {
-        $('.section_vehicle_golf_choose').append(`<p class="selected-product">${productName}</p>`);
+        $('.section_vehicle_golf_choose').append(`<p class="selected-product">(${productName})</p>`);
     }
 
     $('#product-hover-box').remove();
