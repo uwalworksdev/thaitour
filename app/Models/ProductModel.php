@@ -1660,6 +1660,7 @@ class ProductModel extends Model
         $builder->where('c.ca_idx', $ca_idx);
         $builder->where("product_status !=", "D");
 
+        $builder->orderBy("c.sale_price", "asc");
         $builder->orderBy("p.onum", "asc");
         $builder->orderBy("p.product_idx", "desc");
 
