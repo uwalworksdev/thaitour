@@ -4,6 +4,22 @@
 
 <div id="container" class="sub view_container">
     <section class="view_sect">
+                <div class="sub-hotel-navigation-container">
+            <div class="navigation-container-prev">
+                <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
+                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
+                <span id="depth_1_tool_title_">여행꿀팁</span>
+
+            </div>
+            <div class="navigation-container-next">
+                <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
+                <span class="font-bold">인포그래픽</span>
+            </div>
+            <div class="navigation-container-next">
+                <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+            </div>
+        </div>
         <div class="inner">
             <div class="view_top_wrap">
                 <h4 class="view_top_ttl"><?= $infographic['subject'] ?></h4>
