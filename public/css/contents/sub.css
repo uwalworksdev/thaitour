@@ -3141,6 +3141,12 @@
     padding-top: 40px;
 }
 
+.cars_category_wrap .ttl_category_depth_child.spe {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
 
 .section_vehicle_2_2__head__tabs__item {
     border-width: 1px;
