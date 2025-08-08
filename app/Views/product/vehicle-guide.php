@@ -1671,7 +1671,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#!" class="view_map_btn">
+                            <a href="/travel-tips/infographic/view?code=infographics&bbs_idx=999" class="view_map_btn">
                                 <picture>
                                     <source media="(max-width: 850px)" srcset="/images/sub/btn_view_map_m.png">
                                     <img src="/images/sub/btn_view_map.png" alt="view_map">
