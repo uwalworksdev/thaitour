@@ -3193,6 +3193,19 @@
     gap: 20px 40px;
 }
 
+.section_vehicle_golf_choose {
+    display: none;
+    padding-top: 50px;
+    display: flex;
+    gap: 15px;
+}
+
+.section_vehicle_golf_choose .selected-product {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
 .section_vehicle_2_2__airport>span {
     /* margin-right: 72px; */
 }
