@@ -249,6 +249,10 @@
     font-size: 3rem;
   }
 
+  .vehicle_info__name span{
+    font-size: 2.5rem;
+  }
+
   .vehicle_info__item {
     font-size: 2.6rem;
   }
