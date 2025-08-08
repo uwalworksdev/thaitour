@@ -3933,7 +3933,7 @@ function hideProductList() {
 
 $(document).on('click', '.product-item', function () {
     const productName = $(this).data('name');
-    $('.section_vehicle_golf_choose').html(`<p>${productName}</p>`);
+    $('.section_vehicle_golf_choose').html(`<p>(${productName})</p>`);
     $('#product-hover-box').remove();
 });
 
