@@ -1853,6 +1853,7 @@
                         <input type="hidden" name="text_destination_name" id="text_destination_name" value="">
                         <input type="hidden" name="text_departure_name" id="text_departure_name" value="">
                         <input type="hidden" name="category_text_list" id="category_text_list" value="">
+                        <input type="hidden" name="product_code" id="product_code" value="">
 
 
 
@@ -3900,7 +3901,9 @@ function showProductList(el) {
                 let html = `<div id="product-hover-box" class="product-hover-box" onmouseenter="clearTimeout(productListTimeout)" onmouseleave="hideProductList()">`;
                 html += `<ul>`;
                 for (let i = 0; i < products.length; i++) {
-                    html += `<li class="product-item" data-name="${products[i].product_name}">${products[i].product_name}</li>`;
+                    html += `<li class="product-item" data-name="${products[i].product_name}" data-idx="${products[i].product_idx}">
+                                ${products[i].product_name}
+                            </li>`;
                 }
                 html += `</ul>`;
                 html += `</div>`;
@@ -3933,6 +3936,9 @@ function hideProductList() {
 
 $(document).on('click', '.product-item', function () {
     const productName = $(this).data('name');
+    const productIdx = $(this).data('idx');
+
+    $('#product_code').val(productIdx);
     $('.section_vehicle_golf_choose').html(`<p>(${productName})</p>`);
     $('#product-hover-box').remove();
 });

@@ -49,7 +49,7 @@ class CarsCategoryController extends BaseController
         $golf_code = $this->request->getGet('golf_code');
 
         $products = $this->db->table('tbl_product_mst')
-            ->select('product_name')
+            ->select('product_idx, product_name')
             ->where('golf_code', $golf_code)
             ->get()
             ->getResultArray();
