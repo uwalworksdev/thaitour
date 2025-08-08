@@ -858,11 +858,12 @@
                                 <div class="item-info w100" style="gap: 10px;">
                                     <span><?=$category_text_list?></span>
                                 </div>
-
+                                <?php if(!empty($product_golf)) {?>
                                 <div class="item-info w100" style="gap: 10px;">
                                     <span>골프장:</span>
                                     <span><?=$product_golf?></span>
                                 </div>
+                                <?php }?>
 
                                 <div class="item-info w100" style="gap: 10px;">
                                     <span>성인 <?=!empty($adult_cnt) ? $adult_cnt : 0?>명,  소아 <?=!empty($child_cnt) ? $child_cnt : 0 ?? 0?>명</span>
