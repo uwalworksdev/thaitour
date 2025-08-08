@@ -4318,7 +4318,8 @@ class Product extends BaseController
         $data['inital_price'] = $this->request->getVar('inital_price');
         $data['order_price'] = $this->request->getVar('order_price');
         $data['order_status'] = $this->request->getVar('order_status');
-
+        $data['product_code'] = $this->request->getVar('product_code');
+        $data['product_golf'] = $this->productModel->getById($data['product_code'])["product_name"];
         $builder = $this->db->table('tbl_policy_info');
 		$policy = $builder->where('p_idx', 41)
 							->get()->getRowArray();
