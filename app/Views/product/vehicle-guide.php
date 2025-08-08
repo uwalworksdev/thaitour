@@ -3948,7 +3948,7 @@ $(document).on('click', '.product-item', function () {
 
     if (!existed) {
         $('.section_vehicle_golf_choose').css('display', 'flex');
-        $('.section_vehicle_golf_choose').append(`<p class="selected-product">${productName}</p>`);
+        $('.section_vehicle_golf_choose').append(`<p class="selected-product">- ${productName}</p>`);
     }
 
     $('#product-hover-box').remove();
