@@ -2453,7 +2453,7 @@
                 <td>
                     <div class="vehicle_info">
                         <h4 class="vehicle_info__name ${products[i]["product_idx"]}">
-                            ${products[i]["product_name"]} <span>(${products[i]["vehicle_info"]})</span>
+                            ${products[i]["product_name"]}  ${products[i]["vehicle_info"] ? `<span>(${products[i]["vehicle_info"]})</span>` : ''}
                         </h4>
                         <table>
                             <colgroup>
