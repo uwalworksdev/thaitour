@@ -287,6 +287,15 @@ $links = "list";
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>총 좌석 수(성인 + 소아)</th>
+                                    <td colspan="3">
+                                        <input id="vehicle_info" name="vehicle_info" class="input_txt "
+                                               type="text"
+                                               value="<?= $vehicle_info ? $vehicle_info : "0" ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+
                                 <!-- <tr>
                                 <th>간략소개</th>
                                 <td colspan="3">
