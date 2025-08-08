@@ -860,7 +860,7 @@
                                 </div>
 
                                 <div class="item-info w100" style="gap: 10px;">
-                                    <span>골프장 선택</span>
+                                    <span>골프장:</span>
                                     <span><?=$product_golf?></span>
                                 </div>
 
