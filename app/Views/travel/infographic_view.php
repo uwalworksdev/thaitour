@@ -2,39 +2,44 @@
 <?php $this->section('content'); ?>
 <script src="/js/cms.js" type="text/javascript"></script>
 
+<div class="inner">
+    <div class="sub-hotel-navigation-container">
+        <div class="navigation-container-prev">
+            <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
+            <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
+            <span id="depth_1_tool_title_">여행꿀팁</span>
+    
+        </div>
+        <div class="navigation-container-next">
+            <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_"
+                src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+            <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
+            <span class="font-bold">인포그래픽</span>
+        </div>
+        <div class="navigation-container-next">
+            <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
+                src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+        </div>
+    </div>
+</div>
 <div id="container" class="sub view_container">
     <section class="view_sect">
-                <div class="sub-hotel-navigation-container">
-            <div class="navigation-container-prev">
-                <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
-                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                <span id="depth_1_tool_title_">여행꿀팁</span>
-
-            </div>
-            <div class="navigation-container-next">
-                <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                <span class="font-bold">인포그래픽</span>
-            </div>
-            <div class="navigation-container-next">
-                <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-            </div>
-        </div>
         <div class="inner">
             <div class="view_top_wrap">
                 <h4 class="view_top_ttl"><?= $infographic['subject'] ?></h4>
                 <?php
-                    $arrDayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-                    $dateString = $infographic["r_date"];
-                    $timestamp = strtotime($dateString);
-                    $dayOfWeek = date('w', $timestamp);
+                $arrDayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+                $dateString = $infographic["r_date"];
+                $timestamp = strtotime($dateString);
+                $dayOfWeek = date('w', $timestamp);
                 ?>
                 <div class="view_top_info">
-                    <p class="writer"><?=$infographic['writer']?></p>
+                    <p class="writer"><?= $infographic['writer'] ?></p>
                     <span>|</span>
-                    <p class="date"><?= date("Y.m.d", strtotime($infographic['r_date'])) ?>(<?=$arrDayOfWeek[$dayOfWeek]?>)</p>
+                    <p class="date">
+                        <?= date("Y.m.d", strtotime($infographic['r_date'])) ?>(<?= $arrDayOfWeek[$dayOfWeek] ?>)</p>
                     <span>|</span>
-                    <p class="view">조회수 : <?=$infographic['hit']?></p>
+                    <p class="view">조회수 : <?= $infographic['hit'] ?></p>
                 </div>
             </div>
             <div class="view_content">
@@ -55,8 +60,8 @@
                             <span id="comment_count">(0)</span>
                         </div>
                         <?php
-                            if(isset(session()->get("member")['idx'])){
-                        ?>
+                        if (isset(session()->get("member")['idx'])) {
+                            ?>
                             <form name="com_form" id="com_form" method="post" onsubmit="return false">
                                 <input type="hidden" name="r_code" id="r_code" value="<?= $infographic['code'] ?>">
                                 <input type="hidden" name="r_idx" id="r_idx" value="<?= $infographic['bbs_idx'] ?>">
@@ -64,12 +69,12 @@
                                 <div class="comment_box-input flex">
                                     <textarea style="resize:none" name="comment" class="bs-input" id="contents"
                                         placeholder="댓글을 입력해주세요."></textarea>
-                                    <button type="button" onclick="fn_comment(<?=session('member.idx')?>);"
+                                    <button type="button" onclick="fn_comment(<?= session('member.idx') ?>);"
                                         class="btn btn-point btn-lg comment_btn">등록</button>
                                 </div>
                             </form>
-                        <?php
-                            }
+                            <?php
+                        }
                         ?>
                     </div>
                     <div class="comment_box-details comment" id="comment_list">
@@ -77,7 +82,7 @@
                     </div>
                 </div>
                 <?php
-                    echo view("inc/popup_inc");
+                echo view("inc/popup_inc");
                 ?>
             </div>
     </section>
