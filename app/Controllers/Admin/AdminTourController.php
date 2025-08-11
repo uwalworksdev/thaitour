@@ -379,8 +379,7 @@ class AdminTourController extends BaseController
                         where product_idx = '" . $product_idx . "'
                     ";
                // write_log($sql);
-               echo $sql;
-               die();
+
                $connect->query($sql);
                 if (isset($files['tours_ufile'])) {
                     foreach ($arr_tour_i_idx as $key => $value) {
