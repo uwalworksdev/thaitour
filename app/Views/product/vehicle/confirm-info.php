@@ -79,7 +79,7 @@
                 <input type="hidden" name="inital_price" id="inital_price" value="<?= $inital_price ?>">
                 <input type="hidden" name="order_price" id="order_price" value="<?= $order_price ?>">
                 <input type="hidden" name="order_status" id="order_status" value="W">
-                <input type="hidden" name="product_golf" id="product_golf" value="<?= $product_golf?>">
+                <input type="hidden" name="product_code" id="product_code" value="<?= $product_code?>">
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
