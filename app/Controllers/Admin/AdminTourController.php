@@ -380,7 +380,8 @@ class AdminTourController extends BaseController
                     ";
                // write_log($sql);
                 $connect->query($sql);
-
+                echo $connect->getLastQuery();
+                die();
                 if (isset($files['tours_ufile'])) {
                     foreach ($arr_tour_i_idx as $key => $value) {
                         $file = $files['tours_ufile'][$key] ?? null;
