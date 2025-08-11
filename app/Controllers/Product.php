@@ -4360,6 +4360,7 @@ class Product extends BaseController
                 $email_host = $this->request->getPost('email_2') ?? "";
                 $inital_price = $this->request->getPost('inital_price') ?? 0;
                 $order_price = $this->request->getPost('order_price') ?? 0;
+                $product_golf = $this->request->getPost('product_golf') ?? 0;
 
                 $order_user_mobile = $phone1 . "-" . $phone2 . "-" . $phone3;
                 $order_user_email = $email_name . "@" . $email_host;
@@ -4435,7 +4436,8 @@ class Product extends BaseController
                     "ca_depth_idx" => $ca_depth_idx,
                     "code_parent_category" => $code_parent_category,
                     "cp_idx" => $cp_idx,
-					"group_no" => $group_no
+					"group_no" => $group_no,
+					"product_golf" => $product_golf
                 ];
 
                 $order_idx = $this->orderModel->insert($data);
