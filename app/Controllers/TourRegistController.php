@@ -2722,7 +2722,7 @@ public function list_room_pricex()
                                     ->where("goods_price2 >", 0)
                                     ->where("goods_price3 >", 0)
                                 ->groupEnd()
-                                ->where("goods_date >=", date('Y-m-d'))->first();
+                                ->where("goods_date >=", date('Y-m-d'))->orderBy("goods_date", "asc")->first();
             
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
@@ -2800,7 +2800,7 @@ public function list_room_pricex()
                                     ->where("goods_price1 >", 0)
                                     ->where("goods_price2 >", 0)
                                 ->groupEnd()
-                                ->where("goods_date >=", date('Y-m-d'))->first();
+                                ->where("goods_date >=", date('Y-m-d'))->orderBy("goods_date", "asc")->first();
 
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
