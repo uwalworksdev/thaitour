@@ -1688,6 +1688,8 @@
 
 		for (i = 0; i < $(".spas_idx").length; i++)
 		{
+			console.log($(".spas_subject:eq("+i+")").val());
+			
 			if ($(".spas_subject:eq("+i+")").val() == "")
 			{
 				$(".spas_subject:eq("+i+")").focus();
@@ -1746,7 +1748,7 @@
 			}
 		});
 
-		frm.submit();
+		// frm.submit();
 	}
 </script>
 
