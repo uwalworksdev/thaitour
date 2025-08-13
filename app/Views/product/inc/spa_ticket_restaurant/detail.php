@@ -1007,9 +1007,20 @@
 
     function renderData(data) {
         let html = ``;
+        let check_info_idx = 0;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
             
+            if(check_info_idx == item_.info_idx){
+                html += `<tr>
+                            <td colspan="3" style="padding: 0px; height: 0px background-color: #dbdbdb;">
+                                <div class="flex_b_c">
+                                    <p>${item_.info_name}</p>
+                                </div>
+                            </td>
+                        </tr>`;
+            }
+
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}" data-op_name_eng="${item_.spas_subject_eng}">
                     <td>
@@ -1055,6 +1066,7 @@
                         </div>
                     </td>
                 </tr>`;
+                check_info_idx = item_.info_idx;
         }
 
         if (data.length === 0) {
