@@ -2487,11 +2487,12 @@
 
 .tours-detail .section2 .btn-toggle-option {
     font-weight: bold;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
     border-radius: 6px;
-    border: 1px solid #252525;
-    color: #252525;
+    border: 1px solid #000000;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
