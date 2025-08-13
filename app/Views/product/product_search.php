@@ -81,7 +81,7 @@
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
                             <?php
-                                if($key_gubun == "vehicle"){
+                                if($item1_1['product_code_1'] == "1324"){
                                     if($item1_1['product_code_2'] == "132404"){
                                         $img = "/data/cars/". $item1_1['ufile1'];
                                     }else{
@@ -91,7 +91,6 @@
 
                                 }else{
 
-                                    echo $key_gubun;
                                     $img = getImage("/data/product/{$item1_1['ufile1']}");
                                 }
                             ?>
