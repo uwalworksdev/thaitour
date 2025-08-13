@@ -132,7 +132,7 @@ class Product extends BaseController
 
         $search_cate = $this->request->getVar("search_cate") ?? "all";
 
-        $tab = $this->request->getVar("tab") ?: $search_cate ?: "";
+        $tab = $this->request->getVar("tab") ?: $search_cate ?: "all";
 
         $sort = $this->request->getVar("sort") ?? "";
 
