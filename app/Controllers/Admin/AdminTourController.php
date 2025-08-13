@@ -775,20 +775,20 @@ class AdminTourController extends BaseController
                             'tours_subject'     => $subject,
                             'tours_subject_eng' => isset($tours_subject_eng[$index][$i]) ? $tours_subject_eng[$index][$i] : '',
                             'tours_desc'        => isset($tours_desc[$index][$i]) ? $tours_desc[$index][$i] : '',
-                            // 'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '',
-                            // 'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '',
-                            // 'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '',
+                            'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '',
+                            'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '',
+                            'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '',
                             'status'            => isset($status[$index][$i]) ? $status[$index][$i] : '',
                             'tour_onum'         => isset($tour_onum[$index][$i]) ? $tour_onum[$index][$i] : 0,
                             'info_idx'          => $infoId,
                             'r_date'            => date('Y-m-d H:i:s')
                         ];
 
-                        if($change_price == 'Y'){
-                            $data['tour_price'] = isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '';
-                            $data['tour_price_kids'] = isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '';
-                            $data['tour_price_baby'] = isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '';
-                        }
+                        // if($change_price == 'Y'){
+                        //     $data['tour_price'] = isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '';
+                        //     $data['tour_price_kids'] = isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '';
+                        //     $data['tour_price_baby'] = isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '';
+                        // }
 
                         if ($tourIdx == 'new' || empty($tourIdx)) {
                             $this->tourProducts->insert($data);

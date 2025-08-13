@@ -194,10 +194,10 @@
 																						</div>
 																					</td>
 																					<td>
-																						<input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price1'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+																						<input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price1'] ?? $spa['spas_price'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
 																					</td>
 																					<td>
-																						<input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price2'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+																						<input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price2'] ?? $spa['spas_price_kids'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
 																					</td>
 			
 																					<td>

@@ -196,13 +196,13 @@
 																						</div>
 																					</td>
 																					<td>
-																						<input type="text" name="tour_price[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price1'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+																						<input type="text" name="tour_price[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price1'] ?? $tour['tour_price'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
 																					</td>
 																					<td>
-																						<input type="text" name="tour_price_kids[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price2'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+																						<input type="text" name="tour_price_kids[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price2'] ?? $tour['tour_price_kids'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
 																					</td>
 																					<td>
-																						<input type="text" name="tour_price_baby[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price3'] ?? 0) ?>" placeholder="유아가격(단위: 바트)" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+																						<input type="text" name="tour_price_baby[<?=$i?>][]" value="<?= number_format($tour['price_today']['goods_price3'] ?? $tour['tour_price_baby'] ?? 0) ?>" placeholder="유아가격(단위: 바트)" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
 																					</td>
 																					<td>
 																						<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
