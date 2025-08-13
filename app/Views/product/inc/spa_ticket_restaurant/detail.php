@@ -913,10 +913,9 @@
     //     }
     // });
     // });
-
-
     var arr_data_option = [];
-    $(document).ready(function () {
+
+    function get_today() {
         let currentDate = new Date();
         let day_today = currentDate.getDate();
         let month_today = currentDate.getMonth() + 1;
@@ -924,6 +923,10 @@
         let c_day_ = `${year_today}-${String(month_today).padStart(2, '0')}-${String(day_today).padStart(2, '0')}`;
         
         spaCharge(c_day_);
+    }
+
+    $(document).ready(function () {
+        get_today();
     });
 
     $(document).on('click', '.allowDate', function () {
@@ -1078,6 +1081,7 @@
         }
 
         $('#price_body_').html(html);
+        get_today();
     }
 
     function chkNum(el) {
