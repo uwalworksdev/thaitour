@@ -72,10 +72,33 @@
                             $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
                             break;
                         case "vehicle":
-                            $href = "#!";
+                            if($item1_1['product_code_2'] == "132403") {
+                                $href = "#!";
+                            }else {
+                                $href = "/guide_view?g_idx={$item1_1['product_idx']}";
+                            }
+                            
                             break;
                         default:
-                            $href = "#!";
+                            if($item1_1['product_code_1'] == "1303"){
+                                $href = "/product-hotel/hotel-detail/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1302") {
+                                $href = "/product-golf/golf-detail/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1301") {
+                                $href = "/product-tours/item_view/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1325") {
+                                $href = "/product-spa/spa-details/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1317") {
+                                $href = "/ticket/ticket-detail/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1320") {
+                                $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
+                            }else if($item1_1['product_code_1'] == "1324") {
+                                if($item1_1['product_code_2'] == "132403") {
+                                    $href = "#!";
+                                }else {
+                                    $href = "/guide_view?g_idx={$item1_1['product_idx']}";
+                                }
+                            }
                     }
                     ?>
                     <a href="<?=$href?>" class="product-card-item-container">
