@@ -2497,6 +2497,9 @@
 
 .tours-detail .section2 .btn-toggle-option::after {
     content: "-";
+    display: inline-block;
+    width: 5px;
+    height: 2px;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     position: absolute;
