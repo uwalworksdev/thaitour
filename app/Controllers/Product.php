@@ -105,7 +105,18 @@ class Product extends BaseController
             $codeTree = $this->codeModel->getCodeTree($code);
 
             $items[$key]['codeTree'] = $codeTree;
+            
+            $arr_tour_keyword = array_filter(
+            explode("|", $item['product_keywords']),
+            fn($value) => trim($value) !== ''
+            );
+            $tour_keyword = [];
+            foreach($arr_tour_keyword as $keyword) {
+                $keyword_name = $this->codeModel->getCodeName($keyword);
+                array_push($tour_keyword, $keyword_name);
+            }
 
+            $items[$key]['tour_keyword'] = implode(",", $tour_keyword);
             $itemReview = $this->reviewModel->getProductReview($item['product_idx']);
 
             $items[$key]['total_review'] = $itemReview['total_review'];

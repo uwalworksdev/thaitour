@@ -116,7 +116,13 @@
                                 <div class="item-info">
                                     <div class="item-info-label text-gray">
                                         <?php
-                                            $arr_keyword = explode(",", $item1_1['keyword']);
+                                            $rs_keyword = $item1_1['keyword'];
+
+                                            if($key_gubun == "tour") {
+                                                $rs_keyword = $item1_1['tour_keyword'];
+                                            }
+
+                                            $arr_keyword = explode(",", $rs_keyword);
                                             $arr_keyword = array_filter($arr_keyword);
                                         ?>
                                         <?php foreach ($arr_keyword as $key => $keyword): ?>
