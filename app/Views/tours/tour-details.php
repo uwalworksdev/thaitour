@@ -765,6 +765,15 @@
         </div>
         <?php } ?>
 
+        <?php if($product['product_unable']) {?>
+        <div class="tit-blue-type-2">
+            <span class="tit-blue">불포함 사항</span>
+        </div>
+        <div class="des-type">
+            <?= viewSQ($product['product_unable'])?>
+        </div>
+        <?php } ?>
+
         <?php if($product['product_confirm']) { ?>
             <h2 class="title-sec2">
                 투어준비물
@@ -803,14 +812,6 @@
         </div>
         <?php } ?>
             
-        <?php if($product['product_unable']) {?>
-        <div class="tit-blue-type-2">
-            <span class="tit-blue">불포함 사항</span>
-        </div>
-        <div class="des-type">
-            <?= viewSQ($product['product_unable'])?>
-        </div>
-        <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
                 <div class="con-step">

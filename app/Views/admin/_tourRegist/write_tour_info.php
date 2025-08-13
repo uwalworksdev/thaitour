@@ -61,10 +61,10 @@
 							<tr height=45>
 								<!-- <th>상품정보 [단위 : 바트]</th> -->
 								<td class="td_wrap">
-									<div style="display: flex; gap: 5px; margin-top: 5px;">
+									<div style="display: flex; gap: 5px; margin-top: 5px; align-items: center;">
 										<a href="javascript:add_table();" class="btn btn-primary">추가</a>
 										<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
-										<span style="color: red;">가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</span>
+										<p style="color: red; margin-left: 30px;">가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
 									</div>
 									<?php
 										$i = 0;
