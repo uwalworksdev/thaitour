@@ -2492,12 +2492,11 @@
     height: 40px;
     border-radius: 6px;
     border: 1px solid #000000;
-    color: #000000;
     position: relative;
 }
 
 .tours-detail .section2 .btn-toggle-option::after {
-    content: "\f107";
+    content: "-";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     position: absolute;
