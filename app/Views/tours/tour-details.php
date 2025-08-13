@@ -363,7 +363,7 @@
                             $validDays[] = 6;
                         }
                 ?>  
-                    <div class="flex_b">
+                    <div class="flex_b sec2-wrap-tour" data-info-index="<?=$info['info']['info_idx']?>">
                         <div>
                             <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                                 data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
@@ -375,43 +375,45 @@
                                 <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
                             </div>
                         </div>
-                        <button class="btn-toggle-option">-</button>
+                        <button type="button" class="btn-toggle-option">-</button>
                     </div>
-                    <?php foreach ($info['tours'] as $tour): ?>
-                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
-                            data-option-count="<?= $tour['total_check_price'] ?>">
-                            <div class="text-content-1">
-                                <div>
-                                    <h3>
-                                        <?= $tour['tours_subject'] ?>
-                                        <br>
-                                        <p class="tours-name-en">
-                                            <?= $tour['tours_subject_eng'] ?>
-                                        </p>
-                                    </h3>
-                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                                </div>
-                                <p><?= viewSQ($tour['tours_desc']) ?></p>
-                            </div>
-                            <div class="text-content-2">
-
-                                <div class="price-sub">
-                                    <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
-
-                                    <div class="price">
-                                        <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
-                                        <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
+                    <div class="sec2-item-wrap">
+                        <?php foreach ($info['tours'] as $tour): ?>
+                            <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
+                                data-option-count="<?= $tour['total_check_price'] ?>">
+                                <div class="text-content-1">
+                                    <div>
+                                        <h3>
+                                            <?= $tour['tours_subject'] ?>
+                                            <br>
+                                            <p class="tours-name-en">
+                                                <?= $tour['tours_subject_eng'] ?>
+                                            </p>
+                                        </h3>
+                                        <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                     </div>
-                                    <div class="text-content-3" style="justify-content: space-between;">
-                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" 
-                                            data-option-count="<?= $tour['total_check_price'] ?>"
-                                            data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                    <p><?= viewSQ($tour['tours_desc']) ?></p>
+                                </div>
+                                <div class="text-content-2">
+    
+                                    <div class="price-sub">
+                                        <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
+    
+                                        <div class="price">
+                                            <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                            <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
+                                        </div>
+                                        <div class="text-content-3" style="justify-content: space-between;">
+                                            <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" 
+                                                data-option-count="<?= $tour['total_check_price'] ?>"
+                                                data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                        </div>
                                     </div>
                                 </div>
+                                
                             </div>
-                            
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endforeach;?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
                     <!-- <div class="time_work">
@@ -1119,6 +1121,11 @@
             </div>
             <div class="dim"></div>
         </div>
+<script>
+    $(".btn-toggle-option").on("click", function () {
+
+    });
+</script>
 
 <script>
         function wish_it(product_idx) {
