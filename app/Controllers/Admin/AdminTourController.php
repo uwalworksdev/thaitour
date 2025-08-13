@@ -1495,23 +1495,51 @@ class AdminTourController extends BaseController
 
                     $tours_price = $this->toursPrice->where("product_idx", $product_idx)
                                                     ->where("info_idx", $info_idx)
-                                                    ->groupBy("goods_date")
+                                                    // ->groupBy("goods_date")
                                                     ->orderBy("goods_date", "asc")
                                                     ->findAll();
-                    $new_tours_option = $this->tourProducts->where("info_idx", $tour_id)->findAll();
-                    if(!empty($tours_price)) {
-                        $new_tours_price = array_merge([], $tours_price);
-                        foreach ($new_tours_price as $price) {
-                            foreach ($new_tours_option as $new_option) {
-                                unset($price['idx']);
-                                unset($price['upd_date']);
-                                $price['info_idx'] = $tour_id;
-                                $price['tours_idx'] = $new_option['tours_idx'];
-                                $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                                $this->toursPrice->insert($price);
-                            }
+                    
+                    $old_options = $this->tourProducts->where("info_idx", $info_idx)->orderBy("tours_idx", "asc")->findAll();
+                    $new_options = $this->tourProducts->where("info_idx", $tour_id)->orderBy("tours_idx", "asc")->findAll();
+
+                    $option_map = [];
+                    foreach ($old_options as $k => $old) {
+                        if (isset($new_options[$k])) {
+                            $option_map[$old['tours_idx']] = $new_options[$k]['tours_idx'];
                         }
                     }
+
+                    if (!empty($tours_price)) {
+                        foreach ($tours_price as $price) {
+                            $old_tour_idx = $price['tours_idx'];
+
+                            if (!isset($option_map[$old_tour_idx])) {
+                                continue;
+                            }
+
+                            unset($price['idx'], $price['upd_date']);
+                            $price['info_idx'] = $tour_id;
+                            $price['tours_idx'] = $option_map[$old_tour_idx];
+                            $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                            $this->toursPrice->insert($price);
+                        }
+                    }  
+
+                    // $new_tours_option = $this->tourProducts->where("info_idx", $tour_id)->findAll();
+                    // if(!empty($tours_price)) {
+                    //     $new_tours_price = array_merge([], $tours_price);
+                    //     foreach ($new_tours_price as $price) {
+                    //         foreach ($new_tours_option as $new_option) {
+                    //             unset($price['idx']);
+                    //             unset($price['upd_date']);
+                    //             $price['info_idx'] = $tour_id;
+                    //             $price['tours_idx'] = $new_option['tours_idx'];
+                    //             $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                    //             $this->toursPrice->insert($price);
+                    //         }
+                    //     }
+                    // }
                 }else{
                     return $this->response->setJSON([
                         'result'    => false,
