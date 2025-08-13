@@ -1011,11 +1011,12 @@
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
             
-            if(check_info_idx == item_.info_idx){
+            if(check_info_idx != item_.info_idx){
                 html += `<tr>
                             <td colspan="3" style="padding: 0px; height: 0px background-color: #dbdbdb;">
                                 <div class="flex_b_c">
                                     <p>${item_.info_name}</p>
+                                    <p>* 부가세/봉사료 포함 가격입니다</p>
                                 </div>
                             </td>
                         </tr>`;
