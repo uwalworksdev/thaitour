@@ -2495,7 +2495,8 @@
     position: relative;
 }
 
-.tours-detail .section2 .btn-toggle-option i {
+.tours-detail .section2 .btn-toggle-option::after {
+    content: "-";
     display: inline-block;
     width: 5px;
     height: 2px;
