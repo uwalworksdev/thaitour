@@ -64,6 +64,7 @@
 									<div style="display: flex; gap: 5px; margin-top: 5px;">
 										<a href="javascript:add_table();" class="btn btn-primary">추가</a>
 										<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
+										<span style="color: red;">가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</span>
 									</div>
 									<?php
 										$i = 0;
