@@ -80,8 +80,19 @@
                     ?>
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
+                            <?php
+                                if($key_gubun == "vehicle"){
+                                    if($item1_1['product_code_2'] == "132404"){
+                                        $img = "/data/cars/". $item1_1['ufile1'];
+                                    }else{
+                                        $img = "/uploads/guides/". $item1_1['ufile1'];
+                                    }
+                                }else{
+                                    $img = getImage("/data/product/{$item1_1['ufile1']}");
+                                }
+                            ?>
                             <span>
-                                <img src="<?=getImage("/data/product/{$item1_1['ufile1']}")?>" alt="sub_hotel_1">
+                                <img src="<?=$img?>" alt="sub_hotel_1">
                             </span>
                         </div>
                         <div class="product-card-item-right">

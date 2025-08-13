@@ -132,7 +132,7 @@ class Product extends BaseController
 
         $search_cate = $this->request->getVar("search_cate") ?? "";
 
-        $tab = $this->request->getVar("tab") ?: $search_cate ?: "hotel";
+        $tab = $this->request->getVar("tab") ?: $search_cate ?: "";
 
         $sort = $this->request->getVar("sort") ?? "";
 
@@ -226,7 +226,24 @@ class Product extends BaseController
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
+        $allItems = array_merge(
+    $listHotel['items'],
+            $listGolf['items'],
+            $listTour['items'],
+            $listSpa['items'],
+            $listShowTicket['items'],
+            $listRestaurant['items'],
+            $listVehicle['items']
+        );
+
+        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount']
+            + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
+
         $data['list'] = [
+            'all' => [
+                'title' => "전체",
+                'result' => $allItems
+            ],
             'hotel' => [
                 'title' => "호텔",
                 'result' => $listHotel
@@ -257,8 +274,7 @@ class Product extends BaseController
             ]
         ];
 
-        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount']
-            + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
+       
 
         return $this->renderView('product/product_search', $data);
     }
