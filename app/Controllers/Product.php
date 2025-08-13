@@ -226,7 +226,7 @@ class Product extends BaseController
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
-        $allItems['items'] = array_merge(
+        $allItems = array_merge(
     $listHotel['items'],
             $listGolf['items'],
             $listTour['items'],
@@ -242,7 +242,10 @@ class Product extends BaseController
         $data['list'] = [
             'all' => [
                 'title' => "전체",
-                'result' => $allItems
+                'result' => [
+                    'items' => $allItems,
+                    'nTotalCount' => $data['total']
+                ]
             ],
             'hotel' => [
                 'title' => "호텔",
