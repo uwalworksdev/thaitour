@@ -2017,18 +2017,30 @@ class AdminSpaController extends BaseController
                                                     // ->groupBy("goods_date")
                                                     ->orderBy("goods_date", "asc")
                                                     ->findAll();
-                    $new_spas_option = $this->productSpas->where("info_idx", $spa_id)->findAll();
-                    if(!empty($spas_price)) {
-                        $new_spas_price = array_merge([], $spas_price);
-                        foreach ($new_spas_price as $price) {
-                            foreach ($new_spas_option as $new_option) {
-                                unset($price['idx']);
-                                unset($price['upd_date']);
-                                $price['info_idx'] = $spa_id;
-                                $price['spas_idx'] = $new_option['spas_idx'];
-                                $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                                $this->spasPrice->insert($price);
+                    $old_options = $this->productSpas->where("info_idx", $info_idx)->findAll();
+                    $new_options = $this->productSpas->where("info_idx", $spa_id)->findAll();
+
+                    $option_map = [];
+                    foreach ($old_options as $k => $old) {
+                        if (isset($new_options[$k])) {
+                            $option_map[$old['spas_idx']] = $new_options[$k]['spas_idx'];
+                        }
+                    }
+
+                    if (!empty($spas_price)) {
+                        foreach ($spas_price as $price) {
+                            $old_spas_idx = $price['spas_idx'];
+
+                            if (!isset($option_map[$old_spas_idx])) {
+                                continue;
                             }
+
+                            unset($price['idx'], $price['upd_date']);
+                            $price['info_idx'] = $spa_id;
+                            $price['spas_idx'] = $option_map[$old_spas_idx];
+                            $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                            $this->spasPrice->insert($price);
                         }
                     }
                 }else{
