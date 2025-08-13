@@ -699,7 +699,7 @@
                                     </td> -->
 
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>검색키워드</th>
                                     <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
@@ -707,7 +707,7 @@
                                                 style="width:90%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>검색키워드</th>
                                     <td colspan="3">
