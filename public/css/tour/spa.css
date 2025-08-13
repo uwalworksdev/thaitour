@@ -447,7 +447,7 @@ div , p , ul, li, span {
     border: 1px solid #ccc;
 }
 
-.info_op_wrap {
+.section2 .price-table tbody .info_op_wrap {
     padding: 15px 10px;
     color: #fff;
     background-color: #666666;
