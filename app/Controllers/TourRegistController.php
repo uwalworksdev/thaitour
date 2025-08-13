@@ -2717,7 +2717,12 @@ public function list_room_pricex()
                                 ->where("product_idx", $product_idx)
                                 ->where("info_idx", $row['info_idx'])
                                 ->where("tours_idx", $row['tours_idx'])
-                                ->where("goods_date", date('Y-m-d'))->first();
+                                ->groupStart()
+                                    ->where("goods_price1 >", 0)
+                                    ->where("goods_price2 >", 0)
+                                    ->where("goods_price3 >", 0)
+                                ->groupEnd()
+                                ->where("goods_date >=", date('Y-m-d'))->first();
             
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
@@ -2791,7 +2796,11 @@ public function list_room_pricex()
                                 ->where("product_idx", $product_idx)
                                 ->where("info_idx", $row['info_idx'])
                                 ->where("spas_idx", $row['spas_idx'])
-                                ->where("goods_date", date('Y-m-d'))->first();
+                                ->groupStart()
+                                    ->where("goods_price1 >", 0)
+                                    ->where("goods_price2 >", 0)
+                                ->groupEnd()
+                                ->where("goods_date >=", date('Y-m-d'))->first();
 
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
