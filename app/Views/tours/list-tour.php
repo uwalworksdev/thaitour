@@ -256,7 +256,7 @@
                         }
                         ?>
                         <?php
-                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&pg=")
+                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&search_product_category=" . $search_product_category . "&pg=")
                         ?>
                     </div>
                 </div>
