@@ -225,9 +225,9 @@
                             <col width="28%">
                         </colgroup>
                         <thead>
-                        <tr>
+                        <!-- <tr>
                             <th colspan="3">적용일자 : <span id="day_select_">...</span></th>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>상품타입</th>
                             <th>성인(만 13세이상)</th>
@@ -940,7 +940,7 @@
     async function spaCharge(day_) {
         await LoadingPage();
         $('#day_').val(day_)
-        $('#day_select_').text(day_);
+        $('.day_select_').text(day_);
         await loadDay(day_);
         //alert('111111111');
     }
@@ -1015,7 +1015,7 @@
                 html += `<tr>
                             <td colspan="3" class="info_op_wrap" style="color: #fff; background-color: #747a90; padding: 8px 15px;">
                                 <div class="flex_b_c">
-                                    <p class="info_ttl">${item_.info_name}</p>
+                                    <p class="info_ttl">${item_.info_name} (<span class="day_select_"></span>)</p>
                                     <p class="info_desc" style="font-size: 12px;">* 부가세/봉사료 포함 가격입니다</p>
                                 </div>
                             </td>
