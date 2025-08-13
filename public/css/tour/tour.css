@@ -2473,12 +2473,11 @@
     margin-bottom: 20px;
 }
 
-/* .tours-detail .section2 .sec2-date-wrap {
+.tours-detail .section2 .sec2-date-wrap {
     margin-bottom: 30px;
-} */
+}
 
-.sec2-wrap-tour {
-    padding-bottom: 30px;
+.tours-detail .section2 .sec2-date-sub {
 }
 
 .tours-detail .section2 .sec-date-range {
@@ -2496,7 +2495,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
+    line-height: 1;      
     padding: 0;  
 }
 
