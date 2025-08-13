@@ -1013,10 +1013,10 @@
             
             if(check_info_idx != item_.info_idx){
                 html += `<tr>
-                            <td colspan="3" class="info_op_wrap" style="color: #fff; background-color: #989696;">
+                            <td colspan="3" class="info_op_wrap" style="color: #fff; background-color: #747a90; padding: 5px 15px;">
                                 <div class="flex_b_c">
-                                    <p>${item_.info_name}</p>
-                                    <p>* 부가세/봉사료 포함 가격입니다</p>
+                                    <p class="info_ttl">${item_.info_name}</p>
+                                    <p class="info_desc" style="font-size: 14px;">* 부가세/봉사료 포함 가격입니다</p>
                                 </div>
                             </td>
                         </tr>`;
