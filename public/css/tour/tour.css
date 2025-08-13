@@ -2495,6 +2495,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
+    padding: 0;  
 }
 
 .tours-detail .section2 .sec2-item-card.tour_calendar {
