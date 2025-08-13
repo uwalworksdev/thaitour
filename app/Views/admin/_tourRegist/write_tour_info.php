@@ -191,7 +191,7 @@
 																							<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																							<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																							<input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="상품타입 국문글씨로 입력해주세요" class="tours_subject input_txt" style="width:50%" />
-																							<input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject input_txt" style="width:50%;" />
+																							<input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject_eng input_txt" style="width:50%;" />
 																						</div>
 																					</td>
 																					<td>
@@ -226,7 +226,7 @@
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						<input type="text" name="tours_subject[<?=$i?>][]" value="" placeholder="상품타입 국문글씨로 입력해주세요" class="tours_subject input_txt" style="width:50%" />
-																						<input type="text" name="tours_subject_eng[<?=$i?>][]" value="" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject input_txt" style="width:50%;" />
+																						<input type="text" name="tours_subject_eng[<?=$i?>][]" value="" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject_eng input_txt" style="width:50%;" />
 																					</div>
 																				</td>
 																				<td>
@@ -617,7 +617,7 @@
 																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
-																				<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width:50%;" />
+																				<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject_eng input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width:50%;" />
 																			</div>
 																		</td>
 																		<td style="text-align:center">
@@ -1029,7 +1029,7 @@
 		// 											<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 		// 											<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 		// 											<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
-		// 											<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
+		// 											<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject_eng input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
 		// 										</div>
 		// 									</td>
 		// 									<td style="text-align:center">
@@ -1262,7 +1262,7 @@
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
-						<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
+						<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject_eng input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 					</div>	
 				</td>
 				<td style="text-align:center">
@@ -1315,7 +1315,7 @@
 		// 				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 		// 				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 		// 				<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
-		// 				<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
+		// 				<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject_eng input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 		// 			</div>
 		// 		</td>
 		// 		<td>
@@ -1694,6 +1694,13 @@
 			{
 				$(".tours_subject:eq("+i+")").focus();
 				alert("상품명을 입력해주셔야 합니다.");
+				return;
+			}
+
+			if ($(".tours_subject_eng:eq("+i+")").val() == "")
+			{
+				$(".tours_subject_eng:eq("+i+")").focus();
+				alert("영어 제품명을 입력해야 합니다.");
 				return;
 			}
 		}

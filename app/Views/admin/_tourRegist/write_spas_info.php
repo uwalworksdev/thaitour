@@ -187,7 +187,7 @@
 																							<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																							<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																							<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
-																							<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																							<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject_eng input_txt" style="width:50%;" />
 																							<input type="checkbox" onchange="InitPopup(event, this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
 																							<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
 																						</div>
@@ -222,7 +222,7 @@
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						<input type="text" name="spas_subject[<?=$i?>][]" value="" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
-																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject_eng input_txt" style="width:50%;" />
 																						<input type="checkbox" onchange="InitPopup(event, this);" class="is_explain" value="Y">
 																						<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
 																					</div>
@@ -594,7 +594,7 @@
 																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				<input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
-																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
+																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject_eng input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
 																				<input type="checkbox" onchange="InitPopup(event, this);" class="is_explain" value="Y">
 																				<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
 																			</div>
@@ -1029,7 +1029,7 @@
 		// 											<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 		// 											<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 		// 											<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
-		// 											<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />	
+		// 											<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject_eng input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />	
 		// 											<input type="checkbox" onchange="InitPopup(event, this);" class="is_explain" value="Y">
 		// 											<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>			
 		// 										</div>
@@ -1260,7 +1260,7 @@
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
-						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject_eng input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
 						<input type="checkbox" class="is_explain" onchange="InitPopup(event, this);" value="Y">
 						<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
 					</div>
@@ -1313,7 +1313,7 @@
 		// 				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 		// 				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 		// 				<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
-		// 				<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
+		// 				<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject_eng input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
 		// 				<input type="checkbox" class="is_explain" onchange="InitPopup(event, this);" value="Y">
 		// 				<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
 		// 			</div>
@@ -1694,6 +1694,13 @@
 			{
 				$(".spas_subject:eq("+i+")").focus();
 				alert("상품명을 입력해주셔야 합니다.");
+				return;
+			}
+
+			if ($(".spas_subject_eng:eq("+i+")").val() == "")
+			{
+				$(".spas_subject_eng:eq("+i+")").focus();
+				alert("영어 제품명을 입력해야 합니다.");
 				return;
 			}
 		}
