@@ -3749,12 +3749,12 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
+                'product_code_3' => $search_product_category,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
                 'search_keyword' => $search_keyword,
-                'search_product_category' => $search_product_category
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
