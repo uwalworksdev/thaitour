@@ -10,7 +10,7 @@
         </div>
         <div class="search__box">
             <select id="search_cate" class="search__type">
-                <option value="all">통합검색</option>
+                <!-- <option value="all">통합검색</option> -->
                 <?php foreach ($list as $key => $item): ?>
                     <option value="<?=$key?>" <?=$key == $search_cate ? 'selected' : ''?>>
                         <?=$item['title']?>
