@@ -362,15 +362,20 @@
                             $days[] = '토요일';
                             $validDays[] = 6;
                         }
-                ?>
-                    <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
-                        data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
-                        data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                        <?=viewSQ($info['info']['info_name'])?>
-                    </h2>
-                    <div class="flex_b_c sec2-date-wrap">
-                        <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
-                        <p class="sec-date-range">(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</p>
+                ?>  
+                    <div class="flex_b">
+                        <div>
+                            <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
+                                data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
+                                data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
+                                <?=viewSQ($info['info']['info_name'])?>
+                                <span>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</span>
+                            </h2>
+                            <div class="flex_b_c sec2-date-wrap">
+                                <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                            </div>
+                        </div>
+                        <button class="btn-toggle-option">-</button>
                     </div>
                     <?php foreach ($info['tours'] as $tour): ?>
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"

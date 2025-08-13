@@ -2485,6 +2485,17 @@
     font-size: 20px;
 }
 
+.tours-detail .section2 .btn-toggle-option {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #252525;
+    color: #252525;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .tours-detail .section2 .sec2-item-card.tour_calendar {
     position: relative;
