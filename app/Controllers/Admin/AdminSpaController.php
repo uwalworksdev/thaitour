@@ -2017,8 +2017,8 @@ class AdminSpaController extends BaseController
                                                     // ->groupBy("goods_date")
                                                     ->orderBy("goods_date", "asc")
                                                     ->findAll();
-                    $old_options = $this->productSpas->where("info_idx", $info_idx)->findAll();
-                    $new_options = $this->productSpas->where("info_idx", $spa_id)->findAll();
+                    $old_options = $this->productSpas->where("info_idx", $info_idx)->orderBy("spas_idx", "asc")->findAll();
+                    $new_options = $this->productSpas->where("info_idx", $spa_id)->orderBy("spas_idx", "asc")->findAll();
 
                     $option_map = [];
                     foreach ($old_options as $k => $old) {
