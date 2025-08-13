@@ -888,12 +888,18 @@ class AdminSpaController extends BaseController
                                     'goods_date'    => $currentDate,
                                     'dow'           => $arr_week[$dayOfWeek],
                                     'baht_thai'     => $baht_thai,
-                                    'goods_price1'  => $option["spas_price"],
-                                    'goods_price2'  => $option["spas_price_kids"],
-                                    'goods_price3'  => $option["spas_price_baby"],
+                                    // 'goods_price1'  => $option["spas_price"],
+                                    // 'goods_price2'  => $option["spas_price_kids"],
+                                    // 'goods_price3'  => $option["spas_price_baby"],
                                     'use_yn'        => 'Y',
                                     'reg_date'      => date('Y-m-d H:i:s')
                                 ];
+
+                                if($change_price == 'Y'){
+                                    $data_price['goods_price1'] = $option["spas_price"];
+                                    $data_price['goods_price2'] = $option["spas_price_kids"];
+                                    $data_price['goods_price3'] = $option["spas_price_baby"];
+                                }
 
                                 $this->spasPrice->insertData($data_price);
                             }else{
