@@ -1197,7 +1197,6 @@
                                     <tr>
                                         <th>상품정보</th>
                                         <td colspan="3">
-
                                             <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                             <script type="text/javascript">
@@ -1226,7 +1225,6 @@
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
-
                                         </td>
                                     </tr>
                                 
@@ -1293,24 +1291,22 @@
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
-                                        </td>
-                                        
-                                        
+                                        </td> 
                                     </tr>
                                     <tr>
-                                        <th>유의사항</th>
+                                        <th>포함사항</th>
                                         <td>
-                                            <textarea name="notice_comment" id="notice_comment" class="input_txt"
-                                            style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment); ?></textarea>
+                                            <textarea name="product_able" id="product_able" class="input_txt"
+                                            style="width:100%; height:200px; display:none;"><?= viewSQ($product_able); ?></textarea>
                                             <script type="text/javascript">
-                                                var oEditors8 = [];
+                                                var oEditors2 = [];
 
                                                 // 추가 글꼴 목록
                                                 //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                                 nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors8,
-                                                    elPlaceHolder: "notice_comment",
+                                                    oAppRef: oEditors2,
+                                                    elPlaceHolder: "product_able",
                                                     sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                     htParams: {
                                                         bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -1323,15 +1319,49 @@
                                                     }, //boolean
                                                     fOnAppLoad: function () {
                                                         //예제 코드
-                                                        //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
                                         </td>
+
+                                        <th>불포함사항</th>
+                                        <td>
+                                            <textarea name="product_unable" id="product_unable" class="input_txt"
+                                            style="width:100%; height:200px; display:none;"><?= viewSQ($product_unable); ?></textarea>
+                                            <script type="text/javascript">
+                                                var oEditors5 = [];
+
+                                                // 추가 글꼴 목록
+                                                //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                                nhn.husky.EZCreator.createInIFrame({
+                                                    oAppRef: oEditors5,
+                                                    elPlaceHolder: "product_unable",
+                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                    htParams: {
+                                                        bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                        fOnBeforeUnload: function () {
+                                                            //alert("완료!");
+                                                        }
+                                                    }, //boolean
+                                                    fOnAppLoad: function () {
+                                                        //예제 코드
+                                                        //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    },
+                                                    fCreator: "createSEditor2"
+                                                });
+                                            </script>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
                                         <th>투어준비물</th>
                                         <td>
-
                                             <textarea name="product_confirm" id="product_confirm" class="input_txt"
                                             style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
                                             <script type="text/javascript">
@@ -1360,44 +1390,8 @@
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
-
                                         </td>
 
-                                    </tr>
-                                    <tr>
-                                        <th>추가정보 및 참고사항</th>
-                                        <td>
-                                            <textarea name="mobile_able" id="mobile_able" class="input_txt"
-                                            style="width:100%; height:200px; display:none;"><?= viewSQ($mobile_able); ?></textarea>
-                                            <script type="text/javascript">
-                                                var oEditors3 = [];
-
-                                                // 추가 글꼴 목록
-                                                //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                                nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors3,
-                                                    elPlaceHolder: "mobile_able",
-                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                    htParams: {
-                                                        bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                        fOnBeforeUnload: function () {
-                                                            //alert("완료!");
-                                                        }
-                                                    }, //boolean
-                                                    fOnAppLoad: function () {
-                                                        //예제 코드
-                                                        //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                    },
-                                                    fCreator: "createSEditor2"
-                                                });
-                                            </script>
-
-                                        </td>
-                                        
                                         <th>어린이정책</th>
                                         <td>
                                             <textarea name="special_benefit" id="special_benefit" class="input_txt"
@@ -1431,19 +1425,19 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>포함사항</th>
+                                        <th>추가정보 및 참고사항</th>
                                         <td>
-                                            <textarea name="product_able" id="product_able" class="input_txt"
-                                            style="width:100%; height:200px; display:none;"><?= viewSQ($product_able); ?></textarea>
+                                            <textarea name="mobile_able" id="mobile_able" class="input_txt"
+                                            style="width:100%; height:200px; display:none;"><?= viewSQ($mobile_able); ?></textarea>
                                             <script type="text/javascript">
-                                                var oEditors2 = [];
+                                                var oEditors3 = [];
 
                                                 // 추가 글꼴 목록
                                                 //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                                 nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors2,
-                                                    elPlaceHolder: "product_able",
+                                                    oAppRef: oEditors3,
+                                                    elPlaceHolder: "mobile_able",
                                                     sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                     htParams: {
                                                         bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -1456,26 +1450,26 @@
                                                     }, //boolean
                                                     fOnAppLoad: function () {
                                                         //예제 코드
-                                                        //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
-
                                         </td>
-                                        <th>불포함사항</th>
+                                        
+                                        <th>유의사항</th>
                                         <td>
-                                            <textarea name="product_unable" id="product_unable" class="input_txt"
-                                            style="width:100%; height:200px; display:none;"><?= viewSQ($product_unable); ?></textarea>
+                                            <textarea name="notice_comment" id="notice_comment" class="input_txt"
+                                            style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment); ?></textarea>
                                             <script type="text/javascript">
-                                                var oEditors5 = [];
+                                                var oEditors8 = [];
 
                                                 // 추가 글꼴 목록
                                                 //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                                 nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors5,
-                                                    elPlaceHolder: "product_unable",
+                                                    oAppRef: oEditors8,
+                                                    elPlaceHolder: "notice_comment",
                                                     sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                     htParams: {
                                                         bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -1488,13 +1482,14 @@
                                                     }, //boolean
                                                     fOnAppLoad: function () {
                                                         //예제 코드
-                                                        //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
                                             </script>
                                         </td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
