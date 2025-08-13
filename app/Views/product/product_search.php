@@ -91,7 +91,7 @@
 
                                 }else{
 
-                                    echo "fafa1";
+                                    echo $key_gubun;
                                     $img = getImage("/data/product/{$item1_1['ufile1']}");
                                 }
                             ?>
