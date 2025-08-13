@@ -1025,7 +1025,6 @@
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}" data-op_name_eng="${item_.spas_subject_eng}">
                     <td>
-                        <p style="margin-bottom: 5px; font-weight: bold;">${item_.info_name}</p>
                         ${item_.spas_subject}`;
             if(item_.is_explain == 'Y') {
                 html += `<div class="area-tooltip">
