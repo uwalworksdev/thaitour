@@ -2492,18 +2492,9 @@
     height: 40px;
     border-radius: 6px;
     border: 1px solid #000000;
-    position: relative;
-}
-
-.tours-detail .section2 .btn-toggle-option::after {
-    content: "-";
-    display: inline-block;
-    width: 5px;
-    height: 2px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);   
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tours-detail .section2 .sec2-item-card.tour_calendar {
