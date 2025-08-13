@@ -2014,7 +2014,7 @@ class AdminSpaController extends BaseController
 
                     $spas_price = $this->spasPrice->where("product_idx", $product_idx)
                                                     ->where("info_idx", $info_idx)
-                                                    ->groupBy("goods_date")
+                                                    // ->groupBy("goods_date")
                                                     ->orderBy("goods_date", "asc")
                                                     ->findAll();
                     $new_spas_option = $this->productSpas->where("info_idx", $spa_id)->findAll();
