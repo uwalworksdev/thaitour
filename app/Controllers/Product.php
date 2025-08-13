@@ -105,7 +105,7 @@ class Product extends BaseController
             $codeTree = $this->codeModel->getCodeTree($code);
 
             $items[$key]['codeTree'] = $codeTree;
-            
+
             $arr_tour_keyword = array_filter(
             explode("|", $item['product_keywords']),
             fn($value) => trim($value) !== ''
@@ -3753,7 +3753,8 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
-                'search_keyword' => $search_keyword
+                'search_keyword' => $search_keyword,
+                'search_product_category' => $search_product_category
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
