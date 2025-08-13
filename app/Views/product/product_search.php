@@ -87,8 +87,6 @@
                                     }else{
                                         $img = "/uploads/guides/". $item1_1['ufile1'];
                                     }
-                                    echo "fafa2";
-
                                 }else{
 
                                     $img = getImage("/data/product/{$item1_1['ufile1']}");
