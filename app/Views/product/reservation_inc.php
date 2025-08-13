@@ -49,7 +49,11 @@
 <script>
     viewCal();
 
+    var is_check_click = false;
+
     function fn_click_be() {
+        is_check_click = true;
+
         var s_yy = parseInt($("#s_yy").text().trim());
         var s_mm = parseInt($("#s_mm").text().trim());
 
@@ -82,6 +86,8 @@
 
     // 다음달
     function fn_click_ne() {
+        is_check_click = true;
+
         var s_yy = parseInt($("#s_yy").text().trim());
         var s_mm = parseInt($("#s_mm").text().trim());
 
@@ -180,7 +186,7 @@
                         priceLabel = '<span class="label sold-out-text">예약마감</span>';
                         isDeadline = " deadline";
                     } else {
-                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " active_" : "";
+                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear && !is_check_click) ? " active_" : "";
 
                         if (!dayData) {
                             priceLabel = '<span class="label sold-out-text">예약마감</span>';
