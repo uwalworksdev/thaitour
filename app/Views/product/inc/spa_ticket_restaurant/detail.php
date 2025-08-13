@@ -913,26 +913,27 @@
     //     }
     // });
     // });
+
+
     var arr_data_option = [];
 
-    function get_today() {
+    var current_day;
+
+    $(document).ready(function () {
         let currentDate = new Date();
         let day_today = currentDate.getDate();
         let month_today = currentDate.getMonth() + 1;
         let year_today = currentDate.getFullYear();
         let c_day_ = `${year_today}-${String(month_today).padStart(2, '0')}-${String(day_today).padStart(2, '0')}`;
-        
+        current_day = c_day_;
         spaCharge(c_day_);
-    }
-
-    $(document).ready(function () {
-        get_today();
     });
 
     $(document).on('click', '.allowDate', function () {
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
+        current_day = day_;
         //alert(day_);
         spaCharge(day_);
         var activeData = $('.day.allowDate.sel_date.active_').data('date');
@@ -1018,7 +1019,7 @@
                 html += `<tr>
                             <td colspan="3" class="info_op_wrap" style="color: #fff; background-color: #747a90; padding: 8px 15px;">
                                 <div class="flex_b_c">
-                                    <p class="info_ttl">${item_.info_name} (<span class="day_select_"></span>)</p>
+                                    <p class="info_ttl">${item_.info_name} (<span class="day_select_">${current_day}</span>)</p>
                                     <p class="info_desc" style="font-size: 12px;">* 부가세/봉사료 포함 가격입니다</p>
                                 </div>
                             </td>
@@ -1081,7 +1082,6 @@
         }
 
         $('#price_body_').html(html);
-        get_today();
     }
 
     function chkNum(el) {
