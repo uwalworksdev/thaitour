@@ -1297,40 +1297,40 @@ class ProductModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table('tbl_product_mst AS p');
-        // $relevanceExpr = '';
-        // if (!empty($where['arr_search_txt'])) {
-        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
             
-        //     $relevanceParts = [];
-        //     foreach ($arr_search_txt as $txt) {
-        //         $escapedTxt = $this->db->escapeLikeString($txt);
-        //         $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-        //         $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-        //         $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-        //     }
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
 
-        //     $relevanceExpr = implode(' + ', $relevanceParts);
-        // }
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
 
-        // $select = "p.*, 
-        //     MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
-        //     MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
+        $select = "p.*, 
+            MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
+            MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
 
-        // if ($relevanceExpr !== '') {
-        //     $select .= ", ({$relevanceExpr}) AS relevance_score";
-        // }
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
 
-        // $builder->select($select);
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
+        $builder->select($select);
+        // $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
-
+/*
         $builder->where('h.o_sdate IS NOT NULL');
         $builder->where('h.o_edate IS NOT NULL');
         $builder->where('h.o_sdate <>', '');
         $builder->where('h.o_edate <>', '');
         $builder->where('h.option_type', 'M');
-	
+*/		
         if ($where['day_start'] && $where['day_start'] != "") {
             $builder->where('h.o_sdate <=', $where['day_start']); 
         }
@@ -1515,34 +1515,34 @@ class ProductModel extends Model
             }
         }
 
-        // if (!empty($where['arr_search_txt'])) {
-        //     $builder->groupStart();
-        //     // $str_search_txt = trim($where['arr_search_txt']);
-        //     // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        if (!empty($where['arr_search_txt'])) {
+            $builder->groupStart();
+            // $str_search_txt = trim($where['arr_search_txt']);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-        //     foreach ($arr_search_txt as $index => $txt) {
+            foreach ($arr_search_txt as $index => $txt) {
 
-        //         if ($index > 0) {
-        //             $builder->orGroupStart();
-        //         }
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
 
-        //         $escapedTxt = $this->db->escapeLikeString($txt);
-        //         $builder->like('product_name', $escapedTxt);
-        //         $builder->orLike('product_name_en', $escapedTxt);
-        //         $builder->orLike('keyword', $escapedTxt);
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
 
-        //         // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-        //         // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
 
-        //         if ($index > 0) {
-        //             $builder->groupEnd();
-        //         }
-        //     }
-        //     $builder->groupEnd();
-        // }
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
 
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
