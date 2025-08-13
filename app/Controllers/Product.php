@@ -226,7 +226,7 @@ class Product extends BaseController
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
-        $allItems = array_merge(
+        $allItems['items'] = array_merge(
     $listHotel['items'],
             $listGolf['items'],
             $listTour['items'],
