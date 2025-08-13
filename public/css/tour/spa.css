@@ -447,6 +447,12 @@ div , p , ul, li, span {
     border: 1px solid #ccc;
 }
 
+.info_op_wrap {
+    padding: 15px 10px;
+    color: #fff;
+    background-color: #666666;
+}
+
 .section2 .price-table-container .title-container {
     display: flex;
     gap: 16px;
