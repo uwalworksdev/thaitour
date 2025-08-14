@@ -2755,9 +2755,9 @@
     ;
 }
 
-.tours-detail .section2 .sec2-item-card:last-child {
+/* .tours-detail .section2 .sec2-item-card:last-child {
     padding-bottom: 160px;
-}
+} */
 
 .tours-detail .section2 .text-content-1 {
     display: flex;
