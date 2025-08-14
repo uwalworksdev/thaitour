@@ -82,6 +82,10 @@
         font-size: 14px;
     }
 
+    .sec2-date-main .sec2-date-cont {
+        gap: 5px;
+    }
+
     @media screen and (max-width: 850px) {
     .sec2-item-card.tour_calendar {
         display: block;
