@@ -2226,9 +2226,9 @@ public function list_room_pricex()
         if ($e_date) $o_edate = $e_date;
 
         $query = $this->spasPrice
-            ->select("a.*")
+            ->select("a.*, b.spas_subject")
             ->from("tbl_spas_price a")
-            // ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
+            ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
             ->where("a.product_idx", $product_idx);
 
         if ($info_idx) {
@@ -2242,7 +2242,7 @@ public function list_room_pricex()
             $query->where("a.goods_date >=", $today);
         }
 
-        // $query->groupBy("a.idx");
+        $query->groupBy("a.idx");
         
         $nTotalCount = $query->countAllResults(false);
 
@@ -2254,10 +2254,12 @@ public function list_room_pricex()
         $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
         $spas_price = $query->orderBy("a.goods_date", "ASC")
-                        // ->orderBy("b.spas_idx", "ASC")
+                        ->orderBy("b.spas_idx", "ASC")
                         ->limit($g_list_rows, $nFrom)
                         ->get()
                         ->getResultArray();
+        echo $query->getCompiledUpdate();
+        die();
 
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
                                             ->orderBy("spas_idx", "asc")->findAll();
