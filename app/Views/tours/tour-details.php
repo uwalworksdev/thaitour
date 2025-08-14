@@ -83,7 +83,15 @@
     }
 
     .sec2-date-main .sec2-date-cont {
-        gap: 5px;
+        gap: 10px;
+    }
+
+    .sec2-date-main .sec2-date-cont i {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url("/images/btn/btn down-arrow.png") no-repeat center/cover;
+        background-size: 20px 20px;
     }
 
     @media screen and (max-width: 850px) {
