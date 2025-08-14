@@ -379,7 +379,7 @@
                                 <p class="sec2-date-cont flex__c">
                                     <i></i>
                                     <?=viewSQ($info['info']['info_name'])?>
-                                    <span>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</span>
+                                    <span><?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?></span>
                                 </p>   
                                 <p>* 부가세/봉사료 포함 가격입니다</p>
                             </div>
