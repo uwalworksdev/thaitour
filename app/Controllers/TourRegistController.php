@@ -2244,7 +2244,7 @@ public function list_room_pricex()
 
         $query->groupBy("a.idx");
         
-        $nTotalCount = 10;
+        $nTotalCount = $query->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
@@ -2253,11 +2253,11 @@ public function list_room_pricex()
         $nFrom = isset($nFrom) ? intval($nFrom) : 0;
         $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
-        $spas_price = $query->orderBy("a.goods_date", "ASC")
-                        ->orderBy("b.spas_idx", "ASC")
-                        ->limit($g_list_rows, $nFrom)
-                        ->get()
-                        ->getResultArray();
+        // $spas_price = $query->orderBy("a.goods_date", "ASC")
+        //                 ->orderBy("b.spas_idx", "ASC")
+        //                 ->limit($g_list_rows, $nFrom)
+        //                 ->get()
+        //                 ->getResultArray();
 
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
                                             ->orderBy("spas_idx", "asc")->findAll();
@@ -2267,7 +2267,7 @@ public function list_room_pricex()
             "pg"           => $pg,
             "g_list_rows"  => $g_list_rows,
             "nTotalCount"  => $nTotalCount,
-            'spas_price'   => $spas_price,
+            'spas_price'   => $spas_price ?? [],
             'product_idx'  => $product_idx,
             'info_idx'     => $info_idx,
             'product_name' => $product_name,
