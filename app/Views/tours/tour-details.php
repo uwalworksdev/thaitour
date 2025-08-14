@@ -1127,14 +1127,14 @@
 <script>
     $(".btn-toggle-minus").on("click", function () {
         let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
-        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").hide();
+        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").toggle();
         $(this).hide();
         $(this).closest('.btn-toggle-wrap').find(".btn-toggle-plus").show();
     });
 
     $(".btn-toggle-plus").on("click", function () {
         let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
-        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").hide();
+        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").toggle();
         $(this).hide();
         $(this).closest('.btn-toggle-wrap').find(".btn-toggle-minus").show();
     });
