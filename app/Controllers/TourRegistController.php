@@ -2788,7 +2788,7 @@ public function list_room_pricex()
         return view('admin/_tourRegist/write_tour_info', $data);
     }
 
-    public function write_spas_info()
+    public function write_spas_info($category_prd)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $db = $this->connect;
@@ -2862,6 +2862,7 @@ public function list_room_pricex()
             'productSpasInfo' => $groupedData,
             'infoIndex'       => $infoIndex,
             'groupedData'     => $groupedData,
+            'category_prd'    => $category_prd,
         ];
 
         return view('admin/_tourRegist/write_spas_info', $data);
