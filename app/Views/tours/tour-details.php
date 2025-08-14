@@ -375,7 +375,10 @@
                                 <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
                             </div>
                         </div>
-                        <button type="button" class="btn-toggle-option">-</button>
+                        <div class="btn-toggle-wrap">
+                            <i class="btn-toggle btn-toggle-minus"></i>
+                            <i class="btn-toggle btn-toggle-plus" style="display: none"></i>
+                        </div>
                     </div>
                     <div class="sec2-item-wrap">
                         <?php foreach ($info['tours'] as $tour): ?>

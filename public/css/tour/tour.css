@@ -6711,5 +6711,25 @@ span.left_space {
     line-height: 1.5;
     font-size: 20px !important;
     margin-top: 5px;
+}
 
+.btn-toggle-wrap .btn-toggle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.btn-toggle-wrap .btn-toggle-minus {
+    background-image: url('/images/btn/btn-toggle-minus.png');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn-toggle-wrap .btn-toggle-plus {
+    background-image: url('/images/btn/btn-toggle-plus.png');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
