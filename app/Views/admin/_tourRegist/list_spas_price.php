@@ -56,7 +56,16 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>투어 요금정보 </h2>
+                <?php
+					if($category_prd == "spa") {
+						$title = "스파";
+					}else if($category_prd == "ticket") {
+						$title = "쇼·입장권";
+					}else {
+						$title = "레스토랑";
+					}
+				?>
+                <h2><?=$title?> 요금정보</h2>
                 <div class="menus">
                     <ul>
                         <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span

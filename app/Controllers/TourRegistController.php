@@ -1925,7 +1925,7 @@ public function list_room_pricex()
         return view("admin/_tourRegist/write_spas", $data);
     }
 
-    public function write_spas_price()
+    public function write_spas_price($category_prd)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
 
@@ -1948,6 +1948,7 @@ public function list_room_pricex()
         $new_data = [
             'product_idx'     => $product_idx,
             'fresult9'        => $fresult9,
+            'category_prd'    => $category_prd,
         ];
 
         $data = array_merge($data, $new_data);

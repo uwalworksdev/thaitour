@@ -48,19 +48,19 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours', 'TourRegistController::write_tours_price', 'TourRegistController::write_tour_info', 'TourRegistController::list_tours_price']
                 ],
                 [
-                    'name' => '스파',
+                    'name' => '스파 상품관리',
                     'code' => 'B5',
                     'url' => ['/AdmMaster/_tourRegist/spa/list'],
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
                 ],
                 [
-                    'name' => '쇼·입장권',
+                    'name' => '쇼·입장권 상품관리',
                     'code' => 'B6',
                     'url' => ['/AdmMaster/_tourRegist/ticket/list'],
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
                 ],
                 [
-                    'name' => '레스토',
+                    'name' => '레스토 상품관리',
                     'code' => 'B7',
                     'url' => ['/AdmMaster/_tourRegist/restaurant/list'],
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']

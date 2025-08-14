@@ -55,7 +55,16 @@
     <div id="print_this"><!-- 인쇄영역 시작 //-->
         <header id="headerContainer">
             <div class="inner">
-                <h2>스파/쇼·입장권/레스토랑 상품정보입력</h2>
+                <?php
+					if($category_prd == "spa") {
+						$title = "스파";
+					}else if($category_prd == "ticket") {
+						$title = "쇼·입장권";
+					}else {
+						$title = "레스토랑";
+					}
+				?>
+                <h2><?=$title?> 상품정보입력</h2>
                 <div class="menus">
                     <ul>
                         <li>
