@@ -94,6 +94,14 @@
         background-size: 20px 20px;
     }
 
+    .sec2-date-main .sec2-date-cont .sec2-date-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .sec2-date-main .sec2-date-cont .sec2-date-icon.rotated {
+        transform: rotate(180deg);
+    }
+
     @media screen and (max-width: 850px) {
     .sec2-item-card.tour_calendar {
         display: block;
@@ -1149,18 +1157,10 @@
             <div class="dim"></div>
         </div>
 <script>
-    $(".btn-toggle-minus").on("click", function () {
+    $(".sec2-date-icon").on("click", function () {
         let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
         $(".sec2-item-wrap[data-info-index='" + info_idx + "']").toggle();
-        $(this).hide();
-        $(this).closest('.btn-toggle-wrap').find(".btn-toggle-plus").show();
-    });
-
-    $(".btn-toggle-plus").on("click", function () {
-        let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
-        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").toggle();
-        $(this).hide();
-        $(this).closest('.btn-toggle-wrap').find(".btn-toggle-minus").show();
+         $(this).toggleClass("rotated");
     });
 </script>
 
