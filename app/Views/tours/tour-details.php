@@ -370,7 +370,7 @@
                         }
                 ?>  
                     <div class="flex_b sec2-wrap-tour" data-info-index="<?=$info['info']['info_idx']?>">
-                        <div>
+                        <div style="width: 100%;">
                             <div class="sec2-date-main flex_b_c" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                                 data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                                 data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
