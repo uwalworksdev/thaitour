@@ -71,7 +71,7 @@
         left: 62%;
         border: 1px solid #dbdbdb;
         background-color: #fff;
-        color: #252525;
+        color: #747a90;
     }
 
     .sec2-date-main {
