@@ -6713,6 +6713,10 @@ span.left_space {
     margin-top: 5px;
 }
 
+.btn-toggle-wrap {
+    align-self: flex-end;
+}
+
 .btn-toggle-wrap .btn-toggle {
     display: inline-block;
     width: 40px;
