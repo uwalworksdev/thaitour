@@ -2862,7 +2862,7 @@ public function list_room_pricex()
             'productSpasInfo' => $groupedData,
             'infoIndex'       => $infoIndex,
             'groupedData'     => $groupedData,
-            'category_prd'    => $category_prd,
+            'category_prd'    => $category_prd
         ];
 
         return view('admin/_tourRegist/write_spas_info', $data);
