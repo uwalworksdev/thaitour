@@ -2185,9 +2185,10 @@ public function list_room_pricex()
     {
         $today = date('Y-m-d');	 
         
-        $this->spasPrice->where('goods_date <', date('Y-m-d'))
-                            ->set('upd_yn', 'Y')
-                            ->update();
+        $this->spasPrice
+            ->where('goods_date <', $today)
+            ->set('upd_yn', 'Y')
+            ->update();
 
         $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
 		
@@ -2202,65 +2203,117 @@ public function list_room_pricex()
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        $builder = $this->spasPrice
-            ->select("MIN(goods_date) AS s_date, MAX(goods_date) AS e_date")
-            ->where("product_idx", $product_idx);
-
+        $where = [
+            'a.product_idx' => $product_idx
+        ];
         if ($info_idx) {
-            $builder->where("info_idx", $info_idx);
+            $where['a.info_idx'] = $info_idx;
         }
 
-        if ($s_date && $e_date) {
-            $builder->where("goods_date >=", $s_date)
-                    ->where("goods_date <=", $e_date);
-        } else {
-            $builder->where("goods_date >=", $today);
+        if (!$s_date || !$e_date) {
+            $s_date = $today;
         }
 
-        $row = $builder->get()->getRowArray();
-        
-        $o_sdate = $row['s_date'];
-        $o_edate = $row['e_date'];
+        $dateRange = $this->spasPrice
+            ->select("MIN(goods_date) AS s_date, MAX(goods_date) AS e_date")
+            ->where('product_idx', $product_idx)
+            ->where($info_idx ? ['info_idx' => $info_idx] : [])
+            ->where('goods_date >=', $s_date)
+            ->where($e_date ? 'goods_date <=' : 'goods_date >=', $e_date ?: $s_date)
+            ->get()
+            ->getRowArray();
 
-        if ($s_date) $o_sdate = $s_date; 
-        if ($e_date) $o_edate = $e_date;
+        $o_sdate = $s_date ?: $dateRange['s_date'];
+        $o_edate = $e_date ?: $dateRange['e_date'];
 
-        $query = $this->spasPrice
+        $countBuilder = $this->spasPrice
+            ->where('product_idx', $product_idx)
+            ->where($info_idx ? ['info_idx' => $info_idx] : [])
+            ->where('goods_date >=', $o_sdate)
+            ->where('goods_date <=', $o_edate);
+
+        $nTotalCount = $countBuilder->countAllResults();
+        $nPage       = ceil($nTotalCount / $g_list_rows);
+        $nFrom       = ($pg - 1) * $g_list_rows;
+
+        $spas_price = $this->spasPrice
             ->select("a.*, b.spas_subject")
             ->from("tbl_spas_price a")
             ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
-            ->where("a.product_idx", $product_idx);
+            ->where($where)
+            ->where('a.goods_date >=', $o_sdate)
+            ->where('a.goods_date <=', $o_edate)
+            ->orderBy("a.goods_date", "ASC")
+            ->orderBy("b.spas_idx", "ASC")
+            ->limit($g_list_rows, $nFrom)
+            ->get()
+            ->getResultArray();
 
-        if ($info_idx) {
-            $query->where("a.info_idx", $info_idx);
-        }
+        // 5. Lấy option
+        $spas_option = $this->productSpas
+            ->where("info_idx", $info_idx)
+            ->orderBy("spas_idx", "asc")
+            ->findAll();
 
-        if ($s_date && $e_date) {
-            $query->where("a.goods_date >=", $s_date)
-                             ->where("a.goods_date <=", $e_date);
-        } else {
-            $query->where("a.goods_date >=", $today);
-        }
+        // $builder = $this->spasPrice
+        //     ->select("MIN(goods_date) AS s_date, MAX(goods_date) AS e_date")
+        //     ->where("product_idx", $product_idx);
 
-        $query->groupBy("a.idx");
+        // if ($info_idx) {
+        //     $builder->where("info_idx", $info_idx);
+        // }
+
+        // if ($s_date && $e_date) {
+        //     $builder->where("goods_date >=", $s_date)
+        //             ->where("goods_date <=", $e_date);
+        // } else {
+        //     $builder->where("goods_date >=", $today);
+        // }
+
+        // $row = $builder->get()->getRowArray();
         
-        $nTotalCount = $query->countAllResults(false);
+        // $o_sdate = $row['s_date'];
+        // $o_edate = $row['e_date'];
 
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if (empty($pg)) $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
+        // if ($s_date) $o_sdate = $s_date; 
+        // if ($e_date) $o_edate = $e_date;
 
-        $nFrom = isset($nFrom) ? intval($nFrom) : 0;
-        $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
+        // $query = $this->spasPrice
+        //     ->select("a.*, b.spas_subject")
+        //     ->from("tbl_spas_price a")
+        //     ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
+        //     ->where("a.product_idx", $product_idx);
 
-        $spas_price = $query->orderBy("a.goods_date", "ASC")
-                        ->orderBy("b.spas_idx", "ASC")
-                        ->limit($g_list_rows, $nFrom)
-                        ->get()
-                        ->getResultArray();
+        // if ($info_idx) {
+        //     $query->where("a.info_idx", $info_idx);
+        // }
 
-        $spas_option = $this->productSpas->where("info_idx", $info_idx)
-                                            ->orderBy("spas_idx", "asc")->findAll();
+        // if ($s_date && $e_date) {
+        //     $query->where("a.goods_date >=", $s_date)
+        //                      ->where("a.goods_date <=", $e_date);
+        // } else {
+        //     $query->where("a.goods_date >=", $today);
+        // }
+
+        // $query->groupBy("a.idx");
+        
+        // $nTotalCount = $query->countAllResults(false);
+
+        // $nPage = ceil($nTotalCount / $g_list_rows);
+        // if (empty($pg)) $pg = 1;
+        // $nFrom = ($pg - 1) * $g_list_rows;
+
+        // $nFrom = isset($nFrom) ? intval($nFrom) : 0;
+        // $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
+
+        // $spas_price = $query->orderBy("a.goods_date", "ASC")
+        //                 ->orderBy("b.spas_idx", "ASC")
+        //                 ->limit($g_list_rows, $nFrom)
+        //                 ->get()
+        //                 ->getResultArray();
+
+        // $spas_option = $this->productSpas->where("info_idx", $info_idx)
+        //                                     ->orderBy("spas_idx", "asc")->findAll();
 
         $data = [
             "nPage"        => $nPage,
