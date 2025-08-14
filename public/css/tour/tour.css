@@ -2487,17 +2487,18 @@
 }
 
 .tours-detail .section2 .btn-toggle-option {
-    font-weight: bold;
-    font-size: 35px;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    border: 1px solid #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;      
-    padding: 0;  
+    font-weight: bold;   
+    font-size: 20px;        
+    width: 40px;             
+    height: 40px;            
+    border-radius: 6px;      
+    border: 1px solid #000;  
+    display: flex;          
+    align-items: center;    
+    justify-content: center; 
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0; 
 }
 
 .tours-detail .section2 .sec2-item-card.tour_calendar {
