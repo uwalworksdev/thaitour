@@ -75,10 +75,11 @@
     }
 
     .sec2-date-main {
-        padding: 7px 10px;
+        padding: 10px;
         color: #fff;
         background-color: #747a90;
         margin-bottom: 2px;
+        font-size: 14px;
     }
 
     @media screen and (max-width: 850px) {
