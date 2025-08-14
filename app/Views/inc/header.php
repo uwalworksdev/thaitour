@@ -385,8 +385,8 @@
                 <img id="icon-close-ps" src="/uploads/icons/icon-close-ps.png" alt="icon-close-ps">
             </div>
             <div class="input-form-ps">
-                <input type="text" class="search-input-m search-input-ps">
-                <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" alt="">
+                <input type="text" id="search_input_mo__header" class="search-input-m search-input-ps">
+                <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" style="cursor: pointer;" id="search_icon_mo" alt="">
             </div>
             <div class="text-c-ps">
                 <label for="인기검색어">인기검색어</label>
@@ -1074,13 +1074,24 @@ document.addEventListener('DOMContentLoaded', function () {
         // });
 
         $("#search_icon_pc").click(function() {
-            var search_name = $("#search_input_pc__header").val() ?? "";
+            let search_name = $("#search_input_pc__header").val() ?? "";
 
             if(search_name.trim() == ""){
                 alert("검색어를 입력해 주세요.");
                 return false;
             }
-            var search_cate = $("#search_cate_pc__header").val() ?? "";
+            let search_cate = $("#search_cate_pc__header").val() ?? "";
+            location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
+        });
+
+        $("#search_icon_mo").click(function() {
+            let search_name = $("#search_input_mo__header").val() ?? "";
+
+            if(search_name.trim() == ""){
+                alert("검색어를 입력해 주세요.");
+                return false;
+            }
+            let search_cate = "";
             location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
         });
 
