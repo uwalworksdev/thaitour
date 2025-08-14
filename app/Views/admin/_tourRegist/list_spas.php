@@ -5,7 +5,16 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>스파/쇼·입장권/레스토랑 상품</h2>
+                    <?php
+                        if($category_prd == "spa") {
+                            $title = "스파";
+                        }else if($category_prd == "ticket") {
+                            $title = "쇼·입장권";
+                        }else {
+                            $title = "레스토랑";
+                        }
+                    ?>
+                    <h2><?=$title?> 상품</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
@@ -505,7 +514,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_spas') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/'.$category_prd.'/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
 
                     <div id="headerContainer">
 

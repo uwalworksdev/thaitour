@@ -210,6 +210,7 @@ class AdminSpaController extends BaseController
             $search_name = updateSQ($_POST["search_name"] ?? '');
             $search_category = updateSQ($_POST["search_category"] ?? '');
             $upload = "../../data/product/";
+            $category_prd = updateSQ($_POST["category_prd"] ?? '');
             $product_idx = updateSQ($_POST["product_idx"] ?? '');
             $product_code = updateSQ($_POST["product_code" ?? '']);
             $product_code_1 = updateSQ($_POST["product_code_1"] ?? '');
@@ -681,7 +682,7 @@ class AdminSpaController extends BaseController
             $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_tourRegist/list_spas';
+                    parent.location.href='/AdmMaster/_tourRegist/$category_prd/list';
                 </script>";
         } catch (\Exception $e) {
             return $this->response

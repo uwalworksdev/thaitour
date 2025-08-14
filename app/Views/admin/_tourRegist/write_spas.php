@@ -75,7 +75,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <?php if ($product_idx) { ?>
@@ -134,6 +134,7 @@
 
             <form name=frm action="<?= route_to('admin.api.spa_.write_ok') ?>" method=post enctype="multipart/form-data"
                   target="hiddenFrame">
+                <input type=hidden name="category_prd" value='<?= $category_prd ?>'>
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -1102,7 +1103,7 @@
                                 <tr>
                                     <th>유의사항</th>
                                     <td>
-								<textarea name="notice_comment" id="notice_comment" class="input_txt"
+								        <textarea name="notice_comment" id="notice_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors8 = [];
@@ -1519,7 +1520,7 @@
                     <li class="left"></li>
                     <li class="right_sub">
 
-                        <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                        <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                            class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         <?php if ($product_idx == "") { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
@@ -2591,7 +2592,7 @@
     </script>
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
-    <form id="listForm" action="./list_spas">
+    <form id="listForm" action="/AdmMaster/_tourRegist/<?=$category_prd?>/list">
         <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
         <input type="hidden" name="pg" value="<?= $pg ?>">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">

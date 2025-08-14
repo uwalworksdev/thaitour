@@ -37,7 +37,7 @@ class AdminMenus extends BaseConfig
                 ],
                 [
                     'name' => '골프 상품관리',
-                    'code' => 'B5',
+                    'code' => 'B3',
                     'url' => ['/AdmMaster/_tourRegist/list_golf'],
                     'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf', 'TourRegistController::write_golf_price', 'TourRegistController::list_golf_price']
                 ],
@@ -48,14 +48,26 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours', 'TourRegistController::write_tours_price', 'TourRegistController::write_tour_info', 'TourRegistController::list_tours_price']
                 ],
                 [
-                    'name' => '스파/쇼·입장권/레스토',
-                    'code' => 'B3',
-                    'url' => ['/AdmMaster/_tourRegist/list_spas'],
+                    'name' => '스파',
+                    'code' => 'B5',
+                    'url' => ['/AdmMaster/_tourRegist/spa/list'],
+                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
+                ],
+                [
+                    'name' => '쇼·입장권',
+                    'code' => 'B6',
+                    'url' => ['/AdmMaster/_tourRegist/ticket/list'],
+                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
+                ],
+                [
+                    'name' => '레스토',
+                    'code' => 'B7',
+                    'url' => ['/AdmMaster/_tourRegist/restaurant/list'],
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
                 ],
                 [
                     'name' => '차량 상품관리',
-                    'code' => 'B7',
+                    'code' => 'B8',
                     'url' => ['/AdmMaster/_cars_category/list'],
                     'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
                 ],
@@ -67,7 +79,7 @@ class AdminMenus extends BaseConfig
 //                ],
                 [
                     'name' => '가이드 상품',
-                    'code' => 'B13',
+                    'code' => 'B9',
                     'url' => ['/AdmMaster/_tour_guides/list'],
                     'alias' => ['AdminTourGuideController::list', 'AdminTourGuideController::write', 'AdminTourGuideController::write_info']
                 ],
@@ -79,13 +91,13 @@ class AdminMenus extends BaseConfig
 //                ],
                 [
                     'name' => '차량 정보관리',
-                    'code' => 'B8',
+                    'code' => 'B10',
                     'url' => ['/AdmMaster/_cars/list'],
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
                 [
                     'name' => '가이드 소개관리',
-                    'code' => 'B14',
+                    'code' => 'B11',
                     'url' => ['/AdmMaster/_drivers/list'],
                     'alias' => ['AdminDriverController::list', 'AdminDriverController::write']
                 ],
@@ -103,19 +115,19 @@ class AdminMenus extends BaseConfig
 //                ],
                 [
                     'name' => '쿠폰상품등록',
-                    'code' => 'B11',
+                    'code' => 'B12',
                     'url' => ['/AdmMaster/_coupon/list'],
                     'alias' => ['AdminCouponController::list', 'AdminCouponController::write']
                 ],
                 [
                     'name' => '추천여행지(정보)',
-                    'code' => 'B12',
+                    'code' => 'B13',
                     'url' => ['/AdmMaster/_local_product/list'],
                     'alias' => ['AdminLocalProductController::list', 'AdminLocalProductController::write']
                 ],
                 [
                     'name' => '추천여행지(상품)',
-                    'code' => 'B13',
+                    'code' => 'B14',
                     'url' => ['/AdmMaster/_local_guide/list'],
                     'alias' => ['AdminLocalGuideController::list', 'AdminLocalGuideController::write']
                 ],

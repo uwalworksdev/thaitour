@@ -150,7 +150,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_tourRegist", static function ($routes) {
         $routes->get("list_hotel", "TourRegistController::list_hotel");
-        $routes->get("list_spas", "TourRegistController::list_spas");
+        $routes->get("(:segment)/list", "TourRegistController::list_spas/$1");
         $routes->get("list_all", "TourRegistController::list_all");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
@@ -170,7 +170,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
-        $routes->get("write_spas", "TourRegistController::write_spas");
+        $routes->get("(:segment)/write", "TourRegistController::write_spas/$1");
         $routes->get("write_spas_info", "TourRegistController::write_spas_info");
         $routes->get("write_spas_price", "TourRegistController::write_spas_price");
         $routes->get("list_spas_price", "TourRegistController::list_spas_price");

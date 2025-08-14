@@ -81,9 +81,17 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/list_honeymoon", $data);
     }
 
-    public function list_spas()
+    public function list_spas($category_prd)
     {
-        $data = $this->get_list_('1317', '1325', '1320', '', '');
+        if($category_prd == 'spa') {
+            $data = $this->get_list_('1325', '', '', '', '');
+        }else if($category_prd == 'ticket') {
+            $data = $this->get_list_('1317', '', '', '', '');
+        }else {
+            $data = $this->get_list_('1320', '', '', '', '');
+        }
+
+        $data["category_prd"] = $category_prd;
         return view("admin/_tourRegist/list_spas", $data);
     }
 
@@ -1794,11 +1802,19 @@ public function list_room_pricex()
         return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
 
-    public function write_spas()
+    public function write_spas($category_prd)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
 
-        $data = $this->getWrite('', '1317', '1320', '1325', '', "S");
+        if($category_prd == "spa") {
+            $data = $this->getWrite('1325', '', '', '', '', "S");
+        }else if($category_prd == "ticket") {
+            $data = $this->getWrite('1317', '', '', '', '', "S");
+        }else {
+            $data = $this->getWrite('1320', '', '', '', '', "S");
+        }
+
+        // $data = $this->getWrite('', '1317', '1320', '1325', '', "S");
 
         $db = $this->connect;
 
@@ -1890,6 +1906,7 @@ public function list_room_pricex()
         $category3 = $query->getResultArray();
 
         $data['category3'] = $category3;
+        $data['category_prd'] = $category_prd;
 
         $label_list = $this->codeModel->getByParentCode('63')->getResultArray();
 
