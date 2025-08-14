@@ -2244,7 +2244,7 @@ public function list_room_pricex()
 
         $query->groupBy("a.idx");
         
-        $nTotalCount = $query->countAllResults(false);
+        $nTotalCount = 10;
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
@@ -2253,37 +2253,30 @@ public function list_room_pricex()
         $nFrom = isset($nFrom) ? intval($nFrom) : 0;
         $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
-        // $spas_price = $query->orderBy("a.goods_date", "ASC")
-        //                 ->orderBy("b.spas_idx", "ASC")
-        //                 ->limit($g_list_rows, $nFrom)
-        //                 ->get()
-        //                 ->getResultArray();
+        $spas_price = $query->orderBy("a.goods_date", "ASC")
+                        ->orderBy("b.spas_idx", "ASC")
+                        ->limit($g_list_rows, $nFrom)
+                        ->get()
+                        ->getResultArray();
 
-        echo $query->orderBy("a.goods_date", "ASC")
-           ->orderBy("b.spas_idx", "ASC")
-           ->limit($g_list_rows, $nFrom)
-           ->getCompiledSelect();
+        $spas_option = $this->productSpas->where("info_idx", $info_idx)
+                                            ->orderBy("spas_idx", "asc")->findAll();
 
-        die();
+        $data = [
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            "nTotalCount"  => $nTotalCount,
+            'spas_price'   => $spas_price,
+            'product_idx'  => $product_idx,
+            'info_idx'     => $info_idx,
+            'product_name' => $product_name,
+            'spas_option'  => $spas_option,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
+        ];
 
-        // $spas_option = $this->productSpas->where("info_idx", $info_idx)
-        //                                     ->orderBy("spas_idx", "asc")->findAll();
-
-        // $data = [
-        //     "nPage"        => $nPage,
-        //     "pg"           => $pg,
-        //     "g_list_rows"  => $g_list_rows,
-        //     "nTotalCount"  => $nTotalCount,
-        //     'spas_price'   => $spas_price,
-        //     'product_idx'  => $product_idx,
-        //     'info_idx'     => $info_idx,
-        //     'product_name' => $product_name,
-        //     'spas_option'  => $spas_option,
-        //     's_date'       => $o_sdate,
-        //     'e_date'       => $o_edate,
-        // ];
-
-        // return view("admin/_tourRegist/list_spas_price", $data);
+        return view("admin/_tourRegist/list_spas_price", $data);
     }
 
     private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
