@@ -25,7 +25,7 @@
                 <div class="menus">
                     <ul >
                         <li><a href="/AdmMaster/_tourRegist/write_spas?search_category=&search_name=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
-                        <li><a href="/AdmMaster/_tourRegist/list_spas" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
+                        <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
                         <?php if (!empty($productSpasInfo)) { ?>	
                             <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                         <?php } else { ?>
@@ -746,7 +746,7 @@
                     <li class="right_sub">
 
                         <a href="/AdmMaster/_tourRegist/write_spas?search_category=&search_txt=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
-                        <a href="/AdmMaster/_tourRegist/list_spas" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                        <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         <?php if (!empty($productSpasInfo)) { ?>	
                             <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                             <?php } else { ?>

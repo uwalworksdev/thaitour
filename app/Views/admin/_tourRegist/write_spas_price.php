@@ -59,7 +59,7 @@
                 <div class="menus">
                     <ul>
                         <li>
-                            <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                            <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                 class="btn btn-default">
                                 <span class="glyphicon glyphicon-th-list"></span>
                                 <span class="txt">리스트</span>
@@ -263,7 +263,7 @@
             <ul>
                 <li class="left"></li>
                 <li class="right_sub">
-                    <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                    <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                         class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                 </li>
             </ul>

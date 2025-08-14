@@ -171,7 +171,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("(:segment)/write", "TourRegistController::write_spas/$1");
-        $routes->get("write_spas_info", "TourRegistController::write_spas_info");
+        $routes->get("(:segment)/write_info", "TourRegistController::write_spas_info");
         $routes->get("write_spas_price", "TourRegistController::write_spas_price");
         $routes->get("list_spas_price", "TourRegistController::list_spas_price");
         $routes->get("write_tours", "TourRegistController::write_tours");

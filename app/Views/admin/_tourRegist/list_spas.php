@@ -21,7 +21,7 @@
 
                         <ul class="last">
                             <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
-                            <li><a href="write_spas" class="btn btn-primary"><span
+                            <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">상품 등록</span></a></li>
                         </ul>
@@ -405,7 +405,7 @@
                                             <div class="flex_c_c" style="gap: 10px;"> 
                                                 <a href="<?php echo '/product-spa/spa-details/' . $row['product_idx'] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                                <a href="write_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
+                                                <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
                                                     class="product_view" style="color: red;">[<span>상세수정</span>]</a>  
                                             </div>
                                         </td>
@@ -430,7 +430,7 @@
                                             ?>
                                         </td>
                                         <td class="tal" style="font-weight:bold">
-                                            <a href="write_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
+                                            <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                                 <?= viewSQ($row["product_name"]) ?>
                                             </a><br>최저가 : <?= number_format($row['product_price']) ?>바트
                                             
@@ -456,7 +456,7 @@
                                         </td>
                                         <td class="tac">
                                             <div style="display: flex; align-items: center; justify-content: center">
-                                                <a href="write_spas_info?product_idx=<?= $row["product_idx"] ?>"
+                                                <a href="write_info?product_idx=<?= $row["product_idx"] ?>"
                                                 class=""
                                                 style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
                                                     <span class="txt">요금</span>
@@ -525,7 +525,7 @@
 
                                 <ul class="last">
                                     <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
-                                    <li><a href="write_spas" class="btn btn-primary"><span
+                                    <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write" class="btn btn-primary"><span
                                                     class="glyphicon glyphicon-pencil"></span> <span
                                                     class="txt">상품 등록</span></a></li>
                                 </ul>
@@ -622,7 +622,7 @@
     <script>
         function go_write(idx) {
             $("#product_idx").val(idx);
-            $("#search").attr("action", "write_spas").submit();
+            $("#search").attr("action", "/AdmMaster/_tourRegist/<?=$category_prd?>/write").submit();
         }
     </script>
 
