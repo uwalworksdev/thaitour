@@ -358,7 +358,8 @@
                 <h2 class="title-sec2">
                     상품예약
                 </h2>
-                <?php foreach ($productTourInfo as $info ): 
+                <?php $i = 1;
+                    foreach ($productTourInfo as $info ): 
                         $days = [];
                         $validDays = [];
                     
@@ -397,7 +398,7 @@
                                 data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                                 data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
                                 <p class="sec2-date-cont flex__c">
-                                    <i class="sec2-date-icon"></i>
+                                    <i class="sec2-date-icon <?= $i == 1 ? 'rotated' : ''?>"></i>
                                     <?=viewSQ($info['info']['info_name'])?>
                                     <span><?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?></span>
                                 </p>   
@@ -412,7 +413,7 @@
                             <i class="btn-toggle btn-toggle-plus" style="display: none"></i>
                         </div> -->
                     </div>
-                    <div class="sec2-item-wrap" data-info-index="<?=$info['info']['info_idx']?>">
+                    <div class="sec2-item-wrap" style="<?=$i == 1 ? '' : 'display: none'?>" data-info-index="<?=$info['info']['info_idx']?>">
                         <?php foreach ($info['tours'] as $tour): ?>
                             <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
                                 data-option-count="<?= $tour['total_check_price'] ?>">
@@ -449,7 +450,10 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <?php endforeach;?>
+                <?php 
+                    $i++;
+                    endforeach;
+                ?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
                     <!-- <div class="time_work">
                         <p>운영시간: <?= $product['product_period']?></p>
