@@ -86,7 +86,7 @@
         gap: 10px;
     }
 
-    .sec2-date-main .sec2-date-cont i {
+    .sec2-date-main .sec2-date-cont .sec2-date-icon {
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -389,7 +389,7 @@
                                 data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                                 data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
                                 <p class="sec2-date-cont flex__c">
-                                    <i></i>
+                                    <i class="sec2-date-icon"></i>
                                     <?=viewSQ($info['info']['info_name'])?>
                                     <span><?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?></span>
                                 </p>   
