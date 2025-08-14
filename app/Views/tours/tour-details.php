@@ -74,6 +74,12 @@
         color: #252525;
     }
 
+    .sec2-date-main {
+        padding: 7px 10px;
+        color: #fff;
+        background-color: #252525;
+    }
+
     @media screen and (max-width: 850px) {
     .sec2-item-card.tour_calendar {
         display: block;
@@ -365,20 +371,24 @@
                 ?>  
                     <div class="flex_b sec2-wrap-tour" data-info-index="<?=$info['info']['info_idx']?>">
                         <div>
-                            <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
+                            <div class="sec2-date-main flex_b_c" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                                 data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                                 data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                                <?=viewSQ($info['info']['info_name'])?>
-                                <span>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</span>
-                            </h2>
-                            <div class="flex_b_c sec2-date-wrap">
-                                <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                                <p class="sec2-date-cont flex__c">
+                                    <i></i>
+                                    <?=viewSQ($info['info']['info_name'])?>
+                                    <span>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</span>
+                                </p>   
+                                <p>* 부가세/봉사료 포함 가격입니다</p>
                             </div>
+                            <!-- <div class="flex_b_c sec2-date-wrap">
+                                <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                            </div> -->
                         </div>
-                        <div class="btn-toggle-wrap">
+                        <!-- <div class="btn-toggle-wrap">
                             <i class="btn-toggle btn-toggle-minus"></i>
                             <i class="btn-toggle btn-toggle-plus" style="display: none"></i>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="sec2-item-wrap" data-info-index="<?=$info['info']['info_idx']?>">
                         <?php foreach ($info['tours'] as $tour): ?>
