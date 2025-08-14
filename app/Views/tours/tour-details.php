@@ -1984,7 +1984,7 @@
 
     $('.btn-ct-3').click(function() {
         const tourCard = $(this).closest('.sec2-item-card');
-        const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
+        const tourDateElement = tourCard.closest(".sec2-item-wrap").prevAll('.sec2-wrap-tour').find(".sec2-date-main").first();
         const tourStartDate = tourDateElement.data('start-date');
         const tourEndDate = tourDateElement.data('end-date');
 
