@@ -380,7 +380,7 @@
                             <i class="btn-toggle btn-toggle-plus" style="display: none"></i>
                         </div>
                     </div>
-                    <div class="sec2-item-wrap">
+                    <div class="sec2-item-wrap" data-info-index="<?=$info['info']['info_idx']?>">
                         <?php foreach ($info['tours'] as $tour): ?>
                             <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
                                 data-option-count="<?= $tour['total_check_price'] ?>">
@@ -1125,44 +1125,54 @@
             <div class="dim"></div>
         </div>
 <script>
-    $(".btn-toggle-option").on("click", function () {
+    $(".btn-toggle-minus").on("click", function () {
+        let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
+        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").hide();
+        $(this).hide();
+        $(this).closest('.btn-toggle-wrap').find(".btn-toggle-plus").show();
+    });
 
+    $(".btn-toggle-plus").on("click", function () {
+        let info_idx = $(this).closest('.sec2-wrap-tour').data('info-index');
+        $(".sec2-item-wrap[data-info-index='" + info_idx + "']").hide();
+        $(this).hide();
+        $(this).closest('.btn-toggle-wrap').find(".btn-toggle-minus").show();
     });
 </script>
 
 <script>
-        function wish_it(product_idx) {
+    function wish_it(product_idx) {
 
-                const isLoggedIn = <?= session()->has('member') ? 'true' : 'false' ?>;
+            const isLoggedIn = <?= session()->has('member') ? 'true' : 'false' ?>;
 
-                if (!isLoggedIn) {
-                    alert("로그인 하셔야 합니다.");
-                    location.href = "/member/login?returnUrl=<?= urlencode($_SERVER['REQUEST_URI']) ?>";
-                } else {
+            if (!isLoggedIn) {
+                alert("로그인 하셔야 합니다.");
+                location.href = "/member/login?returnUrl=<?= urlencode($_SERVER['REQUEST_URI']) ?>";
+            } else {
 
-                var message = "";
-                $.ajax({
+            var message = "";
+            $.ajax({
 
-                    url: "/product/like",
-                    type: "POST",
-                    data: {
-                        "product_idx": product_idx
-                    },
-                    dataType: "json",
-                    async: false,
-                    cache: false,
-                    success: function(data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        location.reload();
-                    },
-                    error: function(request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
-            }
+                url: "/product/like",
+                type: "POST",
+                data: {
+                    "product_idx": product_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function(data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
         }
-    </script>
+    }
+</script>
 <script>
     $(".btn_add_cart").on("click", function () {
         if ($("#pop_start_place").val() === "") {
