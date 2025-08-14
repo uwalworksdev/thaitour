@@ -2266,24 +2266,24 @@ public function list_room_pricex()
 
         die();
 
-        $spas_option = $this->productSpas->where("info_idx", $info_idx)
-                                            ->orderBy("spas_idx", "asc")->findAll();
+        // $spas_option = $this->productSpas->where("info_idx", $info_idx)
+        //                                     ->orderBy("spas_idx", "asc")->findAll();
 
-        $data = [
-            "nPage"        => $nPage,
-            "pg"           => $pg,
-            "g_list_rows"  => $g_list_rows,
-            "nTotalCount"  => $nTotalCount,
-            'spas_price'   => $spas_price,
-            'product_idx'  => $product_idx,
-            'info_idx'     => $info_idx,
-            'product_name' => $product_name,
-            'spas_option'  => $spas_option,
-            's_date'       => $o_sdate,
-            'e_date'       => $o_edate,
-        ];
+        // $data = [
+        //     "nPage"        => $nPage,
+        //     "pg"           => $pg,
+        //     "g_list_rows"  => $g_list_rows,
+        //     "nTotalCount"  => $nTotalCount,
+        //     'spas_price'   => $spas_price,
+        //     'product_idx'  => $product_idx,
+        //     'info_idx'     => $info_idx,
+        //     'product_name' => $product_name,
+        //     'spas_option'  => $spas_option,
+        //     's_date'       => $o_sdate,
+        //     'e_date'       => $o_edate,
+        // ];
 
-        return view("admin/_tourRegist/list_spas_price", $data);
+        // return view("admin/_tourRegist/list_spas_price", $data);
     }
 
     private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
