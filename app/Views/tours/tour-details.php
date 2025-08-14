@@ -71,13 +71,14 @@
         left: 62%;
         border: 1px solid #dbdbdb;
         background-color: #fff;
-        color: #747a90;
+        color: #252525;
     }
 
     .sec2-date-main {
         padding: 7px 10px;
         color: #fff;
-        background-color: #252525;
+        background-color: #747a90;
+        margin-bottom: 2px;
     }
 
     @media screen and (max-width: 850px) {
