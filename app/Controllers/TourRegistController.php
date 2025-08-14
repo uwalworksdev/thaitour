@@ -2185,9 +2185,9 @@ public function list_room_pricex()
     {
         $today = date('Y-m-d');	 
         
-        $this->spasPrice->where('goods_date <', $today)
-                            ->set('upd_yn', 'Y')
-                            ->update();
+        // $this->spasPrice->where('goods_date <', $today)
+        //                     ->set('upd_yn', 'Y')
+        //                     ->update();
 
         $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
 		
@@ -2259,8 +2259,8 @@ public function list_room_pricex()
                         ->get()
                         ->getResultArray();
 
-        $spas_option = $this->productSpas->where("info_idx", $info_idx)
-                                            ->orderBy("spas_idx", "asc")->findAll();
+        // $spas_option = $this->productSpas->where("info_idx", $info_idx)
+        //                                     ->orderBy("spas_idx", "asc")->findAll();
 
         $data = [
             "nPage"        => $nPage,
@@ -2271,7 +2271,7 @@ public function list_room_pricex()
             'product_idx'  => $product_idx,
             'info_idx'     => $info_idx,
             'product_name' => $product_name,
-            'spas_option'  => $spas_option,
+            'spas_option'  => $spas_option ?? [],
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
         ];
