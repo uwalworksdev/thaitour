@@ -758,7 +758,7 @@
 
     <script>
         function go_list() {
-            window.location.href = "/AdmMaster/_tourRegist/write_spas?s_product_code_1=&s_product_code_2=&s_product_code_2=&search_category=&search_name=&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>";
+            window.location.href = "/AdmMaster/_tourRegist/?s_product_code_1=&s_product_code_2=&s_product_code_2=&search_category=&search_name=&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>";
         }
     </script>
 

@@ -59,7 +59,7 @@
                 <h2>투어 요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_tourRegist/write_spas_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         </li>
 						
@@ -423,7 +423,7 @@
                                     var s_date  = data.s_date;
                                     var e_date  = data.e_date;
                                     alert(message);
-                                    location.href='/AdmMaster/_tourRegist/list_spas_price?product_idx='+$("#product_idx").val()+'&info_idx='+$("#info_idx").val();
+                                    location.href='/AdmMaster/_tourRegist/<?=$category_prd?>/list_price?product_idx='+$("#product_idx").val()+'&info_idx='+$("#info_idx").val();
                                 },
                                 error:function(request,status,error){
                                     alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -632,7 +632,7 @@
                         <ul>
                             <li class="left"></li>
                             <li class="right_sub">
-                                <a href="/AdmMaster/_tourRegist/write_spas_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                                <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>											
 								<?php if ($product_idx) { ?>
                                     <a href="javascript:all_update()" class="btn btn-default"><span
@@ -651,7 +651,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_spas_price?product_idx='.$product_idx.'&info_idx='.$info_idx.'&s_date='.$s_date.'&e_date='.$e_date.'&g_list_rows='.$g_list_rows) . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/'.$category_prd.'/list_price?product_idx='.$product_idx.'&info_idx='.$info_idx.'&s_date='.$s_date.'&e_date='.$e_date.'&g_list_rows='.$g_list_rows) . "&pg=") ?>
 
             </div>
             <!-- // contents -->
@@ -835,7 +835,7 @@
     }
 </script>
 
-<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_spas_price">
+<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/<?=$category_prd?>/list_price">
     <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
     <input type="hidden" name="info_idx"     value="<?=$info_idx?>" >
     <input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >

@@ -696,6 +696,7 @@ class AdminSpaController extends BaseController
 
     public function write_info_ok()
     {
+        $category_prd       = $this->request->getPost('category_prd');
         $productIdx         = $this->request->getPost('product_idx');
         $o_sdate            = $this->request->getPost('o_sdate');
         $o_edate            = $this->request->getPost('o_edate');
@@ -960,7 +961,7 @@ class AdminSpaController extends BaseController
             }
         }
 
-        return redirect()->to('AdmMaster/_tourRegist/write_spas_info?product_idx=' . $productIdx);
+        return redirect()->to('AdmMaster/_tourRegist/'.$category_prd.'/write_info?product_idx=' . $productIdx);
     }
 
     public function get_code()

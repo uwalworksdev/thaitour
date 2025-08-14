@@ -2198,7 +2198,7 @@ public function list_room_pricex()
         return view("admin/_tourRegist/list_tours_price", $data);
     }
 
-    public function list_spas_price()
+    public function list_spas_price($category_prd)
     {
         $today = date('Y-m-d');	 
         
@@ -2291,6 +2291,7 @@ public function list_room_pricex()
             'spas_option'  => $spas_option,
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
+            'category_prd' => $category_prd
         ];
 
         return view("admin/_tourRegist/list_spas_price", $data);

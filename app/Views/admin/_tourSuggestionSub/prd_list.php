@@ -27,13 +27,13 @@ foreach ($result3 as $row) {
                         $url_admin = "/AdmMaster/_tourRegist/write_tours?product_idx=". $row["product_idx"];
                     }else if($row["product_code_1"] == "1325") {
                         $url_detail = '/product-spa/spa-details/' . $row["product_idx"];
-                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/spa/write?product_idx=". $row["product_idx"];
                     }else if($row["product_code_1"] == "1317") {
                         $url_detail = '/ticket/ticket-detail/' . $row["product_idx"];
-                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/ticket/write?product_idx=". $row["product_idx"];
                     }else if($row["product_code_1"] == "1320") {
                         $url_detail = '/product-restaurant/restaurant-detail/' . $row["product_idx"];
-                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/restaurant/write?product_idx=". $row["product_idx"];
                     } 
                 } 
             ?>

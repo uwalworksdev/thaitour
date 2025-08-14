@@ -173,7 +173,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("(:segment)/write", "TourRegistController::write_spas/$1");
         $routes->get("(:segment)/write_info", "TourRegistController::write_spas_info/$1");
         $routes->get("write_spas_price", "TourRegistController::write_spas_price");
-        $routes->get("list_spas_price", "TourRegistController::list_spas_price");
+        $routes->get("(:segment)/list_price", "TourRegistController::list_spas_price/$1");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("write_tours_price", "TourRegistController::write_tours_price");
         $routes->get("write_tour_info", "TourRegistController::write_tour_info");

@@ -24,7 +24,7 @@
                 <h2>스파/쇼·입장권/레스토랑 상품정보입력</h2>
                 <div class="menus">
                     <ul >
-                        <li><a href="/AdmMaster/_tourRegist/write_spas?search_category=&search_name=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
+                        <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write?search_category=&search_name=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
                         <li><a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
                         <?php if (!empty($productSpasInfo)) { ?>	
                             <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
@@ -41,6 +41,8 @@
         
         <form name=frm action="<?= route_to('admin.api.spa_.write_info_ok') ?>"  method=post >
         <input type=hidden name="product_idx" value='<?=$product_idx?>'> 
+        <input type=hidden name="category_prd" value='<?=$category_prd?>'> 
+
         <?php foreach ($groupedData as $info_idx => $data): ?>
             <input type="hidden" name="info_idx[]" value="<?= $info_idx ?>">
         <?php endforeach; ?>
@@ -745,7 +747,7 @@
                     <li class="left"></li>
                     <li class="right_sub">
 
-                        <a href="/AdmMaster/_tourRegist/write_spas?search_category=&search_txt=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
+                        <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/write?search_category=&search_txt=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
                         <a href="/AdmMaster/_tourRegist/<?=$category_prd?>/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         <?php if (!empty($productSpasInfo)) { ?>	
                             <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
@@ -1679,7 +1681,7 @@
 	}	
 
 	function write_day_price(info_idx, product_idx){
-		location.href = "/AdmMaster/_tourRegist/list_spas_price?info_idx="+info_idx+"&product_idx="+product_idx;
+		location.href = "/AdmMaster/_tourRegist/<?=$category_prd?>/list_price?info_idx="+info_idx+"&product_idx="+product_idx;
 	}
 </script>
 
