@@ -229,33 +229,7 @@
                                         처리
                                     </td>
                                 </tr>
-                                <?php foreach ($spas_price as $item): ?>
-                                    <tr>
-                                        <td>
-                                            <label class="center-checkbox">
-                                                <input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>"  value="Y">
-                                            </label>
-                                        </td>
-                                        <td style="text-align:center"><?=$item['spas_subject']?></td>                                        
-                                        <td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
-                                        <td style="text-align:center">
-                                            <input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
-                                            <input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-                                            <input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                        </td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                        </td>
-                                        <td style="text-align:center;">
-                                            <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?>>
-                                        </td> 
-                                        <td style="text-align:center;"><?=$item['reg_date']?></td> 
-                                        <td style="text-align:center;"><?=$item['upd_date']?></td> 
-                                        <td style="text-align:center;">
-                                            <button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
-                                        </td> 
-                                    </tr>
-                                <?php endforeach; ?>
+                                
                             </tbody>
                         </table>
 			        </div>
