@@ -2189,7 +2189,7 @@ public function list_room_pricex()
                             ->set('upd_yn', 'Y')
                             ->update();
 
-        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 10; 
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
 		
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
