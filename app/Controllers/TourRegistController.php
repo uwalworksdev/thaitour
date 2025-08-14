@@ -2253,12 +2253,17 @@ public function list_room_pricex()
         $nFrom = isset($nFrom) ? intval($nFrom) : 0;
         $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
-        $spas_price = $query->orderBy("a.goods_date", "ASC")
-                        ->orderBy("b.spas_idx", "ASC")
-                        ->limit($g_list_rows, $nFrom)
-                        ->get()
-                        ->getResultArray();
-        echo $query->getCompiledUpdate();
+        // $spas_price = $query->orderBy("a.goods_date", "ASC")
+        //                 ->orderBy("b.spas_idx", "ASC")
+        //                 ->limit($g_list_rows, $nFrom)
+        //                 ->get()
+        //                 ->getResultArray();
+
+        echo $query->orderBy("a.goods_date", "ASC")
+           ->orderBy("b.spas_idx", "ASC")
+           ->limit($g_list_rows, $nFrom)
+           ->getCompiledSelect();
+
         die();
 
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
