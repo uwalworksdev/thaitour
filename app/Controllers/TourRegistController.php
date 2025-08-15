@@ -2895,12 +2895,11 @@ public function list_room_pricex()
         $info = $result['info'];
 
         if ($info['product_code_1'] == 1302) {
-
             $this->golfInfoModel->copyInfo($product_idx, $newProductIdx);
-
             $this->golfOptionModel->copyOption($product_idx, $newProductIdx);
-
         }
+
+        $this->productImg->copyImage($product_idx, $newProductIdx);
 
         return $this->response->setJSON([
             "status" => "success",

@@ -2037,7 +2037,18 @@ class ProductModel extends Model
         $info['r_date'] = date("Y-m-d H:i:s");
         $info['product_name'] .= "(COPY)";
         //$info['product_code'] .= "_COPY";
-		$info['product_code'] = $this->createProductCode("G");  // 모델 내부 메서드 직접 호출
+
+        if($info["product_code_1"] == "1303") {
+            $type = "H";
+        }else if($info["product_code_1"] == "1302") {
+            $type = "G";
+        }else if($info["product_code_1"] == "1301") {
+            $type = "T";
+        }else {
+            $type = "S";
+        }
+
+		$info['product_code'] = $this->createProductCode($type);  // 모델 내부 메서드 직접 호출
         $insert_id = $this->insert($info);
 
         return [
