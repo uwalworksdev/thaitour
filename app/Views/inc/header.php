@@ -388,10 +388,10 @@
                 <input type="text" id="search_input_mo__header" class="search-input-m search-input-ps">
                 <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" style="cursor: pointer;" id="search_icon_mo" alt="">
             </div>
-            <div class="text-c-ps">
+            <!-- <div class="text-c-ps">
                 <label for="인기검색어">인기검색어</label>
                 <span>골프여행, </span><span>호캉스, </span><span>알뜰여행, </span><span>땡처리여행</span>
-            </div>
+            </div> -->
             <section class="main_hot">
                 <div class="body_inner">
                     <div class="main_hot__head">
