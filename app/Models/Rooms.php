@@ -84,16 +84,16 @@ class Rooms extends Model
                 $room['g_idx'] = $new_room_idx;
                 $room['goods_code'] = $new_product_idx;
                 $room['reg_date'] = date("Y-m-d H:i:s");
-                $new_id = $this->db->table('tbl_hotel_rooms')->insert($room);
-
+                $this->db->table('tbl_hotel_rooms')->insert($room);
+                $new_id = $this->db->insertID();
                 $beds_list = $this->db->table('tbl_room_beds')->where('rooms_idx', $rooms_idx)->get()->getResultArray();
                 foreach($beds_list as $bed) {
                     $bed_idx = $bed['bed_idx'];
                     unset($bed['bed_idx']);
                     $bed['rooms_idx'] = $new_id;
                     $bed['reg_date'] = date("Y-m-d H:i:s");
-                    $new_bed_idx = $this->db->table('tbl_room_beds')->insert($bed);
-
+                    $this->db->table('tbl_room_beds')->insert($bed);
+                    $new_bed_idx = $this->db->insertID();
                     $room_price_list = $this->db->table('tbl_room_price')->where('product_idx', $product_idx)
                                                                                 ->where('g_idx', $room_idx)
                                                                                 ->where('rooms_idx', $rooms_idx)
