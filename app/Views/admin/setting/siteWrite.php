@@ -476,7 +476,13 @@
                                                style="width:300px" /> 삭제 : <input type="checkbox" name="dels_f" id="dels_f"
                                                                                   value="y" />
                                         <br />
-                                        <img src="/uploads/setting/<?= $row["logos_footer"] ?>" style="max-height:200px">
+                                        <?php
+                                            if(!empty($row["logos_footer"])) {
+                                        ?>    
+                                            <img src="/uploads/setting/<?= $row["logos_footer"] ?>" style="max-height:200px">
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
                                     <th>상담 로고</th>
                                     <td>
