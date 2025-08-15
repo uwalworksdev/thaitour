@@ -69,7 +69,7 @@ class Rooms extends Model
             $new_room_idx = $this->insert($row);
             $img_list = $this->roomImg->where('room_idx', $room_idx)->get()->getResultArray();
             foreach($img_list as $img) {
-                unset($row['i_idx']);
+                unset($img['i_idx']);
                 $img['room_idx'] = $new_room_idx;
                 $img['r_date'] = date("Y-m-d H:i:s");
                 $this->roomImg->insert($img);
@@ -80,7 +80,7 @@ class Rooms extends Model
                                                           ->get()->getResultArray();
             foreach($rooms_list as $room) {
                 $rooms_idx = $room['rooms_idx'];
-                unset($row['rooms_idx']);
+                unset($room['rooms_idx']);
                 $room['g_idx'] = $new_room_idx;
                 $room['goods_code'] = $new_product_idx;
                 $room['reg_date'] = date("Y-m-d H:i:s");
@@ -89,7 +89,7 @@ class Rooms extends Model
                 $beds_list = $this->db->table('tbl_room_beds')->where('rooms_idx', $room_idx)->get()->getResultArray();
                 foreach($beds_list as $bed) {
                     $bed_idx = $bed['bed_idx'];
-                    unset($row['bed_idx']);
+                    unset($bed['bed_idx']);
                     $bed['rooms_idx'] = $new_id;
                     $bed['reg_date'] = date("Y-m-d H:i:s");
                     $new_bed_idx = $this->db->table('tbl_room_beds')->insert($bed);
