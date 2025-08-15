@@ -86,7 +86,7 @@ class Rooms extends Model
                 $room['reg_date'] = date("Y-m-d H:i:s");
                 $new_id = $this->db->table('tbl_hotel_rooms')->insert($room);
 
-                $beds_list = $this->db->table('tbl_room_beds')->where('rooms_idx', $room_idx)->get()->getResultArray();
+                $beds_list = $this->db->table('tbl_room_beds')->where('rooms_idx', $rooms_idx)->get()->getResultArray();
                 foreach($beds_list as $bed) {
                     $bed_idx = $bed['bed_idx'];
                     unset($bed['bed_idx']);
