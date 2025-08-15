@@ -153,7 +153,7 @@
                                         <?php
                                             $rs_keyword = $item1_1['keyword'];
 
-                                            if($key_gubun == "tour") {
+                                            if($item1_1['product_code_1'] == "1301") {
                                                 $rs_keyword = $item1_1['tour_keyword'];
                                             }
 

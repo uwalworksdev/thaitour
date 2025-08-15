@@ -2029,7 +2029,7 @@ class ProductModel extends Model
         return $this->db->query($sql);
     }
 
-    public function copyProduct($product_idx)
+    public function copyProduct($product_idx, $stay_new_idx)
     {
         $info = $this->where("product_idx", $product_idx)->get()->getRowArray();
 
@@ -2040,6 +2040,7 @@ class ProductModel extends Model
 
         if($info["product_code_1"] == "1303") {
             $type = "H";
+            $info['stay_idx'] = $stay_new_idx;
         }else if($info["product_code_1"] == "1302") {
             $type = "G";
         }else if($info["product_code_1"] == "1301") {

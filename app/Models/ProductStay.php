@@ -47,4 +47,23 @@ class ProductStay extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    public function copyProductStay($stay_idx)
+    {
+        $info = $this->where("stay_idx", $stay_idx)->get()->getRowArray();
+
+        unset($info['stay_idx']);
+        $info['stay_r_date'] = date("Y-m-d H:i:s"); 
+
+        $insert_id = $this->insert($info);
+
+        $code_no = "H" . str_pad($insert_id, 4, "0", STR_PAD_LEFT);
+
+        $this->update($insert_id, ['code_no' => $code_no]);
+
+        return [
+            'insert_id' => $insert_id,
+            'info' => $info
+        ];
+    }
 }

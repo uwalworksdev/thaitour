@@ -31,6 +31,8 @@ class TourRegistController extends BaseController
     protected $spasMoption;
     protected $spasOption;
     protected $spasPrice;
+    protected $productPlace;
+    protected $productStay;
 
     public function __construct()
     {
@@ -56,6 +58,8 @@ class TourRegistController extends BaseController
         $this->spasMoption = model("SpasMoptionModel");
         $this->spasOption = model("SpasOptionModel");
         $this->spasPrice = model("SpasPrice");
+        $this->productPlace = model("ProductPlace");
+        $this->productStay = model("ProductStay");
         
         helper('my_helper');
         helper('alert_helper');
@@ -2888,11 +2892,21 @@ public function list_room_pricex()
     {
         $product_idx = $this->request->getPost("product_idx");
 
-        $result = $this->productModel->copyProduct($product_idx);
+        $row_product = $this->productModel->where("product_idx", $product_idx)->first();
+        $stay_idx = $row_product['stay_idx'];
+
+        if($row_product['product_code_1'] == 1303) {
+            $stay_new_idx = $this->productStay->copyProductStay($stay_idx)['insert_id'];
+        }
+        $result = $this->productModel->copyProduct($product_idx, $stay_new_idx);
 
         $newProductIdx = $result['insert_id'];
 
         $info = $result['info'];
+
+        if($info['product_code_1'] == 1303) {
+            $this->productPlace->copyProductPlace($product_idx, $newProductIdx);
+        }
 
         if ($info['product_code_1'] == 1302) {
             $this->golfInfoModel->copyInfo($product_idx, $newProductIdx);
