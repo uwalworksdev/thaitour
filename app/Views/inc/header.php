@@ -39,7 +39,7 @@
             <ul class="flex_header_top">
                <li>
                  <?php if (session("member")): ?>
-                    <p class="count_like"><strong style="color: #17469E"><?=$_SESSION['member']['name']?></strong>님 안녕하세요!</p>
+                    <p class="count_like"><strong style="color: #17469E"><?=$_SESSION['member']['id'] == "admin" ? $setting['admin_name'] : $_SESSION['member']['name']?></strong>님 안녕하세요!</p>
                 <?php endif?>
                </li>
                 <li>
