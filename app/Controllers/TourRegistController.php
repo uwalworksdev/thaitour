@@ -33,6 +33,7 @@ class TourRegistController extends BaseController
     protected $spasPrice;
     protected $productPlace;
     protected $productStay;
+    protected $roomsModel;
 
     public function __construct()
     {
@@ -60,6 +61,7 @@ class TourRegistController extends BaseController
         $this->spasPrice = model("SpasPrice");
         $this->productPlace = model("ProductPlace");
         $this->productStay = model("ProductStay");
+        $this->roomsModel = model("Rooms");
         
         helper('my_helper');
         helper('alert_helper');
@@ -2906,6 +2908,7 @@ public function list_room_pricex()
 
         if($info['product_code_1'] == 1303) {
             $this->productPlace->copyProductPlace($product_idx, $newProductIdx);
+            $this->roomsModel->copyRooms($product_idx, $newProductIdx);
         }
 
         if ($info['product_code_1'] == 1302) {

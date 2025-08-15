@@ -64,4 +64,23 @@ class RoomImg extends Model
 
 		return $this->update($id, $filteredData);
     }
+
+    public function copyImage($room_idx, $new_room_idx)
+    {
+        $info = $this->where("room_idx", $room_idx)->get()->getResultArray();
+
+        $data = [];
+
+        foreach($info as $row) {
+            unset($row['i_idx']);
+            $row['room_idx'] = $new_room_idx;
+            $row['r_date'] = date("Y-m-d H:i:s");
+            $data[] = $row;
+        }
+
+        if (!empty($data)) {
+            $this->insertBatch($data);
+        }
+
+    }
 }

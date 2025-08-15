@@ -1348,8 +1348,6 @@ function saveValueRoom(e) {
 
 	let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
 
-
-
 	$("#ajax_loader").removeClass("display-none");
 
 	$.ajax(apiUrl, {

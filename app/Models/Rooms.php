@@ -43,21 +43,82 @@ class Rooms extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+    protected $roomImg;
+    protected $productModel;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->roomImg = new RoomImg();
+        $this->productModel = new ProductModel();
+    }
 
     public function copyRooms($product_idx, $new_product_idx)
     {
         $info = $this->where("hotel_code", $product_idx)->get()->getResultArray();
 
-        $data = [];
+        $product = $this->productModel->getById($new_product_idx);
+        $stay_idx = $product['stay_idx'] ?? '';
+
+        $_arr_room_list = [];
 
         foreach($info as $row) {
-            unset($row['idx']);
+            $room_idx = $row['g_idx'];
+            unset($row['g_idx']);
             $row['hotel_code'] = $new_product_idx;
-            $data[] = $row;
+            $new_room_idx = $this->insert($row);
+            $img_list = $this->roomImg->where('room_idx', $room_idx)->get()->getResultArray();
+            foreach($img_list as $img) {
+                unset($row['i_idx']);
+                $img['room_idx'] = $new_room_idx;
+                $img['r_date'] = date("Y-m-d H:i:s");
+                $this->roomImg->insert($img);
+            }
+
+            $rooms_list = $this->db->table('tbl_hotel_rooms')->where('g_idx', $room_idx)
+                                                          ->where('goods_code', $product_idx)
+                                                          ->get()->getResultArray();
+            foreach($rooms_list as $room) {
+                $rooms_idx = $room['rooms_idx'];
+                unset($row['rooms_idx']);
+                $room['g_idx'] = $new_room_idx;
+                $room['goods_code'] = $new_product_idx;
+                $room['reg_date'] = date("Y-m-d H:i:s");
+                $new_id = $this->db->table('tbl_hotel_rooms')->insert($room);
+
+                $beds_list = $this->db->table('tbl_room_beds')->where('rooms_idx', $room_idx)->get()->getResultArray();
+                foreach($beds_list as $bed) {
+                    $bed_idx = $bed['bed_idx'];
+                    unset($row['bed_idx']);
+                    $bed['rooms_idx'] = $new_id;
+                    $bed['reg_date'] = date("Y-m-d H:i:s");
+                    $new_bed_idx = $this->db->table('tbl_room_beds')->insert($bed);
+
+                    $room_price_list = $this->db->table('tbl_room_price')->where('product_idx', $product_idx)
+                                                                                ->where('g_idx', $room_idx)
+                                                                                ->where('rooms_idx', $rooms_idx)
+                                                                                ->where('bed_idx', $bed_idx)
+                                                                                ->orderBy('goods_date', "asc")
+                                                                                ->get()->getResultArray();
+
+                    foreach($room_price_list as $room_price) {
+                        unset($room_price['idx']);
+                        $room_price['product_idx'] = $new_product_idx;
+                        $room_price['g_idx'] = $new_room_idx;
+                        $room_price['rooms_idx'] = $new_id;
+                        $room_price['bed_idx'] = $new_bed_idx;
+                        $room_price['reg_date'] = date("Y-m-d H:i:s");
+                        $this->db->table('tbl_room_price')->insert($room_price);
+                    }
+                }
+            }
+
+            array_push($_arr_room_list, $new_room_idx);
         }
 
-        if (!empty($data)) {
-            $this->insertBatch($data);
-        }
+        $list__room_list = implode('|', $_arr_room_list);
+
+        $updateQuery = "UPDATE tbl_product_stay SET room_list = ? WHERE stay_idx = ?";
+        $this->db->query($updateQuery, [$list__room_list, $stay_idx]);
     }
 }
