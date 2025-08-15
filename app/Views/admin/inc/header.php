@@ -208,7 +208,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
                     <a href="/AdmMaster/main" class="logo">
                         <!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] 
                                                                                 ?><!--" alt="">-->
-                        <img src="/images/sub/logo_w.png" alt="" style="height: 30px;">
+                        <img src="/uploads/setting/<?= $setting["logos_footer"] ?>" alt="" style="height: 30px;">
                     </a>
                 </div>
                 <div class="info_box">
