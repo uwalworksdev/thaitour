@@ -473,7 +473,7 @@
                                     <th>관리자 상단 로고</th>
                                     <td>
                                         <input type="file" name="ufile4" class="bbs_inputbox_pixel"
-                                               style="width:300px" /> 삭제 : <input type="checkbox" name="dels" id="dels"
+                                               style="width:300px" /> 삭제 : <input type="checkbox" name="dels_f" id="dels_f"
                                                                                   value="y" />
                                         <br />
                                         <img src="/uploads/setting/<?= $row["logos_footer"] ?>" style="max-height:200px">
