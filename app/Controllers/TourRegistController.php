@@ -2895,7 +2895,7 @@ public function list_room_pricex()
         $product_idx = $this->request->getPost("product_idx");
 
         $row_product = $this->productModel->where("product_idx", $product_idx)->first();
-        $stay_idx = $row_product['stay_idx'];
+        $stay_idx = $row_product['stay_idx'] ?? '';
 
         if($row_product['product_code_1'] == 1303) {
             $stay_new_idx = $this->productStay->copyProductStay($stay_idx)['insert_id'];
