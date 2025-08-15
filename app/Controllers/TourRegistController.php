@@ -2908,7 +2908,7 @@ public function list_room_pricex()
 
         if($info['product_code_1'] == 1303) {
             $this->productPlace->copyProductPlace($product_idx, $newProductIdx);
-            // $this->roomsModel->copyRooms($product_idx, $newProductIdx);
+            $this->roomsModel->copyRooms($product_idx, $newProductIdx);
         }
 
         if ($info['product_code_1'] == 1302) {

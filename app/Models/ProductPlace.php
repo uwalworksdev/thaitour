@@ -122,17 +122,11 @@ class ProductPlace extends Model
     {
         $info = $this->where("product_idx", $product_idx)->get()->getResultArray();
 
-        $data = [];
-
         foreach($info as $row) {
             unset($row['idx']);
             $row['product_idx'] = $new_product_idx;
             $row['r_date'] = date("Y-m-d H:i:s");
-            $data[] = $row;
-        }
-
-        if (!empty($data)) {
-            $this->insertBatch($data);
+            $this->insert($row);
         }
     }
 }
