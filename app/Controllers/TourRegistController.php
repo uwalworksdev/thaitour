@@ -2919,6 +2919,14 @@ public function list_room_pricex()
             $this->golfOptionModel->copyOptionSub($product_idx, $newProductIdx);
         }
 
+        if ($info['product_code_1'] == 1301) {
+            $this->infoProducts->copyTour($product_idx, $newProductIdx);
+        }
+
+        if ($info['product_code_1'] == 1325 || $info['product_code_1'] == 1317 || $info['product_code_1'] == 1320) {
+            $this->infoProducts->copyTour($product_idx, $newProductIdx);
+        }
+
         $this->productImg->copyImage($product_idx, $newProductIdx);
 
         return $this->response->setJSON([
