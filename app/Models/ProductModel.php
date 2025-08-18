@@ -358,9 +358,9 @@ class ProductModel extends Model
 
     public function get_air_info($product_idx, $start_date_in)
     {
-        $selDate = $start_date_in; // Gán giá trị cho biến $selDate
+        $selDate = $start_date_in;
         $dow = date('w', strtotime($start_date_in));
-        $dowSql = " AND a.yoil_$dow = 'Y' "; // Chỉ định rõ ràng bảng a để tránh lỗi ambiguous
+        $dowSql = " AND a.yoil_$dow = 'Y' ";
 
         $sql = "SELECT a.*, b.*, c.product_name, c.original_price, c.product_period, d.code_name 
                 FROM tbl_product_yoil a 
