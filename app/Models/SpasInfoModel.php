@@ -52,11 +52,9 @@ class SpasInfoModel extends Model
     {
         if ($product_idx) {
             $spa_info_list = $this->db->table("tbl_product_spas_info a")
-                                ->join("tbl_product_spas b", "a.info_idx = b.info_idx", "left")
-                                ->where("b.info_idx IS NOT NULL")
-                                ->where("a.product_idx", $product_idx)
-                                ->get()
-                                ->getResultArray();
+                                    ->where("a.product_idx", $product_idx)
+                                    ->get()
+                                    ->getResultArray();
             foreach($spa_info_list as $spa_info){
                 if(!empty($spa_info)){
                     $new_spa_info = array_merge([], $spa_info);

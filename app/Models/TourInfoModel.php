@@ -53,11 +53,9 @@ class TourInfoModel extends Model
     {
         if ($product_idx) {
             $tour_info_list = $this->db->table("tbl_product_tour_info a")
-                                ->join("tbl_product_tours b", "a.info_idx = b.info_idx", "left")
-                                ->where("b.info_idx IS NOT NULL")
-                                ->where("a.product_idx", $product_idx)
-                                ->get()
-                                ->getResultArray();
+                                    ->where("a.product_idx", $product_idx)
+                                    ->get()
+                                    ->getResultArray();
             foreach($tour_info_list as $tour_info){
                 if(!empty($tour_info)){
                     $new_tour_info = array_merge([], $tour_info);
