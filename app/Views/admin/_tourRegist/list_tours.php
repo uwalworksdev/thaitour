@@ -554,10 +554,16 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                            <a href="javascript:del_it('<?= $row['product_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="삭제"/></a>
+                                            <div class="flex_button">
+                                                <button onclick="prod_update('<?= $row['product_idx'] ?>');"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    저장
+                                                </button>
+                                                <button onclick="del_it('<?= $row['product_idx'] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <!-- <tr style="height:45px">

@@ -178,12 +178,16 @@
                                             <?= getCodeFromCodeNo($category["destination_code"])["code_name"] ?>
                                         </td>
                                         <td>
-                                            <a href="write?ca_idx=<?=$category["ca_idx"]?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>">
-                                                <img src="/images/admin/common/ico_setting2.png">
-                                            </a>&nbsp;
-                                            <a href="javascript:del_it('<?=$category["ca_idx"]?>');">
-                                                <img src="/images/admin/common/ico_error.png" alt="삭제"/>
-                                            </a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='write?ca_idx=<?=$category["ca_idx"]?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?=$category["ca_idx"]?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php

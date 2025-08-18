@@ -39,12 +39,12 @@
                 <div class="listBottom">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                         <colgroup>
-                            <col width="15%" />
-                            <col width="*%" />
-                            <col width="15%" />
-                            <col width="15%" />
-                            <col width="10%" />
-                            <col width="7%" />
+                            <col width="15%"/>
+                            <col width="*%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="10%"/>
+                            <col width="7%"/>
                         </colgroup>
                         <thead>
                             <tr>
@@ -66,21 +66,28 @@
                                     <tr>
                                         <td><?= esc($row['code']) ?></td>
                                         <td><a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>"><?= esc($row['title']) ?></a></td>
-                                        <td><a href="javascript:void(0)" class="btn_preview" rel="<?= esc($row['idx']) ?>">미리보기</a></td>
+                                        <td><a href="javascript:void(0)" class="btn_preview"
+                                               rel="<?= esc($row['idx']) ?>">미리보기</a></td>
                                         <td>
                                             <?= ($row['autosend'] == "Y") ? "자동발송" : "사용안함" ?>
                                         </td>
                                         <td>
-                                            <input type="text" name="onum[]" value="<?= $row['onum'] ?>" class="input_txt" style="width:50px; text-align: center;">
-                                            <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>" class="input_txt">
+                                            <input type="text" name="onum[]" value="<?= $row['onum'] ?>"
+                                                   class="input_txt" style="width:50px; text-align: center;">
+                                            <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>"
+                                                   class="input_txt">
                                         </td>
                                         <td>
-                                            <a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>">
-                                                <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
-                                            </a>
-                                            <a href="javascript:del_it('<?= $row['idx'] ?>');">
-                                                <img src="/images/admin/common/ico_error.png" alt="에러"/>
-                                            </a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?= $row["idx"] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -130,7 +137,7 @@
                 if (response.result == true) {
                     location.reload();
                     return;
-                } 
+                }
             }
         });
     }
@@ -168,22 +175,22 @@
 </script>
 
 <script>
-    $(document).ready(function(){
-        $('.btn_preview').on('click',function(){
+    $(document).ready(function () {
+        $('.btn_preview').on('click', function () {
             var tmp_idx = $(this).attr("rel");
             $("#previews").prop("src", "/AdmMaster/_member/pre_viw_mail?idx=" + tmp_idx);
-            $('.preview_popup').css({'display':'block'});
+            $('.preview_popup').css({'display': 'block'});
         });
 
-        $('.close_popup').on('click',function(){
+        $('.close_popup').on('click', function () {
             $("#previews").prop("src", "");
-            $('.preview_popup').css({'display':'none'});
+            $('.preview_popup').css({'display': 'none'});
         });
 
-        $('.preview_popup').click(function(e){
+        $('.preview_popup').click(function (e) {
             if ($(e.target).hasClass('preview_popup')) {
                 $("#previews").prop("src", "");
-                $('.preview_popup').css({'display':'none'});
+                $('.preview_popup').css({'display': 'none'});
             }
         });
     });

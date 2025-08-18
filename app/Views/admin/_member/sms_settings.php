@@ -1,10 +1,10 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<style>
-    div.listBottom table.listTable tbody td {
-        height: 40px;
-    }
-</style>
+    <style>
+        div.listBottom table.listTable tbody td {
+            height: 40px;
+        }
+    </style>
     <div id="container">
         <span id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -42,11 +42,11 @@
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
                                 <colgroup>
-                                    <col width="10%" />
-                                    <col width="10%" />
-                                    <col width="*%" />
-                                    <col width="10%" />
-                                    <col width="10%" />
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                    <col width="*%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
                                     <col width="7%"/>
                                 </colgroup>
                                 <thead>
@@ -72,16 +72,22 @@
                                                 <td><?= esc($row['content']) ?></td>
                                                 <td><?= ($row['autosend'] == "Y") ? "사용" : "사용안함" ?></td>
                                                 <td>
-                                                    <input type="text" name="onum[]" value="<?= $row['onum'] ?>" class="input_txt" style="width:50px; text-align: center;">
-                                                    <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>" class="input_txt">
+                                                    <input type="text" name="onum[]" value="<?= $row['onum'] ?>"
+                                                           class="input_txt" style="width:50px; text-align: center;">
+                                                    <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>"
+                                                           class="input_txt">
                                                 </td>
                                                 <td>
-                                                    <a href="<?= site_url('/AdmMaster/_member/sms_view?idx=' . $row['idx']) ?>">
-                                                        <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
-                                                    </a>
-                                                    <a href="javascript:del_it('<?= $row['idx'] ?>');">
-                                                        <img src="/images/admin/common/ico_error.png" alt="에러"/>
-                                                    </a>
+                                                    <div class="flex_button">
+                                                        <button onclick="window.location.href='<?= site_url('/AdmMaster/_member/sms_view?idx=' . $row['idx']) ?>'"
+                                                                type="button" class="btn_default btn btn-primary">
+                                                            수정
+                                                        </button>
+                                                        <button onclick="del_it('<?= $row["idx"] ?>');" type="button"
+                                                                class="btn_default btn btn-danger">
+                                                            삭제
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -114,7 +120,7 @@
                     if (response.result == true) {
                         location.reload();
                         return;
-                    } 
+                    }
                 }
             });
         }
@@ -149,6 +155,6 @@
                 }
             });
         }
-    
+
     </script>
-    <?= $this->endSection() ?>
+<?= $this->endSection() ?>

@@ -166,12 +166,12 @@
 
                                     $class = '';
 
-                                    if(!empty($row["report_idx"]) && $row["report_state"] != 1){
+                                    if (!empty($row["report_idx"]) && $row["report_state"] != 1) {
                                         $class = 'reported';
                                     }
 
                                     ?>
-                                    <tr class="<?=$class?>" style="height:50px; position: relative;">
+                                    <tr class="<?= $class ?>" style="height:50px; position: relative;">
                                         <input type="hidden" name="idx_change[]" value="<?= $row['idx'] ?>">
                                         <td><input type="checkbox" name="idx[]" class="idx" value="<?= $row['idx'] ?>"
                                                    class="input_check"/></a></td>
@@ -198,22 +198,35 @@
                                                    value= <?= $row['display'] == "Y" ? "Y" : "N" ?>>
                                         </td>
                                         <td>
-                                            <select style="margin: 0 !important;" onchange="handleUpdateReportState('<?= $row['idx'] ?>', this.value)">
-                                                <option value="0" <?= ($row["report_state"] == 0 && isset($row["report_idx"])) ? 'selected' : ''?>>신고접수</option>
-                                                <option value="1" <?= ($row["report_state"] == 1 || !isset($row["report_idx"])) ? 'selected' : ''?>>계속노출</option>
-                                                <option value="2" <?= ($row["report_state"] == 2 && !empty($row["report_idx"])) ? 'selected' : ''?>>비노출</option>
+                                            <select style="margin: 0 !important;"
+                                                    onchange="handleUpdateReportState('<?= $row['idx'] ?>', this.value)">
+                                                <option value="0" <?= ($row["report_state"] == 0 && isset($row["report_idx"])) ? 'selected' : '' ?>>
+                                                    신고접수
+                                                </option>
+                                                <option value="1" <?= ($row["report_state"] == 1 || !isset($row["report_idx"])) ? 'selected' : '' ?>>
+                                                    계속노출
+                                                </option>
+                                                <option value="2" <?= ($row["report_state"] == 2 && !empty($row["report_idx"])) ? 'selected' : '' ?>>
+                                                    비노출
+                                                </option>
                                             </select>
                                             <div class="row-overlay" style="display:none">
-                                                <div class="row-overlay-text">이 댓글이 신고된 댓글입니다. 
+                                                <div class="row-overlay-text">이 댓글이 신고된 댓글입니다.
                                                     <span style="color:red">신고사유: 부적절한 홍보 또는 비방글</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="write?idx=<?= $row['idx'] ?>"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>
-                                            <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="삭제"/></a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='write?idx=<?= $row['idx'] ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?= $row['idx'] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -261,8 +274,8 @@
             $.ajax({
                 url: "/AdmMaster/_review/updateReportState",
                 type: "POST",
-                data: { r_idx: r_idx, state: state },
-                success: function(rs) {
+                data: {r_idx: r_idx, state: state},
+                success: function (rs) {
                     location.reload();
                 },
             })

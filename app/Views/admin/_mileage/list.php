@@ -155,8 +155,10 @@
                                         <td><?= $row["product_code"] ?></td>
                                         <td><?= $row["mi_r_date"] ?></td>
                                         <td>
-                                            <a href="javascript:del_it('<?= $row["m_idx"] ?>','<?= $row["mi_idx"] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="에러"/></a>
+                                            <button onclick="del_it('<?= $row["m_idx"] ?>','<?= $row["mi_idx"] ?>');" type="button"
+                                                    class="btn_default btn btn-danger">
+                                                삭제
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php } ?>
