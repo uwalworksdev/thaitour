@@ -219,10 +219,16 @@
                                         <?= $row["r_date"] ?>
                                     </td>
                                     <td>
-                                        <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                        <a href="javascript:del_it('<?= $row['product_idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_error.png" alt="삭제"/></a>
+                                        <div class="flex_button">
+                                            <button onclick="prod_update('<?= $row['product_idx'] ?>');"
+                                                    type="button" class="btn_default btn btn-primary">
+                                                저장
+                                            </button>
+                                            <button onclick="del_it('<?= $row['product_idx'] ?>');" type="button"
+                                                    class="btn_default btn btn-danger">
+                                                삭제
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- <tr style="height:45px">
@@ -244,26 +250,26 @@
 
                 <div id="headerContainer">
 
-                    <div class="inner">
-                        <div class="menus">
-                            <ul class="first"></ul>
+                <div class="inner">
+                    <div class="menus">
+                        <ul class="first"></ul>
 
-                            <ul class="last">
-                                <li><a href="javascript:change_it()"
-                                       class="btn btn-success btn_change">순위변경</a></li>
-                                <li><a href="/AdmMaster/_tour_guides/write" class="btn btn-primary"><span
-                                                class="glyphicon glyphicon-pencil"></span> <span
-                                                class="txt">상품 등록</span></a></li>
-                                <li><a href="/AdmMaster/_tour_guides/write_info" class="btn btn-primary"><span
-                                                class="glyphicon glyphicon-pencil"></span> <span
-                                                class="txt">가이드 소개 등록</span></a></li>
-                            </ul>
+                        <ul class="last">
+                            <li><a href="javascript:change_it()"
+                                   class="btn btn-success btn_change">순위변경</a></li>
+                            <li><a href="/AdmMaster/_tour_guides/write" class="btn btn-primary"><span
+                                            class="glyphicon glyphicon-pencil"></span> <span
+                                            class="txt">상품 등록</span></a></li>
+                            <li><a href="/AdmMaster/_tour_guides/write_info" class="btn btn-primary"><span
+                                            class="glyphicon glyphicon-pencil"></span> <span
+                                            class="txt">가이드 소개 등록</span></a></li>
+                        </ul>
 
-                        </div>
+                    </div>
 
-                    </div><!-- // inner -->
+                </div><!-- // inner -->
 
-                </div><!-- // headerContainer -->
+            </div><!-- // headerContainer -->
             </div><!-- // listWrap -->
 
         </div><!-- // contents -->

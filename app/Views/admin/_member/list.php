@@ -161,10 +161,16 @@
                                         <?php } ?>
                                         <td><?= esc($row['r_date']) ?></td>
                                         <td>
-                                            <a href="write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
-                                                    src="/images/admin/common/ico_setting2.png"></a>
-                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?=$row["m_idx"]?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
 

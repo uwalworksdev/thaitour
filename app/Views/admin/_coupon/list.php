@@ -140,12 +140,16 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="write?idx=<?= $row['idx'] ?>">
-                                            <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
-                                        </a>
-                                        <a href="javascript:del_it('<?= $row['idx'] ?>');">
-                                            <img src="/images/admin/common/ico_error.png" alt="에러"/>
-                                        </a>
+                                        <div class="flex_button">
+                                            <button onclick="window.location.href='write?idx=<?= $row['idx'] ?>'"
+                                                    type="button" class="btn_default btn btn-primary">
+                                                수정
+                                            </button>
+                                            <button onclick="del_it('<?=$row["idx"]?>');" type="button"
+                                                    class="btn_default btn btn-danger">
+                                                삭제
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>

@@ -141,10 +141,16 @@
                                             <?= $row["created_at"] ?>
                                         </td>
                                         <td>
-                                            <a href="#!" onclick="change_it('<?= $row['d_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                            <a href="javascript:del_it('<?= $row['d_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="삭제"/></a>
+                                            <div class="flex_button">
+                                                <button onclick="change_it('<?= $row['d_idx'] ?>');"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    저장
+                                                </button>
+                                                <button onclick="del_it('<?= $row['d_idx'] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
 

@@ -178,10 +178,16 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="<?= $url_admin ?>"><img
-                                                    src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                            <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='<?= $url_admin ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?=$row["idx"]?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
