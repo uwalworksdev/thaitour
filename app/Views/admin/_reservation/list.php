@@ -662,10 +662,16 @@
                                         <td class="tac"><?=number_format($row["real_price_bath"])?></td>
                                         <td class="tac"></td>
                                         <td>
-                                            <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>
-                                            <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="에러"/></a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?=$row["order_idx"]?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
 

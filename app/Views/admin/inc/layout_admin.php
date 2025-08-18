@@ -1,4 +1,18 @@
 <?= $this->include("admin/inc/header") ?>
+<style>
+    .flex_button {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 20px;
+    }
+
+    .btn_default {
+        padding: 4px 6px;
+        border: 1px solid #cccccc;
+        width: 40px !important;
+    }
+</style>
 <?= $this->renderSection("body") ?>
 <footer id="footer">
     <!--
@@ -39,32 +53,32 @@
         }, 100);
     });
 
-	$(function() {
-		// Datepicker에 한국어 설정 적용
-		$.datepicker.setDefaults($.datepicker.regional['ko']);
-		
-		// 시작일과 종료일 초기화
-		var startDatePicker = $("#s_date");
-		var endDatePicker   = $("#e_date");
-		
-		startDatePicker.datepicker({
-			dateFormat: "yy-mm-dd",
-			onClose: function(selectedDate) {
-				if (selectedDate) {
-					endDatePicker.datepicker("option", "minDate", selectedDate);
-				}
-			}
-		});
+    $(function () {
+        // Datepicker에 한국어 설정 적용
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
 
-		endDatePicker.datepicker({
-			dateFormat: "yy-mm-dd",
-			onClose: function(selectedDate) {
-				if (selectedDate) {
-					startDatePicker.datepicker("option", "maxDate", selectedDate);
-				}
-			}
-		});
-	});
+        // 시작일과 종료일 초기화
+        var startDatePicker = $("#s_date");
+        var endDatePicker = $("#e_date");
+
+        startDatePicker.datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                if (selectedDate) {
+                    endDatePicker.datepicker("option", "minDate", selectedDate);
+                }
+            }
+        });
+
+        endDatePicker.datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                if (selectedDate) {
+                    startDatePicker.datepicker("option", "maxDate", selectedDate);
+                }
+            }
+        });
+    });
 
 </script>
 <style>
@@ -95,7 +109,7 @@
             }
         });
 
-        $(".price").keyup(function() {
+        $(".price").keyup(function () {
             let number = $(this).val().replace(/,/g, '');
             if (!isNaN(number)) {
                 $(this).val(Number(number).toLocaleString("en-US"));

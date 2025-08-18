@@ -141,10 +141,16 @@ use App\Controllers\Admin\AdminController;
                                         <td class="tac"><?= $row['user_mobile'] ?></td>
                                         <td class="tac"><?= $row['r_date'] ?></td>
                                         <td>
-                                            <a href="write?m_idx=<?= $row['m_idx'] ?>"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>
-                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="에러"></a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='write?m_idx=<?= $row['m_idx'] ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?= $row["m_idx"] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>

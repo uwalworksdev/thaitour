@@ -34,7 +34,7 @@
             text-align: right;
         }
 
-        #tbl_list button {
+        #tbl_list button[:not(.btn_default)] {
             border: 1px solid #999;
             border-radius: 3px;
             background: #f5f5f5;
@@ -259,12 +259,16 @@
                                     <td class="td_date"
                                         title="<?= $row['r_date']; ?>"><?= substr($row['r_date'], 0, 10); ?></td>
                                     <td class="td_control">
-                                        <a href="/AdmMaster/_cms/write?r_code=<?= $code_info['r_code']; ?>&r_idx=<?= $row['r_idx']; ?>">
-                                            <img src="/images/admin/common/ico_setting2.png" alt="관리">
-                                        </a>
-                                        <a href="javascript:del_it('<?= $row['r_idx']; ?>')">
-                                            <img src="/images/admin/common/ico_error.png" alt="삭제">
-                                        </a>
+                                        <div class="flex_button">
+                                            <button onclick="window.location.href='/AdmMaster/_cms/write?r_code=<?= $code_info['r_code']; ?>&r_idx=<?= $row['r_idx']; ?>'"
+                                                    type="button" class="btn_default btn btn-primary">
+                                                수정
+                                            </button>
+                                            <button onclick="del_it('<?= $row["r_idx"] ?>');" type="button"
+                                                    class="btn_default btn btn-danger">
+                                                삭제
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php $num--; } ?>

@@ -103,12 +103,16 @@ $_policy = explode("|", $policy);
                                             <input type="hidden" name="p_idx[]" value="<?= $row['p_idx'] ?>" class="input_txt">
                                         </td>
                                         <td class="td_control">
-                                            <a href="<?= $icon_link ?>">
-                                                <img src="/images/admin/common/ico_setting2.png" class="btn_mod" alt="관리">
-                                            </a>
-                                            <a href="#!" onclick="del_it('<?= $row['p_idx'] ?>');">
-                                                <img src="/images/admin/common/ico_error.png" class="btn_del" alt="삭제">
-                                            </a>
+                                            <div class="flex_button">
+                                                <button onclick="window.location.href='<?= $icon_link ?>'"
+                                                        type="button" class="btn_default btn btn-primary">
+                                                    수정
+                                                </button>
+                                                <button onclick="del_it('<?= $row["p_idx"] ?>');" type="button"
+                                                        class="btn_default btn btn-danger">
+                                                    삭제
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>

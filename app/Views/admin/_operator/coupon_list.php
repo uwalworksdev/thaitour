@@ -149,8 +149,12 @@
                                         }
                                         ?>
                                     </td>
-                                    <td class="tac"><a href="javascript:del_it('<?= $row['c_idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_error.png" alt="에러"/></a></td>
+                                    <td class="tac">
+                                        <button onclick="del_it('<?= $row["c_idx"] ?>');" type="button"
+                                                class="btn_default btn btn-danger">
+                                            삭제
+                                        </button>
+                                    </td>
                                 </tr>
                             <?php } ?>
                             </tbody>
