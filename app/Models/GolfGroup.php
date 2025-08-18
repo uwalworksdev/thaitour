@@ -79,7 +79,7 @@ class GolfGroup extends Model
                 $option["product_idx"] = $targetProductIdx;
                 $option["group_idx"] = $new_group_idx;
                 $option["reg_date"] = date("Y-m-d H:i:s");
-                $new_o_idx = $this->insert($option);
+                $new_o_idx = $this->golfOptionModel->insert($option);
 
                 $golf_price = $this->golfPriceModel->where("product_idx", $originProductIdx)
                                                     ->where("o_idx", $o_idx)
@@ -92,7 +92,7 @@ class GolfGroup extends Model
                     $price["group_idx"] = $new_group_idx;
                     $price["o_idx"] = $new_o_idx;
                     $price["reg_date"] = date("Y-m-d H:i:s");
-                    $this->insert($price);
+                    $this->golfPriceModel->insert($price);
                 }
             }
         }
