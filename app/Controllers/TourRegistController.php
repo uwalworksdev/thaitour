@@ -13,6 +13,7 @@ class TourRegistController extends BaseController
     private $tours;
     private $db;
     private $golfOptionModel;
+    private $golfGroupModel;
     protected $connect;
     protected $productModel;
     protected $golfInfoModel;
@@ -42,6 +43,7 @@ class TourRegistController extends BaseController
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
         $this->golfOptionModel = model("GolfOptionModel");
+        $this->golfGroupModel = model("GolfGroup");
         $this->productModel = model("ProductModel");
         $this->golfInfoModel = model("GolfInfoModel");
         $this->golfVehicleModel = model("GolfVehicleModel");
@@ -2913,6 +2915,7 @@ public function list_room_pricex()
 
         if ($info['product_code_1'] == 1302) {
             $this->golfInfoModel->copyInfo($product_idx, $newProductIdx);
+            $this->golfGroupModel->copyGroup($product_idx, $newProductIdx);
             $this->golfOptionModel->copyOptionSub($product_idx, $newProductIdx);
         }
 
