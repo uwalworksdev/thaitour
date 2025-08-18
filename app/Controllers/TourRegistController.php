@@ -2924,7 +2924,7 @@ public function list_room_pricex()
         }
 
         if ($info['product_code_1'] == 1325 || $info['product_code_1'] == 1317 || $info['product_code_1'] == 1320) {
-            $this->infoProducts->copyTour($product_idx, $newProductIdx);
+            $this->productSpasInfo->copySpa($product_idx, $newProductIdx);
         }
 
         $this->productImg->copyImage($product_idx, $newProductIdx);
