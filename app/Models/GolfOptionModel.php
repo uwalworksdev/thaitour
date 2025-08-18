@@ -169,12 +169,15 @@ class GolfOptionModel extends Model
             return false;
         }
     }
-    public function copyOption($originProductIdx, $targetProductIdx)
+    public function copyOptionSub($originProductIdx, $targetProductIdx)
     {
-        $options = $this->where("product_idx", $originProductIdx)->findAll();
+        $options = $this->where("product_idx", $originProductIdx)
+						->where("option_type", "S")->findAll();
         foreach ($options as $option) {
+			unset($option["idx"]);
             $option["product_idx"] = $targetProductIdx;
-            $this->insert($option);
+            $option["reg_date"] = date("Y-m-d H:i:s");
+            $this->insert( $option);
         }
     }
 }

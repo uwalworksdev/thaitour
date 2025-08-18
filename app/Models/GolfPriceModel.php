@@ -4,37 +4,34 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class GolfOptionModel extends Model
+class GolfPriceModel extends Model
 {
     protected $table      = 'tbl_golf_price';
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-					'idx',
 					'o_idx',	
-					'golf_date',	
+					'goods_date',	
 					'dow',	
 					'product_idx',	
-					'group_idx',	
+					'group_idx',
+					'goods_name',	
 					'price_1',	
 					'price_2',	
-					'price_3',	
-					'hole_cnt',	
-					'hour',	
-					'minute',	
-					'option_price',	
+					'price_3',
+					'day_yn',	
+					'day_price',	
+					'afternoon_yn',	
+					'afternoon_price',	
+					'night_yn',	
+					'night_price',	
 					'use_yn',	
-					'caddy_fee',	
+					'upd_yn',	
+					'caddy_fee',
 					'cart_pie_fee',	
 					'reg_date',	
 					'upd_date'
     ];
-
-    protected $returnType = 'array';
-
-    protected $useTimestamps = false;
-
-    protected $useSoftDeletes = false;
 
     public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
     {
