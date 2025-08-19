@@ -2266,7 +2266,7 @@ public function list_room_pricex()
         //     $countQuery->where("a.goods_date >=", $today);
         // }
 
-        $nTotalCount = $countQuery->countAllResults() ?? 0;
+        $nTotalCount =  0;
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
