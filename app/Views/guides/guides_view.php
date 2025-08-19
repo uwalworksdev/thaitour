@@ -40,7 +40,7 @@
 
     .tours-detail .section2 .sec2-item-card.tour_calendar {
         position: relative;
-        padding-bottom: 0;
+        padding-bottom: 20px;
     }
 
     @media screen and (max-width: 850px) {

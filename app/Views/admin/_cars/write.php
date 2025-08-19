@@ -295,6 +295,12 @@ $links = "list";
                                                value="<?= $vehicle_info ? $vehicle_info : "" ?>" style="width:100%"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>간략설명</th>
+                                    <td colspan="3">
+                                          <textarea id="description" name="description" style="width: 100%;" rows="5" cols="100"><?=$description?></textarea>
+                                    </td>
+                                </tr>
 
                                 <!-- <tr>
                                 <th>간략소개</th>

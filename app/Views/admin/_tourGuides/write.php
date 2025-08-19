@@ -273,6 +273,12 @@ if ($product_idx && $product) {
                                                class="text"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>간략설명</th>
+                                    <td colspan="3">
+                                          <textarea id="description" name="description" style="width: 100%;" rows="5" cols="100"><?=$description?></textarea>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
