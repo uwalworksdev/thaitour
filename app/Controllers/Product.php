@@ -4097,6 +4097,9 @@ class Product extends BaseController
 
                 if(count($departure_list[$key]["contents_list"]) <= 0 && !empty($row_code)) {
                     $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
+                    $departure_list[$key]["code_url"] = $row_code["code_url"];
+                    $departure_list[$key]["code_title_url"] = $row_code["code_title_url"];
+
                 }
             }
 

@@ -49,7 +49,9 @@ class CarsCategoryController extends BaseController
 
             if(count($category_list[$key]["contents_list"]) <= 0 && !empty($row_code)) {
                 $category_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
-                
+                $category_list[$key]["code_url"] = $row_code["code_url"];
+                $category_list[$key]["code_title_url"] = $row_code["code_title_url"];
+
                 foreach($category_list[$key]["contents_list"] as $key2 => $value2) {
                     $category_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
                 }
@@ -110,7 +112,9 @@ class CarsCategoryController extends BaseController
 
             if(count($destination_list[$key]["contents_list"]) <= 0 && !empty($row_code)) {
                 $destination_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
-                
+                $destination_list[$key]["code_url"] = $row_code["code_url"];
+                $destination_list[$key]["code_title_url"] = $row_code["code_title_url"];
+
                 foreach($destination_list[$key]["contents_list"] as $key2 => $value2) {
                     $destination_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
                 }
