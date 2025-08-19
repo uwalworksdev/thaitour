@@ -3788,7 +3788,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .layer_contents {
     position: absolute;
     border: 1px solid #888;
-    padding: 0 15px;
     background: #fff;
     z-index: 30000;
 }
@@ -3801,6 +3800,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .layer_contents .layer_contents_wrap {
     height: 250px;
+    padding: 0 15px;
     overflow-y: auto;
 }
 
