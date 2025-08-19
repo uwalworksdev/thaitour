@@ -2298,6 +2298,9 @@ public function list_room_pricex()
                             ->get()
                             ->getResultArray();
 
+        echo $this->db->getLastQuery();
+        die();
+
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
                                             ->orderBy("spas_idx", "asc")->findAll();
 
