@@ -72,7 +72,7 @@
                             $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
                             break;
                         case "vehicle":
-                            if($item1_1['product_code_2'] == "132403") {
+                            if($item1_1['product_code_2'] == "132404") {
                                 $href = "#!";
                             }else {
                                 $href = "/guide_view?g_idx={$item1_1['product_idx']}";
@@ -93,7 +93,7 @@
                             }else if($item1_1['product_code_1'] == "1320") {
                                 $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
                             }else if($item1_1['product_code_1'] == "1324") {
-                                if($item1_1['product_code_2'] == "132403") {
+                                if($item1_1['product_code_2'] == "132404") {
                                     $href = "#!";
                                 }else {
                                     $href = "/guide_view?g_idx={$item1_1['product_idx']}";
@@ -111,7 +111,6 @@
                                         $img = "/uploads/guides/". $item1_1['ufile1'];
                                     }
                                 }else{
-
                                     $img = getImage("/data/product/{$item1_1['ufile1']}");
                                 }
                             ?>
