@@ -2243,7 +2243,7 @@
                                     <div class="layer_contents_wrap">`;
 
                         for (let j = 0; j < data[i]["contents_list"]?.length; j++) {
-                            let contents = data[i]["contents_list"][j];
+                            let contents = data[i]["contents_list"][j]["contents"];
 
                         html +=     `<div class="layer_contents_child">
                                         ${contents}
