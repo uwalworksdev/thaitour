@@ -1976,14 +1976,13 @@
                             $i = 1;
                             foreach ($departure_list as $key => $value):
                                 ?>
-                                <li class="is_content" data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>"
+                                <li class="<?=count($value["contents_list"]) > 0 ? "is_content" : ""?>" data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>"
                                     onclick="change_departure_category(this);">
                                     <span
                                         class="<?php if ($i == 1) {
                                             echo "active";
                                         } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
                                     <?php
-                                        echo $value["code_idx"];
                                         if(count($value["contents_list"]) > 0) {
                                     ?>
                                     <div class="layer_contents">
