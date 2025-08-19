@@ -3805,6 +3805,13 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     overflow-y: auto;
 }
 
+.layer_contents .layer_contents_wrap .btn_link {
+    padding: 10px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
 /* .layer_contents .layer_contents_child {
     padding: 15px 0;
 } */
