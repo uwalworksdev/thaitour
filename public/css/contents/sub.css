@@ -3804,6 +3804,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     overflow-y: auto;
 }
 
+.layer_contents .layer_contents_wrap .layer_contents_child {
+    padding: 10px 0;
+}
+
 .layer_contents .layer_contents_wrap .btn_link {
     display: block;
     padding: 10px;
