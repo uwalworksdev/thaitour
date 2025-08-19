@@ -134,6 +134,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "CodeController::write_ok");
         $routes->post("del", "CodeController::del");
         $routes->post("add_contents", "CodeController::add_contents");
+        $routes->post("del_contents", "CodeController::del_contents");
     });
 
     $routes->group("_cars_category", static function ($routes) {

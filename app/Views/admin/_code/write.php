@@ -356,7 +356,7 @@
     var oEditors = [];
     <?php for($j = 1; $j < $count_contents ?? 0; $j++): ?>
         nhn.husky.EZCreator.createInIFrame({
-            oAppRef: oEditors<?=$j?>,
+            oAppRef: oEditors,
             elPlaceHolder: "contents<?=$j?>",
             sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
             htParams: {
@@ -394,6 +394,23 @@
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 }
                 , success: function (response, status, request) {
+                    location.reload();
+                }
+            });
+        }
+    }
+
+    function del_contents(idx) {
+        if (confirm("정말로 추가하시겠습니까?")) {
+            $.ajax({
+                url: "del_contents",
+                data: "idx=" + idx,
+                type: "POST",
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
                     location.reload();
                 }
             });

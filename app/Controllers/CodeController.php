@@ -400,4 +400,18 @@ class CodeController extends BaseController
             ]);
         }
     }
+
+    public function del_contents() {
+        $idx = $this->request->getPost('idx');
+
+        try {
+            $this->codeContents->deleteData($idx);
+            $message = "삭제완료";
+        } catch (\Throwable $th) {
+            $message = "삭제오류: " . $th->getMessage();
+        }
+        
+        return $this->response->setJSON(['message' => $message]);
+
+    }
 }
