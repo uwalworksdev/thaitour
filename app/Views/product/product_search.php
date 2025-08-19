@@ -104,6 +104,7 @@
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
                             <?php
+                            echo $item1_1['product_code_2'];
                                 if($item1_1['product_code_1'] == "1324"){
                                     if($item1_1['product_code_2'] == "132404"){
                                         $img = "/data/cars/". $item1_1['ufile1'];
