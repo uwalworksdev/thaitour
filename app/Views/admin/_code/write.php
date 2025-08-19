@@ -249,7 +249,7 @@
 
                         </table>
                         <?php
-                            if (($parent_code_no == "48" || $parent_code_no == "49") && !empty($code_idx)) {
+                            if (($parent_code_no == "48" || $parent_code_no == "49" || $parent_code_no == "54") && !empty($code_idx)) {
                         ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
