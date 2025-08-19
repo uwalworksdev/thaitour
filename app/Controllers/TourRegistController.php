@@ -2218,7 +2218,6 @@ public function list_room_pricex()
         $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
 		
         $pg = $this->request->getVar("pg");
-        if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
         $info_idx    = $this->request->getVar("info_idx");
