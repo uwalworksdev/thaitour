@@ -2251,22 +2251,22 @@ public function list_room_pricex()
         if ($s_date) $o_sdate = $s_date; 
         if ($e_date) $o_edate = $e_date;
 
-        $countQuery = $this->spasPrice
-                    ->from("tbl_spas_price a")
-                    ->where("a.product_idx", $product_idx);
+        // $countQuery = $this->spasPrice
+        //             ->from("tbl_spas_price a")
+        //             ->where("a.product_idx", $product_idx);
 
-        if ($info_idx) {
-            $countQuery->where("a.info_idx", $info_idx);
-        }
+        // if ($info_idx) {
+        //     $countQuery->where("a.info_idx", $info_idx);
+        // }
 
-        if ($s_date && $e_date) {
-            $countQuery->where("a.goods_date >=", $s_date)
-                    ->where("a.goods_date <=", $e_date);
-        } else {
-            $countQuery->where("a.goods_date >=", $today);
-        }
+        // if ($s_date && $e_date) {
+        //     $countQuery->where("a.goods_date >=", $s_date)
+        //             ->where("a.goods_date <=", $e_date);
+        // } else {
+        //     $countQuery->where("a.goods_date >=", $today);
+        // }
 
-        $nTotalCount = $countQuery->countAllResults();
+        $nTotalCount = $countQuery->countAllResults() ?? 0;
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
