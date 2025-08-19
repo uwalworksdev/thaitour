@@ -2292,8 +2292,29 @@
 
                 for (let i = 0; i < data.length; i++) {
 
-                    html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''}" onclick="get_depth_category(this, 2);" data-ca_idx="${data[i]["ca_idx"]}" data-code="${data[i]["code_no"]}">
-                                <a href="#!">${data[i]["code_name"]}</a>
+                    html += `<li class="section_vehicle_2_2__head__tabs__item category_item ${i == 0 ? "active" : ''} 
+                                ${data[i]["contents_list"]?.length > 0 ? "is_content" : ""}" 
+                                onclick="get_depth_category(this, 2);" data-ca_idx="${data[i]["ca_idx"]}" data-code="${data[i]["code_no"]}">`;
+                    if(data[i]["contents_list"]?.length > 0) {
+                        html += `<div class="layer_contents">
+                                    <div class="layer_contents_wrap">`;
+
+                        for (let j = 0; j < data[i]["contents_list"]?.length; j++) {
+                            let contents = data[i]["contents_list"][j]["contents"];
+
+                        html +=     `<div class="layer_contents_child">
+                                        ${contents}
+                                    </div>`;
+                        }
+                               
+                        if(data[i]["code_url"]){
+                            html +=  `<a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>`
+                        }         
+                                   
+                        html +=     `</div>
+                                </div>`;
+                    }           
+                    html +=     `<a href="#!">${data[i]["code_name"]}</a>
                             </li>`;
                 }
 

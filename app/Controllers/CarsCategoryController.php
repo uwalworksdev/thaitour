@@ -32,6 +32,13 @@ class CarsCategoryController extends BaseController
 
         $category_list = $this->carsCategory->getByParentCode($ca_idx)->getResultArray() ?? [];
 
+        foreach ($category_list as $key => $value) {
+            $category_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+            foreach($category_list[$key]["contents_list"] as $key2 => $value2) {
+                $category_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
+            }
+        }
+
         $first_category = !empty($category_list) ? $category_list[0] : null;
 
         $count_child = 0;

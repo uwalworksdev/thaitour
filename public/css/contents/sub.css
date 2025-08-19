@@ -3747,7 +3747,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     position: relative;
 }
 
-.popup_place__list>li.is_content::after {
+.popup_place__list>li.is_content::after,
+.section_vehicle_2_2__head__tabs__item.is_content::after {
     content: '?';
     background: #fff;
     color: #919191;
@@ -3790,9 +3791,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border: 1px solid #888;
     background: #fff;
     z-index: 30000;
-}
-
-.popup_place__list .layer_contents {
     line-height: 20px;
     font-size: 14px;
     display: none;
@@ -3822,7 +3820,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border-top: 1px solid #eee;
 }
 
-.popup_place__list>li.is_content:hover .layer_contents {
+.popup_place__list>li.is_content:hover .layer_contents,
+.section_vehicle_2_2__head__tabs__item.is_content:hover .layer_contents {
     display: block;
 }
 
