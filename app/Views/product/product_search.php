@@ -150,7 +150,7 @@
                             <div class="list-item-info">
                                 <div class="item-info">
                                     <div class="item-info-label text-gray">
-                                        <?php
+                                        <!-- <?php
                                             $rs_keyword = $item1_1['keyword'];
 
                                             if($item1_1['product_code_1'] == "1301") {
@@ -163,7 +163,16 @@
                                         <?php foreach ($arr_keyword as $key => $keyword): ?>
                                             <?=$key > 0 ? '&nbsp;&nbsp;' : ''?>
                                             #<?= $keyword?>
-                                        <?php endforeach;?>
+                                        <?php endforeach;?> -->
+
+                                        <?php
+                                            if($item1_1['product_code_1'] == "1303" || $item1_1['product_code_1'] == "1325" 
+                                                || $item1_1['product_code_1'] == "1320" || $item1_1['product_code_1'] == "1317"){
+                                                    echo nl2br(viewSQ($item1_1['product_info']));
+                                            }else {
+                                                echo nl2br(viewSQ($item1_1['description']));
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="item-info">
