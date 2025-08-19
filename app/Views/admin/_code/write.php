@@ -320,7 +320,7 @@
 
                                                                     nhn.husky.EZCreator.createInIFrame({
                                                                         oAppRef: oEditors<?=$i?>,
-                                                                        elPlaceHolder: "contents1",
+                                                                        elPlaceHolder: "contents<?=$i?>",
                                                                         sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                                         htParams: {
                                                                             bUseToolbar: true,
