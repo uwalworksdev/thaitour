@@ -95,6 +95,9 @@ class CodeController extends BaseController
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
+
+            $contents_list = $this->codeContents->where("code_idx", $code_idx)->findAll();
+
         } else {
             $row = $this->CodeModel->getDepthAndCodeGubunByNo($parent_code_no);
             $depth = ($row['depth'] ?? 0) + 1;
@@ -137,7 +140,8 @@ class CodeController extends BaseController
             "distance" => $distance,
             "type" => $type,
             'code_idx' => $code_idx,
-            'flight_arr' => $flight_arr
+            'flight_arr' => $flight_arr,
+            'contents_list' => $contents_list ?? []
         ]);
     }
 
@@ -160,6 +164,7 @@ class CodeController extends BaseController
         $file = $this->request->getFile('ufile1');
         $file2 = $this->request->getFile('ufile2');
         $color = $this->request->getPost('color');
+        $code_url = $this->request->getPost('code_url') ?? '';
 
         $f_idx = $this->request->getPost("f_idx") ?? [];
         $code_flight = $this->request->getPost("code_flight") ?? [];
@@ -175,6 +180,7 @@ class CodeController extends BaseController
                 'code_name' => $code_name,
                 'code_name_en' => $code_name_en,
                 'color' => $color,
+                'code_url' => $code_url,
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
@@ -227,6 +233,7 @@ class CodeController extends BaseController
                 'depth' => $depth,
                 'status' => $status,
                 'color' => $color,
+                'code_url' => $code_url,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'is_best' => $is_best,
@@ -362,5 +369,24 @@ class CodeController extends BaseController
         $parent_code_no = $this->request->getVar('code');
         $results = $this->CodeModel->getByParentCode($parent_code_no)->getResultArray();
         return $this->response->setJSON($results);
+    }
+
+    public function add_contents() {
+        $code_idx = $this->request->getPost('code_idx');
+        $data["code_idx"] = $code_idx;
+        $data["r_date"] = date("Y-m-d H:i:s");
+
+        $idx = $this->codeContents->insertData($data);
+
+        if(!empty($idx)) {
+            return $this->response->setJSON([
+                "result" => true
+            ]);
+        }else{
+            return $this->response->setJSON([
+                "result" => false,
+                "message" => "삭제오류"
+            ]);
+        }
     }
 }

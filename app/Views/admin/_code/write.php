@@ -271,7 +271,7 @@
 
                         </table>
                         <?php
-                            if ($parent_code_no == "48" || $parent_code_no == "49") {
+                            if (($parent_code_no == "48" || $parent_code_no == "49") && !empty($code_idx)) {
                         ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
@@ -295,7 +295,7 @@
                                     <tr>
                                         <th>
                                             Contents
-                                            <button type="button" class="btn btn-primary" onclick="">추가</button>
+                                            <button type="button" class="btn btn-primary" onclick="add_contents('<?=$code_idx?>');">추가</button>
                                         </th>
                                         <td>
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -306,31 +306,39 @@
                                                     <col width="90%"/>
                                                 </colgroup>
                                                 <tbody>
-                                                    <tr>
-                                                        <th>상세정보 1</th>
-                                                        <td>
-                                                            <textarea name="contents1" id="contents1" rows="10" cols="100" class="input_txt" style="width:100%; height:200px; display:none;"></textarea>
-                                                            <script type="text/javascript">
-                                                                var oEditors1 = [];
+                                                    <?php
 
-                                                                nhn.husky.EZCreator.createInIFrame({
-                                                                    oAppRef: oEditors1,
-                                                                    elPlaceHolder: "contents1",
-                                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                                    htParams: {
-                                                                        bUseToolbar: true,
-                                                                        bUseVerticalResizer: true,
-                                                                        bUseModeChanger: true,                                                             
-                                                                        fOnBeforeUnload: function () {
-                                                                        }
-                                                                    },
-                                                                    fOnAppLoad: function () {                                   
-                                                                    },
-                                                                    fCreator: "createSEditor2"
-                                                                });
-                                                            </script>
-                                                        </td>
-                                                    </tr>
+                                                        $i = 1;
+                                                        foreach($contents_list as $contents) {
+                                                    ?>
+                                                        <tr>
+                                                            <th>상세정보 <?=$i?></th>
+                                                            <td>
+                                                                <textarea name="contents<?=$i?>" id="contents<?=$i?>" rows="10" cols="100" class="input_txt" style="width:100%; height:200px; display:none;"></textarea>
+                                                                <script type="text/javascript">
+                                                                    var oEditors<?=$i?> = [];
+
+                                                                    nhn.husky.EZCreator.createInIFrame({
+                                                                        oAppRef: oEditors<?=$i?>,
+                                                                        elPlaceHolder: "contents1",
+                                                                        sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                                        htParams: {
+                                                                            bUseToolbar: true,
+                                                                            bUseVerticalResizer: true,
+                                                                            bUseModeChanger: true,                                                             
+                                                                            fOnBeforeUnload: function () {
+                                                                            }
+                                                                        },
+                                                                        fOnAppLoad: function () {                                   
+                                                                        },
+                                                                        fCreator: "createSEditor2"
+                                                                    });
+                                                                </script>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </tbody>
 
                                             </table>
@@ -388,6 +396,22 @@
         // }
 
         $(obj).closest("tr").remove();
+    }
+
+    function add_contents(code_idx) {
+        if (confirm("정말로 추가하시겠습니까?")) {
+            $.ajax({
+                url: "add_contents",
+                data: "code_idx=" + code_idx,
+                type: "POST",
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    location.reload();
+                }
+            });
+        }
     }
 
     function del_op_flight(idx, el) {
