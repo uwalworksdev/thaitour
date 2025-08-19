@@ -3811,6 +3811,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin: 0 auto;
     margin-top: 20px;
     background-color: #eee;
+    text-align: center;
 }
 
 /* .layer_contents .layer_contents_child {
