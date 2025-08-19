@@ -289,11 +289,14 @@
                                     <tr>
                                         <th>URL</th>
                                         <td>
-                                            <input type="text" name="desc_url" id="desc_url" value="<?= $desc_url ?>">
+                                            <input type="text" name="code_url" id="code_url" value="<?= $code_url ?>">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Contents</th>
+                                        <th>
+                                            Contents
+                                            <button type="button" class="btn btn-primary" onclick="">추가</button>
+                                        </th>
                                         <td>
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                                 <caption>

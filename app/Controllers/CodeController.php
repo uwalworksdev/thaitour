@@ -12,6 +12,7 @@ class CodeController extends BaseController
     private $db;
     private $ProductAirModel;
     private $FlightModel;
+    private $codeContents;
 
     public function __construct()
     {
@@ -21,6 +22,7 @@ class CodeController extends BaseController
         $this->ProductAirModel = model("ProductAirModel");
         $this->Bbs = model("Bbs");
         $this->FlightModel = model("FlightModel");
+        $this->codeContents = model("CodeContents");
         helper('my_helper');
         helper('alert_helper');
     }
