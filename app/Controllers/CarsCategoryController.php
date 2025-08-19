@@ -71,6 +71,9 @@ class CarsCategoryController extends BaseController
 
         foreach ($destination_list as $key => $value) {
             $destination_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+            foreach($destination_list[$key]["contents_list"] as $key2 => $value2) {
+                $destination_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
+            }
         }
         return $this->response->setJSON($destination_list);
     }
