@@ -72,7 +72,7 @@
                             $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
                             break;
                         case "vehicle":
-                            if($item1_1['product_code_2'] == "132404") {
+                            if(strpos($item1_1['product_code_list'], 132404) !== false) {
                                 $href = "#!";
                             }else {
                                 $href = "/guide_view?g_idx={$item1_1['product_idx']}";
@@ -93,7 +93,7 @@
                             }else if($item1_1['product_code_1'] == "1320") {
                                 $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
                             }else if($item1_1['product_code_1'] == "1324") {
-                                if($item1_1['product_code_2'] == "132404") {
+                                if(strpos($item1_1['product_code_list'], 132404) !== false) {
                                     $href = "#!";
                                 }else {
                                     $href = "/guide_view?g_idx={$item1_1['product_idx']}";
@@ -101,14 +101,11 @@
                             }
                     }
                     ?>
-                    <?php
-                        var_dump($item1_1['product_code_2'])
-                    ?>
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
                             <?php
                                 if($item1_1['product_code_1'] == "1324"){
-                                    if($item1_1['product_code_2'] == "132404"){
+                                    if(strpos($item1_1['product_code_list'], 132404) !== false){
                                         $img = "/data/cars/". $item1_1['ufile1'];
                                     }else{
                                         $img = "/uploads/guides/". $item1_1['ufile1'];
