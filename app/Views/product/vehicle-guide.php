@@ -1999,7 +1999,7 @@
                                             <?php
                                                 if(!empty($value["code_url"])) {
                                             ?>
-                                                <a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>
+                                                <a class="btn_link" href="<?=$value["code_url"]?>"><?=$value["code_title_url"]?></a>
                                             <?php
                                                 }
                                             ?>
@@ -2253,7 +2253,7 @@
                         }
                                
                         if(data[i]["code_url"]){
-                            html +=  `<a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>`
+                            html +=  `<a class="btn_link" href="${data[i]["code_url"]}">${data[i]["code_title_url"]}</a>`
                         }         
                                    
                         html +=     `</div>
@@ -2308,7 +2308,7 @@
                         }
                                
                         if(data[i]["code_url"]){
-                            html +=  `<a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>`
+                            html +=  `<a class="btn_link" href="${data[i]["code_url"]}">${data[i]["code_title_url"]}</a>`
                         }         
                                    
                         html +=     `</div>
