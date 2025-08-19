@@ -291,7 +291,7 @@
                                                         <tr>
                                                             <th>
                                                                 상세정보 <?=$count_contents?>
-                                                                <button type="button" class="btn btn-danger" 
+                                                                <button type="button" class="btn btn-danger" style="width: unset;"
                                                                     onclick="del_contents('<?= $contents['idx'] ?>');">삭제</button>
                                                             </th>
                                                             <td>
