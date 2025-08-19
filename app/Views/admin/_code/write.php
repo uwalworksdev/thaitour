@@ -256,11 +256,13 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="90%"/>
+                                    <col width="*%"/>
+                                    <col width="10%"/>
+                                    <col width="*%"/>
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="4">
                                             간략설명 
                                             <?php
                                                 if($parent_code_no == "48" || $parent_code_no == "49"){
@@ -295,7 +297,7 @@
                                             간단설명
                                             <button type="button" class="btn btn-primary" onclick="add_contents('<?=$code_idx?>');">추가</button>
                                         </th>
-                                        <td>
+                                        <td colspan="3">
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                                 <caption>
                                                 </caption>
