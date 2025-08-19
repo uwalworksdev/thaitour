@@ -270,6 +270,70 @@
                             </tbody>
 
                         </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        간략설명
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>URL</th>
+                                    <td>
+                                        <input type="text" name="desc_url" id="desc_url" value="<?= $desc_url ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Contents</th>
+                                    <td>
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                            <caption>
+                                            </caption>
+                                            <colgroup>
+                                                <col width="10%"/>
+                                                <col width="90%"/>
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>상세정보 1</th>
+                                                    <td>
+                                                        <textarea name="contents1" id="contents1" rows="10" cols="100" class="input_txt" style="width:100%; height:200px; display:none;"></textarea>
+                                                        <script type="text/javascript">
+                                                            var oEditors1 = [];
+
+                                                            nhn.husky.EZCreator.createInIFrame({
+                                                                oAppRef: oEditors1,
+                                                                elPlaceHolder: "contents1",
+                                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                                htParams: {
+                                                                    bUseToolbar: true,
+                                                                    bUseVerticalResizer: true,
+                                                                    bUseModeChanger: true,                                                             
+                                                                    fOnBeforeUnload: function () {
+                                                                    }
+                                                                },
+                                                                fOnAppLoad: function () {                                   
+                                                                },
+                                                                fCreator: "createSEditor2"
+                                                            });
+                                                        </script>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
                     </div>
                     <!-- // listBottom -->
 
