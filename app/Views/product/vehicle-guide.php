@@ -2227,6 +2227,7 @@
             },
             success: function (data, textStatus) {
                 let html = ``;
+                    console.log(data);
 
                 let first_ca_idx = 0;
                 let first_code_name = "";
@@ -2236,7 +2237,6 @@
                         first_code_name = data[i]["code_name"];
                     }
 
-                    console.log(data[i]["code_idx"]);
 
                     html += `<li class="${data[i]["contents_list"]?.length > 0 ? "is_content" : ""}" data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
                                 <span class="${i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>`;
