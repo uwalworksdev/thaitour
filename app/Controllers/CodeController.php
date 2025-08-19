@@ -417,7 +417,7 @@ class CodeController extends BaseController
         $idx = $this->request->getPost('idx');
 
         try {
-            $this->codeContents->deleteData($idx);
+            $this->codeContents->delete($idx);
             $message = "삭제완료";
         } catch (\Throwable $th) {
             $message = "삭제오류: " . $th->getMessage();
