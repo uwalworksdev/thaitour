@@ -265,8 +265,8 @@
                                             <?php
                                                 if($parent_code_no == "48" || $parent_code_no == "49"){
                                             ?>
-                                                <input type="checkbox" name="is_apply" id="is_apply" value="Y" <?= $is_apply == "Y" ? "checked" : "" ?>>
-                                                <label for="is_apply" style="margin-left: 30px;">
+                                                <input type="checkbox" style="margin-left: 30px;" name="is_apply" id="is_apply" value="Y" <?= $is_apply == "Y" ? "checked" : "" ?>>
+                                                <label for="is_apply">
                                                     <?php 
                                                         if($parent_code_no == "48") {
                                                             echo "출발지 적용";
