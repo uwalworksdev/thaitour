@@ -1501,7 +1501,7 @@
             height: 2.5385rem;
         }
 
-        .popup_place__list>li>* {
+        .popup_place__list>li>span {
             padding: 1.5rem 1.3rem;
             color: #757575;
             background-color: #fff;

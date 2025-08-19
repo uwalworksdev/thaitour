@@ -3767,7 +3767,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     justify-content: center;
 }
 
-.popup_place__list>li>* {
+.popup_place__list>li>span {
     display: flex;
     justify-content: center;
     align-items: center;
