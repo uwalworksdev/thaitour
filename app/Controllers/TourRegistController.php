@@ -2270,7 +2270,7 @@ public function list_room_pricex()
 
         $query->groupBy("a.idx");
         
-        $nTotalCount = $query->countAllResults(true);
+        $nTotalCount = $query->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
