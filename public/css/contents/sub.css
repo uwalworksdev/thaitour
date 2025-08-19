@@ -3153,7 +3153,7 @@
     border-color: #555555;
     border-style: solid;
     background-color: #ffffff;
-    width: 150px;
+    /* width: 150px; */
     height: 52px;
     border-radius: 26px;
     display: flex;
@@ -3162,6 +3162,7 @@
     font-size: 18px;
     color: #555555;
     font-weight: 700;
+    padding: 0 40px;
 }
 
 .section_vehicle_2_2__head__tabs__item.active {
@@ -3818,6 +3819,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .layer_contents .layer_contents_child:not(:first-child) {
     border-top: 1px solid #eee;
+}
+
+.section_vehicle_2_2__head__tabs__item {
+    position: relative;
 }
 
 .popup_place__list>li.is_content:hover .layer_contents,
