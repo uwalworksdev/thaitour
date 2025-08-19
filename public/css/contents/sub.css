@@ -3800,7 +3800,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .layer_contents .layer_contents_wrap {
     height: 200px;
-    width: 200px;
+    width: 230px;
     padding: 0 15px;
     overflow-y: auto;
 }
