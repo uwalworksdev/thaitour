@@ -2268,9 +2268,9 @@ public function list_room_pricex()
             $query->where("a.goods_date >=", $today);
         }
 
-        $query->groupBy("a.idx");
+        // $query->groupBy("a.idx");
         
-        $nTotalCount = $query->countAllResults(false);
+        $nTotalCount = $query->countAllResults(true);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if (empty($pg)) $pg = 1;
