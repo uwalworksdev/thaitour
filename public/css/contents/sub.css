@@ -3752,17 +3752,15 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     background: #fff;
     color: #919191;
     border-radius: 50%;
-    width: 17px;
+    width: 20px;
     display: inline-block;
-    height: 17px;
+    height: 20px;
     font-size: 14px;
-    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    margin-left: 5px;
-    vertical-align: baseline;
     border: 1px solid #d3d3d3;
     font-weight: 600;
     position: absolute;
-    top: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 5px;
 }
 
