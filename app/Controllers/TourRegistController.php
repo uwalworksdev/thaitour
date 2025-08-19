@@ -2251,19 +2251,17 @@ public function list_room_pricex()
         if ($s_date) $o_sdate = $s_date; 
         if ($e_date) $o_edate = $e_date;
 
-        $countQuery = $this->spasPrice
-                    ->from("tbl_spas_price a")
-                    ->where("a.product_idx", $product_idx);
+        $countQuery = $this->spasPrice->where("product_idx", $product_idx);
 
         if ($info_idx) {
-            $countQuery->where("a.info_idx", $info_idx);
+            $countQuery->where("info_idx", $info_idx);
         }
 
         if ($s_date && $e_date) {
-            $countQuery->where("a.goods_date >=", $s_date)
-                    ->where("a.goods_date <=", $e_date);
+            $countQuery->where("goods_date >=", $s_date)
+                    ->where("goods_date <=", $e_date);
         } else {
-            $countQuery->where("a.goods_date >=", $today);
+            $countQuery->where("goods_date >=", $today);
         }
 
         $nTotalCount = $countQuery->countAllResults(true);
@@ -2275,11 +2273,10 @@ public function list_room_pricex()
         $nFrom = isset($nFrom) ? intval($nFrom) : 0;
         $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
-        $query = $this->spasPrice
-            ->select("a.*, b.spas_subject")
-            ->from("tbl_spas_price a")
-            ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
-            ->where("a.product_idx", $product_idx);
+        $query = $this->db->table("tbl_spas_price a")
+                          ->select("a.*, b.spas_subject")
+                          ->join("tbl_product_spas b", "a.spas_idx = b.spas_idx", "left")
+                          ->where("a.product_idx", $product_idx);
 
         if ($info_idx) {
             $query->where("a.info_idx", $info_idx);
@@ -2297,9 +2294,6 @@ public function list_room_pricex()
                             ->limit($g_list_rows, $nFrom)
                             ->get()
                             ->getResultArray();
-
-        echo $this->db->getLastQuery();
-        die();
 
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
                                             ->orderBy("spas_idx", "asc")->findAll();
