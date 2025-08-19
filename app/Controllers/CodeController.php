@@ -220,7 +220,7 @@ class CodeController extends BaseController
             foreach($contents_idx as $key => $value){
                 if(!empty($value)){
                     $this->codeContents->updateData($value, [
-                        "contents_desc" => $contents_desc[$key]
+                        "contents" => $contents_desc[$key]
                     ]);
                 }
             }
@@ -410,7 +410,7 @@ class CodeController extends BaseController
         } catch (\Throwable $th) {
             $message = "삭제오류: " . $th->getMessage();
         }
-        
+
         return $this->response->setJSON(['message' => $message]);
 
     }
