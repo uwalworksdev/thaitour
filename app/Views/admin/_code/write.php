@@ -401,7 +401,7 @@
     }
 
     function del_contents(idx) {
-        if (confirm("정말로 추가하시겠습니까?")) {
+        if (confirm("정말 삭제하시겠습니까?")) {
             $.ajax({
                 url: "del_contents",
                 data: "idx=" + idx,
