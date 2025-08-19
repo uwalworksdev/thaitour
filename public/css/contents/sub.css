@@ -3744,6 +3744,26 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .popup_place__list>li {
     width: calc((100% - 80px) / 5);
     cursor: pointer;
+    position: relative;
+}
+
+.popup_place__list>li.is_content::after {
+    content: '?';
+    background: #fff;
+    color: #919191;
+    border-radius: 50%;
+    width: 17px;
+    display: inline-block;
+    height: 17px;
+    font-size: 14px;
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    margin-left: 5px;
+    vertical-align: baseline;
+    border: 1px solid #d3d3d3;
+    font-weight: 600;
+    position: absolute;
+    top: 12px;
+    right: 5px;
 }
 
 .popup_place__list>li>* {

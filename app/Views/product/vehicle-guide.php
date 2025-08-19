@@ -1976,7 +1976,7 @@
                             $i = 1;
                             foreach ($departure_list as $key => $value):
                                 ?>
-                                <li data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>"
+                                <li class="is_content" data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>"
                                     onclick="change_departure_category(this);">
                                     <span
                                         class="<?php if ($i == 1) {
