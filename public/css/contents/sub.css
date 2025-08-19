@@ -3806,10 +3806,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .layer_contents .layer_contents_wrap .btn_link {
+    display: block;
+    width: fit-content;
     padding: 10px;
     margin: 0 auto;
-    border: 1px solid #ccc;
     margin-top: 20px;
+    background-color: #eee;
 }
 
 /* .layer_contents .layer_contents_child {
