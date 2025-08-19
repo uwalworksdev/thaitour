@@ -3796,7 +3796,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_place__list .layer_contents {
-    margin: 45px 0 0 2px !important;
     line-height: 20px;
     font-size: 14px;
     height: auto;
