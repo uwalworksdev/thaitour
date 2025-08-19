@@ -4086,7 +4086,18 @@ class Product extends BaseController
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
 
             foreach ($departure_list as $key => $value) {
+                $code_name = $value["code_name"];
+                $code_idx = $value["code_idx"];
+
+                $row_code = $this->codeModel->where("code_name", $code_name)
+                                            ->where("code_idx !=", $code_idx)
+                                            ->where("is_apply =", 'Y')
+                                            ->get()->getRowArray();
                 $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+
+                if(count($departure_list[$key]["contents_list"]) < 0 && !empty($row_code)) {
+                    $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
+                }
             }
 
             $data = [

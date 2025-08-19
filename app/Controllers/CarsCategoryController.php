@@ -33,10 +33,28 @@ class CarsCategoryController extends BaseController
         $category_list = $this->carsCategory->getByParentCode($ca_idx)->getResultArray() ?? [];
 
         foreach ($category_list as $key => $value) {
-            $category_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+            $code_name = $value["code_name"];
+            $code_idx = $value["code_idx"];
+
+            $row_code = $this->codeModel->where("code_name", $code_name)
+                                        ->where("code_idx !=", $code_idx)
+                                        ->where("is_apply =", 'Y')
+                                        ->get()->getRowArray();
+
+            $category_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $code_idx)->get()->getResultArray();
+
             foreach($category_list[$key]["contents_list"] as $key2 => $value2) {
                 $category_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
             }
+
+            if(count($category_list[$key]["contents_list"]) < 0 && !empty($row_code)) {
+                $category_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
+                
+                foreach($category_list[$key]["contents_list"] as $key2 => $value2) {
+                    $category_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
+                }
+            }
+
         }
 
         $first_category = !empty($category_list) ? $category_list[0] : null;
@@ -77,9 +95,25 @@ class CarsCategoryController extends BaseController
         $destination_list = $this->carsCategory->getByParentAndCodeNo($ca_idx, $code_no) ?? [];
 
         foreach ($destination_list as $key => $value) {
+            $code_name = $value["code_name"];
+            $code_idx = $value["code_idx"];
+
+            $row_code = $this->codeModel->where("code_name", $code_name)
+                                        ->where("code_idx !=", $code_idx)
+                                        ->where("is_apply =", 'Y')
+                                        ->get()->getRowArray();
+                                        
             $destination_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
             foreach($destination_list[$key]["contents_list"] as $key2 => $value2) {
                 $destination_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
+            }
+
+            if(count($destination_list[$key]["contents_list"]) < 0 && !empty($row_code)) {
+                $destination_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
+                
+                foreach($destination_list[$key]["contents_list"] as $key2 => $value2) {
+                    $destination_list[$key]["contents_list"][$key2]["contents"] = viewSQ($value2["contents"]);
+                }
             }
         }
         return $this->response->setJSON($destination_list);
