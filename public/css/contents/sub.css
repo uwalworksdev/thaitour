@@ -3785,6 +3785,37 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border: none;
 }
 
+.layer_contents {
+    position: absolute;
+    border: 1px solid #888;
+    padding: 0 15px;
+    background: #fff;
+    height: 150px;
+    overflow: hidden;
+    z-index: 30000;
+}
+
+.popup_place__list .layer_contents {
+    margin: 45px 0 0 2px !important;
+    line-height: 20px;
+    font-size: 14px;
+    height: auto;
+    width: 200px;
+    display: none;
+}
+
+.layer_contents .layer_contents_child {
+    padding: 15px 0;
+}
+
+.layer_contents .layer_contents_child:not(:first-child) {
+    border-top: 1px solid #888;
+}
+
+.popup_place__list>li.is_content:hover .layer_contents {
+    display: block;
+}
+
 .popup_wrap.place_pop .pop_box {
     max-width: 1000px;
     padding: 0 59px;

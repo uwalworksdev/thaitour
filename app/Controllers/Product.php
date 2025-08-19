@@ -46,8 +46,8 @@ class Product extends BaseController
     protected $productImg;
     protected $roomImg;
     protected $tourImg;
-
     protected $wishModel;
+    protected $codeContents;
 
 /*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
@@ -86,6 +86,7 @@ class Product extends BaseController
         $this->roomImg = model("RoomImg");
         $this->tourImg = model("TourImg");
         $this->wishModel = model("WishModel");
+        $this->codeContents = model("CodeContents");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -4083,6 +4084,10 @@ class Product extends BaseController
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
+
+            foreach ($departure_list as $key => $value) {
+                $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+            }
 
             $data = [
                 'tab_active' => '7',

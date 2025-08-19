@@ -99,7 +99,7 @@ class CarsCategory extends Model
     public function getByParentCode($parent_ca_idx)
     {
         return $this->db->table('tbl_cars_category a')
-            ->select('a.*, b.code_name')
+            ->select('a.*, b.code_name, b.code_idx, b.code_url')
             ->join('tbl_code b', 'a.code_no = b.code_no', 'left')
             ->where('a.parent_ca_idx', $parent_ca_idx)
             ->where('a.status', 'Y')
