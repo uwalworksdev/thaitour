@@ -313,7 +313,7 @@ class ReviewController extends BaseController
             LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_1
             LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx  
             LEFT JOIN tbl_member as t4 ON t4.m_idx = t3.m_idx
-            WHERE t1.parent_code_no = 13 AND t1.depth = '2' AND t3.m_idx = '$member_Id' AND (t3.order_status = 'E' OR t4.is_review = 'Y')
+            WHERE t1.parent_code_no = 13 AND t1.depth = '2' AND ((t3.order_status = 'E' AND t3.m_idx = '$member_Id') OR t4.is_review = 'Y')
             GROUP BY t1.code_no ORDER BY t1.onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
 
