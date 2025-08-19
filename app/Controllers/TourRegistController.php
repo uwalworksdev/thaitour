@@ -2153,11 +2153,10 @@ public function list_room_pricex()
         if ($s_date) $o_sdate = $s_date; 
         if ($e_date) $o_edate = $e_date;
 
-        $query = $this->toursPrice
-            ->select("a.*, b.tours_subject")
-            ->from("tbl_tours_price a")
-            ->join("tbl_product_tours b", "a.tours_idx = b.tours_idx", "left")
-            ->where("a.product_idx", $product_idx);
+        $query = $this->db->table("tbl_tours_price a")
+                            ->select("a.*, b.tours_subject")
+                            ->join("tbl_product_tours b", "a.tours_idx = b.tours_idx", "left")
+                            ->where("a.product_idx", $product_idx);
 
         if ($info_idx) {
             $query->where("a.info_idx", $info_idx);
