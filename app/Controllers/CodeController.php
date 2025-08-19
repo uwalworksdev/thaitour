@@ -92,6 +92,7 @@ class CodeController extends BaseController
             $color = $row['color'];
             $code_memo = $row['code_memo'];
             $type = $row['type'];
+            $code_url = $row['code_url'];
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
@@ -139,6 +140,7 @@ class CodeController extends BaseController
             "is_best" => $is_best,
             "distance" => $distance,
             "type" => $type,
+            "code_url" => $code_url,
             'code_idx' => $code_idx,
             'flight_arr' => $flight_arr,
             'contents_list' => $contents_list ?? []
