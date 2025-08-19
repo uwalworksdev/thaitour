@@ -2252,7 +2252,7 @@
                                     </div>`;
                         }
                                
-                        if(data[i]["code_url"]){
+                        if(data[i]["code_url"] != ""){
                             html +=  `<a class="btn_link" href="${data[i]["code_url"]}">${data[i]["code_title_url"]}</a>`
                         }         
                                    
@@ -2307,7 +2307,7 @@
                                     </div>`;
                         }
                                
-                        if(data[i]["code_url"]){
+                        if(data[i]["code_url"] != ""){
                             html +=  `<a class="btn_link" href="${data[i]["code_url"]}">${data[i]["code_title_url"]}</a>`
                         }         
                                    
