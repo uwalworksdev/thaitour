@@ -3813,6 +3813,17 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     text-align: center;
 }
 
+.section_vehicle_2_2__head__tabs__item .layer_contents {
+    top: 105%;
+    left: 0;
+
+}
+
+.section_vehicle_2_2__head__tabs__item .layer_contents .layer_contents_wrap {
+    height: auto;
+    overflow: unset;
+}
+
 /* .layer_contents .layer_contents_child {
     padding: 15px 0;
 } */
