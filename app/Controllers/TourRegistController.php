@@ -2269,10 +2269,6 @@ public function list_room_pricex()
         }
 
         $query->groupBy("a.idx");
-
-        echo $query->getCompiledSelect();
-
-        die();
         
         $nTotalCount = $query->countAllResults(true);
 
@@ -2288,6 +2284,9 @@ public function list_room_pricex()
                         ->limit($g_list_rows, $nFrom)
                         ->get()
                         ->getResultArray();
+
+        echo $this->db->getLastQuery();
+        die();
 
         $spas_option = $this->productSpas->where("info_idx", $info_idx)
                                             ->orderBy("spas_idx", "asc")->findAll();
