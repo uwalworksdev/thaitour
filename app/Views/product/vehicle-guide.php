@@ -1983,6 +1983,7 @@
                                             echo "active";
                                         } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
                                     <?php
+                                        echo $value["code_idx"];
                                         if(count($value["contents_list"]) > 0) {
                                     ?>
                                     <div class="layer_contents">
