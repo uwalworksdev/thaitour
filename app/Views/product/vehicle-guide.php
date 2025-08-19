@@ -1986,22 +1986,24 @@
                                         if(count($value["contents_list"]) > 0) {
                                     ?>
                                     <div class="layer_contents">
-                                        <?php
-                                            foreach($value["contents_list"] as $contents) {
-                                        ?>
-                                            <div class="layer_contents_child">
-                                                <?= viewSQ($contents["contents"]) ?>
-                                            </div>
-                                        <?php
-                                            }
-                                        ?>
-                                        <?php
-                                            if(!empty($value["code_url"])) {
-                                        ?>
-                                            <a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>
-                                        <?php
-                                            }
-                                        ?>
+                                        <div class="layer_contents_wrap">
+                                            <?php
+                                                foreach($value["contents_list"] as $contents) {
+                                            ?>
+                                                <div class="layer_contents_child">
+                                                    <?= viewSQ($contents["contents"]) ?>
+                                                </div>
+                                            <?php
+                                                }
+                                            ?>
+                                            <?php
+                                                if(!empty($value["code_url"])) {
+                                            ?>
+                                                <a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
                                     </div>
                                     <?php
                                         }

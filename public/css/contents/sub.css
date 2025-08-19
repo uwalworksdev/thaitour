@@ -3790,8 +3790,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border: 1px solid #888;
     padding: 0 15px;
     background: #fff;
-    height: 250px;
-    overflow-y: auto;
     z-index: 30000;
 }
 
@@ -3799,6 +3797,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     line-height: 20px;
     font-size: 14px;
     display: none;
+}
+
+.layer_contents .layer_contents_wrap {
+    height: 250px;
+    overflow-y: auto;
 }
 
 /* .layer_contents .layer_contents_child {
