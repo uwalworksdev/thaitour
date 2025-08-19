@@ -1,28 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript">
-    function checkForNumber(str) {
-        var key = event.keyCode;
-        var frm = document.frm1;
-        if (!(key == 8 || key == 9 || key == 13 || key == 46 || key == 144 ||
-            (key >= 48 && key <= 57) || (key >= 96 && key <= 105) || key == 110 || key == 190)) {
-            event.returnValue = false;
-        }
-    }
-
-    function send_it() {
-        var frm = document.frm;
-        if (frm.code_name.value == "") {
-            frm.code_name.focus();
-            alert("코드명을 입력하셔야 합니다.");
-            return;
-        }
-
-        frm.submit();
-    }
-</script>
-
 
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
@@ -307,38 +285,25 @@
                                                 </colgroup>
                                                 <tbody>
                                                     <?php
-
-                                                        $i = 1;
-                                                        foreach($contents_list as $contents) {
+                                                        $count_contents = 1;
+                                                        foreach($contents_list as $contents) :
                                                     ?>
                                                         <tr>
-                                                            <th>상세정보 <?=$i?></th>
+                                                            <th>
+                                                                상세정보 <?=$count_contents?>
+                                                                <button type="button" class="btn btn-danger" 
+                                                                    onclick="del_contents('<?= $contents['idx'] ?>');">삭제</button>
+                                                            </th>
                                                             <td>
-                                                                <textarea name="contents<?=$i?>" id="contents<?=$i?>" rows="10" cols="100" class="input_txt" style="width:100%; height:200px; display:none;"></textarea>
-                                                                <script type="text/javascript">
-                                                                    var oEditors<?=$i?> = [];
-
-                                                                    nhn.husky.EZCreator.createInIFrame({
-                                                                        oAppRef: oEditors<?=$i?>,
-                                                                        elPlaceHolder: "contents<?=$i?>",
-                                                                        sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                                        htParams: {
-                                                                            bUseToolbar: true,
-                                                                            bUseVerticalResizer: true,
-                                                                            bUseModeChanger: true,                                                             
-                                                                            fOnBeforeUnload: function () {
-                                                                            }
-                                                                        },
-                                                                        fOnAppLoad: function () {                                   
-                                                                        },
-                                                                        fCreator: "createSEditor2"
-                                                                    });
-                                                                </script>
+                                                                <input type="hidden" name="contents_idx[]" value="<?=$contents['idx']?>">
+                                                                <textarea name="contents_desc[]" id="contents<?=$count_contents?>" 
+                                                                    rows="10" cols="100" class="input_txt" 
+                                                                    style="width:100%; height:200px; display:none;"><?=viewSQ($contents["contents"])?></textarea>
                                                             </td>
                                                         </tr>
                                                     <?php
-                                                        $i++;
-                                                        }
+                                                        $count_contents++;
+                                                        endforeach;
                                                     ?>
                                                 </tbody>
 
@@ -387,6 +352,26 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div>
 <!-- // container -->
+ <script type="text/javascript">
+    var oEditors = [];
+    <?php for($j = 1; $j < $count_contents ?? 0; $j++): ?>
+        nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors<?=$j?>,
+            elPlaceHolder: "contents<?=$j?>",
+            sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+            htParams: {
+                bUseToolbar: true,
+                bUseVerticalResizer: true,
+                bUseModeChanger: true,                                                             
+                fOnBeforeUnload: function () {
+                }
+            },
+            fOnAppLoad: function () {                                   
+            },
+            fCreator: "createSEditor2"
+        });
+    <?php endfor; ?>
+</script>
 <script>
     function handle_delete_row(obj) {
         // let rowCount = $(obj).closest("tbody").find("tr").length;
@@ -494,6 +479,34 @@
 
     }
 </script>
+
+<script type="text/javascript">
+    function checkForNumber(str) {
+        var key = event.keyCode;
+        var frm = document.frm1;
+        if (!(key == 8 || key == 9 || key == 13 || key == 46 || key == 144 ||
+            (key >= 48 && key <= 57) || (key >= 96 && key <= 105) || key == 110 || key == 190)) {
+            event.returnValue = false;
+        }
+    }
+
+    function send_it() {
+        for (var i = 0; i < oEditors.length; i++) {
+            oEditors[i].exec("UPDATE_CONTENTS_FIELD", []); 
+        }
+
+        var frm = document.frm;
+
+        if (frm.code_name.value == "") {
+            frm.code_name.focus();
+            alert("코드명을 입력하셔야 합니다.");
+            return;
+        }
+
+        frm.submit();
+    }
+</script>
+
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
 <?= $this->endSection() ?>

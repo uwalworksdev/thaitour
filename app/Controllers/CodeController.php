@@ -173,6 +173,9 @@ class CodeController extends BaseController
         $f_depature_time = $this->request->getPost("f_depature_time") ?? [];
         $f_destination_time = $this->request->getPost("f_destination_time") ?? [];
 
+        $contents_idx = $this->request->getPost("contents_idx") ?? [];
+        $contents_desc = $this->request->getPost("contents_desc") ?? [];
+
         $upload = ROOTPATH . 'public/data/code/';
 
         if ($code_idx) {
@@ -211,6 +214,14 @@ class CodeController extends BaseController
                             "f_destination_time" => $f_destination_time[$key] ?? ""
                         ]);
                     }
+                }
+            }
+
+            foreach($contents_idx as $key => $value){
+                if(!empty($value)){
+                    $this->codeContents->updateData($value, [
+                        "contents_desc" => $contents_desc[$key]
+                    ]);
                 }
             }
 
