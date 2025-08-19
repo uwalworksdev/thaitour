@@ -93,6 +93,8 @@ class CodeController extends BaseController
             $code_memo = $row['code_memo'];
             $type = $row['type'];
             $code_url = $row['code_url'];
+            $code_title_url = $row['code_title_url'];
+            $is_apply = $row['is_apply'];
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
@@ -141,6 +143,8 @@ class CodeController extends BaseController
             "distance" => $distance,
             "type" => $type,
             "code_url" => $code_url,
+            "code_title_url" => $code_title_url,
+            "is_apply" => $is_apply,
             'code_idx' => $code_idx,
             'flight_arr' => $flight_arr,
             'contents_list' => $contents_list ?? []
@@ -167,6 +171,8 @@ class CodeController extends BaseController
         $file2 = $this->request->getFile('ufile2');
         $color = $this->request->getPost('color');
         $code_url = $this->request->getPost('code_url') ?? '';
+        $code_title_url = $this->request->getPost('code_title_url') ?? '';
+        $is_apply = $this->request->getPost('is_apply') ?? '';
 
         $f_idx = $this->request->getPost("f_idx") ?? [];
         $code_flight = $this->request->getPost("code_flight") ?? [];
@@ -186,6 +192,8 @@ class CodeController extends BaseController
                 'code_name_en' => $code_name_en,
                 'color' => $color,
                 'code_url' => $code_url,
+                'code_title_url' => $code_title_url,
+                'is_apply' => $is_apply,
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
@@ -247,6 +255,8 @@ class CodeController extends BaseController
                 'status' => $status,
                 'color' => $color,
                 'code_url' => $code_url,
+                'code_title_url' => $code_title_url,
+                'is_apply' => $is_apply,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'is_best' => $is_best,

@@ -261,10 +261,30 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
-                                            간략설명
+                                            간략설명 
+                                            <?php
+                                                if($parent_code_no == "48" || $parent_code_no == "49"){
+                                            ?>
+                                                <label for="is_apply">
+                                                    <?php 
+                                                        if($parent_code_no == "48") {
+                                                            echo "출발지 적용";
+                                                        }else {
+                                                            echo "도착지 적용";
+                                                        }
+                                                    ?>
+                                                </label>
+                                                <input type="checkbox" name="is_apply" id="is_apply" value="Y" <?= $is_apply == "Y" ? "checked" : "" ?>>
+                                            <?php
+                                                }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>링크 제목</th>
+                                        <td>
+                                            <input type="text" name="code_title_url" id="code_title_url" value="<?= $code_title_url ?>">
+                                        </td>
                                         <th>URL</th>
                                         <td>
                                             <input type="text" name="code_url" id="code_url" value="<?= $code_url ?>">
@@ -272,7 +292,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Contents
+                                            간단설명
                                             <button type="button" class="btn btn-primary" onclick="add_contents('<?=$code_idx?>');">추가</button>
                                         </th>
                                         <td>
