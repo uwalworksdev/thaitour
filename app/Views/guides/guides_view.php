@@ -38,6 +38,11 @@
         height: 48px;
     }
 
+    .tours-detail .section2 .sec2-item-card.tour_calendar {
+        position: relative;
+        padding-bottom: 0;
+    }
+
     @media screen and (max-width: 850px) {
        .calendar_submit {
             display: none !important;
