@@ -2268,7 +2268,11 @@ public function list_room_pricex()
             $query->where("a.goods_date >=", $today);
         }
 
-        // $query->groupBy("a.idx");
+        $query->groupBy("a.idx");
+
+        echo $query->getCompiledSelect();
+
+        die();
         
         $nTotalCount = $query->countAllResults(true);
 
