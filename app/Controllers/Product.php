@@ -4093,10 +4093,9 @@ class Product extends BaseController
                                             ->where("code_idx !=", $code_idx)
                                             ->where("is_apply =", 'Y')
                                             ->get()->getRowArray();
-                echo $this->db->getLastQuery();
                 $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
 
-                if(count($departure_list[$key]["contents_list"]) < 0 && !empty($row_code)) {
+                if(count($departure_list[$key]["contents_list"]) <= 0 && !empty($row_code)) {
                     $departure_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $row_code["code_idx"])->get()->getResultArray();
                 }
             }
