@@ -2236,9 +2236,28 @@
                         first_code_name = data[i]["code_name"];
                     }
 
-                    html += `<li data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
-                                <span class="${i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>
-                            </li>`;
+                    html += `<li class="${data[i]["contents_list"].length > 0 ? "is_content" : ""}" data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
+                                <span class="${i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>`;
+                    if(data[i]["contents_list"].length > 0) {
+                        html += `<div class="layer_contents">
+                                    <div class="layer_contents_wrap">`;
+
+                        for (let j = 0; j < data[i]["contents_list"].length; j++) {
+                            let contents = data[i]["contents_list"][j];
+
+                        html +=     `<div class="layer_contents_child">
+                                        ${contents}
+                                    </div>`;
+                        }
+                               
+                        if(data[i]["code_url"]){
+                            html +=  `<a class="btn_link" href="<?=$value["code_url"]?>">운항시간 확인하기</a>`
+                        }         
+                                   
+                        html +=     `</div>
+                                </div>`;
+                    }
+                    html +=  `</li>`;
                 }
 
 
