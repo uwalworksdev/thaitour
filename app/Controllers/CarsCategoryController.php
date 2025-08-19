@@ -11,6 +11,8 @@ class CarsCategoryController extends BaseController
     protected $carsOptionModel;
     protected $codeModel;
     protected $categoryFlight;
+    protected $codeContents;
+
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class CarsCategoryController extends BaseController
         $this->carsOptionModel = model("CarsOptionModel");
         $this->codeModel = model("Code");
         $this->categoryFlight = model("CategoryFlight");
+        $this->codeContents = model("CodeContents");
     }
 
     public function get_child_category()
@@ -66,6 +69,9 @@ class CarsCategoryController extends BaseController
 
         $destination_list = $this->carsCategory->getByParentAndCodeNo($ca_idx, $code_no) ?? [];
 
+        foreach ($destination_list as $key => $value) {
+            $destination_list[$key]["contents_list"] = $this->codeContents->where("code_idx", $value["code_idx"])->get()->getResultArray();
+        }
         return $this->response->setJSON($destination_list);
     }
 
