@@ -803,30 +803,32 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table('tbl_product_mst AS p');
-        $relevanceExpr = '';
-        if (!empty($where['arr_search_txt'])) {
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        // $relevanceExpr = '';
+        // if (!empty($where['arr_search_txt'])) {
+        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
             
-            $relevanceParts = [];
-            foreach ($arr_search_txt as $txt) {
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-            }
+        //     $relevanceParts = [];
+        //     foreach ($arr_search_txt as $txt) {
+        //         $escapedTxt = $this->db->escapeLikeString($txt);
+        //         $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //     }
 
-            $relevanceExpr = implode(' + ', $relevanceParts);
-        }
+        //     $relevanceExpr = implode(' + ', $relevanceParts);
+        // }
 
-        $select = "p.*";
+        // $select = "p.*";
 
-        if ($relevanceExpr !== '') {
-            $select .= ", ({$relevanceExpr}) AS relevance_score";
-        }
-        $builder->select($select);
+        // if ($relevanceExpr !== '') {
+        //     $select .= ", ({$relevanceExpr}) AS relevance_score";
+        // }
+        // $builder->select($select);
 
         // $builder = $this->builder();
+        $builder->select('p.*');
+
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
@@ -1017,23 +1019,29 @@ class ProductModel extends Model
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            foreach ($arr_search_txt as $index => $txt) {
+            // foreach ($arr_search_txt as $index => $txt) {
 
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
+            //     if ($index > 0) {
+            //         $builder->orGroupStart();
+            //     }
 
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+            //     $escapedTxt = $this->db->escapeLikeString($txt);
+            //     $builder->like('product_name', $escapedTxt);
+            //     $builder->orLike('product_name_en', $escapedTxt);
+            //     $builder->orLike('keyword', $escapedTxt);
 
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
+            //     if ($index > 0) {
+            //         $builder->groupEnd();
+            //     }
+            // }
+
+            $escapedTxt = $this->db->escapeLikeString($str_search_txt);
+            $builder->like('product_name', $escapedTxt);
+            $builder->orLike('product_name_en', $escapedTxt);
+            $builder->orLike('keyword', $escapedTxt);
+
             $builder->groupEnd();
         }
 
@@ -1062,18 +1070,19 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
-            } else {
-                $orderBy = ['product_idx' => 'DESC'];
-            }
-            // $orderBy = ['product_idx' => 'DESC'];
-        }else {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy['relevance_score'] = 'DESC';
-                $orderBy = ['product_idx' => 'DESC'];
-            }
+            // if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+            //     $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            // } else {
+            //     $orderBy = ['product_idx' => 'DESC'];
+            // }
+            $orderBy = ['product_idx' => 'DESC'];
         }
+        // else {
+        //     if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+        //         $orderBy['relevance_score'] = 'DESC';
+        //         $orderBy = ['product_idx' => 'DESC'];
+        //     }
+        // }
 
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
@@ -1297,40 +1306,42 @@ class ProductModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table('tbl_product_mst AS p');
-        $relevanceExpr = '';
-        if (!empty($where['arr_search_txt'])) {
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+        // $relevanceExpr = '';
+        // if (!empty($where['arr_search_txt'])) {
+        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
             
-            $relevanceParts = [];
-            foreach ($arr_search_txt as $txt) {
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-            }
+        //     $relevanceParts = [];
+        //     foreach ($arr_search_txt as $txt) {
+        //         $escapedTxt = $this->db->escapeLikeString($txt);
+        //         $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //     }
 
-            $relevanceExpr = implode(' + ', $relevanceParts);
-        }
+        //     $relevanceExpr = implode(' + ', $relevanceParts);
+        // }
 
-        $select = "p.*, 
-            MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
-            MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
+        // $select = "p.*, 
+        //     MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
+        //     MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
 
-        if ($relevanceExpr !== '') {
-            $select .= ", ({$relevanceExpr}) AS relevance_score";
-        }
+        // if ($relevanceExpr !== '') {
+        //     $select .= ", ({$relevanceExpr}) AS relevance_score";
+        // }
 
-        $builder->select($select);
-        // $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
+        // $builder->select($select);
+
+        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
-/*
-        $builder->where('h.o_sdate IS NOT NULL');
-        $builder->where('h.o_edate IS NOT NULL');
-        $builder->where('h.o_sdate <>', '');
-        $builder->where('h.o_edate <>', '');
-        $builder->where('h.option_type', 'M');
-*/		
+
+        // $builder->where('h.o_sdate IS NOT NULL');
+        // $builder->where('h.o_edate IS NOT NULL');
+        // $builder->where('h.o_sdate <>', '');
+        // $builder->where('h.o_edate <>', '');
+        // $builder->where('h.option_type', 'M');
+	
         if ($where['day_start'] && $where['day_start'] != "") {
             $builder->where('h.o_sdate <=', $where['day_start']); 
         }
@@ -1517,30 +1528,31 @@ class ProductModel extends Model
 
         if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
-            // $str_search_txt = trim($where['arr_search_txt']);
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            foreach ($arr_search_txt as $index => $txt) {
+            // foreach ($arr_search_txt as $index => $txt) {
 
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
+            //     if ($index > 0) {
+            //         $builder->orGroupStart();
+            //     }
 
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+            //     $escapedTxt = $this->db->escapeLikeString($txt);
+            //     $builder->like('product_name', $escapedTxt);
+            //     $builder->orLike('product_name_en', $escapedTxt);
+            //     $builder->orLike('keyword', $escapedTxt);
 
-                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+            //     if ($index > 0) {
+            //         $builder->groupEnd();
+            //     }
+            // }
 
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
+            $escapedTxt = $this->db->escapeLikeString($str_search_txt);
+            $builder->like('product_name', $escapedTxt);
+            $builder->orLike('product_name_en', $escapedTxt);
+            $builder->orLike('keyword', $escapedTxt);
+
             $builder->groupEnd();
         }
 
@@ -1551,10 +1563,6 @@ class ProductModel extends Model
         if ($where['special_price'] != "") {
             $builder->where("special_price", $where['special_price']);
         }
-
-//        if ($where['product_status'] != "") {
-//            $builder->where("product_status", $where['product_status']);
-//        }
 
         $currentUrl = current_url();
         $link = '/AdmMaster/';
@@ -1570,26 +1578,23 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
-            } else {
-                $orderBy = ['product_idx' => 'DESC'];
-            }
-            // $orderBy = ['product_idx' => 'DESC'];
-        }else {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy['relevance_score'] = 'DESC';
-                $orderBy = ['product_idx' => 'DESC'];
-            }
+            // if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+            //     $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            // } else {
+            //     $orderBy = ['product_idx' => 'DESC'];
+            // }
+            $orderBy = ['product_idx' => 'DESC'];
         }
+        // else {
+        //     if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+        //         $orderBy['relevance_score'] = 'DESC';
+        //         $orderBy = ['product_idx' => 'DESC'];
+        //     }
+        // }
 
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
         }
-
-    //    $sql = $builder->getCompiledSelect();
-    //    var_dump($sql);
-    //    die();
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
@@ -1606,10 +1611,6 @@ class ProductModel extends Model
             $items[$key]['product_price_won'] = $product_price_won;
         }
 		
-
-        // var_dump($items);
-        // die();
-
         //write_log("last- ". $this->db->getLastQuery());
 		
         $data = [
@@ -1783,31 +1784,31 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table($this->table . " as pm");
-        $relevanceExpr = '';
-        if (!empty($where['arr_search_txt'])) {
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        // $relevanceExpr = '';
+        // if (!empty($where['arr_search_txt'])) {
+        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
             
-            $relevanceParts = [];
-            foreach ($arr_search_txt as $txt) {
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-            }
+        //     $relevanceParts = [];
+        //     foreach ($arr_search_txt as $txt) {
+        //         $escapedTxt = $this->db->escapeLikeString($txt);
+        //         $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //         $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+        //     }
 
-            $relevanceExpr = implode(' + ', $relevanceParts);
-        }
+        //     $relevanceExpr = implode(' + ', $relevanceParts);
+        // }
 
-        $select = "pm.*";
+        // $select = "pm.*";
 
-        if ($relevanceExpr !== '') {
-            $select .= ", ({$relevanceExpr}) AS relevance_score";
-        }
+        // if ($relevanceExpr !== '') {
+        //     $select .= ", ({$relevanceExpr}) AS relevance_score";
+        // }
 
-        $builder->select($select);
+        // $builder->select($select);
 
-        // $builder->select('pm.*');
+        $builder->select('pm.*');
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
@@ -1837,23 +1838,28 @@ class ProductModel extends Model
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            foreach ($arr_search_txt as $index => $txt) {
+            // foreach ($arr_search_txt as $index => $txt) {
 
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
+            //     if ($index > 0) {
+            //         $builder->orGroupStart();
+            //     }
 
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+            //     $escapedTxt = $this->db->escapeLikeString($txt);
+            //     $builder->like('product_name', $escapedTxt);
+            //     $builder->orLike('product_name_en', $escapedTxt);
+            //     $builder->orLike('keyword', $escapedTxt);
 
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
+            //     if ($index > 0) {
+            //         $builder->groupEnd();
+            //     }
+            // }
+            $escapedTxt = $this->db->escapeLikeString($str_search_txt);
+            $builder->like('product_name', $escapedTxt);
+            $builder->orLike('product_name_en', $escapedTxt);
+            $builder->orLike('keyword', $escapedTxt);
+
             $builder->groupEnd();
         }
 
@@ -1896,18 +1902,19 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy = ['relevance_score' => 'DESC', 'pm.product_idx' => 'DESC'];
-            } else {
-                $orderBy = ['pm.product_idx' => 'DESC'];
-            }
-            // $orderBy = ['pm.product_idx' => 'DESC'];
-        }else {
-            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
-                $orderBy['relevance_score'] = 'DESC';
-                $orderBy = ['pm.product_idx' => 'DESC'];
-            }
+            // if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+            //     $orderBy = ['relevance_score' => 'DESC', 'pm.product_idx' => 'DESC'];
+            // } else {
+            //     $orderBy = ['pm.product_idx' => 'DESC'];
+            // }
+            $orderBy = ['pm.product_idx' => 'DESC'];
         }
+        // else {
+        //     if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+        //         $orderBy['relevance_score'] = 'DESC';
+        //         $orderBy = ['pm.product_idx' => 'DESC'];
+        //     }
+        // }
 
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
