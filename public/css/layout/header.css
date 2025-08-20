@@ -881,7 +881,7 @@
         top: 22rem;
         left: 50%;
         transform: translateX(-50%);
-        max-width: 58rem;
+        max-width: 100%;
         padding: 6rem 4rem !important;
         width: calc(100% - 3rem);
         background: #fff;
@@ -909,7 +909,7 @@
     .popup_link .sub_nav_menu .sub_item {
         width: 47%;
         text-align: left;
-        padding: 1.2rem 1rem;
+        padding: 2.6rem;
         border-bottom: 1px solid #eee;
         display: block;
         border-radius: unset;
@@ -922,7 +922,7 @@
     .popup_link .sub_nav_menu .sub_item p {
         color: #1d1919;
         font-weight: 500;
-        font-size: 2.6rem;
+        font-size: 3rem;
     }
 
     .popup_link .btn_link_main {
