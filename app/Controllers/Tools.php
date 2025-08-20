@@ -166,10 +166,9 @@ class Tools extends BaseController
                         ->groupEnd();
             }
 
-            $builder->groupBy('t1.product_idx')
+            $result = $builder->groupBy('t1.product_idx')
                     ->get()->getResultArray();
 
-            echo $this->db->getLastQuery();
         }
 
         $cnt = count($result);
