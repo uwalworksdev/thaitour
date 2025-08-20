@@ -167,7 +167,7 @@ class Tools extends BaseController
             }
 
             $builder->groupBy('t1.product_idx')
-                    ->findAll();
+                    ->get()->getResultArray();
 
             echo $this->db->getLastQuery();
         }
