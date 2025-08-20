@@ -144,8 +144,6 @@ class Tools extends BaseController
 
         $row_member = $this->member->getByIdx($member_Id);
 
-        if($row_member["is_review"] != "Y"){
-        }
         if ($product_code == "132404" && $s_code == "D") {
             $result = $this->driverModel->listAll();
         } else {
