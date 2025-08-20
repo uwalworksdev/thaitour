@@ -1019,23 +1019,19 @@ class ProductModel extends Model
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            // foreach ($arr_search_txt as $index => $txt) {
+            foreach ($arr_search_txt as $index => $txt) {
 
-            //     if ($index > 0) {
-            //         $builder->orGroupStart();
-            //     }
+                $builder->groupStart();
 
-            //     $escapedTxt = $this->db->escapeLikeString($txt);
-            //     $builder->like('product_name', $escapedTxt);
-            //     $builder->orLike('product_name_en', $escapedTxt);
-            //     $builder->orLike('keyword', $escapedTxt);
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
 
-            //     if ($index > 0) {
-            //         $builder->groupEnd();
-            //     }
-            // }
+                $builder->groupEnd();
+            }
 
             $escapedTxt = $this->db->escapeLikeString($str_search_txt);
             $builder->like('product_name', $escapedTxt);
@@ -1530,28 +1526,23 @@ class ProductModel extends Model
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            // foreach ($arr_search_txt as $index => $txt) {
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                $builder->groupStart();
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+                $builder->groupEnd();
 
-            //     if ($index > 0) {
-            //         $builder->orGroupStart();
-            //     }
+            }
 
-            //     $escapedTxt = $this->db->escapeLikeString($txt);
-            //     $builder->like('product_name', $escapedTxt);
-            //     $builder->orLike('product_name_en', $escapedTxt);
-            //     $builder->orLike('keyword', $escapedTxt);
-
-            //     if ($index > 0) {
-            //         $builder->groupEnd();
-            //     }
-            // }
-
-            $escapedTxt = $this->db->escapeLikeString($str_search_txt);
-            $builder->like('product_name', $escapedTxt);
-            $builder->orLike('product_name_en', $escapedTxt);
-            $builder->orLike('keyword', $escapedTxt);
+            // $escapedTxt = $this->db->escapeLikeString($str_search_txt);
+            // $builder->like('product_name', $escapedTxt);
+            // $builder->orLike('product_name_en', $escapedTxt);
+            // $builder->orLike('keyword', $escapedTxt);
 
             $builder->groupEnd();
         }
@@ -1838,27 +1829,23 @@ class ProductModel extends Model
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            // foreach ($arr_search_txt as $index => $txt) {
+            foreach ($arr_search_txt as $index => $txt) {
 
-            //     if ($index > 0) {
-            //         $builder->orGroupStart();
-            //     }
+                $builder->groupStart();
 
-            //     $escapedTxt = $this->db->escapeLikeString($txt);
-            //     $builder->like('product_name', $escapedTxt);
-            //     $builder->orLike('product_name_en', $escapedTxt);
-            //     $builder->orLike('keyword', $escapedTxt);
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
 
-            //     if ($index > 0) {
-            //         $builder->groupEnd();
-            //     }
-            // }
-            $escapedTxt = $this->db->escapeLikeString($str_search_txt);
-            $builder->like('product_name', $escapedTxt);
-            $builder->orLike('product_name_en', $escapedTxt);
-            $builder->orLike('keyword', $escapedTxt);
+                $builder->groupEnd();
+            }
+            // $escapedTxt = $this->db->escapeLikeString($str_search_txt);
+            // $builder->like('product_name', $escapedTxt);
+            // $builder->orLike('product_name_en', $escapedTxt);
+            // $builder->orLike('keyword', $escapedTxt);
 
             $builder->groupEnd();
         }
