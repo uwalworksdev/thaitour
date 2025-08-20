@@ -567,9 +567,8 @@ class ReservationController extends BaseController
             "pg"              => $pg ?? '',
             "titleStr"        => $titleStr,
             "str_guide"       => $str_guide,
-            "row_cou"         => $row_cou ?? [
+            "row_cou"         => $row_cou ?? [],
             'used_coupon_no'  => '',
-                ],
             "fresult" => $fresult ?? '',
             "used_coupon_no" => $used_coupon_no,
         ];
