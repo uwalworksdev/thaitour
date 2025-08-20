@@ -339,9 +339,15 @@ class CheckoutController extends BaseController
 		$builder = $db->table('tbl_coupon c');
 
 		// SELECT 및 JOIN 처리
-		$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+		$builder->select('c.c_idx, c.coupon_num
+								, COALESCE(s.coupon_name, m.coupon_name) AS coupon_name
+								, COALESCE(s.dc_type, m.dc_type) AS dc_type
+								, COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
+								, COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
+								, s.dex_price_pe');
 		$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
 		$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+		$builder->join('tbl_coupon_mst m', 'c.coupon_mst_idx = m.idx', 'left');
 
 		// 조건 처리
 		$builder->where('c.status', 'N');
@@ -370,7 +376,7 @@ class CheckoutController extends BaseController
 			'order_user_mobile' => $order_user_mobile,
             'product_name'      => $product_name,
             'payment_no'        => $payment_no,
-            'dataValue'         => $ordert_no,
+            'dataValue'         => $order_no,
             'resultCoupon'      => $result,
 			'discount_rate'     => $discount_rate,
             'point'             => $mileage
