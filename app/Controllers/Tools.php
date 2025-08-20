@@ -169,6 +169,8 @@ class Tools extends BaseController
 
             $builder->groupBy('t1.product_idx')
                     ->findAll();
+
+            echo $this->db->getLastQuery();
         }
 
         $cnt = count($result);
