@@ -85,7 +85,7 @@
                             <tbody>
                                 <tr>
                                     <th>카테고리선택</th>
-                                    <td colspan="3">
+                                    <td colspan="">
                                         <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <option value="all">전체</option>
@@ -114,6 +114,16 @@
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>
+                                    <td colspan="2">
+                                        <div class="wrap_input" style="display: inline-flex;">
+                                            <input type="radio" id="used_id" name="coupon_type" value="1">
+                                            <label for="used_id">아이디당 1회 </label>
+                                        </div>
+                                        <div class="wrap_input" style="display: inline-flex; margin-left: 20px;">
+                                            <input type="radio" id="not_used_id" name="coupon_type" value="0"> 
+                                            <label for="not_used_id">아이디당 1회 사용없음</label>  
+                                        </div>
+                                    </td>
                                 </tr>
                                 <?php
                                     // $_product_code_arr = explode("|", $product_code_list);
@@ -121,7 +131,7 @@
                                 ?>
                                 <tr>
                                     <th>등록된 카테고리</th>
-                                    <td colspan="3">
+                                    <td colspan="">
                                         <ul id="reg_cate">
                                             <?php
                                                 foreach($coupon_category_list as $cat){
@@ -133,6 +143,11 @@
                                                 }
                                             ?>
                                         </ul>
+                                    </td>
+                                    <th>쿠폰 사용조건</th>
+                                    <td>
+                                       <input style="width: 100px" type="text" name="usage_conditions"> 원 이상 구매시 사용가능
+
                                     </td>
                                 </tr>
 
