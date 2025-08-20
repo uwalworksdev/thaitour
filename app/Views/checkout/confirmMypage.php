@@ -763,6 +763,8 @@ $(window).on("load", function() {
                 var sign        =  res.sign;
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
+                var coupon_money =  res.coupon_money;
+                var point =  res.point;
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
                 $("#signature").val(sign);
