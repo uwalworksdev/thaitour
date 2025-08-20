@@ -727,6 +727,7 @@ function payment_acnt()
 					var sign        =  res.sign;
 					var sign2       =  res.sign2;
 					var orderNumber =  res.orderNumber;
+					var sum = 0;
 
 					$("#EdiDate").val(EdiDate);
 					$("#SignData").val(hashString);
