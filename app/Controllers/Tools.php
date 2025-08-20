@@ -17,6 +17,7 @@ class Tools extends BaseController
     protected $guideModel;
     protected $reviewModel;
     protected $db;
+    protected $member;
 
 
     public function __construct()
@@ -30,6 +31,8 @@ class Tools extends BaseController
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->guideModel = new Guides();
         $this->reviewModel = model('ReviewModel');
+        $this->member = model("Member");
+
         $this->db = db_connect();
 
         helper('my_helper');
@@ -63,6 +66,14 @@ class Tools extends BaseController
     {
         $member_Id = session('member.idx');
 
+        $row_member = $this->member->getByIdx($member_Id);
+
+        $str_query = "";
+
+        if($row_member["is_review"] != "Y"){
+            $str_query = " AND t3.m_idx = '$member_Id' AND t3.order_status = 'E' ";
+        }
+
         $code = $_POST['code'];
         $depth = $_POST['depth'];
         $sql = "
@@ -70,7 +81,7 @@ class Tools extends BaseController
             LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_2
             LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx
             LEFT JOIN tbl_member as t4 ON t4.m_idx = t3.m_idx  
-            WHERE t1.parent_code_no = '$code' AND t1.depth = '$depth' AND t1.status = 'Y' AND ((t3.m_idx = '$member_Id' AND t3.order_status = 'E') OR t4.is_review = 'Y')
+            WHERE t1.parent_code_no = '$code' AND t1.depth = '$depth' AND t1.status = 'Y' $str_query
             GROUP BY t1.code_no ORDER BY t1.onum ASC, t1.code_idx ASC
         ";
 
@@ -131,10 +142,14 @@ class Tools extends BaseController
         $s_code = $_POST['s_code'];
         $member_Id = session('member.idx');
 
+        $row_member = $this->member->getByIdx($member_Id);
+
+        if($row_member["is_review"] != "Y"){
+        }
         if ($product_code == "132404" && $s_code == "D") {
             $result = $this->driverModel->listAll();
         } else {
-            $result = $this->ProductModel
+            $builder = $this->ProductModel
                 ->select('t1.*')
                 ->join('tbl_order_mst as t2', 't1.product_idx = t2.product_idx', 'left')
                 ->from('tbl_product_mst AS t1')
@@ -146,16 +161,16 @@ class Tools extends BaseController
                 ->groupStart()
                 ->where('t1.product_code_2', $product_code)
                 ->orLike('t1.product_code_list', '|' . $product_code)
-                ->groupEnd()
-                ->groupStart()
-                ->groupStart()
-                ->where('t2.m_idx', $member_Id)
-                ->where('t2.order_status', 'E')
-                ->groupEnd()
-                ->orWhere('t1.is_review', 'Y')
-                ->groupEnd()
-                ->groupBy('t1.product_idx')
-                ->findAll();
+                ->groupEnd();
+            if($row_member["is_review"] != "Y") {
+                $builder->groupStart()
+                        ->where('t2.m_idx', $member_Id)
+                        ->where('t2.order_status', 'E')
+                        ->groupEnd();
+            }
+
+            $builder->groupBy('t1.product_idx')
+                    ->findAll();
         }
 
         $cnt = count($result);

@@ -309,11 +309,19 @@ class ReviewController extends BaseController
         $privacy = $this->policy->getByCode("privacy");
         $third_paties = $this->policy->getByCode("third_paties");
 
+        $row_member = $this->member->getByIdx($member_Id);
+
+        $str_query = "";
+
+        if($row_member["is_review"] != "Y"){
+            $str_query = " AND t3.order_status = 'E' AND t3.m_idx = '$member_Id' ";
+        }
+
         $sql0 = "SELECT t1.*, t2.product_name, t3.order_idx FROM tbl_code as t1 
             LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_1
             LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx  
             LEFT JOIN tbl_member as t4 ON t4.m_idx = t3.m_idx
-            WHERE t1.parent_code_no = 13 AND t1.depth = '2' AND ((t3.order_status = 'E' AND t3.m_idx = '$member_Id') OR t4.is_review = 'Y')
+            WHERE t1.parent_code_no = 13 AND t1.depth = '2' $str_query
             GROUP BY t1.code_no ORDER BY t1.onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
 
@@ -340,6 +348,13 @@ class ReviewController extends BaseController
         $idx = updateSQ($_GET["idx"]);
         $product_idx = updateSQ($_GET["product_idx"] ?? 0);
         if ($idx) {
+
+            $str_query = "";
+
+            if($row_member["is_review"] != "Y"){
+                $str_query = " and t7.m_idx = '$member_Id' and t6.order_status = 'E' ";
+            }
+
             $sql_info = "select t1.*, t2.code_no as travel_type, t3.code_no as travel_type_2, t4.code_no as travel_type_3,
                 t2.code_name as travel_type_name, t3.code_name as travel_type_name_2, t4.code_name as travel_type_name_3, t5.product_name
                 from tbl_travel_review t1
@@ -350,7 +365,7 @@ class ReviewController extends BaseController
                 left join tbl_order_mst t6 on t6.product_idx = t5.product_idx
                 left join tbl_member t7 on t7.m_idx = t6.m_idx
 
-                where t1.idx = '$idx' and ((t7.m_idx = '$member_Id' and t6.order_status = 'E') OR t7.is_review = 'Y')
+                where t1.idx = '$idx' $str_query
                 ";
 
             $info = $this->db->query($sql_info)->getRowArray();
