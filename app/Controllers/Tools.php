@@ -147,7 +147,7 @@ class Tools extends BaseController
         if ($product_code == "132404" && $s_code == "D") {
             $result = $this->driverModel->listAll();
         } else {
-            $builder = $this->ProductModel
+            $builder = $this->db->table('tbl_product_mst t1')
                 ->select('t1.*')
                 ->join('tbl_order_mst as t2', 't1.product_idx = t2.product_idx', 'left')
                 ->groupStart()
