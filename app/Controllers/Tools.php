@@ -150,7 +150,6 @@ class Tools extends BaseController
             $builder = $this->ProductModel
                 ->select('t1.*')
                 ->join('tbl_order_mst as t2', 't1.product_idx = t2.product_idx', 'left')
-                ->from('tbl_product_mst AS t1')
                 ->groupStart()
                 ->where('t1.product_status !=', 'D')
                 ->where('t1.product_status !=', 'S')
