@@ -18,7 +18,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['ReviewController::list_admin', 'ReviewController::write_admin']
                 ],
             ]
-        ], 레
+        ],
         [
             'name' => '상품등록 관리',
             'code' => 'B',
