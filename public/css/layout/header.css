@@ -878,9 +878,9 @@
 
     .popup_link .popup_news {
         position: absolute;
-        top: 22rem;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         max-width: 100%;
         padding: 6rem 4rem !important;
         width: calc(100% - 3rem);
