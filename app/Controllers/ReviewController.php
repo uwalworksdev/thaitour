@@ -350,7 +350,7 @@ class ReviewController extends BaseController
                 left join tbl_order_mst t6 on t6.product_idx = t5.product_idx
                 left join tbl_member t7 on t7.m_idx = t6.m_idx
 
-                where t1.idx = '$idx' and t7.m_idx = '$member_Id' and t6.order_status = 'E'
+                where t1.idx = '$idx' and ((t7.m_idx = '$member_Id' and t6.order_status = 'E') OR t7.is_review = 'Y')
                 ";
 
             $info = $this->db->query($sql_info)->getRowArray();

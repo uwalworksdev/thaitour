@@ -68,8 +68,9 @@ class Tools extends BaseController
         $sql = "
             SELECT t1.*, t2.product_name, t3.order_idx FROM tbl_code as t1 
             LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_2
-            LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx  
-            WHERE t1.parent_code_no = '$code' AND t1.depth = '$depth' AND t1.status = 'Y' AND t3.m_idx = '$member_Id' AND t3.order_status = 'E'
+            LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx
+            LEFT JOIN tbl_member as t4 ON t4.m_idx = t3.m_idx  
+            WHERE t1.parent_code_no = '$code' AND t1.depth = '$depth' AND t1.status = 'Y' AND ((t3.m_idx = '$member_Id' AND t3.order_status = 'E') OR t4.is_review = 'Y')
             GROUP BY t1.code_no ORDER BY t1.onum ASC, t1.code_idx ASC
         ";
 
@@ -146,8 +147,13 @@ class Tools extends BaseController
                 ->where('t1.product_code_2', $product_code)
                 ->orLike('t1.product_code_list', '|' . $product_code)
                 ->groupEnd()
+                ->groupStart()
+                ->groupStart()
                 ->where('t2.m_idx', $member_Id)
                 ->where('t2.order_status', 'E')
+                ->groupEnd()
+                ->orWhere('t1.is_review', 'Y')
+                ->groupEnd()
                 ->groupBy('t1.product_idx')
                 ->findAll();
         }
