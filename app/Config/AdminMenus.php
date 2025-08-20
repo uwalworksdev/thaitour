@@ -18,7 +18,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['ReviewController::list_admin', 'ReviewController::write_admin']
                 ],
             ]
-        ],
+        ], 레
         [
             'name' => '상품등록 관리',
             'code' => 'B',
@@ -60,7 +60,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
                 ],
                 [
-                    'name' => '레스토 상품관리',
+                    'name' => '레스토랑 상품관리',
                     'code' => 'B7',
                     'url' => ['/AdmMaster/_tourRegist/restaurant/list'],
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info', 'TourRegistController::list_spas_price']
