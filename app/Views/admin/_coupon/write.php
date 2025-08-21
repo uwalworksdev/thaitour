@@ -78,7 +78,7 @@
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <colgroup>
                                 <col width="10%"/>
-                                <col width="45%"/>
+                                <col width="*%"/>
                                 <col width="10%"/>
                                 <col width="*%"/>
                             </colgroup>
