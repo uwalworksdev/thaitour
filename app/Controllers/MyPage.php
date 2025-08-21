@@ -478,7 +478,7 @@ public function reservationList() {
             }else{
                 // 쿠폰 내역 조회
                 $fresult = $this->db->table('tbl_coupon c1')
-                                ->select('c1.*, c2.coupon_apply')
+                                ->select('c1.*, c2.coupon_apply, c.exp_start_day, c.exp_end_day')
                                 ->join('tbl_coupon_mst c2', 'c1.coupon_mst_idx = c2.idx')
                                 ->where('c1.keyword', $keyword)
                                 ->where('c1.user_id = ', '')
@@ -521,7 +521,8 @@ public function reservationList() {
                     ], 400);
                 }
         
-                if( $frow[0]['enddate'] <= date('Y-m-d') ){
+                if( date("Y-m-d", strtotime($frow[0]['exp_start_day'])) > date('Y-m-d') 
+                    || date("Y-m-d", strtotime($frow[0]['exp_end_day'])) < date('Y-m-d') ){
                     $message = "사용기한이 지난 쿠폰입니다";
 
                     return $this->response->setJSON([

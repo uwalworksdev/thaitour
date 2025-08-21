@@ -392,11 +392,11 @@ class AdminOperatorController extends BaseController
         $last_idx = $this->createLastIdx();
 
         // 테스트 (구현 필요)
-        $exp_days = $frow_type['exp_days'] + 1;
-        $enddate = $this->fn_addDays(date('Y-m-d'), $exp_days);
+        // $exp_days = $frow_type['exp_days'] + 1;
+        // $enddate = $this->fn_addDays(date('Y-m-d'), $exp_days);
 
         //$enddate = "2018-12-24";
-
+        $enddate = date("Y-m-d", strtotime($frow_type['exp_end_day']));
         $fsql = " insert into tbl_coupon set
                   coupon_num	    = '" . $_couponNum . "'
                 , coupon_mst_idx	= '" . $coupon_mst_idx . "'
