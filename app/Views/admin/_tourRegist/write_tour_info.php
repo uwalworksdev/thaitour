@@ -211,7 +211,7 @@
 																								<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																								<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
 																							</select>
-																							<a href="javascript:delete_tour('<?= $tour['tours_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+																							<a href="javascript:delete_tour(this,'<?= $tour['tours_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
 																						</div>
 																					</td>
 																				</tr>
@@ -1548,7 +1548,7 @@
 		});
 	}
 
-	function delete_tour(tours_idx, info_idx, product_idx) {
+	function delete_tour(button, tours_idx, info_idx, product_idx) {
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 			return false;
 		}
@@ -1566,7 +1566,10 @@
 			cache: false,
 			success: function (data, textStatus) {
 				alert(data.message);
-				location.reload();
+				if(data.result == true){
+					$(button).closest("tr").remove();
+				}
+				// location.reload();
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);

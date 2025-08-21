@@ -1731,13 +1731,23 @@ class AdminTourController extends BaseController
                              ->delete();
             if ($result) {
                 $msg = "일차전체 삭제 완료";
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => $msg
+                ]);
             } else {
                 $msg = "일차전체 삭제 오류";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $msg
+                ]);
             }
-            return $this->response->setJSON(['message' => $msg]);
         }
 
-        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => '일차 삭제에 필요한 데이터가 없습니다.']
+        );
     }
 
     public function del_main_option()
