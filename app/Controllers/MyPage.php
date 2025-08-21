@@ -477,13 +477,31 @@ public function reservationList() {
         
             }else{
                 // 쿠폰 내역 조회
-                $fresult = $this->db->table('tbl_coupon')
-                         ->where('keyword', $keyword)
-                         ->where('user_id = ', '')
-                         ->get();
-                $frow    = $fresult->getResultArray();
+                $fresult = $this->db->table('tbl_coupon c1')
+                                ->select('c1.*, c2.coupon_apply')
+                                ->join('tbl_coupon_mst c2', 'c1.coupon_mst_idx = c2.idx')
+                                ->where('c1.keyword', $keyword)
+                                ->where('c1.user_id = ', '')
+                                ->get();
+                $frow = $fresult->getResultArray();
         
                 $coupon_num = $frow[0]['coupon_num'];
+
+                if($frow[0]['coupon_apply'] != "A"){
+                    $check_coupon_use = $this->db->table('tbl_coupon')
+                                                ->where('coupon_mst_idx', $frow[0]['coupon_mst_idx'])
+                                                ->where('user_id = ', $user_id)
+                                                ->get()->getRowArray();
+
+                    if($check_coupon_use){
+                        $message = "이 쿠폰은 계정당 한 번만 발급될 수 있습니다.";
+
+                        return $this->response->setJSON([
+                            'result' => false,
+                            'message' => $message
+                        ], 400);
+                    }
+                }
 
                 if( $frow[0]['status'] != "D" ){
                     $message = "이미 발급되었거나 사용된 쿠폰입니다";
