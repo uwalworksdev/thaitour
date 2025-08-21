@@ -478,7 +478,7 @@ public function reservationList() {
             }else{
                 // 쿠폰 내역 조회
                 $fresult = $this->db->table('tbl_coupon c1')
-                                ->select('c1.*, c2.coupon_apply, c.exp_start_day, c.exp_end_day')
+                                ->select('c1.*, c2.coupon_apply, c2.exp_start_day, c2.exp_end_day')
                                 ->join('tbl_coupon_mst c2', 'c1.coupon_mst_idx = c2.idx')
                                 ->where('c1.keyword', $keyword)
                                 ->where('c1.user_id = ', '')
