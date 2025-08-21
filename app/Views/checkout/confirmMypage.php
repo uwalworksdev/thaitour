@@ -669,7 +669,7 @@ $('.couponApply').click(function () {
 
 		 $("#used_coupon_money").val('0');
 		 $("#coupon_discount").text('0') +' 원';
-         
+
          payment_use_coupon();
 
 		//  payment_acnt(); 
@@ -681,6 +681,7 @@ $('.couponApply').click(function () {
     $('.btn_accept_coupon').click(function () {
         if($(".couponSel").hasClass("active") || $('.couponApply').hasClass('active')) {
 		    payment_acnt();   
+            $("#popup_coupon").hide();
         }else {
             alert("쿠폰을 선택해주세요.");
             return false;
