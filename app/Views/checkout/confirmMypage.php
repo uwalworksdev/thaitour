@@ -653,7 +653,7 @@ $('.couponSel').click(function () {
 		 $("#coupon_pe").val(coupon_pe);
 		 $("#coupon_price").val(coupon_price);
 
-		 payment_acnt(); 
+		//  payment_acnt(); 
 });
 
 $('.couponApply').click(function () {
@@ -669,12 +669,20 @@ $('.couponApply').click(function () {
 		 $("#used_coupon_money").val('0');
 		 $("#coupon_discount").text('0') +' 원';
 
-		 payment_acnt(); 
+		//  payment_acnt(); 
 
 });
 </script>
 
 <script>
+    $('.btn_accept_coupon').click(function () {
+        if($(".couponSel").hasClass("active") || $('.couponApply').hasClass('active')) {
+		    payment_acnt();   
+        }else {
+            alert("쿠폰을 선택해주세요.");
+            return false;
+        }
+    });
 	$('#use_point').blur(function () {
 		var point = $(this).val();
 		$('#used_point').val(point);
