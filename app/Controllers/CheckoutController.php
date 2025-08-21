@@ -344,7 +344,7 @@ class CheckoutController extends BaseController
 								, COALESCE(s.dc_type, m.dc_type) AS dc_type
 								, COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
 								, COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
-								, s.dex_price_pe');
+								, s.dex_price_pe, m.minimum_coupon_price');
 		$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
 		$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
 		$builder->join('tbl_coupon_mst m', 'c.coupon_mst_idx = m.idx', 'left');

@@ -409,7 +409,8 @@
 						 data-num="<?=$row['coupon_num']?>" 
 						 data-name="<?=$row['coupon_name']?>"
 						 data-pe="<?=$row['coupon_pe']?>"
-						 data-price="<?=$row['coupon_price']?>" >
+						 data-price="<?=$row['coupon_price']?>"
+                         data-minimum-price="<?=$row['minimum_coupon_price']?>" >
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
@@ -636,25 +637,31 @@
 
 <script>
 $('.couponSel').click(function () {
-		 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
-		 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
-		 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
+        var minimum_price = Number($(this).data('minimum-price') ?? 0); 
+        var payment_tot  = $("#payment_tot").val()*1;
+        var coupon_idx   = $(this).data('idx');
+        var coupon_num   = $(this).data('num');	
+        var coupon_name  = $(this).data('name');	
+        var coupon_pe    = $(this).data('pe')*1;
+        var coupon_price = $(this).data('price')*1;
 
-		 var payment_tot  = $("#payment_tot").val()*1;
-		 var coupon_idx   = $(this).data('idx');
-		 var coupon_num   = $(this).data('num');	
-		 var coupon_name  = $(this).data('name');	
-		 var coupon_pe    = $(this).data('pe')*1;
-		 var coupon_price = $(this).data('price')*1;
+        if (minimum_price > 0 && payment_tot < minimum_price) {
+            alert("최소 구매 금액은 "+minimum_price+"원입니다.");
+            return false;
+        }
 
-		 $("#coupon_idx").val(coupon_idx);
-		 $("#coupon_num").val(coupon_num);	
-		 $("#coupon_name").val(coupon_name);	
-		 $("#coupon_pe").val(coupon_pe);
-		 $("#coupon_price").val(coupon_price);
+        $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+        $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
+        $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
 
-         payment_use_coupon();
-		//  payment_acnt(); 
+        $("#coupon_idx").val(coupon_idx);
+        $("#coupon_num").val(coupon_num);	
+        $("#coupon_name").val(coupon_name);	
+        $("#coupon_pe").val(coupon_pe);
+        $("#coupon_price").val(coupon_price);
+
+        payment_use_coupon();
+    //  payment_acnt(); 
 });
 
 $('.couponApply').click(function () {
@@ -706,6 +713,27 @@ $('.couponApply').click(function () {
         var used_point   = $("#used_point").val()*1;
 
         if(coupon_pe > 0) {
+            var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
+        } else {  
+            var used_coupon_money = coupon_price;
+        }
+        $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+
+        var payment_price = payment_tot - used_coupon_money - used_point;
+
+        $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+function payment_acnt()
+{
+		var coupon_idx   = $("#coupon_idx").val();
+        var coupon_num   = $("#coupon_num").val();	
+        var coupon_name  = $("#coupon_name").val();	
+        var payment_tot  = $("#payment_tot").val()*1;
+        var coupon_pe    = $("#coupon_pe").val()*1;
+        var coupon_price = $("#coupon_price").val()*1;
+        var used_point   = $("#used_point").val()*1;
+
+        if(coupon_pe > 0) {
         var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
         } else {  
         var used_coupon_money = coupon_price;
@@ -722,10 +750,6 @@ $('.couponApply').click(function () {
         
         $("#Amt").val(payment_price);
         $("#price").val(payment_price);
-    }
-function payment_acnt()
-{
-		 payment_use_coupon();
 
          var f = document.formOrder;
 		 var order_data = $(f).serialize();
