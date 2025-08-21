@@ -187,7 +187,6 @@ class AdminOperatorController extends BaseController
         $g_list_rows = 100;
         $strSql = '';
         $pg = updateSQ($_GET["pg"] ?? '');
-        $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
         $search_type = updateSQ($_GET["search_type"] ?? '');
@@ -227,6 +226,8 @@ class AdminOperatorController extends BaseController
                     left outer join tbl_member me
 					  on c.user_id = me.user_id
 				   where 1=1 and c.status != 'C' $strSql ";
+        echo $total_sql;
+        die();
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -245,7 +246,6 @@ class AdminOperatorController extends BaseController
             'search_name' => $search_name,
             'search_category' => $search_category,
             'search_type' => $search_type,
-            'ca_idx' => $ca_idx,
             'nTotalCount' => $nTotalCount,
             'result' => $result,
             'num' => $num,
