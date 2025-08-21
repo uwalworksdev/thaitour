@@ -204,7 +204,7 @@ class AdminOperatorController extends BaseController
 					  on c.coupon_type = s.idx
                     left outer join tbl_coupon_mst m
 					  on c.coupon_mst_idx = m.idx
-                    left outer join member me
+                    left outer join tbl_member me
 					  on c.user_id = me.user_id
 				   where 1=1 and c.status != 'C' $strSql ";
         $result = $this->connect->query($total_sql);
