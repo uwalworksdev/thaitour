@@ -190,6 +190,7 @@ class AdminOperatorController extends BaseController
         $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
+        $private_key = private_key();
 
         $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, c.keyword
                     , m.exp_start_day, m.exp_end_day
@@ -197,13 +198,15 @@ class AdminOperatorController extends BaseController
                     , COALESCE(s.dc_type, m.dc_type) AS dc_type
                     , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
                     , COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
-                    
+                    , AES_DECRYPT(UNHEX(me.user_name), '$private_key') AS user_name
 					from tbl_coupon c
 					left outer join tbl_coupon_setting s
 					  on c.coupon_type = s.idx
                     left outer join tbl_coupon_mst m
 					  on c.coupon_mst_idx = m.idx
-				   where 1=1 and c.status != 'C'  $strSql ";
+                    left outer join member me
+					  on c.user_id = me.user_id
+				   where 1=1 and c.status != 'C' $strSql ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 

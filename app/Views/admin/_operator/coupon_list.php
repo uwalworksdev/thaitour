@@ -132,7 +132,7 @@
                                                 echo "기한만료";
                                             }
                                         } else {
-                                            echo maskNaverId(esc($row['user_id']));
+                                            echo maskNaverId(esc($row['user_id'])) . "<br>" . "(" . $row['user_name'] . ")";
                                         }
                                         ?>
                                     </td>
