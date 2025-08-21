@@ -226,8 +226,7 @@ class AdminOperatorController extends BaseController
                     left outer join tbl_member me
 					  on c.user_id = me.user_id
 				   where 1=1 and c.status != 'C' $strSql ";
-        echo $total_sql;
-        die();
+
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
