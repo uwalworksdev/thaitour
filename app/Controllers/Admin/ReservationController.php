@@ -472,6 +472,10 @@ class ReservationController extends BaseController
 
     public function write_payment()
     {
+        if(session()->get('member')['id'] != "admin"){
+            exit();
+        }
+
         $private_key = private_key();
 
 		$search_category = $_GET["search_category"];
@@ -527,6 +531,10 @@ class ReservationController extends BaseController
 	
     public function write($gubun = null)
     {
+        if(session()->get('member')['id'] != "admin"){
+            exit();
+        }
+        
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name     = updateSQ($_GET["search_name"] ?? '');
         $pg              = updateSQ($_GET["pg"] ?? '');
