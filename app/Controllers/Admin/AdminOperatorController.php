@@ -196,8 +196,10 @@ class AdminOperatorController extends BaseController
         if (!empty($search_name)) {
             if ($search_category == "user_id") {
                 $strSql .= " AND c.user_id = '" . $this->connect->escapeString($search_name) . "'";
-            } else if($search_category == "user_name"){
+            } else if($search_category == "user_name") {
                 $strSql .= " AND CONVERT(AES_DECRYPT(UNHEX(me.user_name), '$private_key') USING utf8) LIKE '%" . $this->connect->escapeString($search_name) . "%'";
+            } else if($search_category == "coupon_name") {
+                $strSql .= " AND coupon_name LIKE '%" . $this->connect->escapeString($search_name) . "%'";
             } else {
                 $strSql .= " AND $search_category LIKE '%" . $this->connect->escapeString($search_name) . "%'";
             }
