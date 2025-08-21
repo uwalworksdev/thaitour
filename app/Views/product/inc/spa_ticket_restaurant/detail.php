@@ -94,7 +94,7 @@
                         $member = session()->get("member");
                         if ($member && ( (isset($member["level"]) && $member["level"] <= 2) || ($member["id"] ?? '') === 'admin')) {
                     ?>
-                    <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                        <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                     <?php
                         }
                     ?>
