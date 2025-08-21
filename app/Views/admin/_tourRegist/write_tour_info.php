@@ -211,7 +211,7 @@
 																								<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																								<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
 																							</select>
-																							<a href="javascript:delete_tour(this,'<?= $tour['tours_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+																							<a href="#" onclick="javascript:delete_tour(this,'<?= $tour['tours_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
 																						</div>
 																					</td>
 																				</tr>
