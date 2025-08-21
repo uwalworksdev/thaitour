@@ -55,7 +55,7 @@ class StatisticsController extends BaseController {
 
 
     public function main() {
-                $private_key = private_key();
+        $private_key = private_key();
 
         $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
         $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";

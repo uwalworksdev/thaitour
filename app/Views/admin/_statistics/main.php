@@ -780,7 +780,13 @@
                                     <col width="120px"/>
                                     <col width="120px"/>
                                     <col width="80px"/>
+                                    <?php
+                                        if(session()->get('member')['id'] == 'admin') {
+                                    ?>
                                     <col width="80px"/>
+                                    <?php
+                                        }
+                                    ?>
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -796,7 +802,13 @@
                                     <th>상품금액(원)</th>
                                     <th>상품금액(바트)</th>
                                     <th>결제방법</th>
+                                    <?php
+                                        if(session()->get('member')['id'] == 'admin') {
+                                    ?>
                                     <th>관리</th>
+                                    <?php
+                                        }
+                                    ?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -862,6 +874,9 @@
                                         <td class="tac"><?=number_format($row["real_price_won"])?></td>
                                         <td class="tac"><?=number_format($row["real_price_bath"])?></td>
                                         <td class="tac"></td>
+                                        <?php
+                                            if(session()->get('member')['id'] == 'admin') {
+                                        ?>
                                         <td>
                                             <div class="flex_button">
                                                 <button onclick="window.location.href='/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>'"
@@ -874,6 +889,9 @@
                                                 </button>
                                             </div>
                                         </td>
+                                        <?php
+                                            }
+                                        ?>
                                     </tr>
 
                                 <?php
