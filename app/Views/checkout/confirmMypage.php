@@ -653,6 +653,7 @@ $('.couponSel').click(function () {
 		 $("#coupon_pe").val(coupon_pe);
 		 $("#coupon_price").val(coupon_price);
 
+         payment_use_coupon();
 		//  payment_acnt(); 
 });
 
@@ -668,6 +669,8 @@ $('.couponApply').click(function () {
 
 		 $("#used_coupon_money").val('0');
 		 $("#coupon_discount").text('0') +' 원';
+         
+         payment_use_coupon();
 
 		//  payment_acnt(); 
 
@@ -692,33 +695,36 @@ $('.couponApply').click(function () {
 </script>
 
 <script>
+    function payment_use_coupon() {
+        var coupon_idx   = $("#coupon_idx").val();
+        var coupon_num   = $("#coupon_num").val();	
+        var coupon_name  = $("#coupon_name").val();	
+        var payment_tot  = $("#payment_tot").val()*1;
+        var coupon_pe    = $("#coupon_pe").val()*1;
+        var coupon_price = $("#coupon_price").val()*1;
+        var used_point   = $("#used_point").val()*1;
+
+        if(coupon_pe > 0) {
+        var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
+        } else {  
+        var used_coupon_money = coupon_price;
+        }
+        $("#used_coupon_money").val(used_coupon_money);
+        $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+
+        var payment_price = payment_tot - used_coupon_money - used_point;
+        //alert(payment_price);
+        $("#payment_price").val(payment_price);
+        $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        
+        $("#Amt").val(payment_price);
+        $("#price").val(payment_price);
+    }
 function payment_acnt()
 {
-		 var coupon_idx   = $("#coupon_idx").val();
-		 var coupon_num   = $("#coupon_num").val();	
-		 var coupon_name  = $("#coupon_name").val();	
-		 var payment_tot  = $("#payment_tot").val()*1;
-		 var coupon_pe    = $("#coupon_pe").val()*1;
-		 var coupon_price = $("#coupon_price").val()*1;
-		 var used_point   = $("#used_point").val()*1;
-
-		 if(coupon_pe > 0) {
-			var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
-		 } else {  
-			var used_coupon_money = coupon_price;
-		 }
-		 $("#used_coupon_money").val(used_coupon_money);
-		 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-
-		 var payment_price = payment_tot - used_coupon_money - used_point;
-		 //alert(payment_price);
-		 $("#payment_price").val(payment_price);
-		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		 
-		 $("#Amt").val(payment_price);
-		 $("#price").val(payment_price);
+		 payment_use_coupon();
 
          var f = document.formOrder;
 		 var order_data = $(f).serialize();
