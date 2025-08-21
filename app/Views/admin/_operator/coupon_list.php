@@ -30,6 +30,34 @@
         </header><!-- // headerContainer -->
 
         <div id="contents">
+            <form name="search" id="search">
+                <header id="headerContents">
+                    <select name="search_category" class="input_select" style="width:112px">
+                        <option value="user_name" <?= ($search_category == "user_name") ? "selected" : "" ?>>이름</option>
+                        <option value="user_id" <?= ($search_category == "user_id") ? "selected" : "" ?>>아이디</option>
+                        <option value="coupon_num" <?= ($search_category == "coupon_num") ? "selected" : "" ?>>쿠폰번호</option>
+                        <option value="coupon_name" <?= ($search_category == "coupon_name") ? "selected" : "" ?>>쿠폰이름</option>
+                    </select>
+                    <select name="search_type" class="input_select" style="width:112px">
+                        <option value="" <?= ($search_type == "") ? "selected" : "" ?>>전체</option>
+                        <option value="Y" <?= ($search_type == "Y") ? "selected" : "" ?>>발급</option>
+                        <option value="N" <?= ($search_type == "N") ? "selected" : "" ?>>미발급</option>
+                    </select>
+                    <input type="text" name="search_name" value="<?= esc($search_name) ?>" class="input_txt placeHolder"
+                        rel="검색어 입력" style="width:240px" />
+                    <a href="javascript:search_it()" class="btn btn-default"><span
+                            class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                </header>
+            </form>
+            <script>
+                function search_it() {
+                    var frm = document.search;
+                    if (frm.search_name.value == "검색어 입력") {
+                        frm.search_name.value = "";
+                    }
+                    frm.submit();
+                }
+            </script>
 
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
@@ -162,7 +190,7 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <<?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_operator/coupon_list') . "?ca_idx=$ca_idx&search_category=$search_category&search_name=$search_name&pg=") ?>
+                <<?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_operator/coupon_list') . "?search_category=$search_category&search_type=$search_type&search_name=$search_name&pg=") ?>
 
 
                 <div id="headerContainer">

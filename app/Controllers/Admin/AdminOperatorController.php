@@ -190,7 +190,27 @@ class AdminOperatorController extends BaseController
         $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_type = updateSQ($_GET["search_type"] ?? '');
+
         $private_key = private_key();
+
+        if (!empty($search_name)) {
+            if ($search_category == "user_id") {
+                $strSql .= " AND c.user_id = '" . $this->connect->escapeString($search_name) . "'";
+            } else if($search_category == "user_name"){
+                $strSql .= " AND CONVERT(AES_DECRYPT(UNHEX(me.user_name), '$private_key') USING utf8) LIKE '%" . $this->connect->escapeString($search_name) . "%'";
+            } else {
+                $strSql .= " AND $search_category LIKE '%" . $this->connect->escapeString($search_name) . "%'";
+            }
+        }
+
+        if (!empty($search_type)) {
+            if($search_type == "Y") {
+                $strSql .= " AND c.user_id != ''";
+            } else {
+                $strSql .= " AND c.user_id = ''";
+            }
+        }
 
         $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, c.keyword
                     , m.exp_start_day, m.exp_end_day
@@ -224,6 +244,7 @@ class AdminOperatorController extends BaseController
             'g_list_rows' => $g_list_rows,
             'search_name' => $search_name,
             'search_category' => $search_category,
+            'search_type' => $search_type,
             'ca_idx' => $ca_idx,
             'nTotalCount' => $nTotalCount,
             'result' => $result,
