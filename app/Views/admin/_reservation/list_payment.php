@@ -574,7 +574,13 @@
                                     <col width="100px"/>
                                     <col width="120px"/>
                                     <col width="110px"/>
+                                    <?php
+                                        if(session()->get('member')['id'] == 'admin') {
+                                    ?>
                                     <col width="80px"/>
+                                    <?php
+                                        }
+                                    ?>
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -590,7 +596,13 @@
                                     <th>결제금액(바트)</th>
                                     <th>결제방법</th>
                                     <th>ip</th>
+                                    <?php
+                                        if(session()->get('member')['id'] == 'admin') {
+                                    ?>
                                     <th>관리</th>
+                                    <?php
+                                        }
+                                    ?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -648,18 +660,24 @@
                                         <td class="tac"><?= number_format((int)($row["payment_tot"] / $row['baht_thai'])) ?></td>
                                         <td class="tac"><?= $row["payment_method"] ?>(<?= $row["payment_pg"] ?>)</td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
+                                        <?php
+                                            if(session()->get('member')['id'] == 'admin') {
+                                        ?>
                                         <td>
                                             <div class="flex_button">
                                                 <button onclick="window.location.href='/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment=<?= $row['payment_idx'] ?>'"
                                                         type="button" class="btn_default btn btn-primary">
                                                     수정
                                                 </button>
-                                                <button onclick="del_it('<?= $row["order_idx"] ?>');" type="button"
+                                                <button onclick="del_it('<?= $row['order_idx'] ?>');" type="button"
                                                         class="btn_default btn btn-danger">
                                                     삭제
                                                 </button>
                                             </div>
                                         </td>
+                                        <?php
+                                            }
+                                        ?>
                                     </tr>
 
                                     <?php
