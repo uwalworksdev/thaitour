@@ -599,7 +599,7 @@
                                  <?php if (strpos($products["search_product_category"], "all") !== false
                                         || empty($products["search_product_category"])) {
                                         echo "tab_active_";
-                                    } ?>" data-code="all" data-type="category">전체
+                                    } ?>" data-code="" data-type="category">전체
                                     </li>
                                     <?php
                                     foreach ($codes as $code) {
