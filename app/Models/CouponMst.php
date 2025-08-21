@@ -6,8 +6,8 @@ class CouponMst extends Model
     protected $table = 'tbl_coupon_mst';
     protected $primaryKey = 'idx';
     protected $allowedFields = [
-        "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price", "max_coupon_price"
-        , "exp_start_day", "exp_end_day", "etc_memo", "state", "type_select", "member_grade", "coupon_contents", "regdate"
+        "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price", "max_coupon_price", "minimum_coupon_price"
+        , "exp_start_day", "exp_end_day", "etc_memo", "state", "type_select", "coupon_apply", "member_grade", "coupon_contents", "regdate"
         , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 

@@ -116,12 +116,12 @@
                                     </td>
                                     <td colspan="2">
                                         <div class="wrap_input" style="display: inline-flex;">
-                                            <input type="radio" id="used_id" name="coupon_type" value="1">
-                                            <label for="used_id">아이디당 1회 </label>
+                                            <input type="radio" id="coupon_apply_1" name="coupon_apply" value="O" <?= ($coupon_apply == "O" || empty($coupon_apply)) ? "checked" : ""; ?>>
+                                            <label for="coupon_apply_1">아이디당 1회</label>
                                         </div>
                                         <div class="wrap_input" style="display: inline-flex; margin-left: 20px;">
-                                            <input type="radio" id="not_used_id" name="coupon_type" value="0"> 
-                                            <label for="not_used_id">아이디당 1회 사용없음</label>  
+                                            <input type="radio" id="coupon_apply_2" name="coupon_apply" value="A" <?= ($coupon_apply == "A") ? "checked" : ""; ?>> 
+                                            <label for="coupon_apply_2">아이디당 1회 사용없음</label>  
                                         </div>
                                     </td>
                                 </tr>
@@ -146,8 +146,7 @@
                                     </td>
                                     <th>쿠폰 사용조건</th>
                                     <td>
-                                       <input style="width: 100px" type="text" name="usage_conditions"> 원 이상 구매시 사용가능
-
+                                       <input style="width: 100px" type="text" name="minimum_coupon_price" class="onlynum" value="<?= $minimum_coupon_price ?? '' ?>"> 원 이상 구매시 사용가능
                                     </td>
                                 </tr>
 
@@ -444,6 +443,10 @@
 </div>
 <!-- // container -->
 <script>
+    $(document).on("input", ".onlynum", function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
     $(function () {
 
         $("#exp_start_day").datepicker({
