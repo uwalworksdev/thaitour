@@ -1,8 +1,3 @@
-<?php
-    if(session()->get('member')['id'] != 'admin') {
-        exit;
-    }
-?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
     <script type="text/javascript">
