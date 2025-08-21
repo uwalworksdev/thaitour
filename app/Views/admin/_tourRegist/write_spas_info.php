@@ -217,7 +217,7 @@
 																								<option value="Y" <?= ($spa['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																								<option value="N" <?= ($spa['status'] == 'N') ? 'selected' : '' ?>>중지</option>
 																							</select>
-																							<a href="javascript:delete_spa('<?= $spa['spas_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+																							<a href="#" onclick="javascript:delete_spa(this, '<?= $spa['spas_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
 																						</div>
 																					</td>
 																				</tr>
@@ -1557,7 +1557,7 @@
 		});
 	}
 
-	function delete_spa(spas_idx, info_idx, product_idx) {
+	function delete_spa(button, spas_idx, info_idx, product_idx) {
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 			return false;
 		}
@@ -1575,7 +1575,9 @@
 			cache: false,
 			success: function (data, textStatus) {
 				alert(data.message);
-				location.reload();
+				if(data.result == true){
+					$(button).closest("tr").remove();
+				}
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
