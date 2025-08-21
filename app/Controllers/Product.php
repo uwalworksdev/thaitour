@@ -1027,6 +1027,8 @@ class Product extends BaseController
             $search_product_promotion = $this->request->getVar('search_product_promotion') ?? "";
             $search_product_topic = $this->request->getVar('search_product_topic') ?? "";
             $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
+            $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
+
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
             $price_type = $this->request->getVar('price_type') ?? "";
@@ -1051,6 +1053,7 @@ class Product extends BaseController
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
             $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
             $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
+            $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
@@ -1081,6 +1084,7 @@ class Product extends BaseController
                 'search_product_promotion' => $search_product_promotion,
                 'search_product_topic' => $search_product_topic,
                 'search_product_bedroom' => $search_product_bedroom,
+                'search_product_mbti' => $search_product_mbti,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
                 'price_type' => $price_type,
@@ -1225,6 +1229,7 @@ class Product extends BaseController
                 'types_hotel' => $types_hotel,
                 'ratings' => $ratings,
                 'promotions' => $promotions,
+                'mcodes' => $mcodes,
                 'topics' => $topics,
                 'bedrooms' => $bedrooms,
                 'products' => $products,

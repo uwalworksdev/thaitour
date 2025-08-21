@@ -235,6 +235,29 @@
                             </div>
                             <div class="category-left-item">
                                 <div class="subtitle">
+                                    <span>MBTI</span>
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+                                </div>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <?php
+                                        foreach ($mcodes as $code) {
+                                            ?>
+                                            <li class="tab_box_element_ tab_box_js p--20 border
+                                            <?php if (strpos($products["search_product_mbti"], $code["code_no"]) !== false) {
+                                                echo "tab_active_";
+                                            } ?>"
+                                                data-code="<?= $code["code_no"] ?>"
+                                                data-type="mbti"><?= $code["code_name"] ?>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="category-left-item">
+                                <div class="subtitle">
                                     <span>침실수</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
@@ -713,8 +736,27 @@
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">
+                                <span>MBTI</span>
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <?php
+                                    foreach ($mcodes as $code) {
+                                        ?>
+                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_mbti"], $code["code_no"]) !== false) {
+                                            echo "tab_active_";
+                                        } ?>"
+                                            data-code="<?= $code["code_no"] ?>"
+                                            data-type="mbti"><?= $code["code_name"] ?></li>
+                                        <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="category-left-item">
+                            <div class="subtitle">
                                 <span>침실수</span>
-
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
@@ -821,9 +863,6 @@
                 price_max = parseInt(500000 / baht_thai);
                 text_unit = "바트";
             }
-
-            console.log(baht_thai);
-            
 
             $("#price_type").val(type);
             $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
@@ -944,6 +983,7 @@
         var promotion = [];
         var topic = [];
         var bedroom = [];
+        var mbti = [];
 
         function filter_product() {
             category = [];
@@ -952,6 +992,7 @@
             promotion = [];
             topic = [];
             bedroom = [];
+            mbti = [];
 
             if ($(window).width() > 850) {
                 $(".tab_box_js.tab_active_").each(function () {
@@ -967,6 +1008,8 @@
                         topic.push($(this).data("code"));
                     } else if ($(this).data("type") == "bedroom") {
                         bedroom.push($(this).data("code"));
+                    } else if ($(this).data("type") == "mbti") {
+                        mbti.push($(this).data("code"));
                     }
                 });
             } else {
@@ -983,6 +1026,8 @@
                         topic.push($(this).data("code"));
                     } else if ($(this).data("type") == "bedroom") {
                         bedroom.push($(this).data("code"));
+                    } else if ($(this).data("type") == "mbti") {
+                        mbti.push($(this).data("code"));
                     }
                 });
             }
@@ -993,6 +1038,7 @@
             $("#search_product_promotion").val(promotion.join(","));
             $("#search_product_topic").val(topic.join(","));
             $("#search_product_bedroom").val(bedroom.join(","));
+            $("#search_product_mbti").val(mbti.join(","));
         }
 
         filter_product();
