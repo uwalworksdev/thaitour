@@ -284,8 +284,13 @@
                             }
                         }
                         ?>
-
-                        <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                        <?php
+                            if(session()->get("member")["level"] <= 2 || session()->get("member")["id"] == 'admin'){
+                        ?>
+                            <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                        <?php
+                            }
+                        ?>
                     </div>
                     <!-- <div class="list-icon only_mo">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">

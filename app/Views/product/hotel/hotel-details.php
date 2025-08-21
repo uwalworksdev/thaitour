@@ -809,8 +809,13 @@
                 }
                 ?>
 
-                <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
-
+                <?php
+                    if(session()->get("member")["level"] <= 2 || session()->get("member")["id"] == 'admin'){
+                ?>
+                    <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                <?php
+                    }
+                ?>
             </div>
             <?php
                 // $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));

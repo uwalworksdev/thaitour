@@ -194,7 +194,13 @@ $(document).ready(function() {
                     }
                     ?>
 
-                    <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                    <?php
+                        if(session()->get("member")["level"] <= 2 || session()->get("member")["id"] == 'admin'){
+                    ?>
+                        <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                    <?php
+                        }
+                    ?>
                 </div>
                 <?php
                     if(!empty($img_names[0])) {
