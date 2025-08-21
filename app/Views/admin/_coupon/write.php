@@ -85,7 +85,7 @@
                             <tbody>
                                 <tr>
                                     <th>카테고리선택</th>
-                                    <td colspan="">
+                                    <td>
                                         <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <option value="all">전체</option>
@@ -131,7 +131,7 @@
                                 ?>
                                 <tr>
                                     <th>등록된 카테고리</th>
-                                    <td colspan="">
+                                    <td>
                                         <ul id="reg_cate">
                                             <?php
                                                 foreach($coupon_category_list as $cat){
