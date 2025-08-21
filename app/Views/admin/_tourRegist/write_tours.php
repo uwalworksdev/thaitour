@@ -924,6 +924,8 @@
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    let editor = oEditors21.getById["minimun_reservation"];
+                                                    editor.setIR(""); 
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
@@ -1067,6 +1069,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors20.getById["company_notes"];
+                                                        editor.setIR("");  
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1226,6 +1230,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors14.getById["tour_info"];
+                                                        editor.setIR("");  
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1260,6 +1266,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors22.getById["note_news"];
+                                                        editor.setIR(""); 
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1292,6 +1300,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors10.getById["etc_comment"];
+                                                        editor.setIR(""); 
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1325,6 +1335,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors2.getById["product_able"];
+                                                        editor.setIR(""); 
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1357,6 +1369,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors5.getById["product_unable"];
+                                                        editor.setIR(""); 
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1391,6 +1405,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors12.getById["product_confirm"];
+                                                        editor.setIR("");  
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1423,6 +1439,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors6.getById["special_benefit"];
+                                                        editor.setIR("");
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1456,6 +1474,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors3.getById["mobile_able"];
+                                                        editor.setIR("");
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -1488,6 +1508,8 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors8.getById["notice_comment"];
+                                                        editor.setIR("");  
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
