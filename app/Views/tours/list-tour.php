@@ -23,24 +23,27 @@
                     <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
-                    <div class="category-left only_web">
-                        <div class="category-left-tit flex_b_c">
-                            <h1 class="title"><?= $code_name ?></h1>
-                            <div class="search-navigation flex">
-                                <div class="navigation-container-next">
-                                    <span class="font-bold"><?= $code_name ?></span>
-    
-                                    <div class="depth_2_tools_new_" id="depth_2_tools_new_">
-                                        <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
-                                            <?php $parent_code = 1301?>
-                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
-                                        </ul>
+                    <div class="category-left golf_filter">
+                        <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
+                        <div class="only_web">
+                            <div class="category-left-tit flex_b_c">
+                                <h1 class="title"><?= $code_name ?></h1>
+                                <div class="search-navigation flex">
+                                    <div class="navigation-container-next">
+                                        <span class="font-bold"><?= $code_name ?></span>
+        
+                                        <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+                                            <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                                                <?php $parent_code = 1301?>
+                                                <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="navigation-container-next new">
-                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
-                                        src="/uploads/icons/ball_dot_icon.png"
-                                        alt="ball_dot_icon">
+                                    <div class="navigation-container-next new">
+                                        <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
+                                            src="/uploads/icons/ball_dot_icon.png"
+                                            alt="ball_dot_icon">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +166,12 @@
                     </div>
 
                     <div class="content-right">
-
+                        <div class="only_mo category-mo-cus">
+                            <span class="title-cate"><?=$code_name?></span>
+                            <div class="img-div">
+                                <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
+                            </div>
+                        </div>
                         <div class="filter-container form_element_">
                             <div class="">
                                 <div class="filter-content">
