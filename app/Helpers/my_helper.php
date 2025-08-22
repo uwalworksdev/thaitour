@@ -580,9 +580,10 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
     $html = "";
 
     $tabLinks = [
-        1303 => "/product-hotel/list-hotel?s_code_no=",
-        1302 => "/product-golf/list-golf/",
         1301 => "/product-tours/tours-list/",
+        1302 => "/product-golf/list-golf/",
+        1303 => "/product-hotel/list-hotel?s_code_no=",
+        1325 => "/product-spa/list-spa/",
     ];
 
     foreach ($fresult as $frow) {
