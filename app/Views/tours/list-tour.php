@@ -18,6 +18,8 @@
                            value="<?= $search_keyword ?>">
                     <input type="hidden" name="search_product_tour" id="search_product_tour"
                            value="<?= $search_product_tour ?>">
+                    <input type="hidden" name="search_product_mbti" id="search_product_mbti"
+                           value="<?= $search_product_mbti ?>">
                     <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
@@ -92,6 +94,31 @@
                                                     echo "tab_active_";
                                                 }
                                             ?>" data-code="<?= $code["code_no"] ?>" data-tour="<?= $code["code_name"] ?>" data-type="tour"><?= $code["code_name"] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="category-left-item">
+                                <div class="subtitle">
+                                    <span>MBTI</span>
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+                                </div>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <li class="tab_box_element_ tab_box_js p--20 border
+                                        <?php 
+                                            if (strpos($search_product_mbti, "all") !== false || empty($search_product_mbti)) {
+                                                echo "tab_active_";
+                                            }
+                                        ?>" data-code="all" data-type="mbti">전체타입</li>
+
+                                        <?php foreach ($mcodes as $code): ?>
+                                            <li class="tab_box_element_ tab_box_js p--20 border
+                                            <?php 
+                                                if (strpos($products["search_product_mbti"], $code["code_no"]) !== false) {
+                                                    echo "tab_active_";
+                                                }
+                                            ?>" data-code="<?= $code["code_no"] ?>" data-tour="<?= $code["code_name"] ?>" data-type="mbti"><?= $code["code_name"] ?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
@@ -301,13 +328,14 @@
 
         const codeMapping = <?= json_encode(array_column($product_theme, 'code_name', 'code_no')) ?>;
         const keywordMapping = <?= json_encode(array_column($product_keyword_list, 'code_name', 'code_no')) ?>;
-
+        const mbtiMapping = <?= json_encode(array_column($mcodes, 'code_name', 'code_no')) ?>;
 
         $(document).ready(function () {
             let keywords = $("#search_keyword").val().split(",").filter(item => item && item !== "all");
             let tours = $("#search_product_tour").val().split(",").filter(item => item && item !== "all");
+            let mbti_list = $("#search_product_mbti").val().split(",").filter(item => item && item !== "all");
 
-            update_tags(keywords, tours);
+            update_tags(keywords, tours, mbti_list);
 
             keywords.forEach(function (keyword) {
                 if (keyword !== "all") {
@@ -324,9 +352,17 @@
                     $(".tab_box_js[data-code='all']").addClass('tab_active_');
                 }
             });
+
+            mbti_list.forEach(function (mbti) {
+                if (mbti !== "all") {
+                    $(".tab_box_js[data-code='" + mbti + "']").addClass('tab_active_');
+                } else {
+                    $(".tab_box_js[data-code='all']").addClass('tab_active_');
+                }
+            });
         });
 
-        function update_tags(keywords, tours) {
+        function update_tags(keywords, tours, mbti_list) {
                 $('.list-tag').empty(); 
 
                 if (keywords.includes("all") && keywords.length > 1) {
@@ -380,6 +416,33 @@
                         '</div>'
                     );
                 }
+
+                if (mbti_list.includes("all") && mbti_list.length > 1) {
+                    mbti_list = mbti_list.filter(mbti => mbti !== "all");
+                }
+
+                let addedMbti = new Set();
+                mbti_list.forEach(function (mbti) {
+                    if (mbti && mbti !== "undefined" && !addedMbti.has(mbti)) {
+                        let tabText = (mbti === "all") ? "전체타입" : (mbtiMapping[mbti] || mbti); 
+                        $('.list-tag').append(
+                            '<div class="tag-item">' +
+                            '<span data-type="mbti">' + tabText + '</span>' +
+                            '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                            '</div>'
+                        );
+                        addedMbti.add(mbti);
+                    }
+                });
+
+                if (mbti_list.length === 0) {
+                    $('.list-tag').append(
+                        '<div class="tag-item">' +
+                        '<span data-type="mbti">전체타입</span>' +
+                        '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                        '</div>'
+                    );
+                }
             }
 
             function update_search_keyword() {
@@ -387,6 +450,8 @@
                 let keywords_name = [];
                 let codes = [];
                 let tours = [];
+                let mbti_list = [];
+                let mbti_name_list = [];
 
                 $(".tab_box_js.tab_active_").each(function () {
                     let keyword = $(this).data("keyword");
@@ -401,12 +466,20 @@
 
                     let code = $(this).data("code");
                     if (code && code !== "all" && !codes.includes(code)) {
-                        codes.push(code);
+                        if($(this).data("type") === "mbti") {
+                            mbti_list.push(code);
+                        }else{
+                            codes.push(code);
+                        }
                     }
 
                     let name = $(this).data("tour");
                     if (name && name !== "all" && !tours.includes(name)) {
-                        tours.push(name);
+                        if($(this).data("type") === "mbti"){
+                            mbti_name_list.push(name);
+                        }else{
+                            tours.push(name);
+                        }
                     }
                 });
 
@@ -418,14 +491,19 @@
                     codes.push("all");
                 }
 
+                if (mbti_list.length === 0) {
+                    mbti_list.push("all");
+                }
+
                 if (tours.length === 0) {
                     tours.push("all");
                 }
 
                 $("#search_keyword").val(keywords.join(","));
                 $("#search_product_tour").val(codes.join(","));
+                $("#search_product_mbti").val(mbti_list.join(","));
 
-                update_tags(keywords_name, tours);
+                update_tags(keywords_name, tours, mbti_name_list);
             }
 
         $('.tab_box_js').click(function () {
@@ -461,6 +539,7 @@
 
             let keywords = $("#search_keyword").val().split(",").filter(item => item);
             let tours = $("#search_product_tour").val().split(",").filter(item => item);
+            let mbti_list = $("#search_product_mbti").val().split(",").filter(item => item);
 
             if (type === "keyword") {
                 keywords = keywords.filter(keyword => keyword !== text);
@@ -470,6 +549,10 @@
                 tours = tours.filter(tour => tour !== text);
                 if (tours.length === 0) tours.push("all");
                 $("#search_product_tour").val(tours.join(","));
+            } else if(type === "mbti") {
+                mbti_list = mbti_list.filter(mbti => mbti !== text);
+                if (mbti_list.length === 0) mbti_list.push("all");
+                $("#search_product_mbti").val(mbti_list.join(","));
             }
 
             $(".tab_box_js").each(function () {
@@ -486,6 +569,7 @@
 
             $("#search_keyword").val("all");
             $("#search_product_tour").val("all");
+            $("#search_product_mbti").val("all");
 
             $(".tab_box_js").removeClass('tab_active_');
 
@@ -501,12 +585,16 @@
             let frm = document.frmSearch;
             let keywords = $("#search_keyword").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
             let tours = $("#search_product_tour").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
+            let mbti = $("#search_product_mbti").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
 
             if (keywords.length === 0) {
                 $("#search_keyword").val("all");
             }
             if (tours.length === 0) {
                 $("#search_product_tour").val("all");
+            }
+            if (mbti.length === 0) {
+                $("#search_product_mbti").val("all");
             }
             frm.submit();
         }

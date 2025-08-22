@@ -3760,6 +3760,7 @@ class Product extends BaseController
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
             $search_word = $this->request->getVar('search_word') ?? "";
             $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
+            $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
             $price_type = $this->request->getVar('price_type') ?? '';
@@ -3769,6 +3770,8 @@ class Product extends BaseController
             $product_theme = $this->codeModel->getByParentAndDepth(57, 2)->getResultArray();
             $product_keyword_list = $this->codeModel->getByParentAndDepth(58, 2)->getResultArray();
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+
+            $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
             $arr_code_list = [];
             foreach ($codes as $code) {
@@ -3781,6 +3784,7 @@ class Product extends BaseController
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
                 'product_code_3' => $search_product_category,
+                'search_product_mbti' => $search_product_mbti,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
                 'price_type' => $price_type,
@@ -3872,6 +3876,7 @@ class Product extends BaseController
                 'tab_active' => '1',
                 'keyWordAll' => $keyWordAll,
 				'search_product_category' => $search_product_category,
+				'search_product_mbti' => $search_product_mbti,
                 'search_keyword' => $search_keyword,
                 'keyWordActive' => $keyWordAll[$keyWordActive],
                 'productByKeyword' => $productByKeyword,
@@ -3880,6 +3885,7 @@ class Product extends BaseController
                 'product_keyword_list' => $product_keyword_list,
                 'search_product_tour' => $search_product_tour,
                 'search_area' => $search_area,
+                'mcodes' => $mcodes
             ];
 
             return $this->renderView('tours/list-tour', $data);
