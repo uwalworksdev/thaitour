@@ -382,6 +382,7 @@
         function updateSliderTrack() {
             const min = parseFloat(sliderMin.value);
             const max = parseFloat(sliderMax.value);
+            console.log(min + "---" + max);
 
             if (min > max) {
                 [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
@@ -392,6 +393,9 @@
 
             sliderTrack.style.left = percentMin + '%';
             sliderTrack.style.width = (percentMax - percentMin) + '%';
+
+            $(".price_min").text(number_format(sliderMin.value));
+            $(".price_max").text(number_format(sliderMax.value));
         }
 
         sliderMin.addEventListener('input', updateSliderTrack);
