@@ -162,6 +162,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="only_mo">
+                                <div class="filter_mo">
+                                    <button type="button" class="btn_search_" onclick="search_it()">
+                                        검색
+                                    </button>
+                                    <button type="button" id="delete_all_mo">전체삭제</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -582,6 +590,17 @@
             $(".tab_box_js").removeClass('tab_active_');
 
             // update_tags(["all"], ["all"]);
+        });
+
+        $('#delete_all_mo').click(function () {
+            $('.list-tag .tag-item').remove();
+
+            $("#search_keyword").val("all");
+            $("#search_product_tour").val("all");
+            $("#search_product_mbti").val("all");
+
+            $(".tab_box_js").removeClass('tab_active_');
+
         });
 
 
