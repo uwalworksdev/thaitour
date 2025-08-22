@@ -453,6 +453,14 @@
             grouped[group] = grouped[group] + String(idx);
         });
 
+        const priceMin = $("#slider-min").val();
+        const priceMax = $("#slider-max").val();
+        const priceType = $(".btn_fil_price.active").data("type");
+
+        if (priceMin) grouped["price_min"] = priceMin;
+        if (priceMax) grouped["price_max"] = priceMax;
+        if (priceType) grouped["price_type"] = priceType;
+
         grouped['pg'] = [1];
 
         const query = Object.keys(grouped).map(key => `${key}=${grouped[key]}`).join("&");
