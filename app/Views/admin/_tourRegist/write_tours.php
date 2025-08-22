@@ -847,6 +847,9 @@
                                         <input type="checkbox" name="tour_group[]"
                                                class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "S") !== false)) echo "checked"; ?> value="S">
                                                단독투어 &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tour_group[]"
+                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "F") !== false)) echo "checked"; ?> value="F">
+                                               종일투어 &nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
 
