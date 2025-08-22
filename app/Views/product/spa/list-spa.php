@@ -8,7 +8,7 @@
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
                 <div class="only_web">
-                    <?= echo $parent_code;?>
+                    <?php echo $parent_code;?>
                     <div class="category-left-tit flex_b_c">
                         <h1 class="title"><?= $code_info['code_name'] ?></h1>
                         <div class="search-navigation flex">
