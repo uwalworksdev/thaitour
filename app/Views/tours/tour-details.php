@@ -228,6 +228,13 @@
                     <?php
                         }
                     ?>
+                     <?php
+                        if(strpos($product["tour_group"], "F") !== false){
+                    ?>
+                        <li class="type_title type_title_3">종일투어</li>
+                    <?php
+                        }
+                    ?>
                     <?php
                         if(!empty(trim($product["company_name"])) || !empty(trim($product["company_contact"])) || !empty(trim($product["company_url"])) || !isContentEmpty(viewSQ($product["company_notes"]))){
                     ?>
