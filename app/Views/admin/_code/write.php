@@ -388,7 +388,14 @@
                 fOnBeforeUnload: function () {
                 }
             },
-            fOnAppLoad: function () {                                   
+            fOnAppLoad: function () {
+                let editor = oEditors.getById["contents<?=$j?>"];
+
+                let initContent = $("#contents<?=$j?>").val().trim();
+
+                if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
+                    editor.setIR("");
+                }                                   
             },
             fCreator: "createSEditor2"
         });

@@ -1595,6 +1595,13 @@ $links = "list";
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    let editor = oEditors5.getById["room_guides"];
+
+                                                    let initContent = $("#room_guides").val().trim();
+
+                                                    if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
+                                                        editor.setIR("");
+                                                    }
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
@@ -1663,6 +1670,13 @@ $links = "list";
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    let editor = oEditors1.getById["product_important_notice"];
+
+                                                    let initContent = $("#product_important_notice").val().trim();
+
+                                                    if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
+                                                        editor.setIR("");
+                                                    }
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
@@ -1735,6 +1749,13 @@ $links = "list";
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    let editor = oEditors2.getById["product_important_notice_m"];
+
+                                                    let initContent = $("#product_important_notice_m").val().trim();
+
+                                                    if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
+                                                        editor.setIR("");
+                                                    }
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
@@ -1768,6 +1789,13 @@ $links = "list";
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    let editor = oEditors4.getById["product_notes_m"];
+
+                                                    let initContent = $("#product_notes_m").val().trim();
+
+                                                    if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
+                                                        editor.setIR("");
+                                                    }
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
