@@ -6115,6 +6115,7 @@ class Product extends BaseController
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         return [
+            'baht_thai' => $this->setting['baht_thai'],
             'codes' => $codes,
             'category' => $search_product_category,
 			'search_area' => $search_area, 
