@@ -114,9 +114,9 @@
                             <div class="slider-container only_web">
                                 <div class="slider-background"></div>
                                 <div class="slider-track" id="slider-track"></div>
-                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_min"] ?>"
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_min"] ?? 0 ?>"
                                         name="price_min" class="slider" id="slider-min">
-                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_max"] ?>"
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_max"] ?? 0 ?>"
                                         name="price_max" class="slider" id="slider-max">
                             </div>
                             <div class="filter_price_wrap">
