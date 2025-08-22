@@ -1825,6 +1825,23 @@ class ProductModel extends Model
             }
         }
 
+        if (!empty($where['search_product_mbti'])) {
+            if (strpos($where['search_product_mbti'], 'all') === false) {
+                $search_product_mbti = explode(",", $where['search_product_mbti']);
+                $cnt_mbti = 1;
+                $builder->groupStart();
+                foreach ($search_product_mbti as $category) {
+                    if ($cnt_mbti > 1) {
+                        $builder->orLike('mbti', $category);
+                    } else {
+                        $builder->like('mbti', $category);
+                    }
+                    $cnt_mbti++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
         if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
 
@@ -1943,6 +1960,7 @@ class ProductModel extends Model
             'pg' => (int)$pg,
             'search_txt' => $where['search_txt'],
             'search_category' => $where['search_category'],
+            'search_product_mbti' => $where['search_product_mbti'],
             'is_view' => $where['is_view'],
             'product_code_1' => $where['product_code_1'],
             'product_code_2' => $where['product_code_2'],

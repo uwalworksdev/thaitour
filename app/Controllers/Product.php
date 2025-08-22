@@ -2012,6 +2012,7 @@ class Product extends BaseController
         $s_code_no = $code_no;
 		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
 		$category = $this->request->getGet('search_product_category') ?? "";	
+        $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
         $green_peas = $this->request->getGet('green_peas');
         $sports_days = $this->request->getGet('sports_days');
         $slots = $this->request->getGet('slots');
@@ -2046,6 +2047,7 @@ class Product extends BaseController
             'product_code_3' => $search_product_category,
             'search_product_name' => $search_word,
 			'category' => $search_product_category,
+            'search_product_mbti' => $search_product_mbti,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
@@ -2121,13 +2123,16 @@ class Product extends BaseController
 			$row         = $result->getRowArray();
 			$search_area = $row['code_name'];
 		} 
-			
+
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'codes' => $codes,
             'category' => $search_product_category,
 			'search_area' => $search_area, 
-            'search_product_category' => $search_product_category,			
+            'search_product_category' => $search_product_category,
+            'search_product_mbti' => $search_product_mbti,
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
             'green_peas' => $green_peas,
@@ -2137,7 +2142,8 @@ class Product extends BaseController
             'travel_times' => $travel_times,
             'carts' => $carts,
             'facilities' => $facilities,
-            'products' => $products
+            'products' => $products,
+            'mcodes' => $mcodes
         ]);
     }
 
