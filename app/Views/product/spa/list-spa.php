@@ -418,6 +418,8 @@
 
             $(".price_min").text(number_format(sliderMin.value));
             $(".price_max").text(number_format(sliderMax.value));
+            if (!sliderMin.value) sliderMin.value = sliderMin.getAttribute("value");
+            if (!sliderMax.value) sliderMax.value = sliderMax.getAttribute("value");
         }
 
         sliderMin.addEventListener('input', updateSliderTrack);
