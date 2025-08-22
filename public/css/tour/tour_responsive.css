@@ -2436,8 +2436,8 @@
   }
 
   .filter_price_wrap .filter .btn_fil_price {
-    padding: 1.5rem;
-    width: 5.5rem;
+    padding: 0;
+    width: 8rem;
     border: 1px solid #ccc;
 }
 
