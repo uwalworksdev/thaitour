@@ -9,7 +9,7 @@
             /*font-weight: 600;*/
         }
     </style>
-    <div class="content-sub-product-hotel">
+    <div class="content-sub-product-hotel custom-product-golf">
         <div class="body_inner">
             <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1301, "code_name" => $code_name, "code_no" => $code_no]); ?>
             <form name="frmSearch" id="frmSearch">
