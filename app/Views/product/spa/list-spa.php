@@ -466,9 +466,9 @@
 
         grouped['pg'] = [1];
 
-        const query = Object.keys(grouped).map(key => `${key}=${grouped[key]}`).join("&");
-        const path = window.location.href.split('?')[0];
-        window.location.href = path + (query ? `?${query}` : ``);
+        // const query = Object.keys(grouped).map(key => `${key}=${grouped[key]}`).join("&");
+        // const path = window.location.href.split('?')[0];
+        // window.location.href = path + (query ? `?${query}` : ``);
 
     }
 
