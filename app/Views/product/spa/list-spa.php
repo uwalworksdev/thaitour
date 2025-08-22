@@ -8,7 +8,6 @@
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
                 <div class="only_web">
-                    <?php echo $parent_code;?>
                     <div class="category-left-tit flex_b_c">
                         <h1 class="title"><?= $code_info['code_name'] ?></h1>
                         <div class="search-navigation flex">
@@ -200,9 +199,9 @@
                                     <div class="item-info">
                                         <div class="item-price-info tour-price">
                                             <span class="main">
-                                                <?= number_format($product['product_price_won']) ?> </span>
+                                                <?= number_format($product['spa_price_won']) ?> </span>
                                             <span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?= number_format($product['product_price']) ?>바트~</span>
+                                            <span class="sub text-gray"><?= number_format($product['spa_price']) ?>바트~</span>
                                         </div>
                                     </div>
                                 </div>

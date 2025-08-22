@@ -6072,12 +6072,11 @@ class Product extends BaseController
         $code_info = $this->codeModel->getByCodeNo($code_no);
         $parent_code = $code_info['parent_code_no'];
 
-        $products = $this->productModel->findProductGolfPaging([
+        $products = $this->productModel->findProductPaging([
             'product_code_1' => $parent_code,
             'product_code_2' => $code_no,
             'product_code_3' => $search_product_category,
             'search_product_name' => $search_word,
-			'category' => $search_product_category,
             'search_product_mbti' => $search_product_mbti
         ], 10, $pg, []);
 
@@ -6130,6 +6129,20 @@ class Product extends BaseController
     }
 
     public function spaList($code_no)
+    {
+        $data = $this->renderList($code_no);
+
+        return $this->renderView('product/spa/list-spa', $data);
+    }
+
+    public function restaurantList($code_no)
+    {
+        $data = $this->renderList($code_no);
+
+        return $this->renderView('product/spa/list-spa', $data);
+    }
+
+    public function ticketList($code_no)
     {
         $data = $this->renderList($code_no);
 

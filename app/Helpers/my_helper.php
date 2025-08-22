@@ -239,9 +239,9 @@ function getSubMenu($parent_code_no, $urls)
         } elseif ($parent_code_no == 1325) {
             $url = "/product-spa/list-spa/$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket?keyword=&main_product_code=$code_no";
+            $url = "/ticket/list-ticket/$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant?keyword=&main_product_code=$code_no";
+            $url = "/product-restaurant/list-restaurant/$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
@@ -266,11 +266,11 @@ function getSubMenuMo($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa?keyword=&main_product_code=$code_no";
+            $url = "/product-spa/list-spa/$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket?keyword=&main_product_code=$code_no";
+            $url = "/ticket/list-ticket/$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant?keyword=&main_product_code=$code_no";
+            $url = "/product-restaurant/list-restaurant/$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
@@ -325,18 +325,21 @@ function getHeaderTab()
         ],
         1325 => [
             "/product-spa",
+            "/product-spa/list-spa/",
             "/product-spa/spa-details/",
             "/product-spa/product-booking",
             "/product-spa/completed-order",
         ],
         1317 => [
             "/show-ticket",
+            "/ticket/list-ticket/",
             "/ticket/ticket-detail/",
             "/ticket/ticket-booking",
             "/ticket/completed-order",
         ],
         1320 => [
             "/product-restaurant",
+            "/product-restaurant/list-restaurant/",
             "/product-restaurant/restaurant-detail/",
             "/product-restaurant/restaurant-booking",
             "/product-restaurant/completed-order",
@@ -442,18 +445,21 @@ function getHeaderTabMo()
         ],
         1325 => [
             "/product-spa",
+            "/product-spa/list-spa/",
             "/product-spa/spa-details/",
             "/product-spa/product-booking",
             "/product-spa/completed-order",
         ],
         1317 => [
             "/show-ticket",
+            "/ticket/list-ticket/",
             "/ticket/ticket-detail/",
             "/ticket/ticket-booking",
             "/ticket/completed-order",
         ],
         1320 => [
             "/product-restaurant",
+            "/product-restaurant/list-restaurant/",
             "/product-restaurant/restaurant-detail/",
             "/product-restaurant/restaurant-booking",
             "/product-restaurant/completed-order",
@@ -548,6 +554,8 @@ function getHeaderTabSub($code_no = '')
         1302 => "/product-golf/list-golf/",
         1303 => "/product-hotel/list-hotel?s_code_no=",
         1325 => "/product-spa/list-spa/",
+        1317 => "/ticket/list-ticket/",
+        1320 => "/product-restaurant/list-restaurant/",
     ];
 
 
@@ -584,6 +592,8 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
         1302 => "/product-golf/list-golf/",
         1303 => "/product-hotel/list-hotel?s_code_no=",
         1325 => "/product-spa/list-spa/",
+        1317 => "/ticket/list-ticket/",
+        1320 => "/product-restaurant/list-restaurant/",
     ];
 
     foreach ($fresult as $frow) {
@@ -614,6 +624,8 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
         1302 => "/product-golf/list-golf/". $parent_code_no,
         1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no ,
         1325 => "/product-spa/list-spa/" . $parent_code_no ,
+        1317 => "/ticket/list-ticket/" . $parent_code_no,
+        1320 => "/product-restaurant/list-restaurant/" . $parent_code_no,
     ];
 
     $tabLinks = [
@@ -621,6 +633,8 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
         1302 => "/product-golf/list-golf/". $parent_code_no . "?search_product_category=",
         1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no . "&search_product_category=",
         1325 => "/product-spa/list-spa/" . $parent_code_no . "?search_product_category=",
+        1317 => "/ticket/list-ticket/" . $parent_code_no. "?search_product_category=",
+        1320 => "/product-restaurant/list-restaurant/" . $parent_code_no. "?search_product_category="
     ];
 
     $link1 = $tabLinks1[$s_parent_code_no] . $tab_ ?? "!#";
@@ -646,16 +660,19 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
 
 function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
     $html = "";
 
     $tabLinks = [
-        1303 => "/product-hotel/list-hotel?s_code_no=",
-        1302 => "/product-golf/list-golf/",
         1301 => "/product-tours/tours-list/",
+        1302 => "/product-golf/list-golf/",
+        1303 => "/product-hotel/list-hotel?s_code_no=",
+        1325 => "/product-spa/list-spa/",
+        1317 => "/ticket/list-ticket/",
+        1320 => "/product-restaurant/list-restaurant/",
     ];
 
     foreach ($fresult as $frow) {
@@ -675,16 +692,16 @@ function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 
 function getHeaderTabMobile()
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
     $currentUrl = current_url();
 
     $tabLinks = [
-        1303 => "/product-hotel",
-        1302 => "/product-golf",
         1301 => "/product-tours",
+        1302 => "/product-golf",
+        1303 => "/product-hotel",
         1325 => "/product-spa",
         1317 => "/show-ticket",
         1320 => "/product-restaurant",
@@ -745,11 +762,11 @@ function getSubMenuMobile($tab_)
         } elseif ($tab_ == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($tab_ == 1325) {
-            $url = "/product-spa?keyword=&main_product_code=$code_no";
+            $url = "/product-spa/list-spa/$code_no";
         } elseif ($tab_ == 1317) {
-            $url = "/show-ticket?keyword=&main_product_code=$code_no";
+            $url = "/ticket/list-ticket/$code_no";
         } elseif ($tab_ == 1320) {
-            $url = "/product-restaurant?keyword=&main_product_code=$code_no";
+            $url = "/product-restaurant/list-restaurant/$code_no";
         } elseif ($tab_ == 1303) {
             $url = "/product-hotel/list-hotel?s_code_no=$code_no";
         } else {

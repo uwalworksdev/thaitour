@@ -1064,6 +1064,8 @@ $routes->get('ticket/completed-order', 'Product::ticketCompleted');
 $routes->get('ticket/completed-cart', 'Product::ticketCarted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
+$routes->get('ticket/list-ticket/(:any)', 'Product::ticketList/$1');
+
 // $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
 $routes->get('show-ticket', 'Product::showTicket');
 // $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
@@ -1120,6 +1122,8 @@ $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted
 $routes->get('product-restaurant/completed-cart', 'Product::restaurantCarted');
 $routes->get('product-restaurant/restaurant-booking', 'Product::restaurantBooking');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
+$routes->get('product-restaurant/list-restaurant/(:any)', 'Product::restaurantList/$1');
+
 // $routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
 $routes->get('product-restaurant', 'Product::restaurantIndex');
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
