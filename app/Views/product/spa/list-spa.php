@@ -455,7 +455,10 @@
 
         const priceMin = $("#slider-min").val();
         const priceMax = $("#slider-max").val();
-        const priceType = $(".btn_fil_price.active").data("type");        
+        const priceType = $(".btn_fil_price.active").data("type");    
+        
+        console.log(priceType);
+        
 
         if (priceMin) grouped["price_min"] = priceMin;
         if (priceMax) grouped["price_max"] = priceMax;
@@ -465,7 +468,7 @@
 
         const query = Object.keys(grouped).map(key => `${key}=${grouped[key]}`).join("&");
         const path = window.location.href.split('?')[0];
-        window.location.href = path + (query ? `?${query}` : ``);
+        // window.location.href = path + (query ? `?${query}` : ``);
 
     }
 
