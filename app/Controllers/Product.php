@@ -6066,6 +6066,10 @@ class Product extends BaseController
         $db = \Config\Database::connect(); // 데이터베이스 연결
 		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
         $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
+        $price_min = $this->request->getVar('price_min') ?? "";
+        $price_max = $this->request->getVar('price_max') ?? "";
+        $price_type = $this->request->getVar('price_type') ?? "";
+
         $pg = $this->request->getGet('pg') ?? 1;
         $search_word = $this->request->getGet('search_word') ?? "";
 
@@ -6077,7 +6081,10 @@ class Product extends BaseController
             'product_code_2' => $code_no,
             'product_code_3' => $search_product_category,
             'search_product_name' => $search_word,
-            'search_product_mbti' => $search_product_mbti
+            'search_product_mbti' => $search_product_mbti,
+            'price_min' => $price_min,
+            'price_max' => $price_max,
+            'price_type' => $price_type
         ], 10, $pg, []);
 
         foreach ($products['items'] as $key => $product) {
