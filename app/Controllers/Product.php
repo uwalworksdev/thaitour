@@ -6133,7 +6133,7 @@ class Product extends BaseController
     {
         $data = $this->renderList($code_no);
 
-        return $this->renderView('product/golf/list-spa', $data);
+        return $this->renderView('product/spa/list-spa', $data);
     }
 	
 }
