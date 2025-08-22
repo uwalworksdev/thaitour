@@ -94,6 +94,43 @@
                         </div>
                     </div>
 
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>1박 평균가격</span>
+                            <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+                        </div>
+                        <?php
+                            if(empty($products["price_type"]) || $products["price_type"] == "W"){
+                                $unit_price = "원";
+                            }else{
+                                $unit_price = "바트";
+                            }
+                        ?>
+                        <div class="tab_box_area_ tab_price_area">
+                            <p class="tab-currency">
+                                <span class="currency active"><?=$unit_price?> · </span><span class="currency"><?=$unit_price?></span>
+                            </p>
+
+                            <div class="slider-container only_web">
+                                <div class="slider-background"></div>
+                                <div class="slider-track" id="slider-track"></div>
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_min"] ?>"
+                                        name="price_min" class="slider" id="slider-min">
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_max"] ?>"
+                                        name="price_max" class="slider" id="slider-max">
+                            </div>
+                            <div class="filter_price_wrap">
+                                <span class="price_range">
+                                    <i class="price_min">0</i><?=$unit_price?> ~ <i class="price_max">0</i><?=$unit_price?> 이상
+                                </span>
+                                <div class="filter">
+                                    <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
+                                    <button type="button" class="btn_fil_price <?php if($products["price_type"] == "B"){ echo "active"; } ?>" data-type="B">바트</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="only_mo">
                         <div class="filter_mo">
                             <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
