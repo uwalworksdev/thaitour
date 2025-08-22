@@ -109,6 +109,13 @@
 						</div>
 						<div class="tab_box_area_">
 							<ul class="tab_box_show_">
+                                <li class="tab_box_element_ tab_box_js p--20 border
+								<?php if (strpos($search_product_mbti, "all") !== false
+									|| empty($search_product_mbti)) {
+									echo "tab_active_";
+								} ?>"
+									data-idx="0" data-group="search_product_mbti">전체
+								</li>
 								<?php
 								foreach ($mcodes as $code) {
 									?>
