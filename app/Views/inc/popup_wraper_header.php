@@ -529,6 +529,7 @@
                             <th>MBTI</th>
                             <td>
                                 <div class="list_area list_mbti">
+                                    <p data-code="all">전체</p>
                                     <?php
                                         foreach ($mcodes as $code) {
                                     ?>
@@ -630,6 +631,21 @@
                                     <span class="price_range">
                                         <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
                                     </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>MBTI</th>
+                            <td>
+                                <div class="list_area list_mbti">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach ($mcodes as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
                                 </div>
                             </td>
                         </tr>
@@ -765,7 +781,6 @@
                                     <?php } ?>
                                 </div>
                             </td>
-    
                         </tr>
                         <tr>
                             <th>투어타입</th>
@@ -777,6 +792,21 @@
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php } ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>MBTI</th>
+                            <td>
+                                <div class="list_area list_mbti">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach ($mcodes as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
                                 </div>
                             </td>
                         </tr>
@@ -1180,8 +1210,17 @@
 
             $(".popup_content." + type_category).find(".list_mbti p.active").each(function() {
                 let code_no = $(this).data("code");
-                search_product_mbti.push(code_no);
+                if(code_no == "all"){
+                    search_product_mbti = [];
+                    return false;
+                }else{
+                    search_product_mbti.push(code_no);
+                }
             });
+
+            if(search_product_mbti.length == $(".popup_content." + type_category).find(".list_mbti p").length - 1){
+                search_product_mbti = [];
+            }
 
             $(".popup_content." + type_category).find(".list_bedroom p.active").each(function() {
                 let code_no = $(this).data("code");
@@ -1197,6 +1236,7 @@
             let travel_times = [];
             let carts = [];
             let facilities = [];
+            let search_product_mbti = [];
             let pg = 1;
             let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
             let keyword = $(".popup_content." + type_category).find(".inp_name_").val();
@@ -1291,7 +1331,21 @@
                 facilities = [];
             }
 
-            let url = `/product-golf/list-golf/${s_code_no}?green_peas=${green_peas.join(",")}&slots=${slots.join(",")}&golf_course_odd_numbers=${golf_course_odd_numbers.join(",")}&travel_times=${travel_times.join(",")}&carts=${carts.join(",")}&facilities=${facilities.join(",")}&pg=${pg}&search_word=${keyword}`;
+            $(".popup_content." + type_category).find(".list_mbti p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    search_product_mbti = [];
+                    return false;
+                }else{
+                    search_product_mbti.push(code_no);
+                }
+            });
+
+            if(search_product_mbti.length == $(".popup_content." + type_category).find(".list_mbti p").length - 1){
+                search_product_mbti = [];
+            }
+
+            let url = `/product-golf/list-golf/${s_code_no}?green_peas=${green_peas.join(",")}&slots=${slots.join(",")}&golf_course_odd_numbers=${golf_course_odd_numbers.join(",")}&travel_times=${travel_times.join(",")}&carts=${carts.join(",")}&facilities=${facilities.join(",")}&search_product_mbti=${search_product_mbti.join(",")}&pg=${pg}&search_word=${keyword}`;
             window.location.href = url;
         }else{
             let search_keyword = [];
@@ -1331,7 +1385,21 @@
                 search_product_tour = [];
             }
 
-            let url = `/product-tours/tours-list/${s_code_no}?search_keyword=${search_keyword.join(",")}&search_product_tour=${search_product_tour.join(",")}&price_type=${price_type}&pg=${pg}&price_min=${price_min}&price_max=${price_max}&search_word=${keyword}`;
+            $(".popup_content." + type_category).find(".list_mbti p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    search_product_mbti = [];
+                    return false;
+                }else{
+                    search_product_mbti.push(code_no);
+                }
+            });
+
+            if(search_product_mbti.length == $(".popup_content." + type_category).find(".list_mbti p").length - 1){
+                search_product_mbti = [];
+            }
+
+            let url = `/product-tours/tours-list/${s_code_no}?search_keyword=${search_keyword.join(",")}&search_product_tour=${search_product_tour.join(",")}&search_product_mbti=${search_product_mbti.join(",")}&price_type=${price_type}&pg=${pg}&price_min=${price_min}&price_max=${price_max}&search_word=${keyword}`;
             window.location.href = url;
         }
     }
