@@ -266,6 +266,9 @@
     $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
         $(this).addClass("active").siblings().removeClass("active");
         let type = $(this).data("type");
+
+        console.log(type);
+        
         let price_max = 500000;
         let text_unit = "원";
         if(type == "B"){
