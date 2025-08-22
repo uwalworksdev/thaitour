@@ -110,14 +110,6 @@
 													oStyle.type = 'text/css';
 													oStyle.innerHTML = `table.__se_tbl_ext tbody tr { border-top: 1px dashed #000; }`;
 													oEditorDocument.head.appendChild(oStyle);
-
-													let editor = oEditors1.getById["content_"];
-
-                                                    let initContent = $("#content_").val().trim();
-
-                                                    if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                        editor.setIR("");
-                                                    }
 												},
 												fCreator: "createSEditor2"
 											});

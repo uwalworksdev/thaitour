@@ -488,13 +488,6 @@ if ($product_idx && $product) {
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                        let editor = oEditors1.getById["product_info"];
-
-                                                        let initContent = $("#product_info").val().trim();
-
-                                                        if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                            editor.setIR("");
-                                                        }
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -533,13 +526,6 @@ if ($product_idx && $product) {
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                        let editor = oEditors2.getById["important_notes"];
-
-                                                        let initContent = $("#important_notes").val().trim();
-
-                                                        if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                            editor.setIR("");
-                                                        }
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -578,13 +564,6 @@ if ($product_idx && $product) {
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                        let editor = oEditors4.getById["product_notes"];
-
-                                                        let initContent = $("#product_notes").val().trim();
-
-                                                        if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                            editor.setIR("");
-                                                        }
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });

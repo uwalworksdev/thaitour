@@ -88,13 +88,7 @@
                                                             fOnAppLoad: function () {
                                                                 //예제 코드
                                                                 //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                                let editor = oEditors<?= $index ?>.getById["policy_contents_<?= $index ?>"];
 
-                                                                let initContent = $("#policy_contents_<?= $index ?>").val().trim();
-
-                                                                if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                                    editor.setIR("");
-                                                                }
                                                             },
                                                             fCreator: "createSEditor2"
                                                         });
@@ -131,13 +125,7 @@
                                                             fOnAppLoad: function () {
                                                                 //예제 코드
                                                                 //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                                let editor = oEditors_m<?= $index ?>.getById["policy_contents_m_<?= $index ?>"];
 
-                                                                let initContent = $("#policy_contents_m_<?= $index ?>").val().trim();
-
-                                                                if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                                    editor.setIR("");
-                                                                }
                                                             },
                                                             fCreator: "createSEditor3"
                                                         });
@@ -195,13 +183,7 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                        let editor = oEditors1.getById["policy_contents"];
 
-                                                        let initContent = $("#policy_contents").val().trim();
-
-                                                        if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                            editor.setIR("");
-                                                        }
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
@@ -237,13 +219,7 @@
                                                     fOnAppLoad: function () {
                                                         //예제 코드
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                        let editor = oEditors3.getById["policy_contents_m"];
 
-                                                        let initContent = $("#policy_contents_m").val().trim();
-
-                                                        if (initContent === "" || initContent === "<p><br></p>" || initContent === "<p>&nbsp;</p>") {
-                                                            editor.setIR("");
-                                                        }
                                                     },
                                                     fCreator: "createSEditor3"
                                                 });
