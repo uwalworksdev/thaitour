@@ -261,6 +261,28 @@
     </div>
 </div>
 <script>
+    var baht_thai = parseFloat('<?=$baht_thai?>');
+
+    $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
+        $(this).addClass("active").siblings().removeClass("active");
+        let type = $(this).data("type");
+        let price_max = 500000;
+        let text_unit = "원";
+        if(type == "B"){
+            price_max = parseInt(500000 / baht_thai);     
+            text_unit = "바트";
+        }
+
+        $("#price_type").val(type);
+        $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
+        $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
+        $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+        $(this).closest(".tab_price_area").find("#slider-min").val(0);
+        $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
+        $(this).closest(".tab_price_area").find("#slider-max").val(0);
+        $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+    });
+
     $(document).ready(function() {
         function formatDate(date) {
             var d = new Date(date),
