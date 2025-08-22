@@ -68,8 +68,13 @@
   }
 
   .section_vehicle_2_1__head__icon a img {
-    width: 3.9rem;
-    height: 3.9rem;
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+
+  .section_vehicle_2_1__head__icon a img.arrow-slide-vehicle {
+    width: 2rem;
+    height: 1.5rem;
   }
 
   .section_vehicle_2_1__body {
