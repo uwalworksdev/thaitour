@@ -654,10 +654,10 @@
         });
 
         $(".img-div").click(function () {
-            $(".popup").show();
+            $(".golf_filter").show();
         });
         $(".close_popup").click(function () {
-            $(".popup").hide();
+            $(".golf_filter").hide();
         });
 
         $(document).ready(function () {
