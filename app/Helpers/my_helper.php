@@ -539,7 +539,7 @@ function getHeaderTabMo()
 
 function getHeaderTabSub($code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1301, 1302, 1303, 1325, 1317, 1320) AND status = 'Y' ORDER BY onum ASC, code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '13' AND code_no IN (1301, 1302, 1303, 1325, 1317, 1320) AND status = 'Y' ORDER BY onum ASC, code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -555,7 +555,7 @@ function getHeaderTabSub($code_no = '')
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
 
-        $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$tab_' AND status = 'Y' ORDER BY code_no ASC ";
+        $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '$tab_' AND status = 'Y' ORDER BY onum ASC, code_no ASC ";
         $fresult = db_connect()->query($fsql);
         $fresult = $fresult->getRowArray();
 
@@ -573,7 +573,7 @@ function getHeaderTabSub($code_no = '')
 
 function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC, code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -603,7 +603,7 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
 
 function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $child_code_first = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC, code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
