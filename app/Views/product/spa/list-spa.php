@@ -114,10 +114,10 @@
                             <div class="slider-container only_web">
                                 <div class="slider-background"></div>
                                 <div class="slider-track" id="slider-track"></div>
-                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_min"] ?? 0 ?>"
-                                        name="price_min" class="slider" id="slider-min" class="slider-min">
-                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= $products["price_max"] ?? 0 ?>"
-                                        name="price_max" class="slider" id="slider-max" class="slider-max">
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= !empty($products["price_min"]) ? $products["price_min"] : 0 ?>"
+                                        name="price_min" class="slider" id="slider-min">
+                                <input type="range" min="0" max="<?= $products["total_price_max"] ?>" value="<?= !empty($products["price_max"]) ? $products["price_max"] : 0 ?>"
+                                        name="price_max" class="slider" id="slider-max">
                             </div>
                             <div class="filter_price_wrap">
                                 <span class="price_range">
@@ -453,8 +453,8 @@
             grouped[group] = grouped[group] + String(idx);
         });
 
-        const priceMin = $(".slider-min").val();
-        const priceMax = $(".slider-max").val();
+        const priceMin = $("#slider-min").val();
+        const priceMax = $("#slider-max").val();
         const priceType = $(".btn_fil_price.active").data("type");        
 
         if (priceMin) grouped["price_min"] = priceMin;
