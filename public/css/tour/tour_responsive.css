@@ -2409,6 +2409,7 @@
     display: flex;
     align-items: center;
     gap: 1.6rem;
+    display: none;
   }
 
   .content-sub-product-hotel .tab-currency .currency {
@@ -2433,6 +2434,12 @@
     padding-right: 2rem;
     border-right: 0.21rem solid rgb(238, 238, 238);
   }
+
+  .filter_price_wrap .filter .btn_fil_price {
+    padding: 1.5rem;
+    width: 5.5rem;
+    border: 1px solid #ccc;
+}
 
   .content-sub-hotel-detail .title-container {
     margin-top: 6rem;
