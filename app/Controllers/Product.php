@@ -6061,5 +6061,79 @@ class Product extends BaseController
             return $this->response->setJSON($resultArr);
         }
     }
+
+    public function renderList($code_no) {
+        $db = \Config\Database::connect(); // 데이터베이스 연결
+		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
+        $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
+        $pg = $this->request->getGet('pg') ?? 1;
+        $search_word = $this->request->getGet('search_word') ?? "";
+
+        $code_info = $this->codeModel->getByCodeNo($code_no);
+        $parent_code = $code_info['parent_code_no'];
+
+        $products = $this->productModel->findProductGolfPaging([
+            'product_code_1' => $parent_code,
+            'product_code_2' => $code_no,
+            'product_code_3' => $search_product_category,
+            'search_product_name' => $search_word,
+			'category' => $search_product_category,
+            'search_product_mbti' => $search_product_mbti
+        ], 10, $pg, []);
+
+        foreach ($products['items'] as $key => $product) {
+
+            $code = $product['product_code_1'];
+            if ($product['product_code_2']) $code = $product['product_code_2'];
+            if ($product['product_code_3']) $code = $product['product_code_3'];
+
+            $codeTree = $this->codeModel->getCodeTree($code);
+
+            $products['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $products['items'][$key]['total_review'] = $productReview['total_review'];
+            $products['items'][$key]['review_average'] = $productReview['avg'];
+			
+        }
+
+		$codes = $this->codeModel
+					  ->where('parent_code_no', $code_no)
+					  ->orderBy('code_no', 'ASC')
+					  ->get()
+					  ->getResultArray();
+
+		if($search_product_category == "") {
+		   $search_area  = "전체";
+		} else {
+			$sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+			$result      = $this->db->query($sql);
+			$row         = $result->getRowArray();
+			$search_area = $row['code_name'];
+		} 
+
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
+        return [
+            'codes' => $codes,
+            'category' => $search_product_category,
+			'search_area' => $search_area, 
+            'search_product_category' => $search_product_category,
+            'search_product_mbti' => $search_product_mbti,
+            'code_no' => $code_no,
+            'parent_code' => $parent_code,
+            'code_info' => $this->codeModel->getByCodeNo($code_no),
+            'products' => $products,
+            'mcodes' => $mcodes
+        ];
+    }
+
+    public function spaList($code_no)
+    {
+        $data = $this->renderList($code_no);
+
+        return $this->renderView('product/golf/list-spa', $data);
+    }
 	
 }

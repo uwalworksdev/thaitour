@@ -237,7 +237,7 @@ function getSubMenu($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa?keyword=&main_product_code=$code_no";
+            $url = "/product-spa/list-spa/$code_no";
         } elseif ($parent_code_no == 1317) {
             $url = "/show-ticket?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1320) {
@@ -539,14 +539,15 @@ function getHeaderTabMo()
 
 function getHeaderTabSub($code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1301, 1302, 1303, 1325, 1317, 1320) AND status = 'Y' ORDER BY onum ASC, code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
     $tabLinks = [
-        1303 => "/product-hotel/list-hotel?s_code_no=",
-        1302 => "/product-golf/list-golf/",
         1301 => "/product-tours/tours-list/",
+        1302 => "/product-golf/list-golf/",
+        1303 => "/product-hotel/list-hotel?s_code_no=",
+        1325 => "/product-spa/list-spa/",
     ];
 
 

@@ -1112,6 +1112,7 @@ $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
 $routes->get('product-spa/completed-cart', 'Product::spaCompletedCart');
 $routes->post('product-spa/spa-payment-ok', 'SpaController::handlePayment');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
+$routes->get('product-spa/list-spa/(:any)', 'Product::spaList/$1');
 // $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product-spa', 'Product::indexSpa');
 $routes->get('product_view/(:any)', 'Product::view/$1');
