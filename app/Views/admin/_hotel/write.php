@@ -1555,6 +1555,17 @@ $links = "list";
                                                 fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                        let editor = oEditors3.getById["product_notes"];
+
+                                                        setTimeout(function(){
+                                                            let iframe = document.getElementById("product_notes").nextSibling;
+                                                            let doc = iframe.contentDocument || iframe.contentWindow.document;
+                                                            let body = doc.body;
+
+                                                            if (body.innerHTML.trim() === "<p>&nbsp;</p>" || body.innerHTML.trim() === "<p><br></p>") {
+                                                                body.innerHTML = "";
+                                                            }
+                                                        }, 100);
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
