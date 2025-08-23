@@ -799,7 +799,7 @@
 <div class="popup_" id="popupTitle_" data-element="">
 	<div class="popup_area_ popup_area_xl_">
 		<div class="popup_top_">
-			<p></p>
+			<p>인원 정보</p>
 			<p>
 				<button type="button" class="btn_close_" onclick="ToggleTitleModal();">X</button>
 			</p>
