@@ -1304,10 +1304,10 @@
 	}
 
 	function add_tour(infoIdx, idx) {
-		// var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
-		// var rowIndex = targetTable.find(".air_list_1").length;
+		let targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
+		let rowIndex = targetTable.find(".air_list_1").length;
 
-		// var newRow = `
+		// let newRow = `
 		// 	<tr class="air_list_1" style="height:40px">
 		// 		<td>
 		// 			<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
@@ -1340,8 +1340,6 @@
 		// 	</tr>
 		// `;
 
-		// targetTable.append(newRow);
-		// $(".price").number(true);
 
 		if (!confirm("추가 하시겠습니까?")) {
 			return false;
@@ -1357,8 +1355,44 @@
 			async: false,
 			cache: false,
 			success: function (data, textStatus) {
+				let tour_id = data.tour_id;
+				let newRow = `
+					<tr class="air_list_1" style="height:40px">
+						<td>
+							<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="${tour_id}">
+							<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
+							<input type="hidden" name="tours_desc[${infoIdx}][]" class="tours_desc" value="">
+
+							<div class="flex" style="gap: 5px;">
+								<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+								<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								<input type="text" name="tours_subject[${infoIdx}][]" value="" placeholder="상품타입 국문글씨로 입력해주세요" class="tours_subject input_txt" style="width:50%">
+								<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" placeholder="상품타입 영문글씨로 입력해주세요" class="tours_subject_eng input_txt" style="width:50%;">
+							</div>
+						</td>
+						<td>
+							<input type="text" name="tour_price[${infoIdx}][]" value="0" placeholder="성인가격(단위: 바트)" class="price tour_price input_txt" style="width:100%" numberonly="true/">
+						</td>
+						<td>
+							<input type="text" name="tour_price_kids[${infoIdx}][]" value="0" placeholder="소아가격(단위: 바트)" class="price tour_price_kids input_txt" style="width:90%" numberonly="true/">
+						</td>
+						<td>
+							<input type="text" name="tour_price_baby[${infoIdx}][]" value="0" placeholder="유아가격(단위: 바트)" class="price tour_price_baby input_txt" style="width:90%" numberonly="true/">
+						</td>
+						<td>
+							<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+								<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
+								<select name="status[${infoIdx}][]">
+									<option value="Y" selected="">판매중</option>
+									<option value="N">중지</option>
+								</select>
+								<a href="#" onclick="javascript:delete_tour(this, '${tour_id}', '${idx}', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+							</div>
+						</td>
+					</tr>
+				`;
 				if(data.result){
-					location.reload();
+					targetTable.append(newRow);
 				}else{
 					alert(data.message);
 				}

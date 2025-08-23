@@ -1421,6 +1421,7 @@ class AdminTourController extends BaseController
             if($insertId) {
                 return $this->response->setJSON([
                     'result'    => true,
+                    'tour_id' => $insertId
                 ]);
             }else{
                 return $this->response->setJSON([
