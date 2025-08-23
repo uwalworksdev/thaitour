@@ -667,6 +667,10 @@ class AdminTourController extends BaseController
     public function write_info_ok()
     {
         $productIdx        = $this->request->getPost('product_idx');
+        $title_adult       = $this->request->getPost('title_adult');
+        $title_child       = $this->request->getPost('title_child');
+        $title_baby        = $this->request->getPost('title_baby');
+
         $info_name         = $this->request->getPost('info_name');
         $o_sdate           = $this->request->getPost('o_sdate');
         $o_edate           = $this->request->getPost('o_edate');
@@ -716,6 +720,14 @@ class AdminTourController extends BaseController
         $yoil_5 = $this->request->getPost('yoil_5');
         $yoil_6 = $this->request->getPost('yoil_6');
         $info_ids = [];
+
+        if(!empty($productIdx)) {
+            $this->productModel->updateData($productIdx, [
+                "title_adult" => $title_adult,
+                "title_child" => $title_child,
+                "title_baby" => $title_baby
+            ]);
+        }
 
         foreach ($o_sdate as $key => $start_date) {
             $info_id = isset($info_idx[$key]) ? $info_idx[$key] : null;

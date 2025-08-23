@@ -47,6 +47,10 @@
 		<input type=hidden name="s_product_code_1" value='<?=$s_product_code_1?>'> 
 		<input type=hidden name="s_product_code_2" value='<?=$s_product_code_2?>'> 
 		<input type=hidden name="s_product_code_3" value='<?=$s_product_code_3?>'> 
+		<input type=hidden name="title_adult" id="title_adult" value='<?=$title_adult?>'> 
+		<input type=hidden name="title_child" id="title_child" value='<?=$title_child?>'> 
+		<input type=hidden name="title_baby" id="title_baby" value='<?=$title_baby?>'> 
+
 		<div id="contents">
 			<div class="listWrap_noline">
 				<div class="listBottom">
@@ -811,27 +815,27 @@
 					<tr>
 						<th>성인</th>
 						<td>
-							<input type="text" id="pop_title_adult" value="" class="input_txt">
+							<input type="text" id="pop_title_adult" value="<?=$title_adult?>" class="input_txt">
 						</td>
 					</tr>
 					<tr>
 						<th>아동</th>
 						<td>
-							<input type="text" id="pop_title_child" value="" class="input_txt">
+							<input type="text" id="pop_title_child" value="<?=$title_child?>" class="input_txt">
 						</td>
 					</tr>
 					<tr>
 						<th>유아</th>
 						<td>
-							<input type="text" id="pop_title_baby" value="" class="input_txt">
+							<input type="text" id="pop_title_baby" value="<?=$title_baby?>" class="input_txt">
 						</td>
 					</tr>				
 				</tbody>
 			</table>
 		</div>
 		<div class="popup_bottom_">
-			<button type="button" class="" onclick="TogglePopup();">취소</button>
-			<button type="button" class="" onclick="UpdateDesc();">확인</button>
+			<button type="button" class="" onclick="ToggleTitleModal();">취소</button>
+			<button type="button" class="" onclick="UpdateTitle();">확인</button>
 		</div>
 	</div>
 </div>
@@ -863,6 +867,14 @@
         $("#popupTitle_").toggleClass('show_');
     }
 
+	function UpdateTitle() {
+		$("#title_adult").val($("#pop_title_adult").val());
+		$("#title_child").val($("#pop_title_child").val());
+		$("#title_baby").val($("#pop_title_baby").val());
+
+		ToggleTitleModal();
+	}
+
 	function TogglePopup() {
         $("#popupDesc_").toggleClass('show_');
     }
@@ -880,13 +892,13 @@
 		TogglePopup();
 	}
 
-		function UpdateDesc() {
-			const originalElement = $("#popupDesc_").data("element");
-			let content = $("#popupDesc_").find(".text_desc").val();
+	function UpdateDesc() {
+		const originalElement = $("#popupDesc_").data("element");
+		let content = $("#popupDesc_").find(".text_desc").val();
 
-			originalElement.closest(".air_list_1").find(".tours_desc").val(content);
-			TogglePopup();
-		}
+		originalElement.closest(".air_list_1").find(".tours_desc").val(content);
+		TogglePopup();
+	}
 
 </script>
 <script>
