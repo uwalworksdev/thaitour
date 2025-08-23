@@ -61,7 +61,7 @@
 							<tr height=45>
 								<!-- <th>상품정보 [단위 : 바트]</th> -->
 								<td class="td_wrap">
-									<div class="flex__c" style="margin-top: 5px;">
+									<div class="flex_b_c" style="margin-top: 5px;">
 										<div class="flex__c" style="gap: 5px;">
 											<a href="javascript:add_table();" class="btn btn-primary">추가</a>
 											<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
@@ -69,7 +69,7 @@
 										</div>
 										<div class="flex__c">
 											<p>인원 정보</p>
-											<button type="button" class="btn btn-default">추가</button>
+											<button type="button" class="btn btn-dark">추가</button>
 										</div>
 									</div>
 									<?php
