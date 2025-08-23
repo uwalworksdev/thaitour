@@ -69,7 +69,7 @@
 										</div>
 										<div class="flex__c">
 											<p>인원 정보</p>
-											<button type="button" class="btn btn-dark">추가</button>
+											<button type="button" class="btn btn-dark" onclick="showTitleModal()">추가</button>
 										</div>
 									</div>
 									<?php
@@ -855,6 +855,10 @@
 </div>
 
 <script>
+	function showTitleModal() {
+		$("#popupTitle_").toggleClass('show_');
+	}
+
 	function TogglePopup() {
         $("#popupDesc_").toggleClass('show_');
     }

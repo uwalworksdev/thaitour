@@ -119,7 +119,7 @@ class TourRegistController extends BaseController
     {
 
         //$g_list_rows = 10;
-        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 10; 
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
         $search_name = updateSQ($_GET["search_name"] ?? "");
