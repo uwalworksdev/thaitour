@@ -817,9 +817,9 @@ class ProductModel extends Model
 
         if($where['product_code_1'] != "") {
             if($where['product_code_1'] == '1301') {
-                $price_column = 'tour_price';
+                $price_column = 'min_tour_price';
             }else if($where['product_code_1'] == '1325' || $where['product_code_1'] == '1317' || $where['product_code_1'] == '1320') {
-                $price_column = 'spa_price';
+                $price_column = 'min_spa_price';
             }else {
                 $price_column = 'product_price';
             }
