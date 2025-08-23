@@ -1350,6 +1350,7 @@
         }else{
             let search_keyword = [];
             let search_product_tour = [];
+            let search_product_mbti = [];
             let price_type = $(".popup_content." + type_category).find(".btn_fil_price.active").data("type");
             let pg = 1;
             let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");

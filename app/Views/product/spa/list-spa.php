@@ -398,62 +398,35 @@
         });
     });
 
-    // const sliders = document.querySelectorAll('.slider-container');
-    // sliders.forEach(slider => {
-    //     const sliderMin = slider.querySelector('#slider-min');
-    //     const sliderMax = slider.querySelector('#slider-max');
-    //     const sliderTrack = slider.querySelector('#slider-track');
+    const sliders = document.querySelectorAll('.content-sub-product-hotel .slider-container');
+    sliders.forEach(slider => {
+        const sliderMin = slider.querySelector('#slider-min');
+        const sliderMax = slider.querySelector('#slider-max');
+        const sliderTrack = slider.querySelector('#slider-track');
 
-    //     function updateSliderTrack() {
-    //         const min = parseFloat(sliderMin.value);
-    //         const max = parseFloat(sliderMax.value);
-    //         console.log(min + "---" + max);
+        function updateSliderTrack() {
+            const min = parseFloat(sliderMin.value);
+            const max = parseFloat(sliderMax.value);
 
-    //         if (min > max) {
-    //             [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
-    //         }
+            if (min > max) {
+                [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+            }
 
-    //         const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
-    //         const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+            const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
+            const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
 
-    //         sliderTrack.style.left = percentMin + '%';
-    //         sliderTrack.style.width = (percentMax - percentMin) + '%';
+            sliderTrack.style.left = percentMin + '%';
+            sliderTrack.style.width = (percentMax - percentMin) + '%';
 
-    //         $(".price_min").text(number_format(sliderMin.value));
-    //         $(".price_max").text(number_format(sliderMax.value));
-    //     }
-
-    //     sliderMin.addEventListener('input', updateSliderTrack);
-    //     sliderMax.addEventListener('input', updateSliderTrack);
-
-    //     window.addEventListener('DOMContentLoaded', updateSliderTrack);
-    // });
-
-    const sliderMin = document.getElementById('slider-min');
-    const sliderMax = document.getElementById('slider-max');
-    const sliderTrack = document.getElementById('slider-track');
-
-    function updateSliderTrack() {
-        let min = parseFloat(sliderMin.value);
-        let max = parseFloat(sliderMax.value);
-
-        if (min > max) {
-            [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+            $(".price_min").text(number_format(sliderMin.value));
+            $(".price_max").text(number_format(sliderMax.value));
         }
 
-        const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
-        const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+        sliderMin.addEventListener('input', updateSliderTrack);
+        sliderMax.addEventListener('input', updateSliderTrack);
 
-        sliderTrack.style.left = percentMin + '%';
-        sliderTrack.style.width = (percentMax - percentMin) + '%';
-
-        $(".price_min").text(number_format(sliderMin.value));
-        $(".price_max").text(number_format(sliderMax.value));
-    }
-
-    sliderMin.addEventListener('input', updateSliderTrack);
-    sliderMax.addEventListener('input', updateSliderTrack);
-    window.addEventListener('DOMContentLoaded', updateSliderTrack);
+        window.addEventListener('DOMContentLoaded', updateSliderTrack);
+    });
 
     $(".img-div").click(function() {
         $(".golf_filter").addClass("show");
@@ -482,9 +455,9 @@
             grouped[group] = grouped[group] + String(idx);
         });
 
-        const priceMin = $("#slider-min").val();
-        const priceMax = $("#slider-max").val();
-        const priceType = $(".btn_fil_price.active").data("type");    
+        const priceMin = $(".content-sub-product-hotel #slider-min").val();
+        const priceMax = $(".content-sub-product-hotel #slider-max").val();
+        const priceType = $(".content-sub-product-hotel .btn_fil_price.active").data("type");    
 
         if (priceMin) grouped["price_min"] = priceMin;
         if (priceMax) grouped["price_max"] = priceMax;
