@@ -700,7 +700,6 @@ class AdminSpaController extends BaseController
         $productIdx         = $this->request->getPost('product_idx');
         $title_adult       = $this->request->getPost('title_adult');
         $title_child       = $this->request->getPost('title_child');
-        $title_baby        = $this->request->getPost('title_baby');
 
         $o_sdate            = $this->request->getPost('o_sdate');
         $o_edate            = $this->request->getPost('o_edate');
@@ -756,8 +755,7 @@ class AdminSpaController extends BaseController
         if(!empty($productIdx)) {
             $this->productModel->updateData($productIdx, [
                 "title_adult" => $title_adult,
-                "title_child" => $title_child,
-                "title_baby" => $title_baby
+                "title_child" => $title_child
             ]);
         }
 

@@ -236,8 +236,8 @@
                         </tr> -->
                         <tr>
                             <th>상품타입</th>
-                            <th>성인(만 13세이상)</th>
-                            <th>아동(만 5세~12세)</th>
+                            <th><?=!empty($data_['title_adult']) ? $data_['title_adult'] : '성인(만 13세이상)'?></th>
+                            <th><?=!empty($data_['title_child']) ? $data_['title_child'] : '아동(만 5세~12세)'?></th>
                         </tr>
                         </thead>
                         <tbody id="price_body_">
