@@ -2817,6 +2817,10 @@ public function list_room_pricex()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $db = $this->connect;
+        $prod = $this->productModel->getById($product_idx);
+        $title_adult = $prod["title_adult"];
+        $title_child = $prod["title_child"];
+        $title_baby = $prod["title_baby"];
 
         $sql_info = "
             SELECT ps.*, psi.* 
@@ -2884,6 +2888,9 @@ public function list_room_pricex()
 
         $data = [
             'product_idx'     => $product_idx,
+            'title_adult'     => $title_adult,
+            'title_child'     => $title_child,
+            'title_baby'      => $title_baby,
             'productSpasInfo' => $groupedData,
             'infoIndex'       => $infoIndex,
             'groupedData'     => $groupedData,

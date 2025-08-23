@@ -58,6 +58,9 @@
         <input type=hidden name="s_product_code_1" value='<?=$s_product_code_1?>'> 
         <input type=hidden name="s_product_code_2" value='<?=$s_product_code_2?>'> 
         <input type=hidden name="s_product_code_3" value='<?=$s_product_code_3?>'> 
+		<input type=hidden name="title_adult" id="title_adult" value='<?=$title_adult?>'> 
+		<input type=hidden name="title_child" id="title_child" value='<?=$title_child?>'> 
+		<input type=hidden name="title_baby" id="title_baby" value='<?=$title_baby?>'> 
         <div id="contents">
             <div class="listWrap_noline">
                 <div class="listBottom">
@@ -72,10 +75,16 @@
                             <tr height=45>
                                 <!-- <th>상품정보 [단위 : 바트]</th> -->
                                 <td class="td_wrap">
-                                    <div style="display: flex; gap: 5px; margin-top: 5px; align-items: center;">
-                                        <a href="javascript:add_table();" class="btn btn-primary">추가</a>
-                                        <a href="javascript:copy_last_spa(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
-										<p style="color: red; margin-left: 30px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
+                                    <div class="flex_b_c" style="margin-top: 5px;">
+										<div class="flex__c" style="gap: 5px;">
+											<a href="javascript:add_table();" class="btn btn-primary">추가</a>
+											<a href="javascript:copy_last_spa(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
+											<p style="color: red; margin-left: 30px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
+										</div>
+										<div class="flex__c" style="gap: 5px;">
+											<p style="font-weight: bold;">인원 정보</p>
+											<a href="#" class="btn btn-primary" onclick="showTitleModal()">추가</a>
+										</div>
                                     </div>
                                     <?php
                                         $i = 0;
@@ -772,6 +781,50 @@
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
 
+<div class="popup_" id="popupTitle_" data-element="">
+	<div class="popup_area_ popup_area_xl_">
+		<div class="popup_top_">
+			<p></p>
+			<p>
+				<button type="button" class="btn_close_" onclick="ToggleTitleModal();">X</button>
+			</p>
+		</div>
+		<div class="popup_content_ listBottom">
+			<table style="width: 100%" class="listTable mem_detail ">
+				<colgroup>
+					<col width="10%">
+					<col width="*">
+				</colgroup>
+	
+				<tbody>
+					<tr>
+						<th>성인</th>
+						<td>
+							<input type="text" id="pop_title_adult" value="<?=$title_adult?>" class="input_txt">
+						</td>
+					</tr>
+					<tr>
+						<th>아동</th>
+						<td>
+							<input type="text" id="pop_title_child" value="<?=$title_child?>" class="input_txt">
+						</td>
+					</tr>
+					<tr>
+						<th>유아</th>
+						<td>
+							<input type="text" id="pop_title_baby" value="<?=$title_baby?>" class="input_txt">
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+		<div class="popup_bottom_">
+			<button type="button" class="" onclick="ToggleTitleModal();">취소</button>
+			<button type="button" class="" onclick="UpdateTitle();">확인</button>
+		</div>
+	</div>
+</div>
+
 <div class="popup_" id="popupDesc_" data-element="">
 	<div class="popup_area_ popup_area_xl_">
 		<div class="popup_top_">
@@ -793,6 +846,22 @@
 <script>
 	var tableCount = <?= (isset($productSpasInfo) && count($productSpasInfo) > 0) ? (count($productSpasInfo) - 1) : 0 ?>;
 	var arr_count = [];
+
+	function showTitleModal() {
+		$("#popupTitle_").toggleClass('show_');
+	}
+
+	function ToggleTitleModal() {
+        $("#popupTitle_").toggleClass('show_');
+    }
+
+	function UpdateTitle() {
+		$("#title_adult").val($("#pop_title_adult").val());
+		$("#title_child").val($("#pop_title_child").val());
+		$("#title_baby").val($("#pop_title_baby").val());
+
+		ToggleTitleModal();
+	}
 
 	function TogglePopup() {
         $("#popupDesc_").toggleClass('show_');
