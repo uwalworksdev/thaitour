@@ -797,11 +797,11 @@
 		<div class="popup_top_">
 			<p></p>
 			<p>
-				<button type="button" class="btn_close_" onclick="TogglePopup();">X</button>
+				<button type="button" class="btn_close_" onclick="ToggleTitleModal();">X</button>
 			</p>
 		</div>
-		<div class="popup_content_">
-			<table style="width: 100%">
+		<div class="popup_content_ listBottom">
+			<table style="width: 100%" class="listTable">
 				<colgroup>
 					<col width="20%">
 					<col width="*">
@@ -858,6 +858,10 @@
 	function showTitleModal() {
 		$("#popupTitle_").toggleClass('show_');
 	}
+
+	function ToggleTitleModal() {
+        $("#popupTitle_").toggleClass('show_');
+    }
 
 	function TogglePopup() {
         $("#popupDesc_").toggleClass('show_');
