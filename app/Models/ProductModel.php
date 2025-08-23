@@ -802,6 +802,29 @@ class ProductModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        $today = date("Y-m-d");
+
+        $subTour = $this->db->table('tbl_tours_price')
+                    ->select("product_idx, MIN(goods_price1) as min_tour_price, MIN(goods_price1 * {$baht_thai}) as min_tour_price_won")
+                    ->where('goods_date', $today)
+                    ->groupBy('product_idx');
+
+        $subSpa = $this->db->table('tbl_spas_price')
+                    ->select("product_idx, MIN(goods_price1) as min_spa_price, MIN(goods_price1 * {$baht_thai}) as min_spa_price_won")
+                    ->where('goods_date', $today)
+                    ->groupBy('product_idx');
+
+        if($where['product_code_1'] != "") {
+            if($where['product_code_1'] == '1301') {
+                $price_column = 'tour_price';
+            }else if($where['product_code_1'] == '1325' || $where['product_code_1'] == '1317' || $where['product_code_1'] == '1320') {
+                $price_column = 'spa_price';
+            }else {
+                $price_column = 'product_price';
+            }
+        }
+
         $builder = $this->db->table('tbl_product_mst AS p');
         // $relevanceExpr = '';
         // if (!empty($where['arr_search_txt'])) {
@@ -827,9 +850,10 @@ class ProductModel extends Model
         // $builder->select($select);
 
         // $builder = $this->builder();
-        $builder->select('p.*');
-
-        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        $builder->select('p.*, spa.min_spa_price as spa_price, tour.min_tour_price as tour_price
+                    , tour.min_tour_price_won as tour_price_won, spa.min_spa_price_won as spa_price_won');
+        $builder->join("({$subTour->getCompiledSelect()}) as tour", "tour.product_idx = p.product_idx", "left");
+        $builder->join("({$subSpa->getCompiledSelect()}) as spa", "spa.product_idx = p.product_idx", "left");
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
@@ -912,11 +936,11 @@ class ProductModel extends Model
 
         if (!empty($where['price_max'])) {
             if (empty($where['price_type']) || $where['price_type'] == "W") {
-                $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
-                $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
+                $builder->where("($price_column * $baht_thai) > ", (float)$where['price_min']);
+                $builder->where("($price_column * $baht_thai) < ", (float)$where['price_max']);
             } else {
-                $builder->where("product_price > ", (float)$where['price_min']);
-                $builder->where("product_price < ", (float)$where['price_max']);
+                $builder->where("$price_column > ", (float)$where['price_min']);
+                $builder->where("$price_column < ", (float)$where['price_max']);
             }
         }
 
@@ -1143,27 +1167,27 @@ class ProductModel extends Model
 
         $today = date("Y-m-d");
 
-        foreach ($items as $key => $value) {
-            $row_tour_price = $this->db->table('tbl_tours_price')
-                                    ->where("product_idx", $value['product_idx'])
-                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
-                                    ->limit(1)->get()->getRowArray();
-            $tour_price = (float)$row_tour_price['goods_price1'] ?? 0;
-            $tour_price_won = $tour_price * $baht_thai;
-            $items[$key]['tour_price'] = $tour_price;
-            $items[$key]['tour_price_won'] = $tour_price_won;
-        }
+        // foreach ($items as $key => $value) {
+        //     $row_tour_price = $this->db->table('tbl_tours_price')
+        //                             ->where("product_idx", $value['product_idx'])
+        //                             ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+        //                             ->limit(1)->get()->getRowArray();
+        //     $tour_price = (float)$row_tour_price['goods_price1'] ?? 0;
+        //     $tour_price_won = $tour_price * $baht_thai;
+        //     $items[$key]['tour_price'] = $tour_price;
+        //     $items[$key]['tour_price_won'] = $tour_price_won;
+        // }
 
-        foreach ($items as $key => $value) {
-            $row_tour_price = $this->db->table('tbl_spas_price')
-                                    ->where("product_idx", $value['product_idx'])
-                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
-                                    ->limit(1)->get()->getRowArray();
-            $spa_price = (float)$row_tour_price['goods_price1'] ?? 0;
-            $spa_price_won = $spa_price * $baht_thai;
-            $items[$key]['spa_price'] = $spa_price;
-            $items[$key]['spa_price_won'] = $spa_price_won;
-        }
+        // foreach ($items as $key => $value) {
+        //     $row_tour_price = $this->db->table('tbl_spas_price')
+        //                             ->where("product_idx", $value['product_idx'])
+        //                             ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+        //                             ->limit(1)->get()->getRowArray();
+        //     $spa_price = (float)$row_tour_price['goods_price1'] ?? 0;
+        //     $spa_price_won = $spa_price * $baht_thai;
+        //     $items[$key]['spa_price'] = $spa_price;
+        //     $items[$key]['spa_price_won'] = $spa_price_won;
+        // }
 
         $data = [
             'items' => $items,
