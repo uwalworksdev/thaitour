@@ -792,6 +792,50 @@
 		</form>
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
+<div class="popup_" id="popupTitle_" data-element="">
+	<div class="popup_area_ popup_area_xl_">
+		<div class="popup_top_">
+			<p></p>
+			<p>
+				<button type="button" class="btn_close_" onclick="TogglePopup();">X</button>
+			</p>
+		</div>
+		<div class="popup_content_">
+			<table style="width: 100%">
+				<colgroup>
+					<col width="20%">
+					<col width="*">
+				</colgroup>
+	
+				<tbody>
+					<tr>
+						<th>성인</th>
+						<td>
+							<input type="text" id="pop_title_adult" value="" class="input_txt">
+						</td>
+					</tr>
+					<tr>
+						<th>아동</th>
+						<td>
+							<input type="text" id="pop_title_child" value="" class="input_txt">
+						</td>
+					</tr>
+					<tr>
+						<th>유아</th>
+						<td>
+							<input type="text" id="pop_title_baby" value="" class="input_txt">
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+		<div class="popup_bottom_">
+			<button type="button" class="" onclick="TogglePopup();">취소</button>
+			<button type="button" class="" onclick="UpdateDesc();">확인</button>
+		</div>
+	</div>
+</div>
+
 <div class="popup_" id="popupDesc_" data-element="">
 	<div class="popup_area_ popup_area_xl_">
 		<div class="popup_top_">
