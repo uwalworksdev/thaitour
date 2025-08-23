@@ -801,9 +801,9 @@
 			</p>
 		</div>
 		<div class="popup_content_ listBottom">
-			<table style="width: 100%" class="listTable">
+			<table style="width: 100%" class="listTable mem_detail ">
 				<colgroup>
-					<col width="20%">
+					<col width="10%">
 					<col width="*">
 				</colgroup>
 	
