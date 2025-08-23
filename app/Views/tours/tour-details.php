@@ -521,7 +521,7 @@
                                     <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
                                         <div class="quantity-container adult">
                                             <div class="quantity-info-con">
-                                                <span class="des"><?= $product['title_adult'] ?? "성인, Adult (키 120cm 이상)" ?></span>
+                                                <span class="des"><?= !empty($product['title_adult']) ? $product['title_adult'] : "성인, Adult (키 120cm 이상)" ?></span>
                                                 <div class="quantity-info">
                                                     <span class="price" data-price="<?= $tour['price_won'] ?>"><?= number_format($tour['price_won']) ?>원</span>
                                                     <span class="currency" data-price-baht="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>바트</span>
@@ -535,7 +535,7 @@
                                         </div>
                                         <div class="quantity-container child">
                                             <div class="quantity-info-con">
-                                                <span class="des"><?= $product['title_child'] ?? "아동, Child (키 91~119cm)"?></span>
+                                                <span class="des"><?= !empty($product['title_child']) ? $product['title_child'] : "아동, Child (키 91~119cm)"?></span>
                                                 <div class="quantity-info">
                                                     <span class="price" data-price="<?= $tour['price_won_kids'] ?>"><?= number_format($tour['price_won_kids']) ?>원</span>
                                                     <span class="currency" data-price-baht="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
@@ -549,7 +549,7 @@
                                         </div>
                                         <div class="quantity-container baby">
                                             <div class="quantity-info-con">
-                                                <span class="des"><?= $product['title_baby'] ?? "유아, baby (키 90cm 이하)"?></span>
+                                                <span class="des"><?= !empty($product['title_baby']) ? $product['title_baby'] : "유아, baby (키 90cm 이하)"?></span>
                                                 <div class="quantity-info">
                                                     <span class="price" data-price="<?= $tour['price_won_baby'] ?>"><?= number_format($tour['price_won_baby']) ?> 원</span>
                                                     <span class="currency" data-price-baht="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트 </span>
