@@ -101,7 +101,7 @@
 															<td>
 																<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																	<div style="display: flex; justify-content: center; gap: 5px;">
-																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
+																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 150px;" value="<?= $info['info']['info_name'] ?>">
 																		<a href="javascript:add_tour(<?= $i ?>, '<?= $info['info']['info_idx']?>');" class="btn btn-primary">추가</a>
 																		<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																		<a href="javascript:copy_last_tour('<?=$product_idx?>', '<?= $info['info']['info_idx']?>');" class="btn btn-success">복사하기</a>
