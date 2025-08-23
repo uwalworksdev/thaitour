@@ -67,9 +67,9 @@
 											<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
 											<p style="color: red; margin-left: 30px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
 										</div>
-										<div class="flex__c">
-											<p>인원 정보</p>
-											<button type="button" class="btn btn-dark" onclick="showTitleModal()">추가</button>
+										<div class="flex__c" style="gap: 5px;">
+											<p style="font-weight: bold;">인원 정보</p>
+											<a href="#" class="btn btn-dark" onclick="showTitleModal()">추가</a>
 										</div>
 									</div>
 									<?php
