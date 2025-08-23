@@ -1982,18 +1982,15 @@ class AdminSpaController extends BaseController
     function copy_last_spa()
     {
         $product_idx = $this->request->getPost('product_idx');
+        $info_idx = $this->request->getPost('info_idx');
 
         if ($product_idx) {
             $spa_info = $this->productSpasInfo
-                                ->from("tbl_product_spas_info a")
-                                ->join("tbl_product_spas b", "a.info_idx = b.info_idx", "left")
-                                ->where("b.info_idx IS NOT NULL")
-                                ->where("a.product_idx", $product_idx)
-                                ->orderBy("a.info_idx", "desc") 
-                                ->first();
+                            ->where("product_idx", $product_idx)
+                            ->where("info_idx", $info_idx)
+                            ->get()->getRowArray();
             if(!empty($spa_info)){
                 $new_spa_info = array_merge([], $spa_info);
-                $info_idx = $new_spa_info['info_idx'];
                 unset($new_spa_info['info_idx']);
                 $new_spa_info['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $spa_id = $this->productSpasInfo->insert($new_spa_info);

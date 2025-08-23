@@ -68,7 +68,7 @@
 									<div class="flex_b_c" style="margin-top: 5px;">
 										<div class="flex__c" style="gap: 5px;">
 											<a href="javascript:add_table();" class="btn btn-primary">추가</a>
-											<p style="color: red; margin-left: 30px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
+											<p style="color: red; margin-left: 10px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
 										</div>
 										<div class="flex__c" style="gap: 5px;">
 											<p style="font-weight: bold;">인원 정보</p>
