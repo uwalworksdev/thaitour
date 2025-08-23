@@ -1366,8 +1366,45 @@
 			async: false,
 			cache: false,
 			success: function (data, textStatus) {
+				let spa_id = data.spa_id;
+
+				var newRow = `
+					<tr class="air_list_1" style="height:40px">
+						<td>
+							<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="${spa_id}">
+							<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
+							<input type="hidden" name="spas_explain[${infoIdx}][]" class="spas_explain" value="">
+							<input type="hidden" name="is_explain[${infoIdx}][]" class="hidden_is_explain" value="">
+
+							<div style="display: flex; gap: 5px; align-items: center;">
+								<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+								<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								<input type="text" name="spas_subject[${infoIdx}][]" value="" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%">
+								<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" placeholder="상품타입 영문글씨 입력해주세요" class="spas_subject_eng input_txt" style="width:50%;">
+								<input type="checkbox" onchange="InitPopup(event, this);" class="is_explain" value="Y">
+								<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
+							</div>
+						</td>
+						<td>
+							<input type="text" name="spas_price[${infoIdx}][]" value="0" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberonly="true/">
+						</td>
+						<td>
+							<input type="text" name="spas_price_kids[${infoIdx}][]" value="0" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberonly="true/">
+						</td>
+
+						<td>
+							<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+								<select name="status[${infoIdx}][]">
+									<option value="Y" selected="">판매중</option>
+									<option value="N">중지</option>
+								</select>
+								<a href="#" onclick="javascript:delete_spa(this, '${spa_id}', '${idx}', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+							</div>
+						</td>
+					</tr>
+				`;
 				if(data.result){
-					location.reload();
+					targetTable.append(newRow);
 				}else{
 					alert(data.message);
 				}

@@ -1859,6 +1859,7 @@ class AdminSpaController extends BaseController
             if($insertId) {
                 return $this->response->setJSON([
                     'result'    => true,
+                    'spa_id'    => $insertId
                 ]);
             }else{
                 return $this->response->setJSON([
