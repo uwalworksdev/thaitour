@@ -73,7 +73,7 @@
 										</div>
 										<div class="flex__c" style="gap: 5px;">
 											<p style="font-weight: bold;">인원 정보</p>
-											<a href="#" class="btn btn-dark" onclick="showTitleModal()">추가</a>
+											<a href="#" class="btn btn-primary" onclick="showTitleModal()">추가</a>
 										</div>
 									</div>
 									<?php
