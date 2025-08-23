@@ -68,7 +68,6 @@
 									<div class="flex_b_c" style="margin-top: 5px;">
 										<div class="flex__c" style="gap: 5px;">
 											<a href="javascript:add_table();" class="btn btn-primary">추가</a>
-											<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
 											<p style="color: red; margin-left: 30px;">*가격 수정시 반드시 "수정선택" 체크해서 저장할 수 있습니다</p>
 										</div>
 										<div class="flex__c" style="gap: 5px;">
@@ -105,6 +104,7 @@
 																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
 																		<a href="javascript:add_tour(<?= $i ?>, '<?= $info['info']['info_idx']?>');" class="btn btn-primary">추가</a>
 																		<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
+																		<a href="javascript:copy_last_tour('<?=$product_idx?>', '<?= $info['info']['info_idx']?>');" class="btn btn-success">복사하기</a>
 																	</div>
 																</div>
 															</td>
@@ -1627,7 +1627,7 @@
 		$("#datepicker2").datepicker("setDate", '<?=$e_date?>');
 	});
 
-	function copy_last_tour(product_idx) {
+	function copy_last_tour(product_idx, info_idx) {
 		if (!confirm("이 제품을 복사하시겠습니까?")) {
 			return false;
 		}
@@ -1636,6 +1636,7 @@
 			type: "POST",
 			data: {
 				"product_idx": product_idx,
+				"info_idx": info_idx,
 			},
 			dataType: "json",
 			async: false,

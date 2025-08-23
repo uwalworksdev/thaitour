@@ -1453,18 +1453,15 @@ class AdminTourController extends BaseController
     function copy_last_tour()
     {
         $product_idx = $this->request->getPost('product_idx');
+        $info_idx = $this->request->getPost('info_idx');
 
         if ($product_idx) {
             $tour_info = $this->infoProducts
-                                ->from("tbl_product_tour_info a")
-                                ->join("tbl_product_tours b", "a.info_idx = b.info_idx", "left")
-                                ->where("b.info_idx IS NOT NULL")
-                                ->where("a.product_idx", $product_idx)
-                                ->orderBy("a.info_idx", "desc") 
-                                ->first();
+                                ->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->get()->getRowArray();
             if(!empty($tour_info)){
                 $new_tour_info = array_merge([], $tour_info);
-                $info_idx = $new_tour_info['info_idx'];
                 unset($new_tour_info['info_idx']);
                 $new_tour_info['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $tour_id = $this->infoProducts->insert($new_tour_info);
