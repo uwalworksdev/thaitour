@@ -299,7 +299,7 @@
                         }
                         ?>
                         <?php
-                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&search_keyword=" . $search_keyword . "&search_product_tour=" . $search_product_tour . "&search_product_mbti=" . $search_product_mbti . "&price_min=" . $price_min . "&price_max=" . $price_max . "&price_type=" . $price_type . "&pg=")
+                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&search_keyword=" . $products["search_keyword"] . "&search_product_tour=" . $products["search_product_tour"] . "&search_product_mbti=" . $products["search_product_mbti"] . "&price_min=" . $products["price_min"] . "&price_max=" . $products["price_max"] . "&price_type=" . $products["price_type"] . "&pg=")
                         ?>
                     </div>
                 </div>
