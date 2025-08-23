@@ -6066,8 +6066,8 @@ class Product extends BaseController
         $db = \Config\Database::connect(); // 데이터베이스 연결
 		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
         $search_product_mbti = $this->request->getVar('search_product_mbti') ?? "";
-        $price_min = $this->request->getVar('price_min') ?? "";
-        $price_max = $this->request->getVar('price_max') ?? "";
+        $price_min = $this->request->getVar('price_min') ?? 0;
+        $price_max = $this->request->getVar('price_max') ?? 0;
         $price_type = $this->request->getVar('price_type') ?? "";
 
         $pg = $this->request->getGet('pg') ?? 1;
