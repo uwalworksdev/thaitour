@@ -51,7 +51,6 @@
     <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
             <div class="only_web" style="height: 100%;">
-
                 <div class="slider-container w-full h-full relative slider-container-web">
                     <?php
                     foreach ($banner_promotion as $banner) {
@@ -84,8 +83,8 @@
                     </div> -->
                 </div>
             </div>
-            <!-- <div class="only_mo" style="height: 100%;">
-                <div class="slider-container w-full h-full relative ">
+            <div class="only_mo" style="height: 100%;">
+                <div class="slider-container w-full h-full relative slider-container-mo">
                     <?php
                     foreach ($banner_promotion_mo as $banner) {
                         if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
@@ -100,7 +99,7 @@
                     }
                     ?>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
             <div class="bg-black/50 w-full h-full flex items-center justify-center p-4">

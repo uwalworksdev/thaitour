@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     initSlider(".slider-container-web");
-    // initSlider(".only_mo .slider-container");
+    initSlider(".slider-container-mo");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
