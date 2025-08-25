@@ -56,10 +56,10 @@
                     if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
                         $img_banner = "/data/promotion/" . $banner['ufile'];
                 ?>
-                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-transparent"></div>
-                        </div>
+                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000 <?= $banner['device_type'] == 'P' ? 'only_web' : 'only_mo' ?>">
+                        <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div>
                 <?php
                     }
                 }
