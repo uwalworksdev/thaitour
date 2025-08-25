@@ -52,7 +52,7 @@
         <div class="absolute inset-0 w-full h-full">
             <div class="only_web" style="height: 100%;">
 
-                <div class="slider-container w-full h-full relative">
+                <div class="slider-container w-full h-full relative slider-container-web">
                     <?php
                     foreach ($banner_promotion as $banner) {
                         if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <!-- <div class="only_mo" style="height: 100%;">
-                <div class="slider-container w-full h-full relative">
+                <div class="slider-container w-full h-full relative ">
                     <?php
                     foreach ($banner_promotion_mo as $banner) {
                         if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {

@@ -59,45 +59,46 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", () => {
     // 슬라이드 관련 기존 코드
     function initSlider(containerSelector) {
-    const container = document.querySelector(containerSelector);
-    if (!container) return;
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
 
-    const slides = container.querySelectorAll(".slide");
-    const dots = container.querySelectorAll(".slider-dot");
+        const slides = container.querySelectorAll(".slide");
+        const dots = container.querySelectorAll(".slider-dot");
 
-    if (slides.length === 0) return;
+        if (slides.length === 0) return;
 
-    let current = 0;
+        let current = 0;
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === index);
-            slide.style.opacity = i === index ? "1" : "0";
-        });
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+                slide.style.opacity = i === index ? "1" : "0";
+            });
+            if (dots.length > 0) {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("bg-white", i === index);
+                    dot.classList.toggle("bg-white/50", i !== index);
+                });
+            }
+            current = index;
+        }
+
         if (dots.length > 0) {
-            dots.forEach((dot, i) => {
-                dot.classList.toggle("bg-white", i === index);
-                dot.classList.toggle("bg-white/50", i !== index);
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => showSlide(index));
             });
         }
-        current = index;
+
+        function nextSlide() {
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+        }
+
+        showSlide(current);
+        setInterval(nextSlide, 6000);
     }
 
-    if (dots.length > 0) {
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => showSlide(index));
-        });
-    }
-
-    function nextSlide() {
-        let next = (current + 1) % slides.length;
-        showSlide(next);
-    }
-
-    showSlide(current);
-    setInterval(nextSlide, 6000);
-}
-    initSlider(".only_web .slider-container");
+    initSlider(".slider-container-web");
     // initSlider(".only_mo .slider-container");
 
     // 가이드북 보기 버튼 스크롤
