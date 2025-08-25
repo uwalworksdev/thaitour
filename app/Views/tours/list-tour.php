@@ -232,10 +232,12 @@
                                     <div class="product-card-label-list">
                                         <?php
                                             foreach($product["label_list"] as $label){
+                                                if(!empty($label)) {
                                         ?>
                                             <div class="product-card-label" style="background-color: <?=$label["color"] ?>"><?=$label["code_name"]?></div>
                                         <?php
-                                            }
+                                            } 
+                                        }
                                         ?>
                                     </div>
                                 </div>
