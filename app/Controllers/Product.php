@@ -4047,6 +4047,8 @@ class Product extends BaseController
         $data['product_qna'] = $product_qna;
 
         $arr_tour_group = explode(",", $data['product']['tour_group']);
+        var_dump($arr_tour_group);
+        die();
         $_arr_t_group = [];
         foreach ($arr_tour_group as $tour_group) {
             $row_code = $this->codeModel->getByCodeNo($tour_group);
