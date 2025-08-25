@@ -54,10 +54,15 @@
                 <?php
                 foreach ($banner_promotion as $banner) {
                     if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-                        $img_banner = "/data/promotion/" . $banner['ufile'];
+                        if($banner['device_type'] == 'P') {
+                            $img_banner = "/data/promotion/" . $banner['ufile'];
+                        }else {
+                            $img_banner_mo = "/data/promotion/" . $banner['ufile'];
+                        }
                 ?>
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_web">
+                            <img src="<?= $img_banner_mo ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_mo">
                             <div class="absolute inset-0 bg-transparent"></div>
                         </div>
                 <?php
