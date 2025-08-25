@@ -15,9 +15,10 @@ class PromotionImg extends Model
     ];
 
     public function getImg($promotion_idx, $device_type = '')
-{
+    {
     $builder = $this->where('promotion_idx', $promotion_idx)
-                    ->where('ufile !=', '');
+                    ->where('ufile !=', '')
+                    ->where("ufile IS NOT NULL");
 
     if ($device_type !== '') {
         $builder->where('device_type', $device_type);
@@ -26,7 +27,7 @@ class PromotionImg extends Model
     return $builder->orderBy("onum", "asc")
                    ->orderBy("i_idx", "asc")
                    ->findAll();
-}
+    }
 
     public function insertData($data)
     {
