@@ -178,7 +178,6 @@ class AdminTourController extends BaseController
             $description = updateSQ($_POST["description" ?? '']);
             $note_news = updateSQ($_POST["note_news" ?? '']);
 
-            $t_group = $_POST["tour_group"] ?? [];
             $company_name = updateSQ($_POST["company_name" ?? '']);
             $company_contact = updateSQ($_POST["company_contact" ?? '']);
             $company_url = updateSQ($_POST["company_url" ?? '']);
@@ -187,6 +186,7 @@ class AdminTourController extends BaseController
             $field_more_arr = $_POST["field_more"] ?? [];
 
             $label_category = implode(",", $_POST['label_category'] ?? []);
+            $tour_group = implode(",", $_POST['tour_group'] ?? []);
 
             $field_more = "";
             for($j =0; $j< count($field_more_arr); $j++){
@@ -201,14 +201,14 @@ class AdminTourController extends BaseController
                 $arr = [];
             }
 
-            $tour_group = "";
-            for ($i = 0; $i < count($t_group); $i++) {
-                if ($i == 0) {
-                    $tour_group .= $t_group[$i];
-                } else {
-                    $tour_group .= "," . $t_group[$i];
-                }
-            }
+            // $tour_group = "";
+            // for ($i = 0; $i < count($t_group); $i++) {
+            //     if ($i == 0) {
+            //         $tour_group .= $t_group[$i];
+            //     } else {
+            //         $tour_group .= "," . $t_group[$i];
+            //     }
+            // }
 
             $deadline_date = "";
             for ($i = 0; $i < count($arr); $i++) {

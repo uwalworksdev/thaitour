@@ -2043,6 +2043,12 @@ public function list_room_pricex()
         ];
         $product_keywords = $this->codeModel->getCodesByConditions($conditions_key);
 
+        $conditions_key = [
+            "parent_code_no" => '6601',
+        ];
+        $tours_group = $this->codeModel->getCodesByConditions($conditions_key);
+        $data['tours_group'] = $tours_group;
+
         $sql       = "SELECT * FROM tbl_code WHERE parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();

@@ -838,18 +838,15 @@
                                 <tr>
                                     <th>그룹타입</th>
                                     <td colspan="3">
-                                        <input type="checkbox" name="tour_group[]"
-                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "E") !== false)) echo "checked"; ?> value="E">
-                                               반일투어 &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="tour_group[]"
-                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "T") !== false)) echo "checked"; ?> value="T">
-                                               조인 투어 &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="tour_group[]"
-                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "S") !== false)) echo "checked"; ?> value="S">
-                                               단독투어 &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="tour_group[]"
-                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "F") !== false)) echo "checked"; ?> value="F">
-                                               종일투어 &nbsp;&nbsp;&nbsp;
+                                        <?php
+                                            $_t_group = isset($tour_group) ? explode(",", $tour_group) : [];
+                                            $_t_group = array_filter($_t_group);
+                                        ?>
+                                        <?php foreach ($tours_group as $item) { ?>
+                                            <input type="checkbox" <?= in_array($item['code_no'], $_t_group) ? 'checked' : '' ?> name="tour_group[]" class="yoil" value="<?=$item['code_no']?>"><?=$item['code_name']?> &nbsp;&nbsp;&nbsp;
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
                                 </tr>
 

@@ -121,7 +121,8 @@
                                     </td>
                                 </tr>
                             <?php endif; ?>
-                            <?php if ($parent_code_no === '62' || $parent_code_no === '63' || $parent_code_no === '64' || $parent_code_no === '57') : ?>
+                            <?php if ($parent_code_no === '62' || $parent_code_no === '63' || $parent_code_no === '64' || $parent_code_no === '57' 
+                                        || $parent_code_no === '6601') : ?>
                                 <tr>
                                     <th>배경</th>
                                     <td>
