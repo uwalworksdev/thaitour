@@ -2341,6 +2341,22 @@ class Product extends BaseController
 
         $data['product']['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $data['product']['product_idx']) > 0;
 
+        $mbti_arr = explode("|", $data['product']['mbti']);
+        $mbti_arr = array_filter($mbti_arr, function($item) {
+            return trim($item) !== "";
+        });
+
+        $mbti_code_arr = [];
+
+        foreach ($mbti_arr as $key => $value) {
+            $mbti_code_name = $this->codeModel->getCodeName($value);
+            $mbti_code_arr[] = $mbti_code_name;
+        }
+
+        $mbti_list = implode(", ", $mbti_code_arr);
+
+        $data['mbti_list'] = $mbti_list;
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
@@ -3699,6 +3715,21 @@ class Product extends BaseController
         }
 
         $data['product']['arr_tour_group'] = $_arr_t_group;
+
+        $mbti_arr = explode("|", $data['product']['mbti']);
+        $mbti_arr = array_filter($mbti_arr, function($item) {
+            return trim($item) !== "";
+        });
+
+        $mbti_code_arr = [];
+
+        foreach ($mbti_arr as $key => $value) {
+            $mbti_code_name = $this->codeModel->getCodeName($value);
+            $mbti_code_arr[] = $mbti_code_name;
+        }
+
+        $mbti_list = implode(", ", $mbti_code_arr);
+        $data['mbti_list'] = $mbti_list;
 
         // var_dump($data['productTourInfo']);
 
@@ -5154,6 +5185,20 @@ class Product extends BaseController
             throw new Exception('존재하지 않는 상품입니다.');
         }
 
+        $mbti_arr = explode("|", $rowData['mbti']);
+        $mbti_arr = array_filter($mbti_arr, function($item) {
+            return trim($item) !== "";
+        });
+
+        $mbti_code_arr = [];
+
+        foreach ($mbti_arr as $key => $value) {
+            $mbti_code_name = $this->codeModel->getCodeName($value);
+            $mbti_code_arr[] = $mbti_code_name;
+        }
+
+        $mbti_list = implode(", ", $mbti_code_arr);
+
         $timeLine = $rowData['time_line'];
         $timeSegments = explode(',', $timeLine);
         $timeSegments = array_map('trim', $timeSegments);
@@ -5265,6 +5310,7 @@ class Product extends BaseController
             'product' => $product,
             'baht_thai' => $baht_thai,
             'mcodes' => $mcodes,
+            'mbti_list' => $mbti_list,
             'reservaion_policy' => $reservaion_policy
         ];
 

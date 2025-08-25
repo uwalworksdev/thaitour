@@ -260,21 +260,10 @@
                         <span><strong> <?= $product['review_average'] ?></strong></span>
                         <span>리얼리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
                         <?php
-                        $_arr = explode("|", $product['mbti']);
-
-                        $code_n0 = [];
-
-                        foreach ($mcodes as $mcode) {
-                            if (in_array($mcode['code_no'], $_arr)) {
-                                $code_n0[] = $mcode['code_name'];
-                            }
-                        }
-                        ?>
-                        <?php
                             $member = session()->get("member");
                             if ($member && ( (isset($member["level"]) && $member["level"] <= 2) || ($member["id"] ?? '') === 'admin')) {
                         ?>
-                            <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
+                            <span>추천 MBTI: <?= $mbti_list ?></span>
                         <?php
                             }
                         ?>
