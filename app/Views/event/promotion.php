@@ -52,40 +52,28 @@
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
                 <?php
-$slides = [];
+                foreach ($banner_promotion as $banner) {
+                    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
+                        if($banner['device_type'] == 'P') {
+                            $img_banner = "/data/promotion/" . $banner['ufile'];
+                        }else {
+                            $img_banner_mo = "/data/promotion/" . $banner['ufile'];
+                        }
+                ?>
+                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                            <?php if (!empty($img_banner)): ?>
+                                <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_web">
+                            <?php endif; ?>
 
-// Gom dữ liệu theo một khóa chung (vd: promotion_idx)
-foreach ($banner_promotion as $banner) {
-    $idx = $banner['promotion_idx']; // đổi nếu khóa khác
-    if (!isset($slides[$idx])) {
-        $slides[$idx] = [
-            'pc' => null,
-            'mo' => null,
-            'alt' => $banner['rfile'] ?? '',
-        ];
-    }
-
-    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-        $img = "/data/promotion/" . $banner['ufile'];
-        if ($banner['device_type'] === 'P') {
-            $slides[$idx]['pc'] = $img;
-        } else {
-            $slides[$idx]['mo'] = $img;
-        }
-    }
-}
-?>
-                        <?php foreach ($slides as $slide): ?>
-        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-            <?php if ($slide['pc']): ?>
-                <img src="<?= $slide['pc'] ?>" alt="<?= $slide['alt'] ?>" class="w-full h-full object-cover only_web">
-            <?php endif; ?>
-            <?php if ($slide['mo']): ?>
-                <img src="<?= $slide['mo'] ?>" alt="<?= $slide['alt'] ?>" class="w-full h-full object-cover only_mo">
-            <?php endif; ?>
-            <div class="absolute inset-0 bg-transparent"></div>
-        </div>
-    <?php endforeach; ?>
+                            <?php if (!empty($img_banner_mo)): ?>
+                                <img src="<?= $img_banner_mo ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_mo">
+                            <?php endif; ?>
+                            <div class="absolute inset-0 bg-transparent"></div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
                 <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
