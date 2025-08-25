@@ -56,9 +56,16 @@
                         } else {
                             $img = "/data/product/noimg.png";
                         }
+
+                        if ($row["ufile3"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $row["ufile3"])) {
+                            $img_mo = "/data/promotion/" . $row["ufile3"];
+                        } else {
+                            $img_mo = "/data/product/noimg.png";
+                        }
                 ?>
                     <a href="/promotion?idx=<?=$row["idx"]?>" class="magazines_list__item_">
-                        <img src="<?=$img?>" alt="<?=$row["title"]?>" class="magazines_list__item_image_">
+                        <img src="<?=$img?>" alt="<?=$row["title"]?>" class="magazines_list__item_image_ only_web">
+                        <img src="<?=$img_mo?>" alt="<?=$row["title"]?>" class="magazines_list__item_image_ only_mo">
                         <div class="magazines_list__item_title_ text_truncate_">
                             <?=$row["title"]?> 
                         </div>
