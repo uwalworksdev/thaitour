@@ -141,6 +141,10 @@ class AdminHotelController extends BaseController
 
         $mcodes = $this->CodeModel->getByParentCode('56')->getResultArray();
 
+        foreach ($mcodes as $key => $val) {
+            $mcodes[$key]['codes_child'] = $this->CodeModel->getByParentCode($val['code_no'])->getResultArray();
+        }
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
