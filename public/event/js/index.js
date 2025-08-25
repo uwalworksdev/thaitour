@@ -101,11 +101,11 @@ function initSlider(containerSelector) {
     setInterval(nextSlide, 6000);
 }
 
-initSlider(".slider-container.only_web");
-initSlider(".slider-container.only_mo");
-
 document.addEventListener("DOMContentLoaded", () => {
     // 슬라이드 관련 기존 코드
+    
+    initSlider(".slider-container.only_web");
+    initSlider(".slider-container.only_mo");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
