@@ -208,9 +208,9 @@
                 </div>
                 <ul class="tour_type_group">
                     <?php
-                        foreach($product["arr_tour_group"] ?? [] as $tour_group){
+                        foreach($product["arr_tour_group"] ?? [] as $t_group){
                     ?>
-                        <li class="type_title type_title_1" style="background-color: <?= $tour_group["color"] ?? "#000000"?>;"><?= $tour_group["code_name"]?></li>
+                        <li class="type_title type_title_1" style="background-color: <?= $t_group["color"] ?? "#000000"?>;"><?= $t_group["code_name"]?></li>
                     <?php
                         }
                     ?>
