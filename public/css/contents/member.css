@@ -1009,8 +1009,8 @@ form .form_list .ch_area [type="checkbox"]+label {
     }
 
     .member .logo_box {
-        padding-top: 10.0001rem;
-        margin-bottom: 12rem;
+        padding-top: 5.0001rem;
+        margin-bottom: 7rem;
     }
 
     .member .logo_box img {
@@ -1045,7 +1045,7 @@ form .form_list .ch_area [type="checkbox"]+label {
 
 
     .sns_login_ttl {
-        margin: 10.0001rem 0 6rem;
+        margin: 5.0001rem 0 6rem;
     }
 
     #popupLogin_ .sns_login_ttl {

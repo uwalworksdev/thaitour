@@ -1,15 +1,15 @@
 <?php
-    $setting = homeSetInfo();
+$setting = homeSetInfo();
 
-    $db = \Config\Database::connect();
-    $m_idx = $_SESSION['member']['mIdx'];
+$db = \Config\Database::connect();
+$m_idx = $_SESSION['member']['mIdx'];
 
-    $count_alarm = 0;
-    if($m_idx){
-        $sql_alarm = "SELECT COUNT(*) AS total FROM tbl_alarm where m_idx = '$m_idx' and status = '0'";
-        $query = $db->query($sql_alarm);
-        $count_alarm = $query->getRow()->total;
-    }
+$count_alarm = 0;
+if($m_idx){
+    $sql_alarm = "SELECT COUNT(*) AS total FROM tbl_alarm where m_idx = '$m_idx' and status = '0'";
+    $query = $db->query($sql_alarm);
+    $count_alarm = $query->getRow()->total;
+}
 ?>
 <header id="header" class="only_web">
     <div class="inner flex_header_top">
@@ -37,11 +37,11 @@
         </div>
         <div>
             <ul class="flex_header_top">
-               <li>
-                 <?php if (session("member")): ?>
+                <li>
+                    <?php if (session("member")): ?>
                     <p class="count_like"><strong style="color: #17469E"><?=$_SESSION['member']['id'] == "admin" ? $setting['admin_name'] : $_SESSION['member']['name']?></strong>님 안녕하세요!</p>
-                <?php endif?>
-               </li>
+                    <?php endif?>
+                </li>
                 <li>
                     <?php if (session("member")): ?>
                         <a href="/member/logout" class="text-grey">로그아웃</a>
@@ -119,17 +119,17 @@
                         <button>상세검색</button>
                     </div>
                     <!-- <div class="custom_select_rounded"> -->
-                        <!--                        <a class="text_custom_" href="#">상세검색</a>-->
-                        <!-- <select class="select_custom_ active_" name="" id="search_cate_pc__header">
+                    <!--                        <a class="text_custom_" href="#">상세검색</a>-->
+                    <!-- <select class="select_custom_ active_" name="" id="search_cate_pc__header">
                             <option value="">전체</option>
                             <option value="hotel">호텔</option> -->
-                            <!-- <option value="golf">골프</option> -->
-                            <!-- <option value="tour">투어</option> -->
-                            <!-- <option value="spa">스파</option> -->
-                            <!-- <option value="show_ticket">쇼ㆍ입장권</option> -->
-                            <!-- <option value="restaurant">레스토랑</option> -->
-                            <!-- <option value="vehicle">차량</option> -->
-                        <!-- </select> -->
+                    <!-- <option value="golf">골프</option> -->
+                    <!-- <option value="tour">투어</option> -->
+                    <!-- <option value="spa">스파</option> -->
+                    <!-- <option value="show_ticket">쇼ㆍ입장권</option> -->
+                    <!-- <option value="restaurant">레스토랑</option> -->
+                    <!-- <option value="vehicle">차량</option> -->
+                    <!-- </select> -->
                     <!-- </div> -->
                 </div>
             </div>
@@ -145,7 +145,7 @@
                         <p>매거진</p>
                     </a> -->
 
-                    
+
                     <!-- <a href="<?= (session("member.idx") ? "/mypage/fav_list" : "#!") ?>" class="icon-menu-item">
                         <img src="/images/ico/icon_heart.png" alt="">
                         <p>찜</p>
@@ -155,7 +155,7 @@
                         <p style="margin-top:3px;">장바구니</p>
                         <span class="cart_count"><?=getCartCount();?></span>
                     </a>
-					
+
 					<?php if(session('member.id')) { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
                             <img src="/images/ico/icon_user_mypage_thin.png" alt="">
@@ -170,7 +170,7 @@
                                 <li class="item_link" onclick="location.href='/mypage/info_option'">내정보수정</li>
                             </ul>
                         </a>
-					<?php } else { ?>
+                    <?php } else { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
                             <img src="/images/ico/icon_user_mypage_thin.png" alt="">
                             <p style="margin-top:3px;">마이페이지</p>
@@ -295,24 +295,24 @@
             </div>
             <div class="header_logo_wrap flex__c">
                 <!-- <?php
-                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
-                    $uri = service('uri');
-                    $path = $uri->getPath(); 
-                    $path = trim($path, '/');
-    
-                    $mainPaths = ['', 'home', 'index', 'main'];
-                    $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
-                    if ($isMobile && !in_array($path, $mainPaths)) {
-                ?>
+                        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                        $uri = service('uri');
+                        $path = $uri->getPath();
+                        $path = trim($path, '/');
+
+                        $mainPaths = ['', 'home', 'index', 'main'];
+                        $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
+                        if ($isMobile && !in_array($path, $mainPaths)) {
+                        ?>
                     <a href="javascript:history.back();">
                         <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
                     </a>
                 <?php
-                    }
+                        }
                 ?> -->
-                
+
                 <a class="flex_header_top_item" href="/">
-                    
+
                     <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
                     <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 </a>
@@ -527,8 +527,8 @@
             $currentUrl = current_url();
             ?>
             <span class="link_one"><a href="/mice-page" class="<?= strpos($currentUrl, '/mice-page') !== false ? 'active_' : '' ?>">인센티브</a></span>
-            <span class="link_one"><a href="https://tourlab.toursafe.co.kr/main/main.php" >여행자 보험</a></span>
-            <span class="link_one"><a href="/travel-tips" class="<?= strpos($currentUrl, '/travel-tips') !== false ? 'active_' : '' ?>">커뮤니티</a></span>
+            <span class="link_one"><a href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a></span>
+            <span class="link_one community_1202" data-tab=""><a href="#!" class="<?= strpos($currentUrl, '/travel-tips') !== false ? 'active_' : '' ?>">커뮤니티</a></span>
         </div>
     </div>
     <div class="search_m_header only_web">
@@ -564,6 +564,45 @@
     </div>
 </header>
 <div class="only_mo">
+    <div class="popup_link community">
+        <div class="popup_news">
+            <div class="top">
+                <img src="/images/ico/close_icon_popup.png" alt="" id="closePopup">
+            </div>
+            <div class="content" id="popupContent">
+                <div class="sub_nav_menu">
+                    <a href="/review/review_list" class="sub_item">
+                        <p>여행후기 </p>
+                    </a>
+                    <a href="/event/event_list" class="sub_item">
+                        <p>이벤트</p>
+                    </a><a href="/magazines/list" class="sub_item">
+                        <p>매거진</p>
+                    </a>
+                    <a href="/time_sale/list" class="sub_item">
+                        <p>타임세일</p>
+                    </a>
+                    <a href="/travel-tips" class="sub_item">
+                        <p>여행꿀팁 </p>
+                    </a>
+                    <a href="/coupon/list" class="sub_item">
+                        <p>여행 쿠폰 </p>
+                    </a>
+                    <a href="/event/promotion_list" class="sub_item">
+                        <p>프로모션</p>
+                    </a>
+                </div>
+                <div class="btn_link_main"><a href="/travel-tips" class="all_link">
+                        <p>커뮤니티 전체</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+</div>
+
+<div class="only_mo">
     <div class="popup_link">
         <div class="popup_news">
             <div class="top">
@@ -579,49 +618,56 @@
 
 <script>
     const tabSubMenus = <?= json_encode([
-        1303 => getSubMenuMobile(1303),
-        1302 => getSubMenuMobile(1302),
-        1301 => getSubMenuMobile(1301),
-        1325 => getSubMenuMobile(1325),
-        1317 => getSubMenuMobile(1317),
-        1320 => getSubMenuMobile(1320),
-        1324 => getSubMenuMobile(1324),
-    ]) ?>;
+                            1303 => getSubMenuMobile(1303),
+                            1302 => getSubMenuMobile(1302),
+                            1301 => getSubMenuMobile(1301),
+                            1325 => getSubMenuMobile(1325),
+                            1317 => getSubMenuMobile(1317),
+                            1320 => getSubMenuMobile(1320),
+                            1324 => getSubMenuMobile(1324),
+                        ]) ?>;
 
 document.addEventListener('DOMContentLoaded', function () {
-    const speLinks = document.querySelectorAll('.spe_link');
-    const popup = document.querySelector('.popup_link');
-    const popupContent = document.getElementById('popupContent');
-    const closeBtn = document.getElementById('closePopup');
+        const speLinks = document.querySelectorAll('.spe_link');
+        const popup = document.querySelector('.popup_link');
+        const popupContent = document.getElementById('popupContent');
+        const closeBtn = document.getElementById('closePopup');
 
-    speLinks.forEach(span => {
+        speLinks.forEach(span => {
         span.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation(); 
+                e.preventDefault();
+                e.stopPropagation();
 
-            const tabId = this.getAttribute('data-tab');
-            if (tabSubMenus[tabId]) {
-                popupContent.innerHTML = tabSubMenus[tabId];
-                popup.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                const tabId = this.getAttribute('data-tab');
+                if (tabSubMenus[tabId]) {
+                    popupContent.innerHTML = tabSubMenus[tabId];
+                    popup.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+
+            const innerA = span.querySelector('a');
+            if (innerA) {
+            innerA.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
             }
         });
 
-        const innerA = span.querySelector('a');
-        if (innerA) {
-            innerA.addEventListener('click', function (e) {
-                e.preventDefault();
-            });
-        }
-    });
-
     closeBtn.addEventListener('click', function () {
-        popup.style.display = 'none';
-        document.body.style.overflow = '';
+            popup.style.display = 'none';
+            document.body.style.overflow = '';
+        });
     });
-});
-
+    
 </script>
+<script>
+    $(".community_1202").click(function() {
+        $(".popup_link.community").css("display", "block");
+        document.body.style.overflow = 'hidden';
+    })
+</script>
+
 <div class="only_mo">
     <!-- <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
@@ -649,11 +695,11 @@ document.addEventListener('DOMContentLoaded', function () {
     </div> -->
     <?php
         if(strpos(current_url(), '/product-golf/golf-detail') !== false
-            || strpos(current_url(), '/product-tours/item_view') !== false
-            || strpos(current_url(), '/product-spa/spa-details') !== false
-            || strpos(current_url(), '/ticket/ticket-detail') !== false
-            || strpos(current_url(), '/product-restaurant/restaurant-detail') !== false
-            || strpos(current_url(), '/vehicle-guide') !== false
+        || strpos(current_url(), '/product-tours/item_view') !== false
+        || strpos(current_url(), '/product-spa/spa-details') !== false
+        || strpos(current_url(), '/ticket/ticket-detail') !== false
+        || strpos(current_url(), '/product-restaurant/restaurant-detail') !== false
+        || strpos(current_url(), '/vehicle-guide') !== false
             || strpos(current_url(), '/guide_view') !== false) {
     ?>
         <div class="quick-header-order">
@@ -662,49 +708,49 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
             <?php
                 if(strpos(current_url(), '/product-golf/golf-detail') !== false){
-            ?>  
+            ?>
                 <button type="button" onclick="handleSubmit('B')" class="btn btn-cart-mo">장바구니</button>
                 <?php if ($product['product_status'] == 'sale'): ?>
-                    <button type="button" onclick="handleSubmit('W')" class="btn btn-order">예약하기</button>   
-                <?php endif; ?>     
+                    <button type="button" onclick="handleSubmit('W')" class="btn btn-order">예약하기</button>
+                <?php endif; ?>
             <?php
                 }else if(strpos(current_url(), '/product-tours/item_view') !== false){
-            ?>    
+            ?>
                 <button type="button" class="btn btn-cart-mo" onclick="handleSubmit('B')">장바구니</button>
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button type="button" class="btn btn-order" onclick="handleSubmit('W')">예약하기</button>
-                <?php endif; ?>      
+                <?php endif; ?>
             <?php
                 }else if(strpos(current_url(), '/product-spa/spa-details') !== false 
-                        || strpos(current_url(), '/ticket/ticket-detail') !== false
+                || strpos(current_url(), '/ticket/ticket-detail') !== false
                         || strpos(current_url(), '/product-restaurant/restaurant-detail') !== false){
-            ?>  
+            ?>
                 <button type="button" class="btn btn-cart-mo" onclick="order_it('B');">장바구니</button>
                 <?php if ($data_['product_status'] == 'sale'): ?>
                     <button type="button" class="btn btn-order" onclick="order_it('W');">예약하기</button>
-                <?php endif; ?>      
+                <?php endif; ?>
             <?php
                 }else if(strpos(current_url(), '/vehicle-guide') !== false){
-            ?>  
+            ?>
                 <button type="button" class="btn btn-cart-mo btn_add_cart" id="btn_show_cart" value="B">장바구니</button>
-                <button type="button" class="btn btn-order btn_submit" value="W">예약하기</button>     
+                <button type="button" class="btn btn-order btn_submit" value="W">예약하기</button>
             <?php
                 }else if(strpos(current_url(), '/guide_view') !== false){
-            ?>  
+            ?>
                 <button type="button" class="btn btn-cart-mo" data-o_idx="" data-status="B">장바구니</button>
-                <button type="button" class="btn btn-order" data-o_idx="" data-status="W">예약하기</button>     
+                <button type="button" class="btn btn-order" data-o_idx="" data-status="W">예약하기</button>
             <?php
-                }
-            ?>        
+            }
+            ?>
         </div>
     <?php
-        }
+    }
     ?>
-        
+
     <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
             <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1"> -->
-             <i class="i_1"></i>
+            <i class="i_1"></i>
             <!-- <span class="nav-text text-grey">전체메뉴</span> -->
         </div>
         <div class="nav-item <?php echo $main == true? 'on' : '' ?>" onclick="location.href='/'">
@@ -714,27 +760,27 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/mypage/reservation_list') !== false ? 'on' : '' ?>" onclick="location.href='/mypage/reservation_list'">
             <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2"> -->
-             <i class="i_3"></i>
+            <i class="i_3"></i>
             <span class="nav-text text-grey flex__c">예약확인/결제</span>
         </div>
-        
+
         <?php if (session("member")): ?>
             <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/mypage/alarm') !== false ? 'on' : '' ?>" onclick="location.href='/mypage/alarm'">
                 <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2"> -->
-                 <i class="i_4"></i>
+                <i class="i_4"></i>
                 <span class="nav-text text-grey flex__c">마이페이지</span>
             </div>
-            <?php else: ?>
+        <?php else: ?>
                 <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/member/login') !== false ? 'on' : '' ?>" onclick="location.href='/member/login'">
-                    <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2"> -->
-                     <i class="i_5"></i>
-                    <span class="nav-text text-grey flex__c">로그인</span>
-                </div>
+                <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2"> -->
+                <i class="i_5"></i>
+                <span class="nav-text text-grey flex__c">로그인</span>
+            </div>
         <?php endif; ?>
-        
+
         <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/community/main') !== false ? 'on' : '' ?>" onclick="location.href='/community/main'">
             <!-- <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5"> -->
-             <i class="i_6"></i>
+            <i class="i_6"></i>
             <span class="nav-text text-grey">고객센터</span>
         </div>
         <div class="icon-wrap-social">
@@ -745,22 +791,22 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="robot-container" onclick="ChannelIO('show');">
                 <img src="/uploads/setting/<?= $setting['logos_consult'] ?>" alt="Chat now">
             </div>
-             <?php
-                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
-                    $uri = service('uri');
-                    $path = $uri->getPath(); 
-                    $path = trim($path, '/');
-    
-                    $mainPaths = ['', 'home', 'index', 'main'];
-                    $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
-                    if ($isMobile && !in_array($path, $mainPaths)) {
-                ?>
-                    <a class="back_btn" href="javascript:history.back();">
-                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/images/ico/back_ic.png') ?>" alt="">
-                    </a>
-                <?php
-                    }
-                ?>
+            <?php
+            $userAgent = $_SERVER['HTTP_USER_AGENT'];
+            $uri = service('uri');
+            $path = $uri->getPath();
+            $path = trim($path, '/');
+
+            $mainPaths = ['', 'home', 'index', 'main'];
+            $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
+            if ($isMobile && !in_array($path, $mainPaths)) {
+            ?>
+                <a class="back_btn" href="javascript:history.back();">
+                    <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/images/ico/back_ic.png') ?>" alt="">
+                </a>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <nav id="mobile_menu" style="display: none;">
@@ -828,11 +874,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="/promotion"><p>프로모션</p></a>
                     </div>
                 </li>
-                
 
 
 
-<!-- old -->
+
+                <!-- old -->
                 <!-- <li class="gnb_menu_item">
                     <a href="#">여행자 보험</a>
                 </li>
