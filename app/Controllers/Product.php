@@ -1511,7 +1511,7 @@ class Product extends BaseController
 
             $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
 
-            $mbti_arr = explode("|", $hotel['product_mbti']);
+            $mbti_arr = explode("|", $hotel['mbti']);
             $mbti_arr = array_filter($mbti_arr, function($item) {
                 return trim($item) !== "";
             });
