@@ -129,7 +129,8 @@
             <p class="text_head_sec"><?= $code_2['code_name'] ?></p>
             <h2 class="text_title_sec"><?= $code_2['code_memo'] ?></h2>
             <div class="map_wrap_image">
-                <img src="/data/promotion/<?=$row["ufile2"]?>" class="object-scale-down w-full">
+                <img src="/data/promotion/<?=$row["ufile2"]?>" class="object-scale-down w-full only_web">
+                <img src="/data/promotion/<?=$row["ufile4"]?>" class="object-scale-down w-full only_mo">
             </div>
             <!-- <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44"> -->
             <!-- 중앙 지도 -->

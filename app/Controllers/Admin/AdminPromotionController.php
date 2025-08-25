@@ -102,7 +102,7 @@ class AdminPromotionController extends BaseController
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 
-            for ($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 4; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 ${"checkImg_" . $i} = $this->request->getPost("m_checkImg_" . $i);

@@ -196,7 +196,7 @@
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
                                             <?php
-                                                $i = 4;
+                                                $i = 5;
                                                 foreach ($img_list as $img) :
                                                     $s_img = "/data/promotion/" . $img["ufile"];
                                             ?>
@@ -256,7 +256,7 @@
                                 </tr>
                                 <tr>
                                     <th>지도 이미지</th>
-                                    <td colspan="3">
+                                    <td>
 
                                         <div class="img_add">
                                             <?php
@@ -283,7 +283,35 @@
                                                 endfor;
                                             ?>
                                         </div>
+                                    </td>
+                                    <th>지도 이미지 모바일</th>
+                                    <td>
 
+                                        <div class="img_add">
+                                            <?php
+                                                for ($i = 4; $i <= 4; $i++) :
+                                                    $img = "/data/promotion/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="m_checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                        <?php if (${"ufile" . $i}) { ?>
+                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>
+
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                endfor;
+                                            ?>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
