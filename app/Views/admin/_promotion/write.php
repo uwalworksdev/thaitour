@@ -155,7 +155,7 @@
                                             ?>
                                         </div>
                                     </td>
-                                    <th>모바일 아바타</th>
+                                    <th>대표 이미지 모바일</th>
                                     <td>
 
                                         <div class="img_add">
