@@ -3674,6 +3674,15 @@ class Product extends BaseController
 
         $data['product']['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $data['product']['product_idx']) > 0;
 
+        $arr_tour_group = explode(",", $data['product']['tour_group']);
+        $_arr_t_group = [];
+        foreach ($arr_tour_group as $tour_group) {
+            $row_code = $this->codeModel->getByCodeNo($tour_group);
+            array_push($_arr_t_group, $row_code);
+        }
+
+        $data['product']['arr_tour_group'] = $_arr_t_group;
+
         // var_dump($data['productTourInfo']);
 
         return $this->renderView('tours/tour-details', $data);

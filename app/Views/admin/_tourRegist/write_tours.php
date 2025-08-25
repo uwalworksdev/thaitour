@@ -843,7 +843,9 @@
                                             $_t_group = array_filter($_t_group);
                                         ?>
                                         <?php foreach ($tours_group as $item) { ?>
-                                            <input type="checkbox" <?= in_array($item['code_no'], $_t_group) ? 'checked' : '' ?> name="tour_group[]" class="yoil" value="<?=$item['code_no']?>"><?=$item['code_name']?> &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox"  
+                                                name="tour_group[]" class="yoil" value="<?=$item['code_no']?>" 
+                                                <?= in_array($item['code_no'], $_t_group) ? 'checked' : '' ?>><?=$item['code_name']?> &nbsp;&nbsp;&nbsp;
                                         <?php
                                             }
                                         ?>

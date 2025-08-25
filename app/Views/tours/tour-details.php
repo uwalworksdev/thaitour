@@ -208,30 +208,9 @@
                 </div>
                 <ul class="tour_type_group">
                     <?php
-                        if(strpos($product["tour_group"], "E") !== false){
+                        foreach($product["arr_tour_group"] ?? [] as $tour_group){
                     ?>
-                        <li class="type_title type_title_1">반일투어</li>
-                    <?php
-                        }
-                    ?>
-                    <?php
-                        if(strpos($product["tour_group"], "T") !== false){
-                    ?>
-                        <li class="type_title type_title_2">조인 투어</li>
-                    <?php
-                        }
-                    ?>
-                    <?php
-                        if(strpos($product["tour_group"], "S") !== false){
-                    ?>
-                        <li class="type_title type_title_3">단독투어</li>
-                    <?php
-                        }
-                    ?>
-                     <?php
-                        if(strpos($product["tour_group"], "F") !== false){
-                    ?>
-                        <li class="type_title type_title_3">종일투어</li>
+                        <li class="type_title type_title_1" style="background-color: <?= $tour_group["color"]?>;"><?= $tour_group["code_name"]?></li>
                     <?php
                         }
                     ?>
