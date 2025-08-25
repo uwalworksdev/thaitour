@@ -50,7 +50,7 @@
     <!-- 배너 섹션 -->
     <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
-            <div class="only_web">
+            <div class="only_web" style="height: 100%;">
 
                 <div class="slider-container w-full h-full relative">
                     <?php
@@ -84,7 +84,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="only_mo">
+            <div class="only_mo" style="height: 100%;">
                 <div class="slider-container w-full h-full relative">
                     <?php
                     foreach ($banner_promotion_mo as $banner) {
