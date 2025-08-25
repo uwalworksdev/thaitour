@@ -276,6 +276,26 @@ class TourRegistController extends BaseController
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
 
+        $today = date("Y-m-d");
+
+        foreach ($result as $key => $value) {
+            $row_tour_price = $this->db->table('tbl_tours_price')
+                                    ->where("product_idx", $value['product_idx'])
+                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+                                    ->limit(1)->get()->getRowArray();
+            $tour_price = (float)$row_tour_price['goods_price1'] ?? 0;
+            $result[$key]['tour_price'] = $tour_price;
+        }
+
+        foreach ($result as $key => $value) {
+            $row_tour_price = $this->db->table('tbl_spas_price')
+                                    ->where("product_idx", $value['product_idx'])
+                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+                                    ->limit(1)->get()->getRowArray();
+            $spa_price = (float)$row_tour_price['goods_price1'] ?? 0;
+            $result[$key]['spa_price'] = $spa_price;
+        }
+
         $data = [
             "fresult" => $fresult,
             "fresult2" => $fresult2,
