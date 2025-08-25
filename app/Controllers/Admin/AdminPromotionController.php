@@ -72,7 +72,8 @@ class AdminPromotionController extends BaseController
 
         if ($idx) {
             $row = $this->promotionList->find($idx);
-            $img_list = $this->promotionImg->getImg($idx);
+            $img_list = $this->promotionImg->getImg($idx, 'P');
+            $mo_img_list = $this->promotionImg->getImg($idx, 'M');
 
             $area_list = $this->areaPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
             $product_list = $this->productPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
@@ -86,6 +87,7 @@ class AdminPromotionController extends BaseController
             'row' => $row ?? [],
             'fresult' => $fresult ?? [],
             'img_list' => $img_list ?? [],
+            'mo_img_list' => $mo_img_list ?? [],
             'area_list' => $area_list ?? [],
             'product_list' => $product_list ?? [],
         ];
@@ -117,6 +119,7 @@ class AdminPromotionController extends BaseController
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
             $arr_onum = $this->request->getPost("onum_img") ?? [];
+            $device_type = $this->request->getPost("device_type") ?? [];
 
             $ufiles = $this->request->getFileMultiple('ufile') ?? [];
 
@@ -152,6 +155,7 @@ class AdminPromotionController extends BaseController
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "onum" => $arr_onum[$key],
+                                    "device_type" => $device_type[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -177,6 +181,7 @@ class AdminPromotionController extends BaseController
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "onum" => $arr_onum[$key],
+                                "device_type" => $device_type[$key],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                             ]);
                         }

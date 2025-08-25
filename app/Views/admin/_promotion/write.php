@@ -126,8 +126,8 @@
                                 </tr>
 
                                 <tr>
-                                    <th>대표이미지(600X440)</th>
-                                    <td colspan="3">
+                                    <th>대표이미지</th>
+                                    <td>
 
                                         <div class="img_add">
                                             <?php
@@ -154,31 +154,94 @@
                                                 endfor;
                                             ?>
                                         </div>
+                                    </td>
+                                    <th>모바일 아바타</th>
+                                    <td>
 
+                                        <div class="img_add">
+                                            <?php
+                                                for ($i = 3; $i <= 3; $i++) :
+                                                    $img = "/data/promotion/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="m_checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                        <?php if (${"ufile" . $i}) { ?>
+                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>
+
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                endfor;
+                                            ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
                                         배너 이미지(1000X600)
                                         <div class="flex" style="flex-direction: column; gap: 10px; margin-top: 5px;">
-                                            <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image();">추가</button>
-                                            <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image();">전체 삭제</button>
+                                            <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image('P');">추가</button>
+                                            <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image('P');">전체 삭제</button>
                                         </div>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
                                             <?php
-                                                $i = 3;
+                                                $i = 4;
                                                 foreach ($img_list as $img) :
                                                     $s_img = "/data/promotion/" . $img["ufile"];
                                             ?>
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
-                                                    <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
+                                                    <input type="hidden" name="i_idx[]" class="i_idx" value="<?= $img["i_idx"] ?>">
                                                     <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
-                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>', 'P')">
                                                     <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                     <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                    <input type="hidden" name="device_type[]" value="P">
+                                                    <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;" 
+                                                        id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            </div>
+                                            <?php
+                                                $i++;
+                                                endforeach;
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        모바일 배너 이미지(1000X600)
+                                        <div class="flex" style="flex-direction: column; gap: 10px; margin-top: 5px;">
+                                            <button type="button" class="btn btn-primary" style="width: 100px;" onclick="add_sub_image('M');">추가</button>
+                                            <button type="button" class="btn btn-danger" style="width: 100px;" onclick="delete_all_image('M');">전체 삭제</button>
+                                        </div>
+                                    </th>
+                                    <td colspan="3">
+                                        <div class="img_add mo_img_add_group">
+                                            <?php
+                                                foreach ($mo_img_list as $img) :
+                                                    $s_img = "/data/promotion/" . $img["ufile"];
+                                            ?>
+                                            <div class="file_input_wrap">
+                                                <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
+                                                    <input type="hidden" name="i_idx[]" class="i_idx" value="<?= $img["i_idx"] ?>">
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>', 'M')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                    <input type="hidden" name="device_type[]" value="M">
                                                     <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
                                                     <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;" 
                                                         id="text_ufile<?= $i ?>">미리보기</a>
@@ -525,6 +588,10 @@
             $(this).find(".onum_img").val(index + 1);
         });
 
+        $(".mo_img_add_group .file_input").each(function(index) {
+            $(this).find(".onum_img").val(index + 1);
+        });
+
         // oEditors1?.getById["m_recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
         $("#ajax_loader").removeClass("display-none");
@@ -692,7 +759,7 @@
 		}
     }
 
-    function add_sub_image() {        
+    function add_sub_image(device_type) {        
 
         let i = Date.now();
         
@@ -705,31 +772,46 @@
                             onchange="productImagePreview(this, '${i}')">
                     <label for="ufile${i}"></label>
                     <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <input type="hidden" name="device_type[]" value="${device_type}">
                     <button type="button" class="remove_btn"
                             onclick="productImagePreviewRemove(this)"></button>
                 </div>
             </div>
         `;
 
-        $(".img_add_group").append(html);
-
+        if(device_type == 'P'){
+            $(".img_add_group").append(html);
+        }else {
+            $(".mo_img_add_group").append(html);
+        }
     }
 
-    function delete_all_image() {
+    function delete_all_image(device_type) {
         if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;
         }
 
         let arr_img = [];
 
-		$(".img_add_group .file_input").each(function() {
-            let id = $(this).find("input[name='i_idx[]']").val();
-            if(id){
-                arr_img.push({
-                    i_idx: id,
-                });
-            }
-		});
+        if(device_type === 'P'){
+            $(".img_add_group .file_input").each(function() {
+                let id = $(this).find("input[name='i_idx[]']").val();
+                if(id){
+                    arr_img.push({
+                        i_idx: id,
+                    });
+                }
+            });
+        }else {
+            $(".mo_img_add_group .file_input").each(function() {
+                let id = $(this).find("input[name='i_idx[]']").val();
+                if(id){
+                    arr_img.push({
+                        i_idx: id,
+                    });
+                }
+            });
+        }
 
         if(arr_img.length > 0){
             $.ajax({
@@ -740,7 +822,11 @@
                 success: function(response) {
                     alert(response.message);
                     if(response.result == true){
-                        $(".img_add_group").html("");
+                        if(device_type === 'P') {
+                            $(".img_add_group").html("");
+                        }else {
+                            $(".mo_img_add_group").html("");
+                        }
                     }
                 },
                 error: function(xhr, status, error) {
@@ -748,11 +834,15 @@
                 }
             });
         }else{
-            $(".img_add_group").html("");
+            if(device_type === 'P') {
+                    $(".img_add_group").html("");
+                }else {
+                    $(".mo_img_add_group").html("");
+                }
         }
     }
 
-    function productImagePreview(inputFile, onum) {
+    function productImagePreview(inputFile, onum, device_type = 'P') {
         if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
             
             $(inputFile).closest('.file_input').addClass('applied');
@@ -782,6 +872,7 @@
                                         onchange="productImagePreview(this, '${i}_${index}')" disabled>
                                     <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
                                     <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                    <input type="hidden" name="device_type[]" value="${device_type}">
                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
                                 </div>
                             </div>`;

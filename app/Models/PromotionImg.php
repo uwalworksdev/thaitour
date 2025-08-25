@@ -11,13 +11,14 @@ class PromotionImg extends Model
     protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
-        "promotion_idx", "ufile", "rfile", "onum", "m_date", "r_date"
+        "promotion_idx", "ufile", "rfile", "device_type", "onum", "m_date", "r_date"
     ];
 
-    public function getImg($promotion_idx)
+    public function getImg($promotion_idx, $device_type)
     {
 		return $this->where('promotion_idx', $promotion_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->where('device_type =', $device_type)
                     ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
