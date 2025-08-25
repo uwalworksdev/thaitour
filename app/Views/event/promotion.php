@@ -50,51 +50,56 @@
     <!-- 배너 섹션 -->
     <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
-            <div class="slider-container w-full h-full relative only_web">
-                <?php
-                foreach ($banner_promotion as $banner) {
-                    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-                        $img_banner = "/data/promotion/" . $banner['ufile'];
-                ?>
-                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-transparent"></div>
-                        </div>
-                <?php
+            <div class="only_web">
+
+                <div class="slider-container w-full h-full relative">
+                    <?php
+                    foreach ($banner_promotion as $banner) {
+                        if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
+                            $img_banner = "/data/promotion/" . $banner['ufile'];
+                    ?>
+                            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                                <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-transparent"></div>
+                            </div>
+                    <?php
+                        }
                     }
-                }
-                ?>
-                <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-transparent"></div>
+                    ?>
+                    <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                        <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div>
+                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                        <img src="/event/images/i4.jpg" alt="왓아룬 사원" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div>
+                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                        <img src="/event/images/i3.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div>
+                    <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                        <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-transparent"></div>
+                    </div> -->
                 </div>
-                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <img src="/event/images/i4.jpg" alt="왓아룬 사원" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-transparent"></div>
-                </div>
-                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <img src="/event/images/i3.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-transparent"></div>
-                </div>
-                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-transparent"></div>
-                </div> -->
             </div>
-            <div class="slider-container w-full h-full relative only_mo">
-                <?php
-                foreach ($banner_promotion_mo as $banner) {
-                    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-                        $img_banner = "/data/promotion/" . $banner['ufile'];
-                ?>
-                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-transparent"></div>
-                        </div>
-                <?php
+            <div class="only_mo">
+                <div class="slider-container w-full h-full relative">
+                    <?php
+                    foreach ($banner_promotion_mo as $banner) {
+                        if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
+                            $img_banner = "/data/promotion/" . $banner['ufile'];
+                    ?>
+                            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                                <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-transparent"></div>
+                            </div>
+                    <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
