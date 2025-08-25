@@ -61,8 +61,13 @@
                         }
                 ?>
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_web">
-                            <img src="<?= $img_banner_mo ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_mo">
+                            <?php if (!empty($img_banner)): ?>
+                                <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_web">
+                            <?php endif; ?>
+
+                            <?php if (!empty($img_banner_mo)): ?>
+                                <img src="<?= $img_banner_mo ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_mo">
+                            <?php endif; ?>
                             <div class="absolute inset-0 bg-transparent"></div>
                         </div>
                 <?php
