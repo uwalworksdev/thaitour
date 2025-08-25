@@ -31,7 +31,7 @@
         width: 100%;
     }
 
-    .img_add.img_add_group {
+    .img_add.img_add_group, .img_add.mo_img_add_group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
