@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function showSlide(index) {
         slides.forEach((slide, i) => {
             slide.classList.toggle("active", i === index);
-            slide.style.opacity = i === index ? "1" : "0";
+            slide.style.setProperty("opacity", i === index ? "1" : "0", "important");
         });
         if (dots.length > 0) {
             dots.forEach((dot, i) => {
