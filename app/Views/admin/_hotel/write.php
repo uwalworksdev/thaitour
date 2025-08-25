@@ -570,7 +570,7 @@ $links = "list";
                                                 <div style="display: flex">
                                                     <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
                                                         onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
-                                                    <label for="all_code_mbti_<?= $group + 1 ?>" style="font-weight: bold;"><?=$row_r["code_name"]?> ></label> &ensp;
+                                                    <label for="all_code_mbti_<?= $group + 1 ?>" style="font-weight: bold; color: #252525;"><?=$row_r["code_name"]?> ></label> &ensp;
                                                     <br>
                                                     <?php
                                                         foreach ($row_r["codes_child"] as $code_child) :
