@@ -1511,6 +1511,20 @@ class Product extends BaseController
 
             $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
 
+            $mbti_arr = explode("|", $hotel['product_mbti']);
+            $mbti_arr = array_filter($mbti_arr, function($item) {
+                return trim($item) !== "";
+            });
+
+            $mbti_code_arr = [];
+
+            foreach ($mbti_arr as $key => $value) {
+                $mbti_code_name = $this->codeModel->getCodeName($value);
+                $mbti_code_arr[] = $mbti_code_name;
+            }
+
+            $mbti_list = implode(", ", $mbti_code_arr);
+
             $data = [
                 'hotel'            => $hotel,
                 'img_list'         => $img_list,
@@ -1535,6 +1549,7 @@ class Product extends BaseController
                 'suggestHotel'     => $suggestHotels,
                 'places'           => $places,
                 'mcodes'           => $mcodes,
+                'mbti_list'        => $mbti_list ?? "",
 				'roomTypes'        => $roomTypes,
 				'roomsByType'      => $roomsByType,
 		        'allBeds'          => $allBeds,
