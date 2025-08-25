@@ -44,7 +44,8 @@ class PromotionController extends BaseController
 
             $this->promotionList->update($idx, ['hit' => $row['hit'] + 1]);
 
-            $banner_promotion = $this->promotionImg->getImg($idx);
+            $banner_promotion = $this->promotionImg->getImg($idx, 'P');
+            $banner_promotion_mo = $this->promotionImg->getImg($idx, 'M');
 
             $area_list = $this->areaPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
             $product_list = $this->productPromotion->where("promotion_idx", $idx)->orderBy("onum", "ASC")->orderBy("idx", "ASC")->findAll();
@@ -55,6 +56,7 @@ class PromotionController extends BaseController
 
         return view('event/promotion',[
             'banner_promotion' => $banner_promotion ?? [],
+            'banner_promotion_mo' => $banner_promotion_mo ?? [],
             'area_list' => $area_list,
             'code_list' => $code_list,
             'product_list' => $product_list ?? [],

@@ -50,24 +50,14 @@
     <!-- 배너 섹션 -->
     <section class="w-full min-h-[120rem]  md:min-h-screen relative overflow-hidden ">
         <div class="absolute inset-0 w-full h-full">
-            <div class="slider-container w-full h-full relative">
+            <div class="slider-container w-full h-full relative only_web">
                 <?php
                 foreach ($banner_promotion as $banner) {
                     if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-                        if($banner['device_type'] == 'P') {
-                            $img_banner = "/data/promotion/" . $banner['ufile'];
-                        }else {
-                            $img_banner_mo = "/data/promotion/" . $banner['ufile'];
-                        }
+                        $img_banner = "/data/promotion/" . $banner['ufile'];
                 ?>
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                            <?php if (!empty($img_banner)): ?>
-                                <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_web">
-                            <?php endif; ?>
-
-                            <?php if (!empty($img_banner_mo)): ?>
-                                <img src="<?= $img_banner_mo ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover only_mo">
-                            <?php endif; ?>
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-transparent"></div>
                         </div>
                 <?php
@@ -90,6 +80,21 @@
                     <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-transparent"></div>
                 </div> -->
+            </div>
+            <div class="slider-container w-full h-full relative only_mo">
+                <?php
+                foreach ($banner_promotion_mo as $banner) {
+                    if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
+                        $img_banner = "/data/promotion/" . $banner['ufile'];
+                ?>
+                        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-transparent"></div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </div>
         <div class="absolute inset-0 flex items-center justify-center z-10 ">
