@@ -4046,6 +4046,15 @@ class Product extends BaseController
         $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
         $data['product_qna'] = $product_qna;
 
+        $arr_tour_group = explode(",", $data['product']['tour_group']);
+        $_arr_t_group = [];
+        foreach ($arr_tour_group as $tour_group) {
+            $row_code = $this->codeModel->getByCodeNo($tour_group);
+            array_push($_arr_t_group, $row_code);
+        }
+
+        $data['product']['arr_tour_group'] = $_arr_t_group;
+
         return $this->renderView('tours/location-info', $data);
     }
 

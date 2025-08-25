@@ -14,18 +14,11 @@
             </div>
             <ul class="tour_type_group">
                 <?php
-                if (strpos($product["tour_group"], "E") !== false) {
+                    foreach($product["arr_tour_group"] ?? [] as $tour_group){
                 ?>
-                    <li class="type_title type_title_1">반일투어</li>
+                    <li class="type_title type_title_1" style="background-color: <?= $tour_group["color"] ?? "#000000"?>;"><?= $tour_group["code_name"]?></li>
                 <?php
-                }
-                ?>
-                <?php
-                if (strpos($product["tour_group"], "T") !== false) {
-                ?>
-                    <li class="type_title type_title_2">조인 투어</li>
-                <?php
-                }
+                    }
                 ?>
                 <?php
                 if (!empty(trim($product["company_name"])) || !empty(trim($product["company_contact"])) || !empty(trim($product["company_url"])) || !isContentEmpty(viewSQ($product["company_notes"]))) {
