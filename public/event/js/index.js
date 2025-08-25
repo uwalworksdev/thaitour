@@ -57,33 +57,48 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 document.addEventListener("DOMContentLoaded", () => {
     // 슬라이드 관련 기존 코드
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".slider-dot");
-    let current = 0;
+    function initSlider(containerSelector) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === index);
-            slide.style.opacity = i === index ? "1" : "0";
-        });
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("bg-white", i === index);
-            dot.classList.toggle("bg-white/50", i !== index);
-        });
-        current = index;
+        const slides = container.querySelectorAll(".slide");
+        const dots = container.querySelectorAll(".slider-dot");
+
+        if (slides.length === 0) return;
+
+        let current = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+                slide.style.opacity = i === index ? "1" : "0";
+            });
+            if (dots.length > 0) {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("bg-white", i === index);
+                    dot.classList.toggle("bg-white/50", i !== index);
+                });
+            }
+            current = index;
+        }
+
+        if (dots.length > 0) {
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => showSlide(index));
+            });
+        }
+
+        function nextSlide() {
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+        }
+
+        showSlide(current);
+        setInterval(nextSlide, 6000);
     }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => showSlide(index));
-    });
-
-    function nextSlide() {
-        let next = (current + 1) % slides.length;
-        showSlide(next);
-    }
-
-    showSlide(current);
-    setInterval(nextSlide, 6000);
+    
+    initSlider(".slider-container.only_web");
+    initSlider(".slider-container.only_mo");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
