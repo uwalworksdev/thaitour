@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     initSlider(".slider-container.only_web");
-    initSlider(".slider-container.only_mo");
+    // initSlider(".slider-container.only_mo");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
