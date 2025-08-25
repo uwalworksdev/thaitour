@@ -573,7 +573,6 @@ $links = "list";
                                                     <label for="all_code_mbti_<?= $group + 1 ?>"><?=$row_r["code_name"]?> ></label> &ensp;
                                                     <br>
                                                     <?php
-                                                    var_dump($row_r["codes_child"]);
                                                         foreach ($row_r["codes_child"] as $code_child) :
                                                             $checked = in_array($code_child['code_no'], $_arr) ? "checked" : "";
                                                     ?>
