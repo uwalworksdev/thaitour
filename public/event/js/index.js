@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const container = document.querySelector(containerSelector);
         if (!container) return;
 
+        if (window.getComputedStyle(container).display === "none") return;
+
         const slides = container.querySelectorAll(".slide");
         const dots = container.querySelectorAll(".slider-dot");
 
