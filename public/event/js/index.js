@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function initSlider(containerSelector) {
+document.addEventListener("DOMContentLoaded", () => {
+    // 슬라이드 관련 기존 코드
+    function initSlider(containerSelector) {
     const container = document.querySelector(containerSelector);
     if (!container) return;
 
@@ -95,10 +97,6 @@ function initSlider(containerSelector) {
     showSlide(current);
     setInterval(nextSlide, 6000);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    // 슬라이드 관련 기존 코드
-    
     initSlider(".only_web .slider-container");
     initSlider(".only_mo .slider-container");
 
