@@ -97,14 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(nextSlide, 6000);
     }
     
-    if (window.innerWidth > 768) {
-        initSlider(".slider-container.only_web");
-    } else {
-        initSlider(".slider-container.only_mo");
-    }
-
-    // initSlider(".slider-container.only_web");
-    // initSlider(".slider-container.only_mo");
+    
+    initSlider(".slider-container.only_web");
+    initSlider(".slider-container.only_mo");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
