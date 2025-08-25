@@ -487,32 +487,31 @@
                                     <td colspan="3">
                                         <?php
                                             $_arr = explode("|", $mbti);
-                                            $total = count($mcodes);
-                                            $half = ceil($total / 2); 
                                         ?>
                                         
                                         <div style="display: block;">
-                                            <?php for ($group = 0; $group < 2; $group++) : ?>
+                                            <?php
+                                                $group = 0;
+                                                foreach ($mcodes as $row_r) :
+                                            ?>
                                                 <div style="display: flex">
-                                                    <?php if ($group * $half < $total) : ?>
-                                                        <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
-                                                            onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
-                                                        <label for="all_code_mbti_<?= $group + 1 ?>">모두 선택 ></label> &ensp;
+                                                    <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
+                                                        onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
+                                                    <label for="all_code_mbti_<?= $group + 1 ?>" style="font-weight: bold;"><?=$row_r["code_name"]?> ></label> &ensp;
+                                                    <br>
+                                                    <?php
+                                                        foreach ($row_r["codes_child"] as $code_child) :
+                                                            $checked = in_array($code_child['code_no'], $_arr) ? "checked" : "";
+                                                    ?>
+                                                        <input type="checkbox" id="code_mbti<?= $code_child['code_no'] ?>"
+                                                            name="_code_mbti" class="code_mbti group_mbti_<?= $group + 1 ?>"
+                                                            value="<?= $code_child['code_no'] ?>" <?= $checked ?> />
+                                                        <label for="code_mbti<?= $code_child['code_no'] ?>"><?= $code_child['code_name'] ?></label>
                                                         <br>
-                                                        <?php
-                                                        for ($i = $group * $half; $i < min(($group + 1) * $half, $total); $i++) :
-                                                            $row_r = $mcodes[$i];
-                                                            $checked = in_array($row_r['code_no'], $_arr) ? "checked" : "";
-                                                            ?>
-                                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
-                                                                name="_code_mbti" class="code_mbti group_mbti_<?= $group + 1 ?>"
-                                                                value="<?= $row_r['code_no'] ?>" <?= $checked ?> />
-                                                            <label for="code_mbti<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
-                                                            <br>
-                                                        <?php endfor; ?>
-                                                    <?php endif; ?>
+                                                    <?php endforeach; ?>
                                                 </div>
-                                            <?php endfor; ?>
+                                            <?php $group++; ?>
+                                            <?php endforeach; ?>
                                         </div>
                                     </td>
                                     
