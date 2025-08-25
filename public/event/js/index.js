@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function showSlide(index) {
         slides.forEach((slide, i) => {
             slide.classList.toggle("active", i === index);
-            slide.style.setProperty("opacity", i === index ? "1" : "0", "important");
+            slide.style.opacity = i === index ? "1" : "0";
         });
         if (dots.length > 0) {
             dots.forEach((dot, i) => {
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(nextSlide, 6000);
 }
     initSlider(".only_web .slider-container");
-    initSlider(".only_mo .slider-container");
+    // initSlider(".only_mo .slider-container");
 
     // 가이드북 보기 버튼 스크롤
     const guideButton = document.querySelector('.main_title');
