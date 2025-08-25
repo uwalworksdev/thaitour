@@ -2738,6 +2738,7 @@ public function list_room_pricex()
         $db = $this->connect;
         $prod = $this->productModel->getById($product_idx);
         $product_name = $prod["product_name"];
+        $product_code_no = $prod["product_code"];
         $title_adult = $prod["title_adult"];
         $title_child = $prod["title_child"];
         $title_baby = $prod["title_baby"];
@@ -2808,6 +2809,7 @@ public function list_room_pricex()
         $data = [
             'product_idx'     => $product_idx,
             'product_name'    => $product_name,
+            'product_code_no' => $product_code_no,
             'title_adult'     => $title_adult,
             'title_child'     => $title_child,
             'title_baby'      => $title_baby,
@@ -2824,6 +2826,8 @@ public function list_room_pricex()
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $db = $this->connect;
         $prod = $this->productModel->getById($product_idx);
+        $product_name = $prod["product_name"];
+        $product_code_no = $prod["product_code"];
         $title_adult = $prod["title_adult"];
         $title_child = $prod["title_child"];
 
@@ -2893,6 +2897,8 @@ public function list_room_pricex()
 
         $data = [
             'product_idx'     => $product_idx,
+            'product_name'    => $product_name,
+            'product_code_no' => $product_code_no,
             'title_adult'     => $title_adult,
             'title_child'     => $title_child,
             'productSpasInfo' => $groupedData,

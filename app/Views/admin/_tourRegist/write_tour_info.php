@@ -54,6 +54,33 @@
 		<div id="contents">
 			<div class="listWrap_noline">
 				<div class="listBottom">
+					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
+						<caption>
+						</caption>
+						<colgroup>
+							<col width="10%"/>
+							<col width="40%"/>
+							<col width="10%"/>
+							<col width="40%"/>
+						</colgroup>
+						<tbody>
+
+						<tr>
+							<th>상품명</th>
+							<td colspan="3">
+								<?= $product_name ?? "" ?>
+							</td>
+						</tr>
+
+						<tr>
+							<th>상품코드</th>
+							<td colspan="3">
+								<?= $product_code_no ?? "" ?>
+							</td>
+						</tr>
+
+						</tbody>
+					</table>
 					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 						<caption>
 						</caption>
