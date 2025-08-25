@@ -52,29 +52,17 @@
         <div class="absolute inset-0 w-full h-full">
             <div class="slider-container w-full h-full relative">
                 <?php
-                $grouped = [];
                 foreach ($banner_promotion as $banner) {
                     if (!empty($banner['ufile']) && is_file(ROOTPATH . "/public/data/promotion/" . $banner["ufile"])) {
-                        $grouped[$banner['promotion_idx']][$banner['device_type']] = $banner;
-                    }
-                }
-                foreach ($grouped as $promotion) {
-    $pcImg = $promotion['P']['ufile'] ?? null;
-    $moImg = $promotion['M']['ufile'] ?? null;
+                        $img_banner = "/data/promotion/" . $banner['ufile'];
                 ?>
                         <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-        <?php if ($pcImg): ?>
-            <img src="/data/promotion/<?= $pcImg ?>" alt="<?= $promotion['P']['rfile'] ?? '' ?>" class="w-full h-full object-cover only_web">
-        <?php endif; ?>
-        
-        <?php if ($moImg): ?>
-            <img src="/data/promotion/<?= $moImg ?>" alt="<?= $promotion['M']['rfile'] ?? '' ?>" class="w-full h-full object-cover only_mo">
-        <?php endif; ?>
-
-        <div class="absolute inset-0 bg-transparent"></div>
-    </div>
+                            <img src="<?= $img_banner ?>" alt="<?= $banner['rfile'] ?>" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-transparent"></div>
+                        </div>
                 <?php
                     }
+                }
                 ?>
                 <!-- <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
