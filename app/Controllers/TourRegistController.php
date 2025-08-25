@@ -410,6 +410,11 @@ class TourRegistController extends BaseController
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        foreach ($mcodes as $key => $val) {
+            $mcodes[$key]['codes_child'] = $this->codeModel->getByParentCode($val['code_no'])->getResultArray();
+        }
+
+
         $img_list = $this->productImg->getImg($product_idx);
 
         $sql       = "SELECT * FROM tbl_code WHERE parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
@@ -1906,6 +1911,10 @@ public function list_room_pricex()
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        foreach ($mcodes as $key => $val) {
+            $mcodes[$key]['codes_child'] = $this->codeModel->getByParentCode($val['code_no'])->getResultArray();
+        }
+
         $img_list = $this->productImg->getImg($product_idx);
 
         $sql       = "SELECT * FROM tbl_code WHERE parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
@@ -2019,6 +2028,10 @@ public function list_room_pricex()
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        foreach ($mcodes as $key => $val) {
+            $mcodes[$key]['codes_child'] = $this->codeModel->getByParentCode($val['code_no'])->getResultArray();
+        }
+
         $img_list = $this->productImg->getImg($product_idx);
         $img_tour_list = $this->tourImg->getImg($product_idx);
 
@@ -2044,7 +2057,7 @@ public function list_room_pricex()
         $product_keywords = $this->codeModel->getCodesByConditions($conditions_key);
 
         $conditions_key = [
-            "parent_code_no" => '6601',
+            "parent_code_no" => '66',
         ];
         $tours_group = $this->codeModel->getCodesByConditions($conditions_key);
         $data['tours_group'] = $tours_group;
