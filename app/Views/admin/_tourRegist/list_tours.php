@@ -493,7 +493,7 @@
                                         <td class="tal" style="font-weight:bold">
                                             <a href="write_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                                 <?= viewSQ($row["product_name"]) ?>
-                                            </a><br>최저가 : <?= number_format($row['product_price']) ?>바트
+                                            </a><br>최저가 : <?= number_format($row['tour_price']) ?>바트
 
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
