@@ -3678,7 +3678,9 @@ class Product extends BaseController
         $_arr_t_group = [];
         foreach ($arr_tour_group as $tour_group) {
             $row_code = $this->codeModel->getByCodeNo($tour_group);
-            array_push($_arr_t_group, $row_code);
+            if ($row_code) {
+                $_arr_t_group[] = $row_code;
+            }
         }
 
         $data['product']['arr_tour_group'] = $_arr_t_group;
@@ -4047,12 +4049,12 @@ class Product extends BaseController
         $data['product_qna'] = $product_qna;
 
         $arr_tour_group = explode(",", $data['product']['tour_group']);
-        var_dump($arr_tour_group);
-        die();
         $_arr_t_group = [];
         foreach ($arr_tour_group as $tour_group) {
             $row_code = $this->codeModel->getByCodeNo($tour_group);
-            array_push($_arr_t_group, $row_code);
+            if ($row_code) {
+                $_arr_t_group[] = $row_code;
+            }
         }
 
         $data['product']['arr_tour_group'] = $_arr_t_group;
