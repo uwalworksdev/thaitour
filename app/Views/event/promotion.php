@@ -101,13 +101,13 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-0 flex items-center justify-center z-10 ">
+        <!-- <div class="absolute inset-0 flex items-center justify-center z-10 ">
             <div class="bg-black/50 w-full h-full flex items-center justify-center p-4">
                 <img src="/event/images/main_pro.png" alt="24시간 꽉찬 여행 방콕"
                     class="w-full h-auto max-h-[70vh] object-contain main_title only_web">
                 <img src="/event/images/main_pro_mo.png" alt="24시간 꽉찬 여행 방콕" class=" news main_title only_mo">
             </div>
-        </div>
+        </div> -->
         <!-- <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
         <button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="0"></button>
         <button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="1"></button>
