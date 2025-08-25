@@ -210,7 +210,7 @@
                     <?php
                         foreach($product["arr_tour_group"] ?? [] as $tour_group){
                     ?>
-                        <li class="type_title type_title_1" style="background-color: <?= $tour_group["color"]?>;"><?= $tour_group["code_name"]?></li>
+                        <li class="type_title type_title_1" style="background-color: <?= $tour_group["color"] ?? "#000000"?>;"><?= $tour_group["code_name"]?></li>
                     <?php
                         }
                     ?>
